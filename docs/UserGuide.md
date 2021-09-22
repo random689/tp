@@ -148,6 +148,23 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Filter students by other fields: `filter`
+Filters students by either:
+- tag
+- involvement
+- form class
+- medical history
+
+Format: `filter ft/FILTER CATERGORY [ft/FILTER CATERGORY]...`
+
+Search is not case sensitive e.g. “student” same as “STUDENT”
+
+Only full words will be matched e.g. “Class A1” will not match “Class A”.
+
+More than 1 filter is allowed e.g.  `filter ft/[filter category 1] ft/[filter category 2]`.
+
+Example: ` filter ft/3d ft/Biology` - will return all contacts with the tag “3d” and “Biology”.
+
 ### Exiting the program : `exit`
 
 Exits the program.
