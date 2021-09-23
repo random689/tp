@@ -199,9 +199,9 @@ For a filtered sublist of people, copy data based on a certain field to the clip
 - handphone number
 - name
 
-Format: `copy [field]`
+Format: `copy f/FIELD`
 
-Example: `copy email` - will copy all the email of the filtered sublist of people to the user's clipboard.
+Example: `copy f/email` - will copy all the email of the filtered sublist of people to the user's clipboard.
 
 ### Exiting the program : `exit`
 
@@ -268,6 +268,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Copy** | `copy [FIELD]` <br> e.g., `copy [email]`
+**Copy** | `copy f/FIELD` <br> e.g., `copy f/email`
 **List** | `list`
 **Help** | `help`
