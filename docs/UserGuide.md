@@ -99,6 +99,21 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+### Adding a teacher: `teacher`
+
+Adds a teacher to the New Address Book.
+
+Format: `teacher n/NAME p/ PHONE_NUMBER e/EMAIL a/ADDRESS i/INVOLVEMENT [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A teacher can have any number of tags (including 0), such as whether he/she is a relief teacher.
+</div>
+
+Examples:
+* `teacher n/Gabe p/91234567 e/gabe@example.com f/3A2 i/Lunch buddy`
+* `teacher n/Lebron p/91234567 e/lbj@example.com a/George street, block 123, #01-01 f/3C2 i/Math HOD 
+t/relief`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
