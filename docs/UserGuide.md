@@ -192,6 +192,17 @@ More than 1 filter is allowed e.g.  `filter ft/[filter category 1] ft/[filter ca
 
 Example: ` filter ft/3d ft/Biology` - will return all contacts with the tag “3d” and “Biology”.
 
+### Copying fields
+For a filtered sublist of people, copy data based on a certain field to the clipboard. The fields that can be copied are:
+
+- email
+- handphone number
+- name
+
+Format: `copy [field]`
+
+Example: `copy email` - will copy all the email of the filtered sublist of people to the user's clipboard.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -257,5 +268,6 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Copy** | `copy [FIELD]` <br> e.g., `copy [email]`
 **List** | `list`
 **Help** | `help`
