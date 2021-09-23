@@ -257,11 +257,11 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* secondary school teachers who need to manage many students/teachers who are involved with the teacher in many ways
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Secondary school teachers who need to manage many students/teachers who are involved with the teacher in many ways
+* Prefer desktop apps over other types
+* Can type fast
+* Prefer typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app, allows teachers to find their contacts easily
 
