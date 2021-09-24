@@ -18,15 +18,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 
-### Jane Doe
+### Clive Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cliveong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/cliveong)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Filter
 
 ### Yip Jung Hon
 
