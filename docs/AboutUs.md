@@ -9,15 +9,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Gary Yansen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/g4ryy.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/g4ryy)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
 ### Jane Doe
 
@@ -29,24 +28,24 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Yip Jung Hon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/junghon3709.png" width="200px">
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ng Yong Chuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/random689.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/random689)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Data
 
 ### James Doe
 
