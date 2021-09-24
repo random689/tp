@@ -3,10 +3,23 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+## NewAddressBook - User Guide
 
-* Table of Contents
-{:toc}
+NewAddressBook is a **desktop app built for secondary school teachers** handling 
+large classes to help **manage their contacts of their students and colleagues**.
+
+## Features
+- [Viewing help](#viewing-help)
+- [Adding students](#adding-students)
+- [Adding teachers](#adding-teachers)
+- [Listing all persons](#listing-all-persons)
+- [Finding contacts by name](#finding-contacts-by-name)
+- [Deleting a person](#deleting-a-person)
+- [Clearing all entries](#clearing-all-entries)
+- [Filter students by other fields](#filter-students-by-other-fields)
+- [Copying fields](#copying-fields)
+- [Adding grades to students](#adding-grades-to-students)
+- [Exiting the program](#exiting-the-program)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,7 +39,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`student`**`student n/John Doe p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/Asthma` : Adds a student named `John Doe` to NewAddressBook.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -73,29 +86,50 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `student`
 
-Adds a person to the address book.
+Adds a student to NewAddressBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS 
+f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​`
+
+- `GENDER` can only be one of  the following: M (Male), F (Female) or N (Non-binary)
+<div markdown="span" class="alert alert-primary">:bulb: **Tip 1:**
+A student can have any number of tags (including 0)
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of medical histories (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/asthma`
+- `student n/Betsy Crowe p/83958294 e/bc33@example.com a/Adams road, block 8, #03-05 f/3C1 g/F i/Dance society em/96122134 t/President t/exco`
+
+### Adding a teacher: `teacher`
+
+Adds a teacher to NewAddressBook.
+
+Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INVOLVEMENT [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A teacher can have any number of tags (including 0), such as whether he/she is a relief teacher.
+</div>
+
+Examples:
+* `teacher n/Gabe p/91234567 e/gabe@example.com i/Lunch buddy`
+* `teacher n/Lebron p/91234567 e/lbj@example.com a/George street, block 123, #01-01 i/Math HOD
+t/relief`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons stored in NewAddressBook.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in NewAddressBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -130,7 +164,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from NewAddressBook.
 
 Format: `delete INDEX`
 
@@ -144,7 +178,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from NewAddressBook.
 
 Format: `clear`
 
@@ -165,11 +199,47 @@ More than 1 filter is allowed e.g.  `filter ft/[filter category 1] ft/[filter ca
 
 Example: ` filter ft/3d ft/Biology` - will return all contacts with the tag “3d” and “Biology”.
 
+### Copying fields
+For a filtered sublist of people, copy data based on a certain field to the clipboard. The fields that can be copied are:
+
+- email
+- handphone number
+- name
+
+Format: `copy f/FIELD`
+
+Example: `copy f/email` - will copy all the email of the filtered sublist of people to the user's clipboard.
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Adding grades to students
+Changes the grades or adds a new grade for the student.
+
+`grades /s STUDENT NAME /u UPDATED GRADES`
+
+The updated grades hould be in a dictionary form, seperated by commas.
+
+Example: `grades /s John Smith /u Biology:A,Chemistry:B,Chinese:C`
+
+Note that one can add an unlimited number of subjects.
+
+If the subject grade is already present, the subject grade will be updated to reflect the new grade specified in the command. Otherwise, a new subject grade will be added.
+
+In the example command above, assume John Smith has the following grades:
+- English: D
+- Biology: B
+- Chinese: D
+
+Then after executing the command, the grades will be updated to
+- English: D
+- Biology: A
+- Chemistry: B
+- Chinese: C
+
 
 ### Saving the data
 
@@ -200,10 +270,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​` <br> e.g., `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/asthma t/representative`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Copy** | `copy f/FIELD` <br> e.g., `copy f/email`
 **List** | `list`
 **Help** | `help`
