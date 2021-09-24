@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Clive Ong
 
-<img src="docs/images/cliveong.png" width="200px">
+<img src="docs/images/cliveong.png.jpg" width="200px">
 
 [[github](https://github.com/cliveong)]
 [[portfolio](team/johndoe.md)]]
