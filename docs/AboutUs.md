@@ -32,7 +32,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/junghon3709.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/junghon3709)]
+[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
