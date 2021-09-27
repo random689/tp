@@ -3,9 +3,10 @@ layout: page
 title: User Guide
 ---
 
-## New Address Book - User Guide
+## NewAddressBook - User Guide
 
-New Address book helps teachers handling large classes manage their contacts of their students and colleagues.
+NewAddressBook is a **desktop app built for secondary school teachers** handling 
+large classes to help **manage their contacts of their students and colleagues**.
 
 ## Features
 - [Viewing help](#viewing-help)
@@ -28,7 +29,7 @@ New Address book helps teachers handling large classes manage their contacts of 
 
 1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your NewAddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -38,7 +39,7 @@ New Address book helps teachers handling large classes manage their contacts of 
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`student`**`student n/John Doe p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/Asthma` : Adds a student named `John Doe` to NewAddressBook.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -85,25 +86,31 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a student: `student`
 
-Adds a person to the address book.
+Adds a student to NewAddressBook.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS 
+f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​`
+
+- `GENDER` can only be one of  the following: M (Male), F (Female) or N (Non-binary)
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A student can have any number of tags (including 0)
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of medical histories (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/asthma`
+- `student n/Betsy Crowe p/83958294 e/bc33@example.com a/Adams road, block 8, #03-05 f/3C1 g/F i/Dance society em/96122134 t/President t/exco`
 
 ### Adding a teacher: `teacher`
 
-Adds a teacher to the New Address Book.
+Adds a teacher to NewAddressBook.
 
-Format: `teacher n/NAME p/ PHONE_NUMBER e/EMAIL a/ADDRESS i/INVOLVEMENT [t/TAG]…​`
+Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INVOLVEMENT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A teacher can have any number of tags (including 0), such as whether he/she is a relief teacher.
@@ -116,13 +123,13 @@ t/relief`
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons stored in NewAddressBook.
 
 Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in NewAddressBook.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -157,7 +164,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+Deletes the specified person from NewAddressBook.
 
 Format: `delete INDEX`
 
@@ -171,7 +178,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from NewAddressBook.
 
 Format: `clear`
 
@@ -191,6 +198,17 @@ Only full words will be matched e.g. “Class A1” will not match “Class A”
 More than 1 filter is allowed e.g.  `filter ft/[filter category 1] ft/[filter category 2]`.
 
 Example: ` filter ft/3d ft/Biology` - will return all contacts with the tag “3d” and “Biology”.
+
+### Copying fields
+For a filtered sublist of people, copy data based on a certain field to the clipboard. The fields that can be copied are:
+
+- email
+- handphone number
+- name
+
+Format: `copy f/FIELD`
+
+Example: `copy f/email` - will copy all the email of the filtered sublist of people to the user's clipboard.
 
 ### Exiting the program : `exit`
 
@@ -225,14 +243,14 @@ Then after executing the command, the grades will be updated to
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+NewAddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+NewAddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NewAddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -244,7 +262,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NewAddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -252,10 +270,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​` <br> e.g., `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/asthma t/representative`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Copy** | `copy f/FIELD` <br> e.g., `copy f/email`
 **List** | `list`
 **Help** | `help`
