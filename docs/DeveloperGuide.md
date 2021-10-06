@@ -329,7 +329,7 @@ Use case ends.
 * 2a. The list is empty.
 
   Use case ends.
-  
+
 * 3a. The given index is invalid.
 
   * 3a1. NewAddressBook shows an error message.
