@@ -319,8 +319,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons
 2.  NewAddressBook shows a list of persons
-3.  User requests to edit grades for a specific student.
-4.  NewAddressBook finds the student and updates his grades
+3. User requests to edit grades for a specific student
+4. NewAddressBook finds the student and updates his grades
 
 Use case ends.
 
@@ -335,9 +335,9 @@ Use case ends.
   * 3a1. NewAddressBook shows an error message.
 
   Use case ends.
-  
+
 **Use case: Filtering students based on involvement**
- 
+
 
 **MSS**
 
@@ -348,7 +348,7 @@ Use case ends.
 * 1a. The list is empty.
 
   Use case ends.
-  
+
 * 2a. There are students in class D (or more generally, no students with involvement labels matching what the user is finding).
 
   * 2a1. NewAddressBook tells user that it cannot find any matching tags.
@@ -366,7 +366,7 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **involvement**: A label attached to each student specifying the student's involvement with the teacher 
+* **involvement**: A label attached to each student specifying the student's involvement with the teacher
 
 --------------------------------------------------------------------------------------------------------------------
 
