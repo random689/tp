@@ -48,7 +48,8 @@ public class StudentCommandTest {
         StudentCommand studentCommand = new StudentCommand(validStudent);
         ModelStub modelStub = new ModelStubWithPerson(validStudent);
 
-        assertThrows(CommandException.class, StudentCommand.MESSAGE_DUPLICATE_PERSON, () -> studentCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                StudentCommand.MESSAGE_DUPLICATE_PERSON, () -> studentCommand.execute(modelStub));
     }
 
     @Test
@@ -191,5 +192,4 @@ public class StudentCommandTest {
             return new AddressBook();
         }
     }
-
 }
