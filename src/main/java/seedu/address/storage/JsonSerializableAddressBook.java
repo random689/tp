@@ -37,7 +37,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        students.addAll(source.getPersonList().stream().map(person -> new JsonAdaptedStudent((Student) person)).collect(Collectors.toList()));
+        students.addAll(source.getPersonList().stream()
+                .map(person -> new JsonAdaptedStudent((Student) person)).collect(Collectors.toList()));
     }
 
     /**
