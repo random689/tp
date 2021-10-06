@@ -91,5 +91,4 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
-
 }
