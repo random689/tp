@@ -5,16 +5,14 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
-
 ### Gary Yansen
 
 <img src="images/g4ryy.png" width="200px">
 
-[[github](https://github.com/g4ryy)]
-[[portfolio](team/johndoe.md)]
+[![Clive GitHub](images/github-icon.png)](http://github.com/g4ryy)
+
+[[portfolio](team/garyyansen.md)]
 
 * Role: Developer
 
@@ -22,38 +20,40 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/cliveong.png" width="200px">
 
-[[github](http://github.com/cliveong)]
-[[portfolio](team/johndoe.md)]
+[![Clive GitHub](images/github-icon.png)](http://github.com/cliveong)
+
+[[portfolio](team/cliveong.md)]
 
 * Role: Developer
-* Responsibilities: Filter
 
 ### Yip Jung Hon
 
 <img src="images/junghon3709.png" width="200px">
 
-[[github](https://github.com/junghon3709)]
-[[portfolio](team/johndoe.md)]
+[![Jung Hon GitHub](images/github-icon.png)](https://github.com/junghon3709)
+
+[[portfolio](team/yipjunghon.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Ng Yong Chuan
 
 <img src="images/random689.png" width="200px">
 
-[[github](http://github.com/random689)]
-[[portfolio](team/johndoe.md)]
+[![Yong Chuan GitHub](images/github-icon.png)](https://github.com/random689)
+
+[[portfolio](team/ngyongchuan.md)]
 
 * Role: Developer
-* Responsibilities: Data
 
 ### Nigel Tan
 
 <img src="images/nniiggeell.png" width="200px">
 
-[[github](http://github.com/nniiggeell)]
-[[portfolio](team/johndoe.md)]
+[![Nigel GitHub](images/github-icon.png)](https://github.com/nniiggeell)
+
+[[portfolio](team/nigeltan.md)]
 
 * Role: Developer
-* Responsibilities: UI
+
+---
