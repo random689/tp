@@ -1,16 +1,24 @@
 package seedu.address.model.person;
 
-import java.util.Set;
-
 import seedu.address.model.tag.Tag;
+
+import java.util.Set;
 
 /**
  * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student extends Person {
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+
+    private Phone emergencyContact;
+
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Phone emergencyContact) {
         super(name, phone, email, address, tags);
+        this.emergencyContact = emergencyContact;
+    }
+
+    public Phone getEmergencyContact() {
+        return emergencyContact;
     }
 
     /**
@@ -28,10 +36,12 @@ public class Student extends Person {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName())
-                && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags());
+        return super.equals(otherStudent)
+                && this.getEmergencyContact().equals(otherStudent.getEmergencyContact());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; " + String.format("Emergency contact: %s", getEmergencyContact());
     }
 }
