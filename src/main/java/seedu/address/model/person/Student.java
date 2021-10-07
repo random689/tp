@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.model.tag.Tag;
-
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Student in the address book.
@@ -11,6 +11,16 @@ import java.util.Set;
 public class Student extends Person {
 
     private Phone emergencyContact;
+
+    /**
+     * Constructor for {@code Student}
+     * @param name Name of student
+     * @param phone Phone number of student
+     * @param email Email of student
+     * @param address Address of student
+     * @param tags Tags associated to student
+     * @param emergencyContact Emergency contact of student
+     */
 
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Phone emergencyContact) {
         super(name, phone, email, address, tags);

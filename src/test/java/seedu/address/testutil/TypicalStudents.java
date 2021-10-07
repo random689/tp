@@ -79,8 +79,8 @@ public class TypicalStudents {
             .build();
 
     // Manually added
-    public static final Student HOON = new StudentBuilder().
-            withName("Hoon Meier")
+    public static final Student HOON = new StudentBuilder()
+            .withName("Hoon Meier")
             .withPhone("8482424")
             .withEmail("stefan@example.com")
             .withAddress("little india")
