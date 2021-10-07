@@ -14,10 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +23,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_INVOLVEMENT = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +31,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_INVOLVEMENT = "Math class";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -123,6 +122,29 @@ public class ParserUtilTest {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    }
+
+    @Test
+    public void parseInvolvement_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseInvolvement((String) null));
+    }
+
+    @Test
+    public void parseInvolvement_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_INVOLVEMENT));
+    }
+
+    @Test
+    public void parseInvolvement_validValueWithoutWhitespace_returnsInvolvement() throws Exception {
+        Involvement expectedInvolvement = new Involvement(VALID_INVOLVEMENT);
+        assertEquals(expectedInvolvement, ParserUtil.parseInvolvement(VALID_INVOLVEMENT));
+    }
+
+    @Test
+    public void parseInvolvement_validValueWithWhitespace_returnsTrimmedInvolvement() throws Exception {
+        String involvementWithWhitespace = WHITESPACE + VALID_INVOLVEMENT + WHITESPACE;
+        Involvement expectedInvolvement = new Involvement(VALID_INVOLVEMENT);
+        assertEquals(expectedInvolvement, ParserUtil.parseInvolvement(involvementWithWhitespace));
     }
 
     @Test
