@@ -2,7 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -53,8 +59,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_INVOLVEMENT).isPresent()) {
-            editPersonDescriptor.setInvolvement(ParserUtil.parseInvolvement(argMultimap.
-                    getValue(PREFIX_INVOLVEMENT).get()));
+            editPersonDescriptor.setInvolvement(ParserUtil.parseInvolvement(argMultimap
+                    .getValue(PREFIX_INVOLVEMENT).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         if (argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).isPresent()) {
