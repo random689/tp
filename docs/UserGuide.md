@@ -5,8 +5,7 @@ title: User Guide
 
 ## NewAddressBook - User Guide
 
-NewAddressBook is a **desktop app built for secondary school teachers** handling 
-large classes to help **manage their contacts of their students and colleagues**.
+NewAddressBook is a **desktop app built for secondary school teachers** handling large classes to help **manage their contacts of their students and colleagues**.
 
 ## Features
 - [Viewing help](#viewing-help)
@@ -90,7 +89,7 @@ Format: `help`
 
 Adds a student to NewAddressBook.
 
-Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS 
+Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
 f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​`
 
 - `GENDER` can only be one of  the following: M (Male), F (Female) or N (Non-binary)
