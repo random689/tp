@@ -102,7 +102,7 @@ public class ParserUtil {
         requireNonNull(involvement);
         String trimmedInvolvement = involvement.trim();
         if (!Address.isValidAddress(trimmedInvolvement)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Involvement.MESSAGE_CONSTRAINTS);
         }
         return new Involvement(trimmedInvolvement);
     }
