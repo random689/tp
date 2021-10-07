@@ -60,7 +60,7 @@ public class StudentCommandParserTest {
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
                 NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + INVOLVEMENT_DESC_AMY+ EMERGENCY_CONTACT_DESC_AMY,
+                        + INVOLVEMENT_DESC_AMY + EMERGENCY_CONTACT_DESC_AMY,
                 new StudentCommand(expectedStudent));
     }
 
@@ -122,7 +122,7 @@ public class StudentCommandParserTest {
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVOLVEMENT_DESC_BOB+ TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + INVOLVEMENT_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
                 + EMERGENCY_CONTACT_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
@@ -142,7 +142,7 @@ public class StudentCommandParserTest {
 
         // invalid involvement
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_INVOLVEMENT_DESC+ TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                + INVALID_INVOLVEMENT_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
                 + EMERGENCY_CONTACT_DESC_BOB, Involvement.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
