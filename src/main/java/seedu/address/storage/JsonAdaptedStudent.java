@@ -91,6 +91,9 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
+        if (emergencyContact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
         if (!Phone.isValidPhone(emergencyContact)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }

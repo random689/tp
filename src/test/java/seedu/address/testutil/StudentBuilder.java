@@ -38,6 +38,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        emergencyContact = new Phone(DEFAULT_EMERGENCY_CONTACT);
     }
 
     /**
@@ -89,6 +90,11 @@ public class StudentBuilder {
      */
     public StudentBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    public StudentBuilder withEmergencyContact(String phone) {
+        this.emergencyContact = new Phone(phone);
         return this;
     }
 
