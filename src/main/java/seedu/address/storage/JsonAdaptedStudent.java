@@ -93,7 +93,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                     Involvement.class.getSimpleName()));
         }
         if (!Involvement.isValidInvolvement(involvement)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Involvement.MESSAGE_CONSTRAINTS);
         }
         final Involvement modelInvolvement = new Involvement(involvement);
 
