@@ -91,6 +91,10 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, new Phone("91913216"));
+        if (!Phone.isValidPhone(emergencyContact)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelEmergencyContact = new Phone(emergencyContact);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelEmergencyContact);
     }
 }
