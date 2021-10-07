@@ -24,6 +24,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String address;
+    private final String emergencyContact;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given student details.
@@ -31,9 +32,11 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("emergencyContact") String emergencyContact) {
         super(name, phone, email, tagged);
         this.address = address;
+        this.emergencyContact = emergencyContact;
     }
 
     /**
@@ -42,6 +45,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     public JsonAdaptedStudent(Student source) {
         super(source);
         this.address = source.getAddress().value;
+        this.emergencyContact = source.getEmergencyContact().value;
     }
 
     /**
@@ -88,6 +92,13 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        if (emergencyContact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(emergencyContact)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelEmergencyContact = new Phone(emergencyContact);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelEmergencyContact);
     }
 }

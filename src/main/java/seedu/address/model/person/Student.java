@@ -9,8 +9,26 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student extends Person {
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+
+    private Phone emergencyContact;
+
+    /**
+     * Constructor for {@code Student}
+     * @param name Name of student
+     * @param phone Phone number of student
+     * @param email Email of student
+     * @param address Address of student
+     * @param tags Tags associated to student
+     * @param emergencyContact Emergency contact of student
+     */
+
+    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Phone emergencyContact) {
         super(name, phone, email, address, tags);
+        this.emergencyContact = emergencyContact;
+    }
+
+    public Phone getEmergencyContact() {
+        return emergencyContact;
     }
 
     /**
@@ -28,10 +46,12 @@ public class Student extends Person {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName())
-                && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getEmail().equals(getEmail())
-                && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getTags().equals(getTags());
+        return super.equals(otherStudent)
+                && this.getEmergencyContact().equals(otherStudent.getEmergencyContact());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; " + String.format("Emergency contact: %s", getEmergencyContact());
     }
 }
