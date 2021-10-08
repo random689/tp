@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INVOLVEMENT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INVOLVEMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -32,6 +34,7 @@ public class TypicalStudents {
             .withPhone("94351253")
             .withTags("friends")
             .withEmergencyContact("95614132")
+            .withInvolvement("Math class")
             .build();
     public static final Student BENSON = new StudentBuilder()
             .withName("Benson Meier")
@@ -40,6 +43,7 @@ public class TypicalStudents {
             .withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withEmergencyContact("91939100")
+            .withInvolvement("Math class")
             .build();
     public static final Student CARL = new StudentBuilder()
             .withName("Carl Kurz")
@@ -47,6 +51,7 @@ public class TypicalStudents {
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .withEmergencyContact("48190514")
+            .withInvolvement("Form class")
             .build();
     public static final Student DANIEL = new StudentBuilder()
             .withName("Daniel Meier")
@@ -55,6 +60,7 @@ public class TypicalStudents {
             .withAddress("10th street")
             .withTags("friends")
             .withEmergencyContact("58141834")
+            .withInvolvement("Form class")
             .build();
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")
@@ -62,6 +68,7 @@ public class TypicalStudents {
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
             .withEmergencyContact("92329700")
+            .withInvolvement("Form class")
             .build();
     public static final Student FIONA = new StudentBuilder()
             .withName("Fiona Kunz")
@@ -69,6 +76,7 @@ public class TypicalStudents {
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .withEmergencyContact("580947918074907019749087")
+            .withInvolvement("English class")
             .build();
     public static final Student GEORGE = new StudentBuilder()
             .withName("George Best")
@@ -76,6 +84,7 @@ public class TypicalStudents {
             .withEmail("anna@example.com")
             .withAddress("4th street")
             .withEmergencyContact("84041748901")
+            .withInvolvement("English class")
             .build();
 
     // Manually added
@@ -85,6 +94,7 @@ public class TypicalStudents {
             .withEmail("stefan@example.com")
             .withAddress("little india")
             .withEmergencyContact("91939100")
+            .withInvolvement("English rep")
             .build();
 
     public static final Student IDA = new StudentBuilder()
@@ -93,6 +103,7 @@ public class TypicalStudents {
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
             .withEmergencyContact("91939100")
+            .withInvolvement("Bio rep")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -101,6 +112,7 @@ public class TypicalStudents {
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
+            .withInvolvement(VALID_INVOLVEMENT_AMY)
             .withTags(VALID_TAG_FRIEND)
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
             .build();
@@ -110,6 +122,7 @@ public class TypicalStudents {
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
+            .withInvolvement(VALID_INVOLVEMENT_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
             .build();

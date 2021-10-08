@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -32,9 +33,10 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("involvement") String involvement,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("emergencyContact") String emergencyContact) {
-        super(name, phone, email, tagged);
+        super(name, phone, email, involvement, tagged);
         this.address = address;
         this.emergencyContact = emergencyContact;
     }
@@ -91,6 +93,15 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (involvement == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Involvement.class.getSimpleName()));
+        }
+        if (!Involvement.isValidInvolvement(involvement)) {
+            throw new IllegalValueException(Involvement.MESSAGE_CONSTRAINTS);
+        }
+        final Involvement modelInvolvement = new Involvement(involvement);
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         if (emergencyContact == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -99,6 +110,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelEmergencyContact = new Phone(emergencyContact);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelEmergencyContact);
+        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelInvolvement,
+                modelTags, modelEmergencyContact);
     }
 }

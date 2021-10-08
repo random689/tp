@@ -42,6 +42,8 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label emergencyContact;
+    @FXML
+    private Label involvement;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,6 +56,7 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
+        involvement.setText(student.getInvolvement().involvement);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

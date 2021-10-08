@@ -22,8 +22,9 @@ public class Student extends Person {
      * @param emergencyContact Emergency contact of student
      */
 
-    public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Phone emergencyContact) {
-        super(name, phone, email, address, tags);
+    public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
+                   Phone emergencyContact) {
+        super(name, phone, email, address, involvement, tags);
         this.emergencyContact = emergencyContact;
     }
 
