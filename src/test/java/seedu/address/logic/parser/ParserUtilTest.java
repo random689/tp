@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -28,6 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_INVOLVEMENT = " ";
+    private static final String INVALID_FORM_CLASS = "4*1";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -36,6 +38,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_INVOLVEMENT = "Math class";
+    private static final String VALID_FORM_CLASS = "4E1";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -135,7 +138,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseInvolvement_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_INVOLVEMENT));
+        assertThrows(ParseException.class, () -> ParserUtil.parseInvolvement(INVALID_INVOLVEMENT));
     }
 
     @Test
@@ -218,5 +221,28 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFormClass_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFormClass((String) null));
+    }
+
+    @Test
+    public void parseFormClass_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFormClass(INVALID_FORM_CLASS));
+    }
+
+    @Test
+    public void parseFormClass_validValueWithoutWhitespace_returnsInvolvement() throws Exception {
+        FormClass expectedFormClass = new FormClass(VALID_FORM_CLASS);
+        assertEquals(expectedFormClass, ParserUtil.parseFormClass(VALID_FORM_CLASS));
+    }
+
+    @Test
+    public void parseFormClass_validValueWithWhitespace_returnsTrimmedInvolvement() throws Exception {
+        String formClassWithWhitespace = WHITESPACE + VALID_FORM_CLASS + WHITESPACE;
+        FormClass expectedFormClass = new FormClass(VALID_FORM_CLASS);
+        assertEquals(expectedFormClass, ParserUtil.parseFormClass(formClassWithWhitespace));
     }
 }

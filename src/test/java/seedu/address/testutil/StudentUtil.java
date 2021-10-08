@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -41,6 +42,7 @@ public class StudentUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         sb.append(PREFIX_EMERGENCY_CONTACT + person.getEmergencyContact().value + " ");
+        sb.append(PREFIX_FORM_CLASS + person.getFormClass().formClass + " ");
         return sb.toString();
     }
 
@@ -57,6 +59,8 @@ public class StudentUtil {
                 .append(involvement.involvement).append(" "));
         descriptor.getEmergencyContact().ifPresent(emergencyContact ->
                 sb.append(PREFIX_EMERGENCY_CONTACT).append(emergencyContact.value).append(" "));
+        descriptor.getFormClass().ifPresent(formClass ->
+                sb.append(PREFIX_FORM_CLASS).append(formClass.formClass).append(" "));
         // tags should be the last, else bug
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

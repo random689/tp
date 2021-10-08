@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -45,6 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_FORM_CLASS + "FORM CLASS] "
             + "[" + PREFIX_INVOLVEMENT + "INVOLVEMENT] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT]...\n"
@@ -107,9 +110,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Phone updatedEmergencyContact =
                 editPersonDescriptor.getEmergencyContact().orElse(personToEdit.getEmergencyContact());
+        FormClass updatedFormClass = editPersonDescriptor.getFormClass().orElse(personToEdit.getFormClass());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedInvolvement, updatedTags,
-                updatedEmergencyContact);
+                updatedEmergencyContact, updatedFormClass);
     }
 
     @Override
@@ -142,6 +146,7 @@ public class EditCommand extends Command {
         private Involvement involvement;
         private Set<Tag> tags;
         private Phone emergencyContact;
+        private FormClass formClass;
 
         public EditPersonDescriptor() {}
 
@@ -157,13 +162,15 @@ public class EditCommand extends Command {
             setInvolvement(toCopy.involvement);
             setTags(toCopy.tags);
             setEmergencyContact(toCopy.emergencyContact);
+            setFormClass(toCopy.formClass);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, involvement, tags, emergencyContact);
+            return CollectionUtil.isAnyNonNull(
+                    name, phone, email, address, involvement, tags, emergencyContact, formClass);
         }
 
         public void setName(Name name) {
@@ -231,6 +238,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(emergencyContact);
         }
 
+        public void setFormClass(FormClass formClass) {
+            this.formClass = formClass;
+        }
+
+        public Optional<FormClass> getFormClass() {
+            return Optional.ofNullable(formClass);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -252,7 +267,8 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getInvolvement().equals(e.getInvolvement())
                     && getTags().equals(e.getTags())
-                    && getEmergencyContact().equals(e.getEmergencyContact());
+                    && getEmergencyContact().equals(e.getEmergencyContact())
+                    && getFormClass().equals(e.getFormClass());
         }
     }
 }

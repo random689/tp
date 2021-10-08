@@ -11,6 +11,7 @@ import seedu.address.model.tag.Tag;
 public class Student extends Person {
 
     private Phone emergencyContact;
+    private FormClass formClass;
 
     /**
      * Constructor for {@code Student}
@@ -20,16 +21,22 @@ public class Student extends Person {
      * @param address Address of student
      * @param tags Tags associated to student
      * @param emergencyContact Emergency contact of student
+     * @param formClass Form Class of Student
      */
 
     public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
-                   Phone emergencyContact) {
+                   Phone emergencyContact, FormClass formClass) {
         super(name, phone, email, address, involvement, tags);
         this.emergencyContact = emergencyContact;
+        this.formClass = formClass;
     }
 
     public Phone getEmergencyContact() {
         return emergencyContact;
+    }
+
+    public FormClass getFormClass() {
+        return formClass;
     }
 
     /**

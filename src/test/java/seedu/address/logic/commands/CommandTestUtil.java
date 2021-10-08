@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -42,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_EMERGENCY_CONTACT_BOB = "91304141";
     public static final String VALID_INVOLVEMENT_AMY = "Bio class";
     public static final String VALID_INVOLVEMENT_BOB = "Math class";
+    public static final String VALID_FORM_CLASS_AMY = "4E1";
+    public static final String VALID_FORM_CLASS_BOB = "2E1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -59,6 +62,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVOLVEMENT_DESC_AMY = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_AMY;
     public static final String INVOLVEMENT_DESC_BOB = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_BOB;
+    public static final String FORM_CLASS_DESC_AMY = " " + PREFIX_FORM_CLASS + VALID_FORM_CLASS_AMY;
+    public static final String FORM_CLASS_DESC_BOB = " " + PREFIX_FORM_CLASS + VALID_FORM_CLASS_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -68,6 +73,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMERGENCY_CONTACT_DESC = " " + PREFIX_PHONE + "911232a"; // 'a' not allowed in
     // phones
     public static final String INVALID_INVOLVEMENT_DESC = " " + PREFIX_INVOLVEMENT; // empty string not allowed
+    public static final String INVALID_FORM_CLASS_DESC = " "
+            + PREFIX_FORM_CLASS + "4*1"; // '*' not allowed in form class
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -78,10 +85,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withInvolvement(VALID_INVOLVEMENT_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withInvolvement(VALID_INVOLVEMENT_AMY).withFormClass(VALID_FORM_CLASS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withInvolvement(VALID_INVOLVEMENT_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withInvolvement(VALID_INVOLVEMENT_AMY).withFormClass(VALID_FORM_CLASS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
