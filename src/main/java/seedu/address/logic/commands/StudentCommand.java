@@ -35,7 +35,7 @@ public class StudentCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_INVOLVEMENT + "Math class "
-            + PREFIX_TAG + "naughty"
+            + PREFIX_TAG + "naughty "
             + PREFIX_EMERGENCY_CONTACT + "999";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
