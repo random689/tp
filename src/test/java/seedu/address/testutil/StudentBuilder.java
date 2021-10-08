@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -23,6 +24,7 @@ public class StudentBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_EMERGENCY_CONTACT = "91349081";
     public static final String DEFAULT_INVOLVEMENT = "Math class";
+    public static final String DEFAULT_FORM_CLASS = "4E1";
 
     private Name name;
     private Phone phone;
@@ -31,6 +33,7 @@ public class StudentBuilder {
     private Involvement involvement;
     private Set<Tag> tags;
     private Phone emergencyContact;
+    private FormClass formClass;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -43,6 +46,7 @@ public class StudentBuilder {
         involvement = new Involvement(DEFAULT_INVOLVEMENT);
         tags = new HashSet<>();
         emergencyContact = new Phone(DEFAULT_EMERGENCY_CONTACT);
+        formClass = new FormClass(DEFAULT_FORM_CLASS);
     }
 
     /**
@@ -56,6 +60,7 @@ public class StudentBuilder {
         involvement = studentToCopy.getInvolvement();
         tags = new HashSet<>(studentToCopy.getTags());
         emergencyContact = studentToCopy.getEmergencyContact();
+        formClass = studentToCopy.getFormClass();
     }
 
     /**
@@ -116,8 +121,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Form Class} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withFormClass(String formClass) {
+        this.formClass = new FormClass(formClass);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, involvement, tags, emergencyContact);
+        return new Student(name, phone, email, address, involvement, tags, emergencyContact, formClass);
     }
 
 }

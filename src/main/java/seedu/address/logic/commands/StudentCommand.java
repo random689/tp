@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -26,6 +27,7 @@ public class StudentCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_FORM_CLASS + "FORM CLASS "
             + PREFIX_INVOLVEMENT + "INVOLVEMENT "
             + "[" + PREFIX_TAG + "TAG]... "
             + PREFIX_EMERGENCY_CONTACT + "EMERGENCY_CONTACT \n"
@@ -36,7 +38,8 @@ public class StudentCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_INVOLVEMENT + "Math class "
             + PREFIX_TAG + "naughty "
-            + PREFIX_EMERGENCY_CONTACT + "999";
+            + PREFIX_EMERGENCY_CONTACT + "999"
+            + PREFIX_FORM_CLASS + "3E1";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";

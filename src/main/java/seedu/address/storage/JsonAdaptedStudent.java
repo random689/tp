@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -26,6 +27,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
 
     private final String address;
     private final String emergencyContact;
+    private final String formClass;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given student details.
@@ -35,10 +37,12 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("involvement") String involvement,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("emergencyContact") String emergencyContact) {
+                              @JsonProperty("emergencyContact") String emergencyContact,
+                              @JsonProperty("formClass") String formClass) {
         super(name, phone, email, involvement, tagged);
         this.address = address;
         this.emergencyContact = emergencyContact;
+        this.formClass = formClass;
     }
 
     /**
@@ -48,6 +52,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         super(source);
         this.address = source.getAddress().value;
         this.emergencyContact = source.getEmergencyContact().value;
+        this.formClass = source.getFormClass().formClass;
     }
 
     /**
@@ -110,7 +115,15 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelEmergencyContact = new Phone(emergencyContact);
+        if (formClass == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, FormClass.class.getSimpleName()));
+        }
+        if (!FormClass.isValidFormClass(formClass)) {
+            throw new IllegalValueException(FormClass.MESSAGE_CONSTRAINTS);
+        }
+        final FormClass modelFormClass = new FormClass(formClass);
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelInvolvement,
-                modelTags, modelEmergencyContact);
+                modelTags, modelEmergencyContact, modelFormClass);
     }
 }
