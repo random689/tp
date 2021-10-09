@@ -4,8 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.editDescriptors.EditPersonDescriptor;
-import seedu.address.logic.commands.editDescriptors.EditStudentDescriptor;
+import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
@@ -88,6 +87,9 @@ public class EditStudentDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the Emergency Contact of the {@code EditStudentDescriptor} that we are building.
+     */
     public EditStudentDescriptorBuilder withEmergencyContact(String phone) {
         descriptor.setEmergencyContact(new Phone(phone));
         return this;

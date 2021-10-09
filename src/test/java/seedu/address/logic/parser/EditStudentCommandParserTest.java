@@ -45,7 +45,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStudentCommand;
-import seedu.address.logic.commands.editDescriptors.EditStudentDescriptor;
+import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;

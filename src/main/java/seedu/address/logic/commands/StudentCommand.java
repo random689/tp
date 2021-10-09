@@ -41,7 +41,7 @@ public class StudentCommand extends Command {
             + PREFIX_GENDER + "M "
             + PREFIX_INVOLVEMENT + "Math class "
             + PREFIX_TAG + "naughty "
-            + PREFIX_EMERGENCY_CONTACT + "999"
+            + PREFIX_EMERGENCY_CONTACT + "999 "
             + PREFIX_FORM_CLASS + "3E1";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";

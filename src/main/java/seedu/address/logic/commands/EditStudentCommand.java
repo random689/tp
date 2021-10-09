@@ -1,21 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.editDescriptors.EditStudentDescriptor;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.FormClass;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Student;
-
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
@@ -25,12 +10,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.FormClass;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Student;
 
 public class EditStudentCommand extends EditCommand {
 
-    private final Index index;
-    public final EditStudentDescriptor editStudentDescriptor;
-
+    public static final String COMMAND_WORD = "editStudent";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -47,8 +44,11 @@ public class EditStudentCommand extends EditCommand {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+    public final EditStudentDescriptor editStudentDescriptor;
+    private final Index index;
+
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                 of the person in the filtered person list to edit
      * @param editStudentDescriptor details to edit the student with
      */
     public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
@@ -68,7 +68,8 @@ public class EditStudentCommand extends EditCommand {
         Phone updatedEmergencyContact =
                 editStudentDescriptor.getEmergencyContact().orElse(studentToEdit.getEmergencyContact());
         FormClass updatedFormClass = editStudentDescriptor.getFormClass().orElse(studentToEdit.getFormClass());
-        return new Student(person, updatedEmergencyContact, updatedFormClass);
+        Gender updatedGender = editStudentDescriptor.getGender().orElse(studentToEdit.getGender());
+        return new Student(person, updatedEmergencyContact, updatedFormClass, updatedGender);
     }
 
     @Override
@@ -81,7 +82,7 @@ public class EditStudentCommand extends EditCommand {
         }
 
         Student personToEdit = (Student) lastShownList.get(index.getZeroBased());
-        Student editedStudent = createdEditedStudent((Student) personToEdit, editStudentDescriptor);
+        Student editedStudent = createdEditedStudent(personToEdit, editStudentDescriptor);
 
         if (!personToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

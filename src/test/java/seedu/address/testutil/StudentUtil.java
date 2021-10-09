@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.StudentCommand;
-import seedu.address.logic.commands.editDescriptors.EditStudentDescriptor;
+import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 

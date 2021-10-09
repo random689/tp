@@ -20,8 +20,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStudentCommand;
-import seedu.address.logic.commands.editDescriptors.EditPersonDescriptor;
-import seedu.address.logic.commands.editDescriptors.EditStudentDescriptor;
+import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -47,7 +46,8 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         EditStudentDescriptor editPersonDescriptor = new EditStudentDescriptor();

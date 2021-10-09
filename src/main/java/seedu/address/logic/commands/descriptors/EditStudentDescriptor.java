@@ -1,11 +1,11 @@
-package seedu.address.logic.commands.editDescriptors;
+package seedu.address.logic.commands.descriptors;
+
+import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Phone;
-
-import java.util.Optional;
 
 public class EditStudentDescriptor extends EditPersonDescriptor {
     /**
@@ -20,6 +20,11 @@ public class EditStudentDescriptor extends EditPersonDescriptor {
 
     }
 
+    /**
+     * Copy constructor
+     *
+     * @param toCopy {@code EditStudentDescriptor to copy from}
+     */
     public EditStudentDescriptor(EditStudentDescriptor toCopy) {
         super(toCopy);
         setEmergencyContact(toCopy.emergencyContact);

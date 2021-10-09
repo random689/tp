@@ -35,11 +35,21 @@ public class Student extends Person {
         this.gender = gender;
     }
 
-    public Student(Person person, Phone emergencyContact, FormClass formClass) {
+    /**
+     * Constructor for {@code Student} from person
+     *
+     * @param person person to copy the data from
+     * @param emergencyContact Emergency contact of student
+     * @param formClass Form Class of Student
+     * @param gender Gender of student
+     */
+
+    public Student(Person person, Phone emergencyContact, FormClass formClass, Gender gender) {
         super(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getInvolvement(),
                 person.getTags());
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
+        this.gender = gender;
     }
 
     public Phone getEmergencyContact() {

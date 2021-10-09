@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.editDescriptors.EditPersonDescriptor;
+import seedu.address.logic.commands.descriptors.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Involvement;
@@ -15,9 +15,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-abstract public class EditCommand extends Command {
-
-    public static final String COMMAND_WORD = "edit";
+public abstract class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -40,5 +38,4 @@ abstract public class EditCommand extends Command {
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedInvolvement, updatedTags);
     }
-
 }
