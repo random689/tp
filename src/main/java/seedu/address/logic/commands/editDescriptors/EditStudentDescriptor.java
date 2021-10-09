@@ -62,8 +62,8 @@ public class EditStudentDescriptor extends EditPersonDescriptor {
         EditStudentDescriptor e = (EditStudentDescriptor) other;
 
         return super.equals(e)
-                && emergencyContact.equals(e.emergencyContact)
-                && formClass.equals(e.formClass);
+                && getEmergencyContact().equals(e.getEmergencyContact())
+                && getFormClass().equals(e.getFormClass());
     }
 
 }
