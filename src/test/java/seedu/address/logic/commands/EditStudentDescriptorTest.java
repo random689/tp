@@ -18,7 +18,7 @@ import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 
-public class EditPersonDescriptorTest {
+public class EditStudentDescriptorTest {
 
     @Test
     public void equals() {
