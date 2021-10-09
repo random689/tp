@@ -16,12 +16,12 @@ public class Student extends Person {
 
     /**
      * Constructor for {@code Student}
-     *
-     * @param name             Name of student
-     * @param phone            Phone number of student
-     * @param email            Email of student
-     * @param address          Address of student
-     * @param tags             Tags associated to student
+     * @param name Name of student
+     * @param phone Phone number of student
+     * @param email Email of student
+     * @param address Address of student
+     * @param involvement Involvement of the student
+     * @param tags Tags associated to student
      * @param emergencyContact Emergency contact of student
      * @param formClass        Form Class of Student
      * @param gender           Gender of student
@@ -30,6 +30,23 @@ public class Student extends Person {
     public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
                    Phone emergencyContact, FormClass formClass, Gender gender) {
         super(name, phone, email, address, involvement, tags);
+        this.emergencyContact = emergencyContact;
+        this.formClass = formClass;
+        this.gender = gender;
+    }
+
+    /**
+     * Constructor for {@code Student} from person
+     *
+     * @param person person to copy the data from
+     * @param emergencyContact Emergency contact of student
+     * @param formClass Form Class of Student
+     * @param gender Gender of student
+     */
+
+    public Student(Person person, Phone emergencyContact, FormClass formClass, Gender gender) {
+        super(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getInvolvement(),
+                person.getTags());
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
         this.gender = gender;
@@ -63,7 +80,8 @@ public class Student extends Person {
 
         Student otherStudent = (Student) other;
         return super.equals(otherStudent)
-                && this.getEmergencyContact().equals(otherStudent.getEmergencyContact());
+                && this.getEmergencyContact().equals(otherStudent.getEmergencyContact())
+                && this.getFormClass().equals(otherStudent.getFormClass());
     }
 
     @Override
