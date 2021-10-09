@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -47,6 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_FORM_CLASS + "FORM CLASS] "
             + "[" + PREFIX_INVOLVEMENT + "INVOLVEMENT] "
             + "[" + PREFIX_TAG + "TAG] "
@@ -63,7 +66,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -111,9 +114,10 @@ public class EditCommand extends Command {
         Phone updatedEmergencyContact =
                 editPersonDescriptor.getEmergencyContact().orElse(personToEdit.getEmergencyContact());
         FormClass updatedFormClass = editPersonDescriptor.getFormClass().orElse(personToEdit.getFormClass());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedInvolvement, updatedTags,
-                updatedEmergencyContact, updatedFormClass);
+                updatedEmergencyContact, updatedFormClass, updatedGender);
     }
 
     @Override
@@ -147,8 +151,10 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Phone emergencyContact;
         private FormClass formClass;
+        private Gender gender;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -163,6 +169,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setEmergencyContact(toCopy.emergencyContact);
             setFormClass(toCopy.formClass);
+            setGender(toCopy.gender);
         }
 
         /**
@@ -170,7 +177,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(
-                    name, phone, email, address, involvement, tags, emergencyContact, formClass);
+                    name, phone, email, address, involvement, tags, emergencyContact, formClass, gender);
         }
 
         public void setName(Name name) {
@@ -246,6 +253,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(formClass);
         }
 
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -268,7 +283,8 @@ public class EditCommand extends Command {
                     && getInvolvement().equals(e.getInvolvement())
                     && getTags().equals(e.getTags())
                     && getEmergencyContact().equals(e.getEmergencyContact())
-                    && getFormClass().equals(e.getFormClass());
+                    && getFormClass().equals(e.getFormClass())
+                    && getGender().equals(e.getGender());
         }
     }
 }

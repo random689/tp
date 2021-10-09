@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTA
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FORM_CLASS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FORM_CLASS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INVOLVEMENT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INVOLVEMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -38,6 +40,7 @@ public class TypicalStudents {
             .withEmergencyContact("95614132")
             .withInvolvement("Math class")
             .withFormClass("4N1")
+            .withGender("F")
             .build();
     public static final Student BENSON = new StudentBuilder()
             .withName("Benson Meier")
@@ -48,6 +51,7 @@ public class TypicalStudents {
             .withEmergencyContact("91939100")
             .withInvolvement("Math class")
             .withFormClass("3E3")
+            .withGender("M")
             .build();
     public static final Student CARL = new StudentBuilder()
             .withName("Carl Kurz")
@@ -57,6 +61,7 @@ public class TypicalStudents {
             .withEmergencyContact("48190514")
             .withInvolvement("Form class")
             .withFormClass("4E2")
+            .withGender("M")
             .build();
     public static final Student DANIEL = new StudentBuilder()
             .withName("Daniel Meier")
@@ -67,6 +72,7 @@ public class TypicalStudents {
             .withEmergencyContact("58141834")
             .withInvolvement("Form class")
             .withFormClass("4E2")
+            .withGender("M")
             .build();
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")
@@ -76,6 +82,7 @@ public class TypicalStudents {
             .withEmergencyContact("92329700")
             .withInvolvement("Form class")
             .withFormClass("4E2")
+            .withGender("F")
             .build();
     public static final Student FIONA = new StudentBuilder()
             .withName("Fiona Kunz")
@@ -85,6 +92,7 @@ public class TypicalStudents {
             .withEmergencyContact("580947918074907019749087")
             .withInvolvement("English class")
             .withFormClass("1T1")
+            .withGender("F")
             .build();
     public static final Student GEORGE = new StudentBuilder()
             .withName("George Best")
@@ -94,6 +102,7 @@ public class TypicalStudents {
             .withEmergencyContact("84041748901")
             .withInvolvement("English class")
             .withFormClass("1T1")
+            .withGender("M")
             .build();
 
     // Manually added
@@ -105,6 +114,7 @@ public class TypicalStudents {
             .withEmergencyContact("91939100")
             .withInvolvement("English rep")
             .withFormClass("3E2")
+            .withGender("N")
             .build();
 
     public static final Student IDA = new StudentBuilder()
@@ -115,6 +125,7 @@ public class TypicalStudents {
             .withEmergencyContact("91939100")
             .withInvolvement("Bio rep")
             .withFormClass("2T1")
+            .withGender("F")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -127,6 +138,7 @@ public class TypicalStudents {
             .withTags(VALID_TAG_FRIEND)
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
             .withFormClass(VALID_FORM_CLASS_AMY)
+            .withGender(VALID_GENDER_AMY)
             .build();
 
     public static final Student BOB = new StudentBuilder()
@@ -138,6 +150,7 @@ public class TypicalStudents {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
             .withFormClass(VALID_FORM_CLASS_BOB)
+            .withGender(VALID_GENDER_BOB)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

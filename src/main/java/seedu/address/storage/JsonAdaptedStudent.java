@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -28,21 +29,24 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final String address;
     private final String emergencyContact;
     private final String formClass;
+    private final String gender;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("involvement") String involvement,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                              @JsonProperty("involvement") String involvement,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("emergencyContact") String emergencyContact,
-                              @JsonProperty("formClass") String formClass) {
+                              @JsonProperty("formClass") String formClass,
+                              @JsonProperty("gender") String gender) {
         super(name, phone, email, involvement, tagged);
         this.address = address;
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
+        this.gender = gender;
     }
 
     /**
@@ -53,6 +57,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         this.address = source.getAddress().value;
         this.emergencyContact = source.getEmergencyContact().value;
         this.formClass = source.getFormClass().formClass;
+        this.gender = source.getGender().gender;
     }
 
     /**
@@ -60,7 +65,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    @Override public Student toModelType() throws IllegalValueException {
+    @Override
+    public Student toModelType() throws IllegalValueException {
         final List<Tag> studentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             studentTags.add(tag.toModelType());
@@ -122,8 +128,15 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         if (!FormClass.isValidFormClass(formClass)) {
             throw new IllegalValueException(FormClass.MESSAGE_CONSTRAINTS);
         }
+        if (gender == null) {
+            throw new IllegalValueException(String.format(
+                    MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
         final FormClass modelFormClass = new FormClass(formClass);
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelInvolvement,
-                modelTags, modelEmergencyContact, modelFormClass);
+                modelTags, modelEmergencyContact, modelFormClass, new Gender(gender));
     }
 }
