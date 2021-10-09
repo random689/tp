@@ -87,6 +87,14 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code emergencyContact} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withEmergencyContact(String phone) {
+        descriptor.setEmergencyContact(new Phone(phone));
+        return this;
+    }
+
+    /**
      * Sets the {@code Involvement} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withInvolvement(String involvement) {
