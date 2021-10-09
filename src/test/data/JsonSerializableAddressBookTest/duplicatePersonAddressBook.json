@@ -7,7 +7,8 @@
     "involvement": "Math class",
     "tagged": [ "friends" ],
     "emergencyContact" : "95614132",
-    "formClass" : "4E1"
+    "formClass" : "4E1",
+    "gender": "F"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -15,6 +16,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "involvement": "Math class",
     "emergencyContact" : "95614132",
-    "formClass" : "4E1"
+    "formClass" : "4E1",
+    "gender": "F"
   } ]
 }

@@ -12,23 +12,27 @@ public class Student extends Person {
 
     private Phone emergencyContact;
     private FormClass formClass;
+    private Gender gender;
 
     /**
      * Constructor for {@code Student}
-     * @param name Name of student
-     * @param phone Phone number of student
-     * @param email Email of student
-     * @param address Address of student
-     * @param tags Tags associated to student
+     *
+     * @param name             Name of student
+     * @param phone            Phone number of student
+     * @param email            Email of student
+     * @param address          Address of student
+     * @param tags             Tags associated to student
      * @param emergencyContact Emergency contact of student
-     * @param formClass Form Class of Student
+     * @param formClass        Form Class of Student
+     * @param gender           Gender of student
      */
 
     public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
-                   Phone emergencyContact, FormClass formClass) {
+                   Phone emergencyContact, FormClass formClass, Gender gender) {
         super(name, phone, email, address, involvement, tags);
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
+        this.gender = gender;
     }
 
     public Phone getEmergencyContact() {
@@ -37,6 +41,10 @@ public class Student extends Person {
 
     public FormClass getFormClass() {
         return formClass;
+    }
+
+    public Gender getGender() {
+        return this.gender;
     }
 
     /**
