@@ -17,12 +17,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.editDescriptors.EditStudentDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -79,19 +80,20 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditStudentDescriptor DESC_AMY;
+    public static final EditStudentDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new EditStudentDescriptorBuilder()
                 .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
-                .withInvolvement(VALID_INVOLVEMENT_AMY).withFormClass(VALID_FORM_CLASS_AMY)
+                .withFormClass(VALID_FORM_CLASS_AMY).withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withInvolvement(VALID_INVOLVEMENT_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditStudentDescriptorBuilder().withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
+                .withFormClass(VALID_FORM_CLASS_BOB).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
-                .withInvolvement(VALID_INVOLVEMENT_AMY).withFormClass(VALID_FORM_CLASS_BOB)
+                .withInvolvement(VALID_INVOLVEMENT_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

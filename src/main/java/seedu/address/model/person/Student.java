@@ -19,6 +19,7 @@ public class Student extends Person {
      * @param phone Phone number of student
      * @param email Email of student
      * @param address Address of student
+     * @param involvement Involvement of the student
      * @param tags Tags associated to student
      * @param emergencyContact Emergency contact of student
      * @param formClass Form Class of Student
@@ -27,6 +28,13 @@ public class Student extends Person {
     public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
                    Phone emergencyContact, FormClass formClass) {
         super(name, phone, email, address, involvement, tags);
+        this.emergencyContact = emergencyContact;
+        this.formClass = formClass;
+    }
+
+    public Student(Person person, Phone emergencyContact, FormClass formClass) {
+        super(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getInvolvement(),
+                person.getTags());
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
     }
@@ -55,7 +63,8 @@ public class Student extends Person {
 
         Student otherStudent = (Student) other;
         return super.equals(otherStudent)
-                && this.getEmergencyContact().equals(otherStudent.getEmergencyContact());
+                && this.getEmergencyContact().equals(otherStudent.getEmergencyContact())
+                && this.getFormClass().equals(otherStudent.getFormClass());
     }
 
     @Override
