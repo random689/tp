@@ -245,4 +245,16 @@ public class ParserUtilTest {
         FormClass expectedFormClass = new FormClass(VALID_FORM_CLASS);
         assertEquals(expectedFormClass, ParserUtil.parseFormClass(formClassWithWhitespace));
     }
+
+
+
+    @Test
+    public void parseGender_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseGender((String) null));
+    }
+
+    @Test
+    public void parseGender_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFormClass(INVALID_FORM_CLASS));
+    }
 }

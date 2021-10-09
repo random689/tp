@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -25,6 +26,7 @@ public class StudentBuilder {
     public static final String DEFAULT_EMERGENCY_CONTACT = "91349081";
     public static final String DEFAULT_INVOLVEMENT = "Math class";
     public static final String DEFAULT_FORM_CLASS = "4E1";
+    public static final String DEFAULT_GENDER = "M";
 
     private Name name;
     private Phone phone;
@@ -34,6 +36,7 @@ public class StudentBuilder {
     private Set<Tag> tags;
     private Phone emergencyContact;
     private FormClass formClass;
+    private Gender gender;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -47,6 +50,7 @@ public class StudentBuilder {
         tags = new HashSet<>();
         emergencyContact = new Phone(DEFAULT_EMERGENCY_CONTACT);
         formClass = new FormClass(DEFAULT_FORM_CLASS);
+        gender = new Gender(DEFAULT_GENDER);
     }
 
     /**
@@ -61,6 +65,7 @@ public class StudentBuilder {
         tags = new HashSet<>(studentToCopy.getTags());
         emergencyContact = studentToCopy.getEmergencyContact();
         formClass = studentToCopy.getFormClass();
+        gender = studentToCopy.getGender();
     }
 
     /**
@@ -129,8 +134,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Gender} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, involvement, tags, emergencyContact, formClass);
+        return new Student(name, phone, email, address, involvement, tags, emergencyContact, formClass, gender);
     }
 
 }

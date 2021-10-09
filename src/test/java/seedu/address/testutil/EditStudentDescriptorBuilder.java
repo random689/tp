@@ -9,6 +9,7 @@ import seedu.address.logic.commands.editDescriptors.EditStudentDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -105,6 +106,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withFormClass(String formClass) {
         descriptor.setFormClass(new FormClass(formClass));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
         return this;
     }
 

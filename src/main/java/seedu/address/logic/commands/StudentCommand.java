@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -27,6 +28,7 @@ public class StudentCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_GENDER + "GENDER "
             + PREFIX_FORM_CLASS + "FORM CLASS "
             + PREFIX_INVOLVEMENT + "INVOLVEMENT "
             + "[" + PREFIX_TAG + "TAG]... "
@@ -36,6 +38,7 @@ public class StudentCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_GENDER + "M "
             + PREFIX_INVOLVEMENT + "Math class "
             + PREFIX_TAG + "naughty "
             + PREFIX_EMERGENCY_CONTACT + "999"
