@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 public class CopyCommandParserTest {
 
-    // for some strange reason, we need the whitespace in front otherwise the parser will not parse correctly
     private static final String EMPTY_FIELD = " " + PREFIX_COPY_FIELD;
 
     private static final String VALID_FIELD_PHONE = " " + PREFIX_COPY_FIELD + "phone";

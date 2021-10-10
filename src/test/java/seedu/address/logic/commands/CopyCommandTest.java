@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 /**
@@ -22,12 +23,10 @@ import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 public class CopyCommandTest {
 
     private Model model;
-    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
     @Test
@@ -43,6 +42,55 @@ public class CopyCommandTest {
             }
         }
         assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredPersonList()),
+                sb.toString());
+    }
+
+    @Test
+    public void execute_validEmailCommand_success() {
+        CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor("email");
+        List<Person> personList = model.getFilteredPersonList();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < personList.size(); i++) {
+            if (i == personList.size() - 1) {
+                sb.append(personList.get(i).getEmail());
+            } else {
+                sb.append(personList.get(i).getEmail() + ",");
+            }
+        }
+        assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredPersonList()),
+                sb.toString());
+    }
+
+    @Test
+    public void execute_validNameCommand_success() {
+        CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor("name");
+        List<Person> personList = model.getFilteredPersonList();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < personList.size(); i++) {
+            if (i == personList.size() - 1) {
+                sb.append(personList.get(i).getName());
+            } else {
+                sb.append(personList.get(i).getName() + ",");
+            }
+        }
+        assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredPersonList()),
+                sb.toString());
+    }
+
+    @Test
+    public void execute_differentCommand_failure() {
+        // do a sanity check
+        CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor("phone");
+        List<Person> personList = model.getFilteredPersonList();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < personList.size(); i++) {
+            if (i == personList.size() - 1) {
+                sb.append(personList.get(i).getEmail());
+            } else {
+                sb.append(personList.get(i).getEmail() + ",");
+            }
+        }
+        assertNotEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredPersonList()),
                 sb.toString());
     }
 

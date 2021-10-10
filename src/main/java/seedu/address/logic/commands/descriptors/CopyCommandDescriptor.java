@@ -8,7 +8,7 @@ public class CopyCommandDescriptor {
 
     public enum Field {
 
-        PHONE("phone"), EMAIL("email"), INVALID("invalid");
+        PHONE("phone"), EMAIL("email"), NAME("name"), INVALID("invalid");
 
         private String field;
 
@@ -25,12 +25,14 @@ public class CopyCommandDescriptor {
     private Field fieldToCopy;
 
     public CopyCommandDescriptor(String fieldToCopy) {
-        // change to switch statement soon
+        // TODO: change to switch statement soon
         requireNonNull(fieldToCopy);
         if (fieldToCopy.equals("phone")) {
             this.fieldToCopy = Field.PHONE;
         } else if (fieldToCopy.equals("email")) {
             this.fieldToCopy = Field.EMAIL;
+        } else if (fieldToCopy.equals("name")) {
+            this.fieldToCopy = Field.NAME;
         }
         else {
             this.fieldToCopy = Field.INVALID;

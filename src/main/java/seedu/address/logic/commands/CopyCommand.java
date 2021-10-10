@@ -34,8 +34,15 @@ public class CopyCommand extends Command {
     }
 
     public String getCopyContent(List<Person> personList) {
+        // TODO: convert to switch statement soon
         if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.PHONE)) {
             return getPhoneContent(personList);
+        }
+        if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.EMAIL)) {
+            return getEmailContent(personList);
+        }
+        if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.NAME)) {
+            return getNameContent(personList);
         }
         // should not reach here, invalid fields should have been filtered out while parsing
         return "";
@@ -47,7 +54,36 @@ public class CopyCommand extends Command {
             if (i == personList.size() - 1) {
                 sb.append(personList.get(i).getPhone());
             } else {
+                // for phones, we put commas in case the user wants to paste it directly into whatsapp or some other
+                // phone directory
                 sb.append(personList.get(i).getPhone() + " ");
+            }
+        }
+        return sb.toString();
+    }
+
+    public String getEmailContent(List<Person> personList) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < personList.size(); i++) {
+            if (i == personList.size() - 1) {
+                sb.append(personList.get(i).getEmail());
+            } else {
+                // for emails, we put commas in case the user wants to paste it directly into gmail
+                sb.append(personList.get(i).getEmail() + ",");
+            }
+        }
+        return sb.toString();
+    }
+
+    public String getNameContent(List<Person> personList) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < personList.size(); i++) {
+            if (i == personList.size() - 1) {
+                sb.append(personList.get(i).getName());
+            } else {
+                // for names, we put commas, else the spacing between the first and last names might be confused with
+                // another name
+                sb.append(personList.get(i).getName() + ", ");
             }
         }
         return sb.toString();
