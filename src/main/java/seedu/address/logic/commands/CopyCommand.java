@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -19,7 +18,7 @@ public class CopyCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Fields have been copied to clipboard!";
     public static final String MESSAGE_NOT_VALID_FIELD = "Field specified is not a valid field! Only the 'phone' "
             + "field is supported.";
-    public static final String MESSAGE_NOT_COPIED = "At least one field to copy must be provided.";
+    public static final String MESSAGE_NOT_COPIED = "At least one field to copy must be provided. Use the c/ prefix.";
     public static final String MESSAGE_USAGE = "Just get good lol";
 
     public CopyCommand(CopyCommandDescriptor copyCommandDescriptor) {
@@ -44,8 +43,12 @@ public class CopyCommand extends Command {
 
     public String getPhoneContent(List<Person> personList) {
         StringBuilder sb = new StringBuilder();
-        for (Person person: personList) {
-            sb.append(person.getPhone() + ",");
+        for (int i = 0; i < personList.size(); i++) {
+            if (i == personList.size() - 1) {
+                sb.append(personList.get(i).getPhone());
+            } else {
+                sb.append(personList.get(i).getPhone() + " ");
+            }
         }
         return sb.toString();
     }
