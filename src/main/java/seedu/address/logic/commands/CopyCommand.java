@@ -18,7 +18,7 @@ public class CopyCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Fields have been copied to clipboard!";
     public static final String MESSAGE_NOT_VALID_FIELD = "Field specified is not a valid field! Only the 'phone' "
             + "field is supported.";
-    public static final String MESSAGE_NOT_COPIED = "At least one field to copy must be provided. Use the c/ prefix.";
+    public static final String NO_FIELD_PROVIDED = "At least one field to copy must be provided. Use the c/ prefix.";
     public static final String MESSAGE_USAGE = "Just get good lol";
 
     public CopyCommand(CopyCommandDescriptor copyCommandDescriptor) {
@@ -37,7 +37,7 @@ public class CopyCommand extends Command {
         if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.PHONE)) {
             return getPhoneContent(personList);
         }
-        // should not reach here
+        // should not reach here, invalid fields should have been filtered out while parsing
         return "";
     }
 
