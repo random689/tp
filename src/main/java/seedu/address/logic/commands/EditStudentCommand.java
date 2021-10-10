@@ -44,6 +44,7 @@ public class EditStudentCommand extends EditCommand {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+
     public final EditStudentDescriptor editStudentDescriptor;
     private final Index index;
 
