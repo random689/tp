@@ -3,7 +3,9 @@ package seedu.address.logic.commands.descriptors;
 
 import static java.util.Objects.requireNonNull;
 
-
+/**
+ * This class stores information about which field to be copied based on the string given to it.
+ */
 public class CopyCommandDescriptor {
 
     public enum Field {
@@ -24,6 +26,11 @@ public class CopyCommandDescriptor {
 
     private Field fieldToCopy;
 
+    /**
+     * Constructor of the {@code CopyCommandDescriptor}
+     *
+     * @param fieldToCopy A string to represent which field to copy
+     */
     public CopyCommandDescriptor(String fieldToCopy) {
         // TODO: change to switch statement soon
         requireNonNull(fieldToCopy);
@@ -33,8 +40,7 @@ public class CopyCommandDescriptor {
             this.fieldToCopy = Field.EMAIL;
         } else if (fieldToCopy.equals("name")) {
             this.fieldToCopy = Field.NAME;
-        }
-        else {
+        } else {
             this.fieldToCopy = Field.INVALID;
         }
     }

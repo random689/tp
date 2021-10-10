@@ -1,18 +1,16 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
 public class CopyCommand extends Command {
-
-    CopyCommandDescriptor copyCommandDescriptor;
 
     public static final String COMMAND_WORD = "copy";
     public static final String MESSAGE_SUCCESS = "Fields have been copied to clipboard!";
@@ -21,11 +19,23 @@ public class CopyCommand extends Command {
     public static final String NO_FIELD_PROVIDED = "At least one field to copy must be provided. Use the c/ prefix.";
     public static final String MESSAGE_USAGE = "Just get good lol";
 
+    private CopyCommandDescriptor copyCommandDescriptor;
+
+    /**
+     * Constructor for {@code Copycommand}
+     *
+     * @param copyCommandDescriptor the {@copyCommandDescriptor to specify which field to copy}
+     */
+
     public CopyCommand(CopyCommandDescriptor copyCommandDescriptor) {
         this.copyCommandDescriptor = copyCommandDescriptor;
     }
 
-
+    /**
+     * Copies attributes of the {@code personList} to the clipboard
+     *
+     * @param personList the person list to copy from
+     */
     public void copyToClipBoard(List<Person> personList) {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
@@ -33,6 +43,12 @@ public class CopyCommand extends Command {
         clipboard.setContent(url);
     }
 
+    /**
+     * Get the string representation of the content to copy from
+     *
+     * @param personList the person list to copy from
+     * @return the string representation
+     */
     public String getCopyContent(List<Person> personList) {
         // TODO: convert to switch statement soon
         if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.PHONE)) {
@@ -48,6 +64,12 @@ public class CopyCommand extends Command {
         return "";
     }
 
+    /**
+     * Get the string representation of the phone content to copy from
+     *
+     * @param personList the person list to copy from
+     * @return the string representation
+     */
     public String getPhoneContent(List<Person> personList) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {
@@ -62,6 +84,12 @@ public class CopyCommand extends Command {
         return sb.toString();
     }
 
+    /**
+     * Get the string representation of the email content to copy from
+     *
+     * @param personList the person list to copy from
+     * @return the string representation
+     */
     public String getEmailContent(List<Person> personList) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {
@@ -75,6 +103,12 @@ public class CopyCommand extends Command {
         return sb.toString();
     }
 
+    /**
+     * Get the string representation of the name content to copy from
+     *
+     * @param personList the person list to copy from
+     * @return the string representation
+     */
     public String getNameContent(List<Person> personList) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {

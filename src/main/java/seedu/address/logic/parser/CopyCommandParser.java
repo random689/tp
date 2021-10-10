@@ -1,14 +1,15 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.CopyCommand;
-import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-
-import seedu.address.logic.parser.exceptions.ParseException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COPY_FIELD;
 
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COPY_FIELD;
+import seedu.address.logic.commands.CopyCommand;
+import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+
 
 public class CopyCommandParser implements Parser<CopyCommand> {
 

@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
-
 public class EditStudentDescriptorTest {
 
     @Test

@@ -1,7 +1,15 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -9,12 +17,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for CopyCommand.
@@ -70,7 +72,7 @@ public class CopyCommandTest {
             if (i == personList.size() - 1) {
                 sb.append(personList.get(i).getName());
             } else {
-                sb.append(personList.get(i).getName() + ",");
+                sb.append(personList.get(i).getName() + ", ");
             }
         }
         assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredPersonList()),
