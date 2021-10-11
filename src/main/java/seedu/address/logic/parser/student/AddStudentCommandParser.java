@@ -41,15 +41,15 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the StudentCommand
-     * and returns an StudentCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddStudentCommand
+     * and returns an AddStudentCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddStudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_GENDER,
-                        PREFIX_INVOLVEMENT, PREFIX_TAG, PREFIX_EMERGENCY_CONTACT, PREFIX_FORM_CLASS);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER,
+                        PREFIX_ADDRESS, PREFIX_EMERGENCY_CONTACT, PREFIX_FORM_CLASS, PREFIX_INVOLVEMENT, PREFIX_TAG);
 
         // put all the non-optional arguments here
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
@@ -61,15 +61,15 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Involvement involvement = ParserUtil.parseInvolvement(argMultimap.getValue(PREFIX_INVOLVEMENT).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Phone emergencyContact = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
         FormClass formClass = ParserUtil.parseFormClass(argMultimap.getValue(PREFIX_FORM_CLASS).get());
-        Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, phone, email, address, involvement, tagList, emergencyContact, formClass,
-                gender);
+        Student student = new Student(name, phone, email, gender, involvement, address, emergencyContact, formClass,
+                tagList);
 
         return new AddStudentCommand(student);
     }

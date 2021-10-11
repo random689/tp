@@ -10,29 +10,29 @@ import seedu.address.model.tag.Tag;
  */
 public class Student extends Person {
 
-    private Phone emergencyContact;
-    private FormClass formClass;
-    private Gender gender;
+    private final Phone emergencyContact;
+    private final FormClass formClass;
+    private final Address address;
 
     /**
      * Constructor for {@code Student}
      * @param name Name of student
      * @param phone Phone number of student
      * @param email Email of student
-     * @param address Address of student
+     * @param gender Gender of student
      * @param involvement Involvement of the student
-     * @param tags Tags associated to student
+     * @param address Address of student
      * @param emergencyContact Emergency contact of student
-     * @param formClass        Form Class of Student
-     * @param gender           Gender of student
+     * @param formClass Form Class of Student
+     * @param tags Tags associated to student
      */
 
-    public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
-                   Phone emergencyContact, FormClass formClass, Gender gender) {
-        super(name, phone, email, address, involvement, tags);
+    public Student(Name name, Phone phone, Email email, Gender gender, Involvement involvement, Address address,
+                   Phone emergencyContact, FormClass formClass, Set<Tag> tags) {
+        super(name, phone, email, gender, involvement, tags);
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
-        this.gender = gender;
+        this.address = address;
     }
 
     /**
@@ -41,15 +41,15 @@ public class Student extends Person {
      * @param person person to copy the data from
      * @param emergencyContact Emergency contact of student
      * @param formClass Form Class of Student
-     * @param gender Gender of student
+     * @param address Address of student
      */
 
-    public Student(Person person, Phone emergencyContact, FormClass formClass, Gender gender) {
-        super(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getInvolvement(),
+    public Student(Person person, Phone emergencyContact, FormClass formClass, Address address) {
+        super(person.getName(), person.getPhone(), person.getEmail(), person.getGender(), person.getInvolvement(),
                 person.getTags());
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
-        this.gender = gender;
+        this.address = address;
     }
 
     public Phone getEmergencyContact() {
@@ -60,8 +60,8 @@ public class Student extends Person {
         return formClass;
     }
 
-    public Gender getGender() {
-        return this.gender;
+    public Address getAddress() {
+        return this.address;
     }
 
     /**
@@ -81,11 +81,14 @@ public class Student extends Person {
         Student otherStudent = (Student) other;
         return super.equals(otherStudent)
                 && this.getEmergencyContact().equals(otherStudent.getEmergencyContact())
-                && this.getFormClass().equals(otherStudent.getFormClass());
+                && this.getFormClass().equals(otherStudent.getFormClass())
+                && this.getAddress().equals(otherStudent.getAddress());
     }
 
     @Override
     public String toString() {
-        return super.toString() + "; " + String.format("Emergency contact: %s", getEmergencyContact());
+        return super.toString() + "; " + String.format("Emergency contact: %s", getEmergencyContact())
+                + String.format("Form class: %s", getFormClass())
+                + String.format("Address: %s", getAddress());
     }
 }

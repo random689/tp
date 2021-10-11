@@ -35,7 +35,7 @@ public class AddTeacherCommand extends Command {
             + PREFIX_TAG + "Colleague";
 
     public static final String MESSAGE_SUCCESS = "New teacher added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This teacher already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TEACHER = "This teacher already exists in the address book";
 
     private final Teacher toAdd;
 
@@ -52,7 +52,7 @@ public class AddTeacherCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TEACHER);
         }
 
         model.addPerson(toAdd);

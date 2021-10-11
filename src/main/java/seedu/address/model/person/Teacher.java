@@ -17,10 +17,10 @@ public class Teacher extends Person {
      * @param name Name of the teacher
      * @param phone Phone number of the teacher
      * @param email Email of the teacher
-     * @param officeTable Office table number of the teacher
-     * @param involvement Involvement of the teacher
-     * @param tags Tags associated to the teacher
      * @param gender Gender of the teacher
+     * @param involvement Involvement of the teacher
+     * @param officeTable Office table number of the teacher
+     * @param tags Tags associated to the teacher
      */
     public Teacher(Name name, Phone phone, Email email, Gender gender, Involvement involvement,
                    OfficeTable officeTable, Set<Tag> tags) {

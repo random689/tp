@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
  * Edits the details of an existing person in the address book.
  */
 public abstract class EditCommand extends Command {
-    protected static final String MESSAGE_USAGE = ": Edits the details of the person identified "
+    protected static final String MESSAGE_USAGE = ": Edits the details of the %s identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "

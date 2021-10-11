@@ -137,7 +137,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         final FormClass modelFormClass = new FormClass(formClass);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelInvolvement,
-                modelTags, modelEmergencyContact, modelFormClass, modelGender);
+        return new Student(modelName, modelPhone, modelEmail, modelGender, modelInvolvement,
+                modelAddress, modelEmergencyContact, modelFormClass, modelTags);
     }
 }

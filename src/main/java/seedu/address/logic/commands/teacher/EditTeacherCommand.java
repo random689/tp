@@ -28,9 +28,9 @@ public class EditTeacherCommand extends EditCommand {
 
     private static final String target = "teacher";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + EditCommand.MESSAGE_USAGE
+    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, target)
             + "[" + PREFIX_OFFICE_TABLE + "OFFICE TABLE NUMBER] "
-            + "[" + PREFIX_TAG + "TAG]... \n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
 
     public static final String MESSAGE_EDIT_TEACHER_SUCCESS = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
