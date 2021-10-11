@@ -67,7 +67,7 @@ public class AddTeacherCommandParser implements Parser<AddTeacherCommand> {
         OfficeTable tableNumber = ParserUtil.parseOfficeTable(argMultimap.getValue(PREFIX_OFFICE_TABLE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Teacher teacher = new Teacher(name, phone, email, tableNumber, involvement, gender, tagList);
+        Teacher teacher = new Teacher(name, phone, email, gender, involvement, tableNumber, tagList);
 
         return new AddTeacherCommand(teacher);
     }

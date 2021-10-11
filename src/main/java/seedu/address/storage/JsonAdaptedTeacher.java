@@ -9,64 +9,55 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeTable;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.Teacher;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Student}.
+ * Jackson-friendly version of {@link Teacher}.
  */
-class JsonAdaptedStudent extends JsonAdaptedPerson {
+class JsonAdaptedTeacher extends JsonAdaptedPerson {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Teacher's %s field is missing!";
 
-    private final String address;
-    private final String emergencyContact;
-    private final String formClass;
+    private final String officeTable;
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given student details.
+     * Constructs a {@code JsonAdaptedTeacher} with the given teacher details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedTeacher(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                               @JsonProperty("involvement") String involvement,
-                              @JsonProperty("address") String address,
-                              @JsonProperty("emergencyContact") String emergencyContact,
-                              @JsonProperty("formClass") String formClass,
+                              @JsonProperty("office table") String officeTable,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         super(name, phone, email, gender, involvement, tagged);
-        this.address = address;
-        this.emergencyContact = emergencyContact;
-        this.formClass = formClass;
+        this.officeTable = officeTable;
     }
 
     /**
-     * Converts a given {@code Student} into this class for Jackson use.
+     * Converts a given {@code Teacher} into this class for Jackson use.
      */
-    public JsonAdaptedStudent(Student source) {
+    public JsonAdaptedTeacher(Teacher source) {
         super(source);
-        this.address = source.getAddress().value;
-        this.emergencyContact = source.getEmergencyContact().value;
-        this.formClass = source.getFormClass().value;
+        this.officeTable = source.getOfficeTable().value;
     }
 
     /**
-     * Converts this Jackson-friendly adapted student object into the model's {@code Student} object.
+     * Converts this Jackson-friendly adapted teacher object into the model's {@code Teacher} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted teacher.
      */
     @Override
-    public Student toModelType() throws IllegalValueException {
-        final List<Tag> studentTags = new ArrayList<>();
+    public Teacher toModelType() throws IllegalValueException {
+        final List<Tag> teacherTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            studentTags.add(tag.toModelType());
+            teacherTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -111,33 +102,17 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         }
         final Involvement modelInvolvement = new Involvement(involvement);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
-        if (emergencyContact == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(emergencyContact)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelEmergencyContact = new Phone(emergencyContact);
-
-        if (formClass == null) {
+        if (officeTable == null) {
             throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, FormClass.class.getSimpleName()));
+                    MISSING_FIELD_MESSAGE_FORMAT, OfficeTable.class.getSimpleName()));
         }
-        if (!FormClass.isValidFormClass(formClass)) {
-            throw new IllegalValueException(FormClass.MESSAGE_CONSTRAINTS);
+        if (!OfficeTable.isValidTable(officeTable)) {
+            throw new IllegalValueException(OfficeTable.MESSAGE_CONSTRAINTS);
         }
-        final FormClass modelFormClass = new FormClass(formClass);
+        final OfficeTable modelOfficeTable = new OfficeTable(officeTable);
 
-        final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelName, modelPhone, modelEmail, modelAddress, modelInvolvement,
-                modelTags, modelEmergencyContact, modelFormClass, modelGender);
+        final Set<Tag> modelTags = new HashSet<>(teacherTags);
+        return new Teacher(modelName, modelPhone, modelEmail, modelGender, modelInvolvement,
+                modelOfficeTable, modelTags);
     }
 }

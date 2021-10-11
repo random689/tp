@@ -43,8 +43,8 @@ public class StudentUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         sb.append(PREFIX_EMERGENCY_CONTACT + student.getEmergencyContact().value + " ");
-        sb.append(PREFIX_FORM_CLASS + student.getFormClass().formClass + " ");
-        sb.append(PREFIX_GENDER + student.getGender().gender + " ");
+        sb.append(PREFIX_FORM_CLASS + student.getFormClass().value + " ");
+        sb.append(PREFIX_GENDER + student.getGender().value + " ");
         return sb.toString();
     }
 
@@ -62,9 +62,9 @@ public class StudentUtil {
         descriptor.getEmergencyContact().ifPresent(emergencyContact ->
                 sb.append(PREFIX_EMERGENCY_CONTACT).append(emergencyContact.value).append(" "));
         descriptor.getFormClass().ifPresent(formClass ->
-                sb.append(PREFIX_FORM_CLASS).append(formClass.formClass).append(" "));
+                sb.append(PREFIX_FORM_CLASS).append(formClass.value).append(" "));
         descriptor.getGender().ifPresent(genders ->
-                sb.append(PREFIX_GENDER).append(genders.gender).append(" "));
+                sb.append(PREFIX_GENDER).append(genders.value).append(" "));
         // tags should be the last, else bug
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

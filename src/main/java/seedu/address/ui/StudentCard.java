@@ -60,8 +60,8 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
-        formClass.setText(student.getFormClass().formClass);
-        gender.setText(student.getGender().gender);
+        formClass.setText(student.getFormClass().value);
+        gender.setText(student.getGender().value);
         involvement.setText(student.getInvolvement().involvement);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

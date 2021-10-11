@@ -18,17 +18,17 @@ public class FormClass {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String formClass;
+    public final String value;
 
     /**
      * Constructs an {@code FormClass}.
      *
-     * @param formClass A valid formClass.
+     * @param value A valid form class.
      */
-    public FormClass(String formClass) {
-        requireNonNull(formClass);
-        checkArgument(isValidFormClass(formClass), MESSAGE_CONSTRAINTS);
-        this.formClass = formClass;
+    public FormClass(String value) {
+        requireNonNull(value);
+        checkArgument(isValidFormClass(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -40,18 +40,18 @@ public class FormClass {
 
     @Override
     public String toString() {
-        return formClass;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FormClass // instanceof handles nulls
-                && formClass.equals(((FormClass) other).formClass)); // state check
+                && value.equals(((FormClass) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return formClass.hashCode();
+        return value.hashCode();
     }
 }
