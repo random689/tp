@@ -22,8 +22,8 @@ public class Teacher extends Person {
      * @param tags Tags associated to the teacher
      * @param gender Gender of the teacher
      */
-    public Teacher(Name name, Phone phone, Email email, OfficeTable officeTable, Involvement involvement, Set<Tag> tags,
-                   Gender gender) {
+    public Teacher(Name name, Phone phone, Email email, OfficeTable officeTable, Involvement involvement,
+                   Gender gender, Set<Tag> tags) {
         super(name, phone, email, gender, involvement, tags);
         this.officeTable = officeTable;
     }

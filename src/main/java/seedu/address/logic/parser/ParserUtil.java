@@ -15,6 +15,7 @@ import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.OfficeTable;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -169,5 +170,20 @@ public class ParserUtil {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(gender);
+    }
+
+    /**
+     * Parses a {@code String tableNumber} into a {@code OfficeTable}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tableNumber} is invalid.
+     */
+    public static OfficeTable parseOfficeTable(String tableNumber) throws ParseException {
+        requireNonNull(tableNumber);
+        String trimmedTableNumber = tableNumber.trim();
+        if(!OfficeTable.isValidTable(trimmedTableNumber)) {
+            throw new ParseException(OfficeTable.MESSAGE_CONSTRAINTS);
+        }
+        return new OfficeTable(tableNumber);
     }
 }
