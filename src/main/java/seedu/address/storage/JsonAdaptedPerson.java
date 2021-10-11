@@ -19,6 +19,7 @@ abstract class JsonAdaptedPerson {
     protected final String name;
     protected final String phone;
     protected final String email;
+    protected final String involvement;
     protected final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -26,10 +27,12 @@ abstract class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("involvement") String involvement,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.involvement = involvement;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -42,6 +45,7 @@ abstract class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        involvement = source.getInvolvement().involvement;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

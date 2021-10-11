@@ -5,49 +5,70 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "involvement": "Math class",
     "tagged" : [ "friends" ],
-    "emergencyContact" : "95614132"
+    "emergencyContact" : "95614132",
+    "formClass" : "4N1",
+    "gender" : "F"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "involvement": "Math class",
     "tagged" : [ "owesMoney", "friends" ],
-    "emergencyContact" : "91939100"
+    "emergencyContact" : "91939100",
+    "formClass" : "3E3",
+    "gender" : "M"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "involvement": "Form class",
     "tagged" : [ ],
-    "emergencyContact" : "48190514"
+    "emergencyContact" : "48190514",
+    "formClass" : "4E2",
+    "gender" : "M"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "involvement": "Form class",
     "tagged" : [ "friends" ],
-    "emergencyContact" : "58141834"
+    "emergencyContact" : "58141834",
+    "formClass" : "4E2",
+    "gender" : "M"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
+    "involvement": "Form class",
     "tagged" : [ ],
-    "emergencyContact" : "92329700"
+    "emergencyContact" : "92329700",
+    "formClass" : "4E2",
+    "gender" : "F"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
+    "involvement": "English class",
     "tagged" : [ ],
-    "emergencyContact" : "580947918074907019749087"
+    "emergencyContact" : "580947918074907019749087",
+    "formClass" : "1T1",
+    "gender" : "F"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
+    "involvement": "English class",
     "tagged" : [ ],
-    "emergencyContact" : "84041748901"
+    "emergencyContact" : "84041748901",
+    "formClass" : "1T1",
+    "gender" : "M"
   } ]
 }

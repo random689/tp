@@ -4,6 +4,9 @@
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street",
-    "emergencyContact" : "95614132"
+    "involvement": "Math class",
+    "emergencyContact" : "95614132",
+    "formClass" : "4E1",
+    "gender" : "M"
   } ]
 }

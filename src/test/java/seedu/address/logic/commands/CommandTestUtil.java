@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -15,12 +18,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -39,6 +43,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_EMERGENCY_CONTACT_AMY = "914134304141";
     public static final String VALID_EMERGENCY_CONTACT_BOB = "91304141";
+    public static final String VALID_INVOLVEMENT_AMY = "Bio class";
+    public static final String VALID_INVOLVEMENT_BOB = "Math class";
+    public static final String VALID_FORM_CLASS_AMY = "4E1";
+    public static final String VALID_FORM_CLASS_BOB = "2E1";
+    public static final String VALID_GENDER_AMY = "F";
+    public static final String VALID_GENDER_BOB = "M";
+    public static final String VALID_GENDER_NON_BINARY = "N";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,6 +65,13 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String INVOLVEMENT_DESC_AMY = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_AMY;
+    public static final String INVOLVEMENT_DESC_BOB = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_BOB;
+    public static final String FORM_CLASS_DESC_AMY = " " + PREFIX_FORM_CLASS + VALID_FORM_CLASS_AMY;
+    public static final String FORM_CLASS_DESC_BOB = " " + PREFIX_FORM_CLASS + VALID_FORM_CLASS_BOB;
+    public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
+    public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String GENDER_DESC_NON_BINARY = " " + PREFIX_GENDER + VALID_GENDER_NON_BINARY;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -62,20 +80,40 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_EMERGENCY_CONTACT_DESC = " " + PREFIX_PHONE + "911232a"; // 'a' not allowed in
     // phones
+    public static final String INVALID_INVOLVEMENT_DESC = " " + PREFIX_INVOLVEMENT; // empty string not allowed
+    public static final String INVALID_FORM_CLASS_DESC = " "
+            + PREFIX_FORM_CLASS + "4*1"; // '*' not allowed in form class
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "d"; //Anything other than M/F/N (not allow)
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditStudentDescriptor DESC_AMY;
+    public static final EditStudentDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY = new EditStudentDescriptorBuilder()
+                .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
+                .withFormClass(VALID_FORM_CLASS_AMY)
+                .withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY)
+                .withAddress(VALID_ADDRESS_AMY)
+                .withInvolvement(VALID_INVOLVEMENT_AMY)
+                .withTags(VALID_TAG_FRIEND)
+                .withGender(VALID_GENDER_AMY)
+                .build();
+        DESC_BOB = new EditStudentDescriptorBuilder()
+                .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
+                .withFormClass(VALID_FORM_CLASS_BOB)
+                .withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
+                .withInvolvement(VALID_INVOLVEMENT_AMY)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withGender(VALID_GENDER_BOB)
+                .build();
     }
 
     /**

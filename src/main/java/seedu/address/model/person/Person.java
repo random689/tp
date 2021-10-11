@@ -13,12 +13,13 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public abstract class Person {
+public class Person {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Involvement involvement;
 
     // Data fields
     private final Address address;
@@ -27,12 +28,13 @@ public abstract class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, involvement, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.involvement = involvement;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +54,10 @@ public abstract class Person {
         return address;
     }
 
+    public Involvement getInvolvement() {
+        return involvement;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -61,7 +67,7 @@ public abstract class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name and address.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,7 +76,8 @@ public abstract class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getAddress().equals(getAddress());
     }
 
     /**
@@ -92,6 +99,7 @@ public abstract class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getInvolvement().equals(getInvolvement())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -110,7 +118,9 @@ public abstract class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Involvement: ")
+                .append(getInvolvement());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

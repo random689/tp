@@ -5,6 +5,9 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FormClass;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -21,13 +24,19 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_EMERGENCY_CONTACT = "91349081";
+    public static final String DEFAULT_INVOLVEMENT = "Math class";
+    public static final String DEFAULT_FORM_CLASS = "4E1";
+    public static final String DEFAULT_GENDER = "M";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Involvement involvement;
     private Set<Tag> tags;
     private Phone emergencyContact;
+    private FormClass formClass;
+    private Gender gender;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -37,8 +46,11 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        involvement = new Involvement(DEFAULT_INVOLVEMENT);
         tags = new HashSet<>();
         emergencyContact = new Phone(DEFAULT_EMERGENCY_CONTACT);
+        formClass = new FormClass(DEFAULT_FORM_CLASS);
+        gender = new Gender(DEFAULT_GENDER);
     }
 
     /**
@@ -49,8 +61,11 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
+        involvement = studentToCopy.getInvolvement();
         tags = new HashSet<>(studentToCopy.getTags());
         emergencyContact = studentToCopy.getEmergencyContact();
+        formClass = studentToCopy.getFormClass();
+        gender = studentToCopy.getGender();
     }
 
     /**
@@ -102,8 +117,33 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Involvement} of the {@code Student} that we are building.
+     */
+
+    public StudentBuilder withInvolvement(String involvement) {
+        this.involvement = new Involvement(involvement);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Form Class} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withFormClass(String formClass) {
+        this.formClass = new FormClass(formClass);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, tags, emergencyContact);
+        return new Student(name, phone, email, address, involvement, tags, emergencyContact, formClass, gender);
     }
 
 }
