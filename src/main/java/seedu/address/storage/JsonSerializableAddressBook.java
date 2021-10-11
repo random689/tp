@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
 /**
@@ -22,13 +23,16 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedTeacher> teachers = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given students.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> persons) {
-        this.students.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students,
+                                       @JsonProperty("teachers") List<JsonAdaptedTeacher> teachers) {
+        this.students.addAll(students);
+        this.teachers.addAll(teachers);
     }
 
     /**
@@ -39,6 +43,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         students.addAll(source.getPersonList().stream()
                 .map(person -> new JsonAdaptedStudent((Student) person)).collect(Collectors.toList()));
+        teachers.addAll(source.getPersonList().stream()
+                .map(person -> new JsonAdaptedTeacher((Person) person)).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +60,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(student);
+        }
+        for (JsonAdaptedTeacher jsonAdaptedTeacher : teachers) {
+            Person teacher = jsonAdaptedTeacher.toModelType();
+            if (addressBook.hasPerson(teacher)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            addressBook.addPerson(teacher);
         }
         return addressBook;
     }

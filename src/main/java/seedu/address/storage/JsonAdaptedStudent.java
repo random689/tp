@@ -32,7 +32,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final String gender;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given student details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,

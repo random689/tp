@@ -14,9 +14,9 @@ import seedu.address.model.person.Student;
 /**
  * Panel containing the list of persons.
  */
-public class StudentListPanel extends UiPart<Region> {
+public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
     private ListView<Person> personListView;
@@ -24,7 +24,7 @@ public class StudentListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public StudentListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new StudentListViewCell());
@@ -41,8 +41,10 @@ public class StudentListPanel extends UiPart<Region> {
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
-            } else {
+            } else if (person instanceof Student) {
                 setGraphic(new StudentCard((Student) person, getIndex() + 1).getRoot());
+            } else {
+                setGraphic(new TeacherCard(person, getIndex() + 1).getRoot());
             }
         }
     }
