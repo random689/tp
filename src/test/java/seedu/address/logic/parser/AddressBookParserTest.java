@@ -19,8 +19,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.StudentCommand;
 import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
+import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -36,8 +36,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_student() throws Exception {
         Student student = new StudentBuilder().build();
-        StudentCommand command = (StudentCommand) parser.parseCommand(StudentUtil.getStudentCommand(student));
-        assertEquals(new StudentCommand(student), command);
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getStudentCommand(student));
+        assertEquals(new AddStudentCommand(student), command);
     }
 
     @Test
