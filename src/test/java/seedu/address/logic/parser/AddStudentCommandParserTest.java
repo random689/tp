@@ -44,7 +44,8 @@ import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.StudentCommand;
+import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
@@ -56,8 +57,8 @@ import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.StudentBuilder;
 
-public class StudentCommandParserTest {
-    private StudentCommandParser parser = new StudentCommandParser();
+public class AddStudentCommandParserTest {
+    private AddStudentCommandParser parser = new AddStudentCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -67,31 +68,31 @@ public class StudentCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INVOLVEMENT_DESC_BOB + TAG_DESC_FRIEND
                 + EMERGENCY_CONTACT_DESC_BOB + FORM_CLASS_DESC_BOB + GENDER_DESC_BOB,
-                new StudentCommand(expectedPerson));
+                new AddStudentCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INVOLVEMENT_DESC_BOB + TAG_DESC_FRIEND
                 + EMERGENCY_CONTACT_DESC_BOB + FORM_CLASS_DESC_BOB + GENDER_DESC_BOB,
-                new StudentCommand(expectedPerson));
+                new AddStudentCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INVOLVEMENT_DESC_BOB + TAG_DESC_FRIEND
                 + EMERGENCY_CONTACT_DESC_BOB + FORM_CLASS_DESC_BOB + GENDER_DESC_BOB,
-                new StudentCommand(expectedPerson));
+                new AddStudentCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INVOLVEMENT_DESC_BOB + TAG_DESC_FRIEND
                 + EMERGENCY_CONTACT_DESC_BOB + FORM_CLASS_DESC_BOB + GENDER_DESC_BOB,
-                new StudentCommand(expectedPerson));
+                new AddStudentCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + INVOLVEMENT_DESC_BOB + TAG_DESC_FRIEND
                 + EMERGENCY_CONTACT_DESC_BOB + FORM_CLASS_DESC_BOB + GENDER_DESC_BOB,
-                new StudentCommand(expectedPerson));
+                new AddStudentCommand(expectedPerson));
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -99,7 +100,7 @@ public class StudentCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + INVOLVEMENT_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + EMERGENCY_CONTACT_DESC_BOB
                         + FORM_CLASS_DESC_BOB + GENDER_DESC_BOB,
-                new StudentCommand(expectedStudentMultipleTags));
+                new AddStudentCommand(expectedStudentMultipleTags));
     }
 
     @Test
@@ -109,12 +110,12 @@ public class StudentCommandParserTest {
         assertParseSuccess(parser,
                 NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + INVOLVEMENT_DESC_AMY + EMERGENCY_CONTACT_DESC_AMY + FORM_CLASS_DESC_AMY + GENDER_DESC_AMY,
-                new StudentCommand(expectedStudent));
+                new AddStudentCommand(expectedStudent));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser,
@@ -213,6 +214,6 @@ public class StudentCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INVOLVEMENT_DESC_BOB + TAG_DESC_HUSBAND
                         + TAG_DESC_FRIEND + EMERGENCY_CONTACT_DESC_BOB + FORM_CLASS_DESC_BOB + GENDER_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StudentCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
     }
 }
