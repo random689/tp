@@ -15,4 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_INVOLVEMENT = new Prefix("i/");
     public static final Prefix PREFIX_FORM_CLASS = new Prefix("f/");
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
+    public static final Prefix PREFIX_COPY_FIELD = new Prefix("c/");
 }
