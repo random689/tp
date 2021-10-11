@@ -31,7 +31,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
-public class AddStudentCommandParser implements Parser<AddStudentCommand>  {
+public class AddStudentCommandParser implements Parser<AddStudentCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
