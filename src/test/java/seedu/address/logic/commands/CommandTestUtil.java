@@ -50,6 +50,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_AMY = "F";
     public static final String VALID_GENDER_BOB = "M";
     public static final String VALID_GENDER_NON_BINARY = "N";
+    public static final String VALID_MEDICAL_HISTORY_AMY = "ADHD";
+    public static final String VALID_MEDICAL_HISTORY_BOB = "Autistic";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

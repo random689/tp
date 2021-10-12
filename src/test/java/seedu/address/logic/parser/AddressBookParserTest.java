@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_HISTORY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -22,7 +23,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
+import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -86,6 +89,15 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_medical() throws Exception {
+        final MedicalHistory medicalHistory = new MedicalHistory("ADHD");
+        MedicalHistoryCommand command = (MedicalHistoryCommand) parser.parseCommand(
+                MedicalHistoryCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_MEDICAL_HISTORY + medicalHistory.value);
+        assertEquals(new MedicalHistoryCommand(INDEX_FIRST_PERSON, medicalHistory), command);
     }
 
     @Test

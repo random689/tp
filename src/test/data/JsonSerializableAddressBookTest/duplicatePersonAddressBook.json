@@ -8,7 +8,8 @@
     "tagged": [ "friends" ],
     "emergencyContact" : "95614132",
     "formClass" : "4E1",
-    "gender": "F"
+    "gender": "F",
+    "medicalHistory": ""
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -17,6 +18,7 @@
     "involvement": "Math class",
     "emergencyContact" : "95614132",
     "formClass" : "4E1",
-    "gender": "F"
+    "gender": "F",
+    "medicalHistory": ""
   } ]
 }

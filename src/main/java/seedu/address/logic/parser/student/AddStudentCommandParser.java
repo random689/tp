@@ -26,6 +26,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
+import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -67,9 +68,9 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         Phone emergencyContact = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
         FormClass formClass = ParserUtil.parseFormClass(argMultimap.getValue(PREFIX_FORM_CLASS).get());
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
-
+        MedicalHistory medicalHistory = new MedicalHistory(""); //add command does not allow medical
         Student student = new Student(name, phone, email, address, involvement, tagList, emergencyContact, formClass,
-                gender);
+                gender, medicalHistory);
 
         return new AddStudentCommand(student);
     }
