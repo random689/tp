@@ -23,8 +23,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.StudentCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -83,7 +83,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute student command
-        String studentCommand = StudentCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String studentCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + INVOLVEMENT_DESC_AMY + EMERGENCY_CONTACT_DESC_AMY + FORM_CLASS_DESC_AMY
                 + GENDER_DESC_AMY;
         Student expectedPerson = new StudentBuilder(AMY).withTags().build();
