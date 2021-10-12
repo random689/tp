@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
+import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -30,6 +31,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final String emergencyContact;
     private final String formClass;
     private final String gender;
+    private final String medicalHistory;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given student details.
@@ -41,16 +43,18 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("emergencyContact") String emergencyContact,
                               @JsonProperty("formClass") String formClass,
-                              @JsonProperty("gender") String gender) {
+                              @JsonProperty("gender") String gender,
+                              @JsonProperty("medicalHistory") String medicalHistory) {
         super(name, phone, email, involvement, tagged);
         this.address = address;
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
         this.gender = gender;
+        this.medicalHistory = medicalHistory;
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
         super(source);
@@ -58,6 +62,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         this.emergencyContact = source.getEmergencyContact().value;
         this.formClass = source.getFormClass().formClass;
         this.gender = source.getGender().gender;
+        this.medicalHistory = source.getMedicalHistory().value;
     }
 
     /**
@@ -128,6 +133,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         if (!FormClass.isValidFormClass(formClass)) {
             throw new IllegalValueException(FormClass.MESSAGE_CONSTRAINTS);
         }
+        final FormClass modelFormClass = new FormClass(formClass);
+
         if (gender == null) {
             throw new IllegalValueException(String.format(
                     MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
@@ -135,8 +142,15 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         if (!Gender.isValidGender(gender)) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
-        final FormClass modelFormClass = new FormClass(formClass);
+        final Gender modelGender = new Gender(gender);
+
+        if (medicalHistory == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MedicalHistory.class.getSimpleName()));
+        }
+        final MedicalHistory modelMedicalHistory = new MedicalHistory(medicalHistory);
+
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelInvolvement,
-                modelTags, modelEmergencyContact, modelFormClass, new Gender(gender));
+                modelTags, modelEmergencyContact, modelFormClass, modelGender, modelMedicalHistory);
     }
 }

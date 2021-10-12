@@ -23,10 +23,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 
+/**
+ * Edits the fields of an existing student in the New Address Book.
+ */
 public class EditStudentCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "editStudent";
@@ -72,7 +76,8 @@ public class EditStudentCommand extends EditCommand {
                 editStudentDescriptor.getEmergencyContact().orElse(studentToEdit.getEmergencyContact());
         FormClass updatedFormClass = editStudentDescriptor.getFormClass().orElse(studentToEdit.getFormClass());
         Gender updatedGender = editStudentDescriptor.getGender().orElse(studentToEdit.getGender());
-        return new Student(person, updatedEmergencyContact, updatedFormClass, updatedGender);
+        MedicalHistory updatedMedicalHistory = studentToEdit.getMedicalHistory(); //edit command does not edit medical
+        return new Student(person, updatedEmergencyContact, updatedFormClass, updatedGender, updatedMedicalHistory);
     }
 
     @Override
@@ -84,14 +89,14 @@ public class EditStudentCommand extends EditCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Student personToEdit = (Student) lastShownList.get(index.getZeroBased());
-        Student editedStudent = createdEditedStudent(personToEdit, editStudentDescriptor);
+        Student studentToEdit = (Student) lastShownList.get(index.getZeroBased());
+        Student editedStudent = createdEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!personToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
+        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedStudent);
+        model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }

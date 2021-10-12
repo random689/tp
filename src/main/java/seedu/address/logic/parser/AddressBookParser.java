@@ -17,9 +17,11 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
+import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.EditStudentCommandParser;
+import seedu.address.logic.parser.student.MedicalHistoryCommandParser;
 
 /**
  * Parses user input.
@@ -77,6 +79,9 @@ public class AddressBookParser {
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
+
+        case MedicalHistoryCommand.COMMAND_WORD:
+            return new MedicalHistoryCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

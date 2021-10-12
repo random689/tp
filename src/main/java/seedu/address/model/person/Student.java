@@ -13,6 +13,7 @@ public class Student extends Person {
     private Phone emergencyContact;
     private FormClass formClass;
     private Gender gender;
+    private MedicalHistory medicalHistory;
 
     /**
      * Constructor for {@code Student}
@@ -25,14 +26,15 @@ public class Student extends Person {
      * @param emergencyContact Emergency contact of student
      * @param formClass        Form Class of Student
      * @param gender           Gender of student
+     * @param medicalHistory   Medical History of student
      */
-
     public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
-                   Phone emergencyContact, FormClass formClass, Gender gender) {
+                   Phone emergencyContact, FormClass formClass, Gender gender, MedicalHistory medicalHistory) {
         super(name, phone, email, address, involvement, tags);
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
         this.gender = gender;
+        this.medicalHistory = medicalHistory;
     }
 
     /**
@@ -42,14 +44,17 @@ public class Student extends Person {
      * @param emergencyContact Emergency contact of student
      * @param formClass Form Class of Student
      * @param gender Gender of student
+     * @param medicalHistory Medical History of student
      */
 
-    public Student(Person person, Phone emergencyContact, FormClass formClass, Gender gender) {
+    public Student(Person person, Phone emergencyContact, FormClass formClass, Gender gender,
+                   MedicalHistory medicalHistory) {
         super(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getInvolvement(),
                 person.getTags());
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
         this.gender = gender;
+        this.medicalHistory = medicalHistory;
     }
 
     public Phone getEmergencyContact() {
@@ -62,6 +67,10 @@ public class Student extends Person {
 
     public Gender getGender() {
         return this.gender;
+    }
+
+    public MedicalHistory getMedicalHistory() {
+        return this.medicalHistory;
     }
 
     /**
@@ -86,6 +95,14 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + "; " + String.format("Emergency contact: %s", getEmergencyContact());
+        return super.toString()
+                + "; "
+                + String.format("Emergency contact: %s", getEmergencyContact())
+                + "; "
+                + String.format("Form class: %s", getFormClass())
+                + "; "
+                + String.format("Gender: %s", getGender())
+                + "; "
+                + String.format("Medical History: %s", getMedicalHistory());
     }
 }
