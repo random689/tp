@@ -41,6 +41,7 @@ public class TypicalStudents {
             .withInvolvement("Math class")
             .withFormClass("4N1")
             .withGender("F")
+            .withMedicalHistory("ADHD")
             .build();
     public static final Student BENSON = new StudentBuilder()
             .withName("Benson Meier")
@@ -52,6 +53,7 @@ public class TypicalStudents {
             .withInvolvement("Math class")
             .withFormClass("3E3")
             .withGender("M")
+            .withMedicalHistory("Autistic")
             .build();
     public static final Student CARL = new StudentBuilder()
             .withName("Carl Kurz")
@@ -62,6 +64,7 @@ public class TypicalStudents {
             .withInvolvement("Form class")
             .withFormClass("4E2")
             .withGender("M")
+            .withMedicalHistory("")
             .build();
     public static final Student DANIEL = new StudentBuilder()
             .withName("Daniel Meier")
@@ -73,6 +76,7 @@ public class TypicalStudents {
             .withInvolvement("Form class")
             .withFormClass("4E2")
             .withGender("M")
+            .withMedicalHistory("")
             .build();
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")
@@ -83,16 +87,18 @@ public class TypicalStudents {
             .withInvolvement("Form class")
             .withFormClass("4E2")
             .withGender("F")
+            .withMedicalHistory("")
             .build();
     public static final Student FIONA = new StudentBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
-            .withEmergencyContact("580947918074907019749087")
+            .withEmergencyContact("99749087")
             .withInvolvement("English class")
             .withFormClass("1T1")
             .withGender("F")
+            .withMedicalHistory("")
             .build();
     public static final Student GEORGE = new StudentBuilder()
             .withName("George Best")
@@ -103,6 +109,7 @@ public class TypicalStudents {
             .withInvolvement("English class")
             .withFormClass("1T1")
             .withGender("M")
+            .withMedicalHistory("")
             .build();
 
     // Manually added
@@ -115,6 +122,7 @@ public class TypicalStudents {
             .withInvolvement("English rep")
             .withFormClass("3E2")
             .withGender("N")
+            .withMedicalHistory("")
             .build();
 
     public static final Student IDA = new StudentBuilder()
@@ -126,6 +134,7 @@ public class TypicalStudents {
             .withInvolvement("Bio rep")
             .withFormClass("2T1")
             .withGender("F")
+            .withMedicalHistory("")
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -139,6 +148,7 @@ public class TypicalStudents {
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
             .withFormClass(VALID_FORM_CLASS_AMY)
             .withGender(VALID_GENDER_AMY)
+            .withMedicalHistory("")
             .build();
 
     public static final Student BOB = new StudentBuilder()
@@ -151,6 +161,7 @@ public class TypicalStudents {
             .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
             .withFormClass(VALID_FORM_CLASS_BOB)
             .withGender(VALID_GENDER_BOB)
+            .withMedicalHistory("")
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

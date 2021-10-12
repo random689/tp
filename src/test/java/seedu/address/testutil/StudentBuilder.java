@@ -8,6 +8,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
+import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -27,6 +28,7 @@ public class StudentBuilder {
     public static final String DEFAULT_INVOLVEMENT = "Math class";
     public static final String DEFAULT_FORM_CLASS = "4E1";
     public static final String DEFAULT_GENDER = "M";
+    public static final String DEFAULT_MEDICAL_HISTORY = "ADHD";
 
     private Name name;
     private Phone phone;
@@ -37,6 +39,7 @@ public class StudentBuilder {
     private Phone emergencyContact;
     private FormClass formClass;
     private Gender gender;
+    private MedicalHistory medicalHistory;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -51,6 +54,7 @@ public class StudentBuilder {
         emergencyContact = new Phone(DEFAULT_EMERGENCY_CONTACT);
         formClass = new FormClass(DEFAULT_FORM_CLASS);
         gender = new Gender(DEFAULT_GENDER);
+        medicalHistory = new MedicalHistory(DEFAULT_MEDICAL_HISTORY);
     }
 
     /**
@@ -66,6 +70,7 @@ public class StudentBuilder {
         emergencyContact = studentToCopy.getEmergencyContact();
         formClass = studentToCopy.getFormClass();
         gender = studentToCopy.getGender();
+        medicalHistory = studentToCopy.getMedicalHistory();
     }
 
     /**
@@ -142,8 +147,21 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code MedicalHistory} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withMedicalHistory(String medicalHistory) {
+        this.medicalHistory = new MedicalHistory(medicalHistory);
+        return this;
+    }
+
+    /**
+     * Builds the {@code Student}.
+     * @return the student.
+     */
     public Student build() {
-        return new Student(name, phone, email, address, involvement, tags, emergencyContact, formClass, gender);
+        return new Student(name, phone, email, address, involvement, tags, emergencyContact, formClass, gender,
+                medicalHistory);
     }
 
 }
