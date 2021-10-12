@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -50,7 +50,7 @@ public class AddStudentCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validStudent);
 
         assertThrows(CommandException.class,
-                AddStudentCommand.MESSAGE_DUPLICATE_PERSON, () -> addStudentCommand.execute(modelStub));
+                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AddStudentCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 

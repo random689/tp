@@ -143,7 +143,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, phone, email, address, involvement, tags, emergencyContact, formClass, gender);
+        return new Student(name, phone, email, gender, involvement, address, emergencyContact, formClass, tags);
     }
 
 }

@@ -1,12 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.descriptors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 
 public class CopyCommandDescriptorTest {
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.descriptors;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,15 +6,16 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMERGENCY_CONTACT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FORM_CLASS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INVOLVEMENT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
@@ -49,12 +50,16 @@ public class EditStudentDescriptorTest {
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // different gender -> returns false
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withGender(VALID_GENDER_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different address -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_MONITOR).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different involvement -> returns false
@@ -63,6 +68,11 @@ public class EditStudentDescriptorTest {
 
         // different form class -> returns false
         editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withInvolvement(VALID_FORM_CLASS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different emergency contact -> returns false
+        editedAmy = new EditStudentDescriptorBuilder(DESC_AMY)
+                .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
