@@ -14,7 +14,7 @@ import seedu.address.model.person.Student;
  */
 public class StudentCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "StudentListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -50,7 +50,7 @@ public class StudentCard extends UiPart<Region> {
     private Label gender;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
