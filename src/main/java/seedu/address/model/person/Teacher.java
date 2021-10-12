@@ -58,9 +58,9 @@ public class Teacher extends Person {
             return false;
         }
 
-        Teacher otherStudent = (Teacher) other;
-        return super.equals(otherStudent)
-                && this.getOfficeTable().equals(otherStudent.getOfficeTable());
+        Teacher otherTeacher = (Teacher) other;
+        return super.equals(otherTeacher)
+                && this.getOfficeTable().equals(otherTeacher.getOfficeTable());
     }
 
     @Override

@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.Teacher;
 
 /**
- * An UI component that displays information of a {@code Student}.
+ * An UI component that displays information of a {@code Teacher}.
  */
-public class StudentCard extends UiPart<Region> {
+public class TeacherCard extends UiPart<Region> {
 
-    private static final String FXML = "StudentListCard.fxml";
+    private static final String FXML = "TeacherListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +24,7 @@ public class StudentCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Student student;
+    public final Teacher teacher;
 
     @FXML
     private HBox cardPane;
@@ -35,39 +35,30 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
-    @FXML
-    private FlowPane tags;
-    @FXML
-    private Label emergencyContact;
-    @FXML
-    private Label involvement;
-    @FXML
-    private Label formClass;
     @FXML
     private Label gender;
     @FXML
-    private Label medicalHistory;
+    private Label involvement;
+    @FXML
+    private Label officeTable;
+    @FXML
+    private FlowPane tags;
 
     /**
-     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
+     * Creates a {@code TeacherCode} with the given {@code Teacher} and index to display.
      */
-    public StudentCard(Student student, int displayedIndex) {
+    public TeacherCard(Teacher teacher, int displayedIndex) {
         super(FXML);
-        this.student = student;
+        this.teacher = teacher;
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
-        formClass.setText(student.getFormClass().value);
-        gender.setText(student.getGender().value);
-        medicalHistory.setText(student.getMedicalHistory().value);
-        involvement.setText(student.getInvolvement().value);
-        emergencyContact.setText(student.getEmergencyContact().value);
-        student.getTags().stream()
+        name.setText(teacher.getName().fullName);
+        phone.setText(teacher.getPhone().value);
+        email.setText(teacher.getEmail().value);
+        gender.setText(teacher.getGender().value);
+        officeTable.setText(teacher.getOfficeTable().value);
+        involvement.setText(teacher.getInvolvement().value);
+        teacher.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -80,13 +71,13 @@ public class StudentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentCard)) {
+        if (!(other instanceof TeacherCard)) {
             return false;
         }
 
         // state check
-        StudentCard card = (StudentCard) other;
+        TeacherCard card = (TeacherCard) other;
         return id.getText().equals(card.id.getText())
-                && student.equals(card.student);
+                && teacher.equals(card.teacher);
     }
 }

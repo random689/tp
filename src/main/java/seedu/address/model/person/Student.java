@@ -26,7 +26,7 @@ public class Student extends Person {
      * @param emergencyContact Emergency contact of student
      * @param formClass Form Class of Student
      * @param tags Tags associated to student
-     * @param medicalHistory   Medical History of student
+     * @param medicalHistory Medical History of student
      */
     public Student(Name name, Phone phone, Email email, Gender gender, Involvement involvement, Address address,
                    Phone emergencyContact, FormClass formClass, Set<Tag> tags, MedicalHistory medicalHistory) {
