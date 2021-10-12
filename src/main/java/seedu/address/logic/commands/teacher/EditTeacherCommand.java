@@ -33,8 +33,7 @@ public class EditTeacherCommand extends EditCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
 
-    public static final String MESSAGE_EDIT_TEACHER_SUCCESS = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
-            target);
+    public static final String MESSAGE_EDIT_TEACHER_SUCCESS = "Edited teacher: %1$s";
     public static final String MESSAGE_DUPLICATE_TEACHER = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, target);
 
     private final Index index;
@@ -61,7 +60,11 @@ public class EditTeacherCommand extends EditCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Teacher teacherToEdit = (Teacher) lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!(personToEdit instanceof Teacher)) {
+            throw new CommandException("The person you are trying to edit is not a teacher!");
+        }
+        Teacher teacherToEdit = (Teacher) personToEdit;
         Teacher editedTeacher = createdEditedTeacher(teacherToEdit, editTeacherDescriptor);
 
         if (!teacherToEdit.isSamePerson(editedTeacher) && model.hasPerson(editedTeacher)) {

@@ -35,8 +35,7 @@ public class EditStudentCommand extends EditCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
 
-    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
-            target);
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, target);
 
     public final EditStudentDescriptor editStudentDescriptor;
@@ -77,14 +76,18 @@ public class EditStudentCommand extends EditCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Student personToEdit = (Student) lastShownList.get(index.getZeroBased());
-        Student editedStudent = createdEditedStudent(personToEdit, editStudentDescriptor);
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!(personToEdit instanceof Student)) {
+            throw new CommandException("The person you are trying to edit is not a student!");
+        }
+        Student studentToEdit = (Student) personToEdit;
+        Student editedStudent = createdEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!personToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
+        if (!studentToEdit.isSamePerson(editedStudent) && model.hasPerson(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.setPerson(personToEdit, editedStudent);
+        model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
