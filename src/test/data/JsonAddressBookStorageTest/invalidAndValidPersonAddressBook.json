@@ -7,7 +7,8 @@
     "involvement": "Math class",
     "address": "4th street",
     "emergencyContact" : "95614132",
-    "formClass" : "4E1"
+    "formClass" : "4E1",
+    "medicalHistory" : ""
   }, {
     "name": "Student With Invalid Phone Field",
     "phone": "948asdf2424",
@@ -16,7 +17,8 @@
     "involvement": "Math class",
     "address": "4th street",
     "emergencyContact" : "95614132",
-    "formClass" : "4E1"
+    "formClass" : "4E1",
+    "medicalHistory" : ""
   } ],
   "teachers": [ {
     "name": "Valid Teacher",

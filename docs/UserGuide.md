@@ -120,6 +120,21 @@ Examples:
 * `teacher n/Lebron p/91234567 e/lbj@example.com a/George street, block 123, #01-01 i/Math HOD
 t/relief`
 
+### Adding a medical history to a student: `medical`
+
+Adds a medical history to an existing student in NewAddressBook.
+
+Format: `medical INDEX m/MEDICAL_HISTORY`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Edits the student at the specified index. The index must be a positive integer.
+To edit an existing medical history, simply use the same command, which will overwrite 
+the current medical history.
+</div>
+
+Examples:
+* `medical 1 m/ADHD`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons stored in NewAddressBook.

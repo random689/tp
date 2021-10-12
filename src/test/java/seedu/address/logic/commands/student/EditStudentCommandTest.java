@@ -39,15 +39,15 @@ public class EditStudentCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         // check if all fields can be edited
-        Student editedStudent = new StudentBuilder().build();
+        Student editedStudent = new StudentBuilder().buildForEdit();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor);
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        System.out.println(model.getFilteredPersonList().get(0));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
-
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 

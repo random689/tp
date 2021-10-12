@@ -67,10 +67,8 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         Phone emergencyContact = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
         FormClass formClass = ParserUtil.parseFormClass(argMultimap.getValue(PREFIX_FORM_CLASS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         Student student = new Student(name, phone, email, gender, involvement, address, emergencyContact, formClass,
                 tagList);
-
         return new AddStudentCommand(student);
     }
 }

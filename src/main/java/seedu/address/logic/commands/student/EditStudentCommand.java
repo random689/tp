@@ -18,10 +18,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.FormClass;
+import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 
+/**
+ * Edits the fields of an existing student in the New Address Book.
+ */
 public class EditStudentCommand extends EditCommand {
     public static final String TARGET = "student";
     public static final String COMMAND_WORD = "editStudent";
@@ -60,7 +64,8 @@ public class EditStudentCommand extends EditCommand {
                 editStudentDescriptor.getEmergencyContact().orElse(studentToEdit.getEmergencyContact());
         FormClass updatedFormClass = editStudentDescriptor.getFormClass().orElse(studentToEdit.getFormClass());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        return new Student(person, updatedEmergencyContact, updatedFormClass, updatedAddress);
+        MedicalHistory updatedMedicalHistory = studentToEdit.getMedicalHistory(); //edit command does not edit medical
+        return new Student(person, updatedEmergencyContact, updatedFormClass, updatedAddress, updatedMedicalHistory);
     }
 
     @Override

@@ -17,4 +17,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
     public static final Prefix PREFIX_OFFICE_TABLE = new Prefix("o/");
     public static final Prefix PREFIX_COPY_FIELD = new Prefix("c/");
+    public static final Prefix PREFIX_MEDICAL_HISTORY = new Prefix("m/");
 }

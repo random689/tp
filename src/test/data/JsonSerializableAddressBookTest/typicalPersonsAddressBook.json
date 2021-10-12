@@ -9,6 +9,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "emergencyContact" : "95614132",
     "formClass" : "4N1",
+    "medicalHistory" : "ADHD",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -19,6 +20,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "emergencyContact" : "91939100",
     "formClass" : "3E3",
+    "medicalHistory" : "Autistic",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -29,6 +31,7 @@
     "address" : "wall street",
     "emergencyContact" : "48190514",
     "formClass" : "4E2",
+    "medicalHistory" : "",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -39,6 +42,7 @@
     "address" : "10th street",
     "emergencyContact" : "58141834",
     "formClass" : "4E2",
+    "medicalHistory" : "",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -49,6 +53,7 @@
     "address" : "michegan ave",
     "emergencyContact" : "92329700",
     "formClass" : "4E2",
+    "medicalHistory" : "",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -59,6 +64,7 @@
     "address" : "little tokyo",
     "emergencyContact" : "580947918074907019749087",
     "formClass" : "1T1",
+    "medicalHistory" : "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -69,6 +75,7 @@
     "address" : "4th street",
     "emergencyContact" : "84041748901",
     "formClass" : "1T1",
+    "medicalHistory" : "",
     "tagged" : [ ]
   } ],
   "teachers" : [ {

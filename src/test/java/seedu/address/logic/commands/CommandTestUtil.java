@@ -65,7 +65,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_DEE = "N";
     public static final String VALID_OFFICE_TABLE_CHO = "4";
     public static final String VALID_OFFICE_TABLE_DEE = "12";
-
+    public static final String VALID_MEDICAL_HISTORY_AMY = "ADHD";
+    public static final String VALID_MEDICAL_HISTORY_BOB = "Autistic";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String NAME_DESC_CHO = " " + PREFIX_NAME + VALID_NAME_CHO;

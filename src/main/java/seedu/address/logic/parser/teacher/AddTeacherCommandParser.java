@@ -68,7 +68,6 @@ public class AddTeacherCommandParser implements Parser<AddTeacherCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Teacher teacher = new Teacher(name, phone, email, gender, involvement, tableNumber, tagList);
-
         return new AddTeacherCommand(teacher);
     }
 }

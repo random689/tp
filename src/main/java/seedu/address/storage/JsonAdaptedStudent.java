@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
+import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
@@ -29,6 +30,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final String address;
     private final String emergencyContact;
     private final String formClass;
+    private final String medicalHistory;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -40,11 +42,13 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("address") String address,
                               @JsonProperty("emergencyContact") String emergencyContact,
                               @JsonProperty("formClass") String formClass,
+                              @JsonProperty("medicalHistory") String medicalHistory,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         super(name, phone, email, gender, involvement, tagged);
         this.address = address;
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
+        this.medicalHistory = medicalHistory;
     }
 
     /**
@@ -55,6 +59,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         this.address = source.getAddress().value;
         this.emergencyContact = source.getEmergencyContact().value;
         this.formClass = source.getFormClass().value;
+        this.medicalHistory = source.getMedicalHistory().value;
     }
 
     /**
@@ -136,8 +141,15 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
         }
         final FormClass modelFormClass = new FormClass(formClass);
 
+        if (medicalHistory == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                MedicalHistory.class.getSimpleName()));
+        }
+        final MedicalHistory modelMedicalHistory = new MedicalHistory(medicalHistory);
+
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         return new Student(modelName, modelPhone, modelEmail, modelGender, modelInvolvement,
-                modelAddress, modelEmergencyContact, modelFormClass, modelTags);
+                modelAddress, modelEmergencyContact, modelFormClass, modelTags, modelMedicalHistory);
     }
 }

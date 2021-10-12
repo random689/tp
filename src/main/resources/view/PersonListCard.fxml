@@ -32,6 +32,7 @@
          <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
             <Label fx:id="formClass" styleClass="cell_small_label" text="\$formClass" />
+            <Label fx:id="medicalHistory" styleClass="cell_small_label" text="\$medicalHistory" />
             <Label fx:id="involvement" styleClass="cell_small_label" text="\$involvement">
                   <HBox.margin>
                      <Insets left="4.0" />

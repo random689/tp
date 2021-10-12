@@ -10,12 +10,13 @@ import seedu.address.model.tag.Tag;
  */
 public class Student extends Person {
 
-    private final Phone emergencyContact;
-    private final FormClass formClass;
-    private final Address address;
+    private Phone emergencyContact;
+    private FormClass formClass;
+    private Address address;
+    private MedicalHistory medicalHistory;
 
     /**
-     * Constructor for {@code Student}
+     * Constructor for {@code Student} with every fields present
      * @param name Name of student
      * @param phone Phone number of student
      * @param email Email of student
@@ -25,14 +26,15 @@ public class Student extends Person {
      * @param emergencyContact Emergency contact of student
      * @param formClass Form Class of Student
      * @param tags Tags associated to student
+     * @param medicalHistory   Medical History of student
      */
-
     public Student(Name name, Phone phone, Email email, Gender gender, Involvement involvement, Address address,
-                   Phone emergencyContact, FormClass formClass, Set<Tag> tags) {
+                   Phone emergencyContact, FormClass formClass, Set<Tag> tags, MedicalHistory medicalHistory) {
         super(name, phone, email, gender, involvement, tags);
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
         this.address = address;
+        this.medicalHistory = medicalHistory;
     }
 
     /**
@@ -42,14 +44,26 @@ public class Student extends Person {
      * @param emergencyContact Emergency contact of student
      * @param formClass Form Class of Student
      * @param address Address of student
+     * @param medicalHistory Medical History of student
      */
-
-    public Student(Person person, Phone emergencyContact, FormClass formClass, Address address) {
+    public Student(Person person, Phone emergencyContact, FormClass formClass,
+                   Address address, MedicalHistory medicalHistory) {
         super(person.getName(), person.getPhone(), person.getEmail(), person.getGender(), person.getInvolvement(),
-                person.getTags());
+            person.getTags());
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
         this.address = address;
+        this.medicalHistory = medicalHistory;
+    }
+
+    /**
+     * Constructor for {@code Student} without medical history
+     *
+     */
+    public Student(Name name, Phone phone, Email email, Gender gender, Involvement involvement, Address address,
+                   Phone emergencyContact, FormClass formClass, Set<Tag> tags) {
+        this(name, phone, email, gender, involvement, address,
+                emergencyContact, formClass, tags, new MedicalHistory(""));
     }
 
     public Phone getEmergencyContact() {
@@ -62,6 +76,10 @@ public class Student extends Person {
 
     public Address getAddress() {
         return this.address;
+    }
+
+    public MedicalHistory getMedicalHistory() {
+        return this.medicalHistory;
     }
 
     /**
@@ -82,13 +100,19 @@ public class Student extends Person {
         return super.equals(otherStudent)
                 && this.getEmergencyContact().equals(otherStudent.getEmergencyContact())
                 && this.getFormClass().equals(otherStudent.getFormClass())
-                && this.getAddress().equals(otherStudent.getAddress());
+                && this.getAddress().equals(otherStudent.getAddress())
+                && this.getMedicalHistory().equals(otherStudent.getMedicalHistory());
     }
 
     @Override
     public String toString() {
-        return super.toString() + "; " + String.format("Emergency contact: %s", getEmergencyContact())
+        return super.toString() + "; "
+                + String.format("Emergency contact: %s", getEmergencyContact())
+                + "; "
                 + String.format("Form class: %s", getFormClass())
-                + String.format("Address: %s", getAddress());
+                + "; "
+                + String.format("Address: %s", getAddress())
+                + "; "
+                + String.format("Medical History: %s", getMedicalHistory());
     }
 }

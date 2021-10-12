@@ -48,6 +48,8 @@ public class StudentCard extends UiPart<Region> {
     private Label formClass;
     @FXML
     private Label gender;
+    @FXML
+    private Label medicalHistory;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -62,11 +64,12 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         formClass.setText(student.getFormClass().value);
         gender.setText(student.getGender().value);
+        medicalHistory.setText(student.getMedicalHistory().value);
         involvement.setText(student.getInvolvement().involvement);
-        student.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         emergencyContact.setText(student.getEmergencyContact().value);
+        student.getTags().stream()
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
