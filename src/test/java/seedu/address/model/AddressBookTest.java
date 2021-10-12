@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -46,7 +46,7 @@ public class AddressBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         //same name and address = same person
-        Person editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_MONITOR)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
@@ -74,7 +74,7 @@ public class AddressBookTest {
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         //same name and address = same person
         addressBook.addPerson(ALICE);
-        Person editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_MONITOR)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
