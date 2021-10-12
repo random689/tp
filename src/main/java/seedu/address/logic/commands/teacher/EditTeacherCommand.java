@@ -26,15 +26,14 @@ public class EditTeacherCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "editTeacher";
 
-    private static final String target = "teacher";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, target)
+    public static final String TARGET = "teacher";
+    public static final String MESSAGE_EDIT_TEACHER_SUCCESS = "Edited teacher: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, TARGET)
             + "[" + PREFIX_OFFICE_TABLE + "OFFICE TABLE NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
+    public static final String MESSAGE_DUPLICATE_TEACHER = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, TARGET);
 
-    public static final String MESSAGE_EDIT_TEACHER_SUCCESS = "Edited teacher: %1$s";
-    public static final String MESSAGE_DUPLICATE_TEACHER = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, target);
 
     private final Index index;
     private final EditTeacherDescriptor editTeacherDescriptor;

@@ -34,7 +34,7 @@ class JsonAdaptedTeacher extends JsonAdaptedPerson {
     public JsonAdaptedTeacher(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                               @JsonProperty("involvement") String involvement,
-                              @JsonProperty("office table") String officeTable,
+                              @JsonProperty("officeTable") String officeTable,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         super(name, phone, email, gender, involvement, tagged);
         this.officeTable = officeTable;

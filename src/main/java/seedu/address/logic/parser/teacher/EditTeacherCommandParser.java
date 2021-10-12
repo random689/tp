@@ -2,10 +2,7 @@ package seedu.address.logic.parser.teacher;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -20,7 +17,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.logic.commands.descriptors.EditTeacherDescriptor;
 import seedu.address.logic.commands.teacher.EditTeacherCommand;
 import seedu.address.logic.parser.ArgumentMultimap;

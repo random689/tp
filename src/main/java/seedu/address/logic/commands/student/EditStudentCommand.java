@@ -23,23 +23,19 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 
 public class EditStudentCommand extends EditCommand {
-
+    public static final String TARGET = "student";
     public static final String COMMAND_WORD = "editStudent";
-
-    private static final String target = "student";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, target)
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_FORM_CLASS + "FORM CLASS] "
-            + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
-
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, target);
+    public static final String MESSAGE_DUPLICATE_STUDENT = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, TARGET);
+    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, TARGET)
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_FORM_CLASS + "FORM CLASS] "
+        + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
 
-    public final EditStudentDescriptor editStudentDescriptor;
     private final Index index;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
      * @param index of the student in the filtered person list to edit

@@ -181,7 +181,7 @@ public class ParserUtil {
     public static OfficeTable parseOfficeTable(String tableNumber) throws ParseException {
         requireNonNull(tableNumber);
         String trimmedTableNumber = tableNumber.trim();
-        if(!OfficeTable.isValidTable(trimmedTableNumber)) {
+        if (!OfficeTable.isValidTable(trimmedTableNumber)) {
             throw new ParseException(OfficeTable.MESSAGE_CONSTRAINTS);
         }
         return new OfficeTable(tableNumber);

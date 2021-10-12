@@ -14,15 +14,15 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.teacher.AddTeacherCommand;
 import seedu.address.logic.commands.teacher.EditTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
-import seedu.address.logic.parser.teacher.EditTeacherCommandParser;
-import seedu.address.logic.commands.student.AddStudentCommand;
-import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.EditStudentCommandParser;
+import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
+import seedu.address.logic.parser.teacher.EditTeacherCommandParser;
 
 /**
  * Parses user input.
