@@ -55,8 +55,6 @@ public class UniquePersonList implements Iterable<Person> {
             internalList.add(lastStudentIndex, toAdd);
             lastStudentIndex++;
         }
-        System.out.println(lastStudentIndex);
-        System.out.println(internalList.size());
     }
 
     /**
