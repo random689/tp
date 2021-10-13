@@ -16,7 +16,7 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="129.0" prefWidth="230.0" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" prefHeight="146.0" prefWidth="150.0" GridPane.columnIndex="0" GridPane.vgrow="ALWAYS">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -29,10 +29,10 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-         <HBox prefHeight="0.0" prefWidth="130.0">
+         <HBox>
             <children>
-            <Label fx:id="formClass" styleClass="cell_small_label" text="\$formClass" />
-            <Label fx:id="involvement" styleClass="cell_small_label" text="\$involvement">
+            <Label fx:id="formClass" minWidth="-Infinity" styleClass="cell_small_label" text="\$formClass" />
+            <Label fx:id="involvement" minWidth="-Infinity" styleClass="cell_small_label" text="\$involvement">
                   <HBox.margin>
                      <Insets left="4.0" />
                   </HBox.margin></Label>
@@ -48,7 +48,7 @@
       <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
       <Label fx:id="emergencyContact" styleClass="cell_small_label" text="\$emergencyContact" />
     </VBox>
-      <VBox alignment="CENTER_LEFT" minHeight="0.0" prefHeight="117.0" prefWidth="260.0" GridPane.columnIndex="1">
+      <VBox alignment="CENTER_LEFT" minHeight="105.0" prefHeight="146.0" prefWidth="150.0" GridPane.columnIndex="1">
          <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
