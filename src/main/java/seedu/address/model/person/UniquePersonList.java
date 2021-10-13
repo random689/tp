@@ -50,6 +50,9 @@ public class UniquePersonList implements Iterable<Person> {
         if (toAdd instanceof Teacher) {
             internalList.add(toAdd);
         } else if (toAdd instanceof Student) {
+            if (internalList.size() == 0) { //handles a cleared list
+                lastStudentIndex = 0;
+            }
             internalList.add(lastStudentIndex, toAdd);
             lastStudentIndex++;
         }
