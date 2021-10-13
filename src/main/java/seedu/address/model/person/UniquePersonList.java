@@ -27,7 +27,7 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private int lastStudentIndex = 0;
+    private static int lastStudentIndex = 0;
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -50,12 +50,11 @@ public class UniquePersonList implements Iterable<Person> {
         if (toAdd instanceof Teacher) {
             internalList.add(toAdd);
         } else if (toAdd instanceof Student) {
-            if (internalList.size() == 0) { //handles a cleared list
-                lastStudentIndex = 0;
-            }
             internalList.add(lastStudentIndex, toAdd);
             lastStudentIndex++;
         }
+        System.out.println(lastStudentIndex);
+        System.out.println(internalList.size());
     }
 
     /**
@@ -109,8 +108,8 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(persons);
+        resetStudentIndex();
     }
 
     /**
@@ -135,6 +134,15 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    public void resetStudentIndex() {
+        lastStudentIndex = 0;
+        for (Person person: internalList) {
+            if (person instanceof Student) {
+                lastStudentIndex++;
+            }
+        }
     }
 
     /**

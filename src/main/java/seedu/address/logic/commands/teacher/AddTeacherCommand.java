@@ -30,7 +30,7 @@ public class AddTeacherCommand extends Command {
             + PREFIX_GENDER + "GENDER "
             + PREFIX_OFFICE_TABLE + "OFFICE TABLE NUMBER "
             + PREFIX_INVOLVEMENT + "INVOLVEMENT "
-            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_TAG + "TAG]... + \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
