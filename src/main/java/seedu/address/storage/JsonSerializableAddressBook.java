@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.Teacher;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +20,20 @@ import seedu.address.model.person.Student;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_TEACHER = "Teachers list contains duplicate teacher(s).";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
+    private final List<JsonAdaptedTeacher> teachers = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given students.
+     * Constructs a {@code JsonSerializableAddressBook} with the given students and teachers.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> persons) {
-        this.students.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students,
+                                       @JsonProperty("teachers") List<JsonAdaptedTeacher> teachers) {
+        this.students.addAll(students);
+        this.teachers.addAll(teachers);
     }
 
     /**
@@ -38,7 +43,12 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         students.addAll(source.getPersonList().stream()
+                .filter(person -> person instanceof Student)
                 .map(person -> new JsonAdaptedStudent((Student) person)).collect(Collectors.toList()));
+
+        teachers.addAll(source.getPersonList().stream()
+                .filter(person -> person instanceof Teacher)
+                .map(person -> new JsonAdaptedTeacher((Teacher) person)).collect(Collectors.toList()));
     }
 
     /**
@@ -51,11 +61,17 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (addressBook.hasPerson(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
             addressBook.addPerson(student);
         }
+        for (JsonAdaptedTeacher jsonAdaptedTeacher : teachers) {
+            Teacher teacher = jsonAdaptedTeacher.toModelType();
+            if (addressBook.hasPerson(teacher)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TEACHER);
+            }
+            addressBook.addPerson(teacher);
+        }
         return addressBook;
     }
-
 }

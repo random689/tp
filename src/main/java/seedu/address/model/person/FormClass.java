@@ -10,25 +10,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class FormClass {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Form class should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Form class can take any values, and it should not be blank";
 
     /*
      * The first character of FormClass must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String formClass;
+    public final String value;
 
     /**
      * Constructs an {@code FormClass}.
      *
-     * @param formClass A valid formClass.
+     * @param value A valid form class.
      */
-    public FormClass(String formClass) {
-        requireNonNull(formClass);
-        checkArgument(isValidFormClass(formClass), MESSAGE_CONSTRAINTS);
-        this.formClass = formClass;
+    public FormClass(String value) {
+        requireNonNull(value);
+        checkArgument(isValidFormClass(value), MESSAGE_CONSTRAINTS);
+        this.value = value;
     }
 
     /**
@@ -40,18 +40,18 @@ public class FormClass {
 
     @Override
     public String toString() {
-        return formClass;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FormClass // instanceof handles nulls
-                && formClass.equals(((FormClass) other).formClass)); // state check
+                && value.equals(((FormClass) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return formClass.hashCode();
+        return value.hashCode();
     }
 }

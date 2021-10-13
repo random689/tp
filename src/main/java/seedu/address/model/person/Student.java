@@ -12,28 +12,28 @@ public class Student extends Person {
 
     private Phone emergencyContact;
     private FormClass formClass;
-    private Gender gender;
+    private Address address;
     private MedicalHistory medicalHistory;
 
     /**
-     * Constructor for {@code Student}
+     * Constructor for {@code Student} with every fields present
      * @param name Name of student
      * @param phone Phone number of student
      * @param email Email of student
-     * @param address Address of student
+     * @param gender Gender of student
      * @param involvement Involvement of the student
-     * @param tags Tags associated to student
+     * @param address Address of student
      * @param emergencyContact Emergency contact of student
-     * @param formClass        Form Class of Student
-     * @param gender           Gender of student
-     * @param medicalHistory   Medical History of student
+     * @param formClass Form Class of Student
+     * @param tags Tags associated to student
+     * @param medicalHistory Medical History of student
      */
-    public Student(Name name, Phone phone, Email email, Address address, Involvement involvement, Set<Tag> tags,
-                   Phone emergencyContact, FormClass formClass, Gender gender, MedicalHistory medicalHistory) {
-        super(name, phone, email, address, involvement, tags);
+    public Student(Name name, Phone phone, Email email, Gender gender, Involvement involvement, Address address,
+                   Phone emergencyContact, FormClass formClass, Set<Tag> tags, MedicalHistory medicalHistory) {
+        super(name, phone, email, gender, involvement, tags);
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
-        this.gender = gender;
+        this.address = address;
         this.medicalHistory = medicalHistory;
     }
 
@@ -43,18 +43,27 @@ public class Student extends Person {
      * @param person person to copy the data from
      * @param emergencyContact Emergency contact of student
      * @param formClass Form Class of Student
-     * @param gender Gender of student
+     * @param address Address of student
      * @param medicalHistory Medical History of student
      */
-
-    public Student(Person person, Phone emergencyContact, FormClass formClass, Gender gender,
-                   MedicalHistory medicalHistory) {
-        super(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getInvolvement(),
-                person.getTags());
+    public Student(Person person, Phone emergencyContact, FormClass formClass,
+                   Address address, MedicalHistory medicalHistory) {
+        super(person.getName(), person.getPhone(), person.getEmail(), person.getGender(), person.getInvolvement(),
+            person.getTags());
         this.emergencyContact = emergencyContact;
         this.formClass = formClass;
-        this.gender = gender;
+        this.address = address;
         this.medicalHistory = medicalHistory;
+    }
+
+    /**
+     * Constructor for {@code Student} without medical history
+     *
+     */
+    public Student(Name name, Phone phone, Email email, Gender gender, Involvement involvement, Address address,
+                   Phone emergencyContact, FormClass formClass, Set<Tag> tags) {
+        this(name, phone, email, gender, involvement, address,
+                emergencyContact, formClass, tags, new MedicalHistory(""));
     }
 
     public Phone getEmergencyContact() {
@@ -65,8 +74,8 @@ public class Student extends Person {
         return formClass;
     }
 
-    public Gender getGender() {
-        return this.gender;
+    public Address getAddress() {
+        return this.address;
     }
 
     public MedicalHistory getMedicalHistory() {
@@ -90,18 +99,19 @@ public class Student extends Person {
         Student otherStudent = (Student) other;
         return super.equals(otherStudent)
                 && this.getEmergencyContact().equals(otherStudent.getEmergencyContact())
-                && this.getFormClass().equals(otherStudent.getFormClass());
+                && this.getFormClass().equals(otherStudent.getFormClass())
+                && this.getAddress().equals(otherStudent.getAddress())
+                && this.getMedicalHistory().equals(otherStudent.getMedicalHistory());
     }
 
     @Override
     public String toString() {
-        return super.toString()
-                + "; "
+        return super.toString() + "; "
                 + String.format("Emergency contact: %s", getEmergencyContact())
                 + "; "
                 + String.format("Form class: %s", getFormClass())
                 + "; "
-                + String.format("Gender: %s", getGender())
+                + String.format("Address: %s", getAddress())
                 + "; "
                 + String.format("Medical History: %s", getMedicalHistory());
     }

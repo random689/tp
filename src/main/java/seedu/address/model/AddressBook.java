@@ -27,7 +27,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        persons.resetStudentIndex();
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -63,6 +65,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
+
         return persons.contains(person);
     }
 

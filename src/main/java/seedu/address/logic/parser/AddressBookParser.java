@@ -18,10 +18,14 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
+import seedu.address.logic.commands.teacher.AddTeacherCommand;
+import seedu.address.logic.commands.teacher.EditTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.EditStudentCommandParser;
 import seedu.address.logic.parser.student.MedicalHistoryCommandParser;
+import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
+import seedu.address.logic.parser.teacher.EditTeacherCommandParser;
 
 /**
  * Parses user input.
@@ -53,8 +57,14 @@ public class AddressBookParser {
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
 
+        case AddTeacherCommand.COMMAND_WORD:
+            return new AddTeacherCommandParser().parse(arguments);
+
         case EditStudentCommand.COMMAND_WORD:
             return new EditStudentCommandParser().parse(arguments);
+
+        case EditTeacherCommand.COMMAND_WORD:
+            return new EditTeacherCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);

@@ -7,9 +7,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_HISTORY
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +31,10 @@ class MedicalHistoryCommandTest {
 
     @Test
     public void execute_addMedicalHistoryUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
         StudentBuilder personInList = new StudentBuilder((Student) firstPerson);
         Student editedStudent = personInList.withMedicalHistory(MEDICAL_HISTORY_STUB).build();
-        MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_PERSON,
+        MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(editedStudent.getMedicalHistory().value));
 
         String expectedMessage = String.format(MedicalHistoryCommand.MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS,
@@ -48,11 +48,10 @@ class MedicalHistoryCommandTest {
 
     @Test
     public void execute_deleteMedicalHistoryUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        StudentBuilder personInList = new StudentBuilder((Student) firstPerson);
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder((Student) firstPerson).withMedicalHistory("").build();
 
-        MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_PERSON,
+        MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(editedStudent.getMedicalHistory().toString()));
 
         String expectedMessage = String.format(MedicalHistoryCommand.MESSAGE_DELETE_MEDICAL_HISTORY_SUCCESS,
@@ -66,13 +65,13 @@ class MedicalHistoryCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student editedStudent = new StudentBuilder((Student) model.getFilteredPersonList().get(INDEX_FIRST_PERSON
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = new StudentBuilder((Student) model.getFilteredPersonList().get(INDEX_FIRST_STUDENT
                 .getZeroBased())).withMedicalHistory(MEDICAL_HISTORY_STUB).build();
 
-        MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_PERSON,
+        MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(editedStudent.getMedicalHistory().value));
 
         String expectedMessage = String.format(MedicalHistoryCommand.MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS,
@@ -99,8 +98,8 @@ class MedicalHistoryCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
@@ -112,11 +111,11 @@ class MedicalHistoryCommandTest {
 
     @Test
     public void equals() {
-        final MedicalHistoryCommand standardCommand = new MedicalHistoryCommand(INDEX_FIRST_PERSON,
+        final MedicalHistoryCommand standardCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_AMY));
 
         // same values -> returns true
-        MedicalHistoryCommand commandWithSameValues = new MedicalHistoryCommand(INDEX_FIRST_PERSON,
+        MedicalHistoryCommand commandWithSameValues = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -130,11 +129,11 @@ class MedicalHistoryCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new MedicalHistoryCommand(INDEX_SECOND_PERSON,
+        assertFalse(standardCommand.equals(new MedicalHistoryCommand(INDEX_SECOND_STUDENT,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_AMY))));
 
         // different MedicalHistory -> returns false
-        assertFalse(standardCommand.equals(new MedicalHistoryCommand(INDEX_FIRST_PERSON,
+        assertFalse(standardCommand.equals(new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_BOB))));
     }
 }

@@ -24,9 +24,12 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class UniquePersonList implements Iterable<Person> {
 
+    private int lastStudentIndex = 0;
+
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -45,7 +48,13 @@ public class UniquePersonList implements Iterable<Person> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-        internalList.add(toAdd);
+
+        if (toAdd instanceof Teacher) {
+            internalList.add(toAdd);
+        } else if (toAdd instanceof Student) {
+            internalList.add(lastStudentIndex, toAdd);
+            lastStudentIndex++;
+        }
     }
 
     /**
@@ -77,6 +86,12 @@ public class UniquePersonList implements Iterable<Person> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+
+        if (toRemove instanceof Student) {
+            lastStudentIndex--;
+        }
+
+        internalList.remove(toRemove);
     }
 
     public void setPersons(UniquePersonList replacement) {
@@ -93,8 +108,8 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(persons);
+        resetStudentIndex();
     }
 
     /**
@@ -119,6 +134,18 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Resets the lastStudentIndex to the correct value.
+     */
+    public void resetStudentIndex() {
+        lastStudentIndex = 0;
+        for (Person person: internalList) {
+            if (person instanceof Student) {
+                lastStudentIndex++;
+            }
+        }
     }
 
     /**

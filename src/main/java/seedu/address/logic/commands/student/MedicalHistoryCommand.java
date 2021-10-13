@@ -52,19 +52,21 @@ public class MedicalHistoryCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Student studentToEdit = (Student) lastShownList.get(index.getZeroBased());
-        Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
-                studentToEdit.getAddress(), studentToEdit.getInvolvement(), studentToEdit.getTags(),
-                studentToEdit.getEmergencyContact(), studentToEdit.getFormClass(), studentToEdit.getGender(),
-                medicalHistory);
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (!(personToEdit instanceof Student)) {
+            throw new CommandException("You cannot add medical history to a teacher!");
+        }
+        Student studentToEdit = (Student) personToEdit;
+        Student editedStudent = new Student(studentToEdit, studentToEdit.getEmergencyContact(),
+            studentToEdit.getFormClass(), studentToEdit.getAddress(), medicalHistory);
 
         model.setPerson(studentToEdit, editedStudent);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
 
