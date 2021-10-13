@@ -36,7 +36,7 @@ public class AddTeacherCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GENDER + "M "
-            + PREFIX_OFFICE_TABLE + "7"
+            + PREFIX_OFFICE_TABLE + "7 "
             + PREFIX_INVOLVEMENT + "Math HOD "
             + PREFIX_TAG + "Colleague";
 

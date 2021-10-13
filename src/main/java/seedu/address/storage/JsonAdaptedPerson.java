@@ -49,7 +49,7 @@ abstract class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         gender = source.getGender().value;
-        involvement = source.getInvolvement().involvement;
+        involvement = source.getInvolvement().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

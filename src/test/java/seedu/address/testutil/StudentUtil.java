@@ -38,7 +38,7 @@ public class StudentUtil {
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
         sb.append(PREFIX_GENDER + student.getGender().value + " ");
-        sb.append(PREFIX_INVOLVEMENT + student.getInvolvement().involvement + " ");
+        sb.append(PREFIX_INVOLVEMENT + student.getInvolvement().value + " ");
         sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
         sb.append(PREFIX_EMERGENCY_CONTACT + student.getEmergencyContact().value + " ");
         sb.append(PREFIX_FORM_CLASS + student.getFormClass().value + " ");
@@ -58,7 +58,7 @@ public class StudentUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getGender().ifPresent(genders -> sb.append(PREFIX_GENDER).append(genders.value).append(" "));
         descriptor.getInvolvement().ifPresent(involvement -> sb.append(PREFIX_INVOLVEMENT)
-                .append(involvement.involvement).append(" "));
+                .append(involvement.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getEmergencyContact().ifPresent(emergencyContact ->
                 sb.append(PREFIX_EMERGENCY_CONTACT).append(emergencyContact.value).append(" "));

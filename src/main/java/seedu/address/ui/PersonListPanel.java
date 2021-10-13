@@ -10,30 +10,31 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.Teacher;
 
 /**
  * Panel containing the list of persons.
  */
-public class StudentListPanel extends UiPart<Region> {
+public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Person> studentListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
-    public StudentListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new StudentListViewCell());
+        studentListView.setItems(personList);
+        studentListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class StudentListViewCell extends ListCell<Person> {
+    class PersonListViewCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
@@ -41,8 +42,10 @@ public class StudentListPanel extends UiPart<Region> {
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
-            } else {
+            } else if (person instanceof Student) {
                 setGraphic(new StudentCard((Student) person, getIndex() + 1).getRoot());
+            } else if (person instanceof Teacher) {
+                setGraphic(new TeacherCard((Teacher) person, getIndex() + 1).getRoot());
             }
         }
     }

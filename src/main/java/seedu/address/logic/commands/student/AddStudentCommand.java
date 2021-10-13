@@ -40,7 +40,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_GENDER + "M "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_FORM_CLASS + "3E1"
+            + PREFIX_FORM_CLASS + "3E1 "
             + PREFIX_EMERGENCY_CONTACT + "999 "
             + PREFIX_INVOLVEMENT + "Math class "
             + PREFIX_TAG + "naughty ";
