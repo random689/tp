@@ -285,7 +285,7 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​` <br> e.g., `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/asthma t/representative`
-**Teacher** | `teacher n/Name p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` <br> e.g., `teacher n/Gabe p/91234567 e/gabe@example.com g/M o/151 i/Lunch buddy`
+**Teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` <br> e.g., `teacher n/Gabe p/91234567 e/gabe@example.com g/M o/151 i/Lunch buddy`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit<Teacher/Student> INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editStudent 2 n/James Lee e/jameslee@example.com`

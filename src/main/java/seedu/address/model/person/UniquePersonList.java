@@ -24,10 +24,12 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 public class UniquePersonList implements Iterable<Person> {
 
+    private int lastStudentIndex = 0;
+
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private int lastStudentIndex = 0;
+
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -106,8 +108,8 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
-
         internalList.setAll(persons);
+        resetStudentIndex();
     }
 
     /**
@@ -132,6 +134,18 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Resets the lastStudentIndex to the correct value.
+     */
+    public void resetStudentIndex() {
+        lastStudentIndex = 0;
+        for (Person person: internalList) {
+            if (person instanceof Student) {
+                lastStudentIndex++;
+            }
+        }
     }
 
     /**

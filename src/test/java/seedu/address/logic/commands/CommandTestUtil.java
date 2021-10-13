@@ -109,7 +109,7 @@ public class CommandTestUtil {
     // allowed in phones
     public static final String INVALID_INVOLVEMENT_DESC = " " + PREFIX_INVOLVEMENT; // empty string not allowed
     public static final String INVALID_FORM_CLASS_DESC = " "
-            + PREFIX_FORM_CLASS + "4*1"; // '*' not allowed in form class
+            + PREFIX_FORM_CLASS + ""; // empty string not allowed
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "d"; //Anything other than M/F/N (not allow)
     public static final String INVALID_OFFICE_TABLE_DESC = " " + PREFIX_OFFICE_TABLE + "12a"; // 'a' not allowed in
     // office table number

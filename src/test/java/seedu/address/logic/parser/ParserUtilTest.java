@@ -29,7 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_INVOLVEMENT = " ";
-    private static final String INVALID_FORM_CLASS = "4*1";
+    private static final String INVALID_FORM_CLASS = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
