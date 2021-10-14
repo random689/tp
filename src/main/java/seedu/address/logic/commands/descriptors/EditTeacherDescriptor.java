@@ -3,7 +3,7 @@ package seedu.address.logic.commands.descriptors;
 import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.model.person.OfficeTable;
+import seedu.address.model.person.teacher.OfficeTable;
 
 /**
  * Stores the details to edit the teacher with. Each non-empty field value will replace the

@@ -1,7 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.person.student;
 
 import java.util.Set;
 
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Involvement;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -80,6 +86,20 @@ public class Student extends Person {
 
     public MedicalHistory getMedicalHistory() {
         return this.medicalHistory;
+    }
+
+    /**
+     * Returns true if both student have the same name and address
+     * This defines a weaker notion of equality between two students
+     */
+    public boolean isSameStudent(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && otherStudent.getName().equals(getName())
+                && otherStudent.getAddress().equals(getAddress());
     }
 
     /**

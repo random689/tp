@@ -6,16 +6,16 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.OfficeTable;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.student.Address;
+import seedu.address.model.person.student.FormClass;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.teacher.OfficeTable;
+import seedu.address.model.person.teacher.Teacher;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -58,10 +58,10 @@ public class SampleDataUtil {
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Student sampleStudent : getSampleStudents()) {
-            sampleAb.addPerson(sampleStudent);
+            sampleAb.addStudent(sampleStudent);
         }
         for (Teacher sampleTeacher : getSampleTeachers()) {
-            sampleAb.addPerson(sampleTeacher);
+            sampleAb.addTeacher(sampleTeacher);
         }
         return sampleAb;
     }

@@ -30,7 +30,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.student.Student;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -86,9 +86,9 @@ public class LogicManagerTest {
         String studentCommand = AddStudentCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + INVOLVEMENT_DESC_AMY + EMERGENCY_CONTACT_DESC_AMY + FORM_CLASS_DESC_AMY
                 + GENDER_DESC_AMY;
-        Student expectedPerson = new StudentBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(studentCommand, CommandException.class, expectedMessage, expectedModel);
     }

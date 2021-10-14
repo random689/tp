@@ -1,7 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.person.teacher;
 
 import java.util.Set;
 
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Involvement;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,6 +48,20 @@ public class Teacher extends Person {
 
     public OfficeTable getOfficeTable() {
         return this.officeTable;
+    }
+
+    /**
+     * Returns true if both teacher have the same name and office table
+     * This defines a weaker notion of equality between two students
+     */
+    public boolean isSameTeacher(Teacher otherTeacher) {
+        if (otherTeacher == this) {
+            return true;
+        }
+
+        return otherTeacher != null
+                && otherTeacher.getName().equals(getName())
+                && otherTeacher.getOfficeTable().equals(getOfficeTable());
     }
 
     /**

@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalPersons.DEE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.TeacherBuilder;
 
 public class TeacherTest {

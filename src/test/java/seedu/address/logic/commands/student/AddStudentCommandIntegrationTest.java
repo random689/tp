@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 /**
@@ -30,7 +30,7 @@ public class AddStudentCommandIntegrationTest {
         Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.addPerson(validStudent);
+        expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddStudentCommand(validStudent), model,
                 String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), expectedModel);
@@ -38,7 +38,7 @@ public class AddStudentCommandIntegrationTest {
 
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
-        Student studentInList = (Student) model.getAddressBook().getPersonList().get(0);
+        Student studentInList = model.getAddressBook().getStudentList().get(0);
         assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 }

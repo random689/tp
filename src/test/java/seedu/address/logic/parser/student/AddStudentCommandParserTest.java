@@ -48,14 +48,14 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.student.AddStudentCommand;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.student.Address;
+import seedu.address.model.person.student.FormClass;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.StudentBuilder;
 
