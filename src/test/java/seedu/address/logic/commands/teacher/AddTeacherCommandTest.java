@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.TeacherBuilder;
 
@@ -34,20 +35,20 @@ public class AddTeacherCommandTest {
 
     @Test
     public void execute_teacherAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingTeacherAdded modelStub = new ModelStubAcceptingTeacherAdded();
         Teacher validTeacher = new TeacherBuilder().build();
 
         CommandResult commandResult = new AddTeacherCommand(validTeacher).execute(modelStub);
 
         assertEquals(String.format(AddTeacherCommand.MESSAGE_SUCCESS, validTeacher), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTeacher), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validTeacher), modelStub.teachersAdded);
     }
 
     @Test
     public void execute_duplicateTeacher_throwsCommandException() {
         Teacher validTeacher = new TeacherBuilder().build();
         AddTeacherCommand addTeacherCommand = new AddTeacherCommand(validTeacher);
-        ModelStub modelStub = new ModelStubWithPerson(validTeacher);
+        ModelStub modelStub = new ModelStubWithTeacher(validTeacher);
 
         assertThrows(CommandException.class,
             AddTeacherCommand.MESSAGE_DUPLICATE_TEACHER, () -> addTeacherCommand.execute(modelStub));
@@ -150,42 +151,102 @@ public class AddTeacherCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-    }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        @Override
+        public void addStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setStudent(Student target, Student editedStudent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteStudent(Student target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTeacher(Teacher teacher) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTeacher(Teacher teacher) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTeacher(Teacher target, Teacher editedStudent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTeacher(Teacher target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Teacher> getFilteredTeacherList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTeacherList(Predicate<Teacher> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+    }
+
+    /**
+     * A Model stub that contains a single teacher.
+     */
+    private class ModelStubWithTeacher extends ModelStub {
+        private final Teacher teacher;
+
+        ModelStubWithTeacher(Teacher teacher) {
+            requireNonNull(teacher);
+            this.teacher = teacher;
+        }
+
+        @Override
+        public boolean hasTeacher(Teacher teacher)  {
+            requireNonNull(teacher);
+            return this.teacher.isSameTeacher(teacher);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTeacherAdded extends ModelStub {
+        final ArrayList<Teacher> teachersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTeacher(Teacher teacher) {
+            requireNonNull(teacher);
+            return teachersAdded.stream().anyMatch(teacher::isSameTeacher);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTeacher(Teacher teacher) {
+            requireNonNull(teacher);
+            teachersAdded.add(teacher);
         }
 
         @Override

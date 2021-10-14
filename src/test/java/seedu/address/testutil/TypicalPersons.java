@@ -40,7 +40,7 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 
 /**
- * A utility class containing a list of {@code Student} objects to be used in tests.
+ * A utility class containing a list of {@code Student} and {@code Teacher} objects to be used in tests.
  */
 public class TypicalPersons {
 
@@ -273,10 +273,12 @@ public class TypicalPersons {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Student student : getTypicalStudents()) {
-            ab.addPerson(student);
+            ab.addStudent(student);
+            ab.addPerson(student); //To remove once fully integrated
         }
         for (Teacher teacher: getTypicalTeachers()) {
-            ab.addPerson(teacher);
+            ab.addTeacher(teacher);
+            ab.addPerson(teacher); // To remove once fully integrated
         }
         return ab;
     }
