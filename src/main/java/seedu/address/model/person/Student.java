@@ -83,6 +83,20 @@ public class Student extends Person {
     }
 
     /**
+     * Returns true if both student have the same name and address
+     * This defines a weaker notion of equality between two students
+     */
+    public boolean isSameStudent(Student otherStudent) {
+        if (otherStudent == this) {
+            return true;
+        }
+
+        return otherStudent != null
+                && otherStudent.getName().equals(getName())
+                && otherStudent.getAddress().equals(getAddress());
+    }
+
+    /**
      * Returns true if both person are students, and have the same identity and data fields.
      * This defines a stronger notion of equality between two students.
      */
