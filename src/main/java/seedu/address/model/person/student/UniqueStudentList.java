@@ -1,23 +1,24 @@
-package seedu.address.model.person;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-
-import java.util.Iterator;
-import java.util.List;
+package seedu.address.model.person.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
+
+
 /**
- * A list of students that enforces uniqueness between its elements and does not allow nulls.
- * A student is considered unique by comparing using {@code Student#isSameStudent(Student)}. As such, adding and updating of
- * students uses Student#isSameStudent(Student) for equality so as to ensure that the student being added or updated is
- * unique in terms of identity in the UniqueStudentList. However, the removal of a student uses Student#equals(Object) so
+ * A list of students that enforces uniqueness between its
+ * elements and does not allow nulls.
+ * A student is considered unique by comparing using {@code Student#isSameStudent(Student)}.
+ * As such, adding and updating of students uses Student#isSameStudent(Student)
+ * for equality so as to ensure that the student being added or updated is unique in terms of identity
+ * in the UniqueStudentList. However, the removal of a student uses Student#equals(Object) so
  * as to ensure that the Student with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -49,7 +50,7 @@ public class UniqueStudentList implements Iterable<Student> {
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
         }
-            internalList.add(toAdd);
+        internalList.add(toAdd);
     }
 
     /**

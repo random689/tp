@@ -118,8 +118,8 @@
 }
 
 .list-cell:filled:selected #teacherCardPane {
-    -fx-background-color: #724334;
-    -fx-border-color: #c07d73;
+    -fx-background-color: #424d5f;
+    -fx-border-color: #3e7b91;
     -fx-border-width: 1;
 }
 
@@ -320,7 +320,7 @@
 }
 
 #teacherCardPane {
-    -fx-background-color: rgba(140, 147, 98, 0.48);
+    -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 

@@ -15,9 +15,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.descriptors.EditTeacherDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.OfficeTable;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.teacher.OfficeTable;
+import seedu.address.model.person.teacher.Teacher;
 
 /**
  * Edits the details of an existing teacher in the address book.

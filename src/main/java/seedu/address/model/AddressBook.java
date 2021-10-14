@@ -6,11 +6,12 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Teacher;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.UniqueStudentList;
-import seedu.address.model.person.UniqueTeacherList;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.UniqueStudentList;
+import seedu.address.model.person.teacher.Teacher;
+import seedu.address.model.person.teacher.UniqueTeacherList;
+
 
 /**
  * Wraps all data at the address-book level

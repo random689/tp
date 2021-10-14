@@ -3,9 +3,9 @@ package seedu.address.logic.commands.descriptors;
 import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.FormClass;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.student.Address;
+import seedu.address.model.person.student.FormClass;
 
 public class EditStudentDescriptor extends EditPersonDescriptor {
     /**

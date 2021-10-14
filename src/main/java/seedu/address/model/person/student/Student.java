@@ -1,7 +1,13 @@
-package seedu.address.model.person;
+package seedu.address.model.person.student;
 
 import java.util.Set;
 
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Involvement;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -36,8 +36,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.teacher.Teacher;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.

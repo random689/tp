@@ -22,7 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddStudentCommandTest {
@@ -150,6 +151,18 @@ public class AddStudentCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Teacher> getFilteredTeacherList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
     }
 
     /**

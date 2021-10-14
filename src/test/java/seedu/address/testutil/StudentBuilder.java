@@ -3,15 +3,15 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
+import seedu.address.model.person.student.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.FormClass;
+import seedu.address.model.person.student.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
-import seedu.address.model.person.MedicalHistory;
+import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

@@ -15,7 +15,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.student.Student;
 
 /**
  * Adds a student to the address book.
