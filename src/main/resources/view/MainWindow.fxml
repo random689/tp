@@ -29,6 +29,9 @@
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
+               <Menu mnemonicParsing="false" text="Meeting">
+                   <MenuItem fx:id = "meetingMenuItem" mnemonicParsing="false" onAction="#handleMeeting" text="Show Meeting" />
+               </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
