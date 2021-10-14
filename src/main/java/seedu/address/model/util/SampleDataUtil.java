@@ -58,10 +58,10 @@ public class SampleDataUtil {
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Student sampleStudent : getSampleStudents()) {
-            sampleAb.addPerson(sampleStudent);
+            sampleAb.addStudent(sampleStudent);
         }
         for (Teacher sampleTeacher : getSampleTeachers()) {
-            sampleAb.addPerson(sampleTeacher);
+            sampleAb.addTeacher(sampleTeacher);
         }
         return sampleAb;
     }

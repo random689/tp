@@ -340,7 +340,11 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #studentListPanel, #studentWebpage {
+    -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
+}
+
+#filterField, #teacherListPanel, #teacherWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

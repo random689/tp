@@ -42,13 +42,11 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        students.addAll(source.getPersonList().stream()
-                .filter(person -> person instanceof Student)
-                .map(person -> new JsonAdaptedStudent((Student) person)).collect(Collectors.toList()));
+        students.addAll(source.getStudentList().stream()
+                .map(JsonAdaptedStudent::new).collect(Collectors.toList()));
 
-        teachers.addAll(source.getPersonList().stream()
-                .filter(person -> person instanceof Teacher)
-                .map(person -> new JsonAdaptedTeacher((Teacher) person)).collect(Collectors.toList()));
+        teachers.addAll(source.getTeacherList().stream()
+                .map(JsonAdaptedTeacher::new).collect(Collectors.toList()));
     }
 
     /**
@@ -60,17 +58,17 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasPerson(student)) {
+            if (addressBook.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addPerson(student);
+            addressBook.addStudent(student);
         }
         for (JsonAdaptedTeacher jsonAdaptedTeacher : teachers) {
             Teacher teacher = jsonAdaptedTeacher.toModelType();
-            if (addressBook.hasPerson(teacher)) {
+            if (addressBook.hasTeacher(teacher)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TEACHER);
             }
-            addressBook.addPerson(teacher);
+            addressBook.addTeacher(teacher);
         }
         return addressBook;
     }
