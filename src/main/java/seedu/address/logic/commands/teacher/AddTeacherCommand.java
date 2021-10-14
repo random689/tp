@@ -57,11 +57,11 @@ public class AddTeacherCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasTeacher(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEACHER);
         }
 
-        model.addPerson(toAdd);
+        model.addTeacher(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
