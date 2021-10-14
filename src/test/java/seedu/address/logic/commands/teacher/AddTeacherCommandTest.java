@@ -225,7 +225,7 @@ public class AddTeacherCommandTest {
         }
 
         @Override
-        public boolean hasTeacher(Teacher teacher)  {
+        public boolean hasTeacher(Teacher teacher) {
             requireNonNull(teacher);
             return this.teacher.isSameTeacher(teacher);
         }

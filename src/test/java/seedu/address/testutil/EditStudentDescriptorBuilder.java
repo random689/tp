@@ -5,13 +5,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
-import seedu.address.model.person.student.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.student.FormClass;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.student.Address;
+import seedu.address.model.person.student.FormClass;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
