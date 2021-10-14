@@ -118,6 +118,56 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //Students
+    @Override
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return addressBook.hasStudent(student);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        addressBook.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+    }
+
+    @Override
+    public void deleteStudent(Student target) {
+        addressBook.removeStudent(target);
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+
+        addressBook.setStudent(target, editedStudent);
+    }
+
+    //Teacher
+    @Override
+    public boolean hasTeacher(Teacher teacher) {
+        requireNonNull(teacher);
+        return addressBook.hasTeacher(teacher);
+    }
+
+    @Override
+    public void addTeacher(Teacher teacher) {
+        addressBook.addTeacher(teacher);
+        updateFilteredTeacherList(PREDICATE_SHOW_ALL_TEACHERS);
+    }
+
+    @Override
+    public void deleteTeacher(Teacher target) {
+        addressBook.removeTeacher(target);
+    }
+
+    @Override
+    public void setTeacher(Teacher target, Teacher editedTeacher) {
+        requireAllNonNull(target, editedTeacher);
+
+        addressBook.setTeacher(target, editedTeacher);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -151,6 +201,18 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTeacherList(Predicate<Teacher> predicate) {
+        requireNonNull(predicate);
+        filteredTeachers.setPredicate(predicate);
     }
 
     @Override

@@ -57,8 +57,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the teacher list with {@code teachers}.
-     * {@code teachers} must not contain duplicate teachers.
+     * Replaces the contents of the student list with {@code students}.
+     * {@code students} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
@@ -132,6 +132,26 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeStudent(Student key) {
+        students.remove(key);
+    }
+
+    /**
+     * Replaces the given student {@code target} in the list with {@code editedStudent}.
+     * {@code target} must exist in the address book.
+     * The student identity of {@code editedStudent} must not be the same
+     * as another existing student in the address book.
+     */
+    public void setStudent(Student target, Student editedStudent) {
+        requireNonNull(editedStudent);
+
+        students.setStudent(target, editedStudent);
+    }
+
+    /**
      * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
     public boolean hasStudent(Student student) {
@@ -148,6 +168,26 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTeacher(Teacher t) {
         teachers.add(t);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTeacher(Teacher key) {
+        teachers.remove(key);
+    }
+
+    /**
+     * Replaces the given teacher {@code target} in the list with {@code editedTeacher}.
+     * {@code target} must exist in the address book.
+     * The Teacher identity of {@code editedTeacher} must not be the same
+     * as another existing Teacher in the address book.
+     */
+    public void setTeacher(Teacher target, Teacher editedTeacher) {
+        requireNonNull(editedTeacher);
+
+        teachers.setTeacher(target, editedTeacher);
     }
 
     /**
