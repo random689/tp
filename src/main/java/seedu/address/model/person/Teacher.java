@@ -45,6 +45,20 @@ public class Teacher extends Person {
     }
 
     /**
+     * Returns true if both teacher have the same name and office table
+     * This defines a weaker notion of equality between two students
+     */
+    public boolean isSameTeacher(Teacher otherTeacher) {
+        if (otherTeacher == this) {
+            return true;
+        }
+
+        return otherTeacher != null
+                && otherTeacher.getName().equals(getName())
+                && otherTeacher.getOfficeTable().equals(getOfficeTable());
+    }
+
+    /**
      * Returns true if both person are teachers, and have the same identity and data fields.
      * This defines a stronger notion of equality between two teachers.
      */
