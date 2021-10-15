@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditCommand;
@@ -53,7 +54,10 @@ public class EditTeacherCommand extends EditCommand {
         requireNonNull(model);
         List<Teacher> lastShownList = model.getFilteredTeacherList();
 
-        System.out.println(lastShownList);
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
         Teacher teacherToEdit = lastShownList.get(index.getZeroBased());
         Teacher editedTeacher = createdEditedTeacher(teacherToEdit, editTeacherDescriptor);
 
