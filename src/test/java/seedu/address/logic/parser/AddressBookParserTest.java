@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.student.FindStudentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.student.ListStudentCommand;
 import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
@@ -83,9 +83,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new StudentNameContainsKeywordsPredicate(keywords)), command);
+        FindStudentCommand command = (FindStudentCommand) parser.parseCommand(
+                FindStudentCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindStudentCommand(new StudentNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

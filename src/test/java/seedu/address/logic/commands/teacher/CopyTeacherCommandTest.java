@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.teacher.Teacher;
-import seedu.address.model.person.teacher.TeacherNameContainsKeyWordsPredicate;
+import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
 
 
 /**
@@ -107,7 +107,7 @@ public class CopyTeacherCommandTest {
         CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor("phone");
         List<String> keywords = new ArrayList<>();
         keywords.add("Alice");
-        TeacherNameContainsKeyWordsPredicate nameContainsKeywordsPredicate = new TeacherNameContainsKeyWordsPredicate(keywords);
+        TeacherNameContainsKeywordsPredicate nameContainsKeywordsPredicate = new TeacherNameContainsKeywordsPredicate(keywords);
         model.updateFilteredTeacherList(nameContainsKeywordsPredicate);
         List<Teacher> teacherList = model.getFilteredTeacherList();
         StringBuilder sb = new StringBuilder();

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.student;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,23 +8,24 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.student.FindStudentCommand;
+import seedu.address.logic.parser.student.FindStudentCommandParser;
 import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 
-public class FindCommandParserTest {
+public class FindStudentCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindStudentCommandParser parser = new FindStudentCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStudentCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new StudentNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        FindStudentCommand expectedFindCommand =
+                new FindStudentCommand(new StudentNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

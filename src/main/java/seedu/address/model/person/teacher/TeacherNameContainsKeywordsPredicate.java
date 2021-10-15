@@ -4,16 +4,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.student.Student;
-import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 
 /**
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
  */
-public class TeacherNameContainsKeyWordsPredicate implements Predicate<Teacher> {
+public class TeacherNameContainsKeywordsPredicate implements Predicate<Teacher> {
     private final List<String> keywords;
 
-    public TeacherNameContainsKeyWordsPredicate(List<String> keywords) {
+    public TeacherNameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -26,8 +24,8 @@ public class TeacherNameContainsKeyWordsPredicate implements Predicate<Teacher> 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TeacherNameContainsKeyWordsPredicate // instanceof handles nulls
-                && keywords.equals(((TeacherNameContainsKeyWordsPredicate) other).keywords)); // state check
+                || (other instanceof TeacherNameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TeacherNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

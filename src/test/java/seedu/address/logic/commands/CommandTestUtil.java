@@ -27,7 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
-import seedu.address.model.person.teacher.TeacherNameContainsKeyWordsPredicate;
+import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.EditTeacherDescriptorBuilder;
 
@@ -233,7 +233,7 @@ public class CommandTestUtil {
 
         Teacher teacher = model.getFilteredTeacherList().get(targetIndex.getZeroBased());
         final String[] splitName = teacher.getName().fullName.split("\\s+");
-        model.updateFilteredTeacherList(new TeacherNameContainsKeyWordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredTeacherList(new TeacherNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTeacherList().size());
     }
