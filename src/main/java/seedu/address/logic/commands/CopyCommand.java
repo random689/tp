@@ -1,15 +1,12 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.student.Student;
 
 public abstract class CopyCommand extends Command {
 
@@ -122,7 +119,6 @@ public abstract class CopyCommand extends Command {
         }
         return sb.toString();
     }
-
 
     @Override
     public boolean equals(Object other) {

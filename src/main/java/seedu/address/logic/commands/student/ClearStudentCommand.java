@@ -15,7 +15,6 @@ public class ClearStudentCommand extends Command {
     public static final String COMMAND_WORD = "clearStudent";
     public static final String MESSAGE_SUCCESS = "Student Address book has been cleared!";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

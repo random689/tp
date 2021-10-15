@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_HISTORY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEACHER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,15 +16,16 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.student.ClearStudentCommand;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.commands.student.DeleteStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
+import seedu.address.logic.commands.teacher.DeleteTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.student.MedicalHistory;
@@ -50,10 +52,17 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+    public void parseCommand_deleteStudent() throws Exception {
+        DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
+                DeleteStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new DeleteStudentCommand(INDEX_FIRST_STUDENT), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTeacher() throws Exception {
+        DeleteTeacherCommand command = (DeleteTeacherCommand) parser.parseCommand(
+                DeleteTeacherCommand.COMMAND_WORD + " " + INDEX_FIRST_TEACHER.getOneBased());
+        assertEquals(new DeleteTeacherCommand(INDEX_FIRST_TEACHER), command);
     }
 
     @Test
