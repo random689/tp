@@ -19,7 +19,6 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
-import seedu.address.model.person.teacher.UniqueTeacherList;
 import seedu.address.testutil.StudentBuilder;
 
 public class UniquePersonListTest {

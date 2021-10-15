@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.student.FindStudentCommand;
-import seedu.address.logic.parser.student.FindStudentCommandParser;
 import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 
 public class FindStudentCommandParserTest {
@@ -18,7 +17,8 @@ public class FindStudentCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStudentCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindStudentCommand.MESSAGE_USAGE));
     }
 
     @Test

@@ -107,7 +107,8 @@ public class CopyStudentCommandTest {
         CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor("phone");
         List<String> keywords = new ArrayList<>();
         keywords.add("Alice");
-        StudentNameContainsKeywordsPredicate nameContainsKeywordsPredicate = new StudentNameContainsKeywordsPredicate(keywords);
+        StudentNameContainsKeywordsPredicate nameContainsKeywordsPredicate =
+                new StudentNameContainsKeywordsPredicate(keywords);
         model.updateFilteredStudentList(nameContainsKeywordsPredicate);
         List<Student> studentList = model.getFilteredStudentList();
         StringBuilder sb = new StringBuilder();

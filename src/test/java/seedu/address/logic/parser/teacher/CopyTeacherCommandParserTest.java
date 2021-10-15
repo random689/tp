@@ -1,14 +1,15 @@
 package seedu.address.logic.parser.teacher;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.CopyCommand;
-import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-import seedu.address.logic.commands.teacher.CopyTeacherCommand;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COPY_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.CopyCommand;
+import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
+import seedu.address.logic.commands.teacher.CopyTeacherCommand;
 
 public class CopyTeacherCommandParserTest {
 
@@ -47,6 +48,7 @@ public class CopyTeacherCommandParserTest {
         assertParseSuccess(parser, VALID_FIELD_EMAIL, new CopyTeacherCommand(new CopyCommandDescriptor("email")));
 
         // check whitespace
-        assertParseSuccess(parser, VALID_FIELD_WITH_WHITESPACE, new CopyTeacherCommand(new CopyCommandDescriptor("phone")));
+        assertParseSuccess(parser, VALID_FIELD_WITH_WHITESPACE, new CopyTeacherCommand(new CopyCommandDescriptor(
+                "phone")));
     }
 }

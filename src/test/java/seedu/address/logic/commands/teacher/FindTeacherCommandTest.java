@@ -1,14 +1,5 @@
 package seedu.address.logic.commands.teacher;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +9,16 @@ import static seedu.address.testutil.TypicalPersons.CAR;
 import static seedu.address.testutil.TypicalPersons.DAN;
 import static seedu.address.testutil.TypicalPersons.EL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
 
 public class FindTeacherCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

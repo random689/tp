@@ -1,13 +1,13 @@
 package seedu.address.logic.parser.teacher;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Arrays;
+
 import seedu.address.logic.commands.teacher.FindTeacherCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new FindCommand object

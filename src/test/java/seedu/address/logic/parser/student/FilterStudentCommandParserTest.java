@@ -18,14 +18,16 @@ public class FilterStudentCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterStudentCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
         FilterStudentCommand expectedFilterCommand =
-                new FilterStudentCommand(new StudentInvolvementContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FilterStudentCommand(new StudentInvolvementContainsKeywordsPredicate(Arrays.asList("Alice",
+                        "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFilterCommand);
 
         // multiple whitespaces between keywords

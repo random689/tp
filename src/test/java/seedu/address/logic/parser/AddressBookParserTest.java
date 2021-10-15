@@ -15,21 +15,21 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.student.FindStudentCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.student.ListStudentCommand;
 import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
 import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.logic.commands.student.DeleteStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
+import seedu.address.logic.commands.student.FindStudentCommand;
+import seedu.address.logic.commands.student.ListStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.commands.teacher.DeleteTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
@@ -105,14 +105,15 @@ public class AddressBookParserTest {
         final MedicalHistory medicalHistory = new MedicalHistory("ADHD");
         MedicalHistoryCommand command = (MedicalHistoryCommand) parser.parseCommand(
                 MedicalHistoryCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_MEDICAL_HISTORY + medicalHistory.value);
+                        + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_MEDICAL_HISTORY + medicalHistory.value);
         assertEquals(new MedicalHistoryCommand(INDEX_FIRST_STUDENT, medicalHistory), command);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                parser.parseCommand(""));
     }
 
     @Test

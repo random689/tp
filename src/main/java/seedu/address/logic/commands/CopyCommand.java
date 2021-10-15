@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import java.util.List;
 
 import javafx.scene.input.Clipboard;
@@ -43,7 +42,7 @@ public abstract class CopyCommand extends Command {
     /**
      * Get the string representation of the content to copy from
      *
-     * @param  personList person list to copy from
+     * @param personList person list to copy from
      * @return the string representation
      */
     public String getCopyContent(List<? extends Person> personList) {
@@ -67,7 +66,7 @@ public abstract class CopyCommand extends Command {
      * @param personList the person list to copy from
      * @return the string representation
      */
-    public String getPhoneContent(List<? extends  Person> personList) {
+    public String getPhoneContent(List<? extends Person> personList) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {
             if (i == personList.size() - 1) {

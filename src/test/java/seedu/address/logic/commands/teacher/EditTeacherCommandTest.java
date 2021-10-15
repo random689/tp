@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.logic.commands.descriptors.EditTeacherDescriptor;
+import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -60,10 +60,10 @@ public class EditTeacherCommandTest {
 
         TeacherBuilder teacherInList = new TeacherBuilder(lastTeacher);
         Teacher editedTeacher = teacherInList.withName(VALID_NAME_DEE).withPhone(VALID_PHONE_DEE)
-            .withTags(VALID_TAG_MONITOR).build();
+                .withTags(VALID_TAG_MONITOR).build();
 
         EditTeacherDescriptor descriptor = new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE)
-            .withPhone(VALID_PHONE_DEE).withTags(VALID_TAG_MONITOR).build();
+                .withPhone(VALID_PHONE_DEE).withTags(VALID_TAG_MONITOR).build();
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(indexLastTeacher, descriptor);
 
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
@@ -77,7 +77,7 @@ public class EditTeacherCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_TEACHER,
-            new EditTeacherDescriptor());
+                new EditTeacherDescriptor());
         Person editedTeacher = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
 
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
@@ -94,7 +94,7 @@ public class EditTeacherCommandTest {
         Person teacherInFilteredList = model.getFilteredTeacherList().get(0);
         Teacher editedTeacher = new TeacherBuilder((Teacher) teacherInFilteredList).withName(VALID_NAME_DEE).build();
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
-            new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
+                new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
 
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
 
@@ -119,9 +119,9 @@ public class EditTeacherCommandTest {
 
         // edit teacher in filtered list into a duplicate in address book
         Teacher teacherInList = model.getAddressBook()
-            .getTeacherList().get(INDEX_SECOND_TEACHER.getZeroBased());
+                .getTeacherList().get(INDEX_SECOND_TEACHER.getZeroBased());
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_TEACHER,
-            new EditTeacherDescriptorBuilder(teacherInList).build());
+                new EditTeacherDescriptorBuilder(teacherInList).build());
 
         assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_DUPLICATE_TEACHER);
     }
@@ -147,7 +147,7 @@ public class EditTeacherCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeacherList().size());
 
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(outOfBoundIndex,
-            new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
+                new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
 
         assertCommandFailure(editTeacherCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }

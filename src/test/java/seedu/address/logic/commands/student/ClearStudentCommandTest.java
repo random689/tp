@@ -2,14 +2,10 @@ package seedu.address.logic.commands.student;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookStudents;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookTeachers;
-import static seedu.address.testutil.TypicalPersons.getTypicalTeachers;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.student.ClearStudentCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

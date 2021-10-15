@@ -1,14 +1,5 @@
 package seedu.address.logic.commands.teacher;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,8 +7,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALI;
 import static seedu.address.testutil.TypicalPersons.BEN;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPredicate;
 
 public class FilterTeacherCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

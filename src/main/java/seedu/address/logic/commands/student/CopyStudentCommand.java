@@ -1,15 +1,14 @@
 package seedu.address.logic.commands.student;
 
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.CopyCommand;
-import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-import seedu.address.logic.commands.teacher.CopyTeacherCommand;
-import seedu.address.model.Model;
-import seedu.address.model.person.student.Student;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CopyCommand;
+import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
+import seedu.address.model.Model;
+import seedu.address.model.person.student.Student;
 
 public class CopyStudentCommand extends CopyCommand {
 

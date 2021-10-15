@@ -24,8 +24,8 @@ import seedu.address.logic.commands.descriptors.EditTeacherDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -92,9 +92,9 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String EMERGENCY_CONTACT_DESC_AMY = " " + PREFIX_EMERGENCY_CONTACT
-        + VALID_EMERGENCY_CONTACT_AMY;
+            + VALID_EMERGENCY_CONTACT_AMY;
     public static final String EMERGENCY_CONTACT_DESC_BOB =
-        " " + PREFIX_EMERGENCY_CONTACT + VALID_EMERGENCY_CONTACT_BOB;
+            " " + PREFIX_EMERGENCY_CONTACT + VALID_EMERGENCY_CONTACT_BOB;
     public static final String TAG_DESC_REP = " " + PREFIX_TAG + VALID_TAG_REP;
     public static final String TAG_DESC_MONITOR = " " + PREFIX_TAG + VALID_TAG_MONITOR;
     public static final String FORM_CLASS_DESC_AMY = " " + PREFIX_FORM_CLASS + VALID_FORM_CLASS_AMY;
@@ -147,23 +147,23 @@ public class CommandTestUtil {
                 .withGender(VALID_GENDER_BOB)
                 .build();
         DESC_CHO = new EditTeacherDescriptorBuilder()
-            .withName(VALID_NAME_CHO)
-            .withPhone(VALID_PHONE_CHO)
-            .withEmail(VALID_EMAIL_CHO)
-            .withGender(VALID_GENDER_CHO)
-            .withInvolvement(VALID_INVOLVEMENT_CHO)
-            .withOfficeTable(VALID_OFFICE_TABLE_CHO)
-            .withTags(VALID_TAG_REP, VALID_TAG_MONITOR)
-            .build();
+                .withName(VALID_NAME_CHO)
+                .withPhone(VALID_PHONE_CHO)
+                .withEmail(VALID_EMAIL_CHO)
+                .withGender(VALID_GENDER_CHO)
+                .withInvolvement(VALID_INVOLVEMENT_CHO)
+                .withOfficeTable(VALID_OFFICE_TABLE_CHO)
+                .withTags(VALID_TAG_REP, VALID_TAG_MONITOR)
+                .build();
         DESC_DEE = new EditTeacherDescriptorBuilder()
-            .withName(VALID_NAME_DEE)
-            .withPhone(VALID_PHONE_DEE)
-            .withEmail(VALID_EMAIL_DEE)
-            .withGender(VALID_GENDER_DEE)
-            .withInvolvement(VALID_INVOLVEMENT_DEE)
-            .withOfficeTable(VALID_OFFICE_TABLE_DEE)
-            .withTags(VALID_TAG_REP, VALID_TAG_MONITOR)
-            .build();
+                .withName(VALID_NAME_DEE)
+                .withPhone(VALID_PHONE_DEE)
+                .withEmail(VALID_EMAIL_DEE)
+                .withGender(VALID_GENDER_DEE)
+                .withInvolvement(VALID_INVOLVEMENT_DEE)
+                .withOfficeTable(VALID_OFFICE_TABLE_DEE)
+                .withTags(VALID_TAG_REP, VALID_TAG_MONITOR)
+                .build();
     }
 
     /**
@@ -172,7 +172,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -187,7 +187,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -210,6 +210,7 @@ public class CommandTestUtil {
         assertEquals(expectedTeacherFilteredList, actualModel.getFilteredTeacherList());
         assertEquals(expectedStudentFilteredList, actualModel.getFilteredStudentList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.

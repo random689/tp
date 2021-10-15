@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.logic.commands.student.CopyStudentCommand;
-import seedu.address.logic.parser.student.CopyStudentCommandParser;
 
 public class CopyStudentCommandParserTest {
 
@@ -49,6 +48,7 @@ public class CopyStudentCommandParserTest {
         assertParseSuccess(parser, VALID_FIELD_EMAIL, new CopyStudentCommand(new CopyCommandDescriptor("email")));
 
         // check whitespace
-        assertParseSuccess(parser, VALID_FIELD_WITH_WHITESPACE, new CopyStudentCommand(new CopyCommandDescriptor("phone")));
+        assertParseSuccess(parser, VALID_FIELD_WITH_WHITESPACE, new CopyStudentCommand(new CopyCommandDescriptor(
+                "phone")));
     }
 }
