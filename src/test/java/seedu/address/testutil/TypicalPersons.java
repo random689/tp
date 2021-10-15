@@ -268,20 +268,41 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code AddressBook} with all the typical students and teachers.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
-            ab.addPerson(student); //To remove once fully integrated
         }
         for (Teacher teacher: getTypicalTeachers()) {
             ab.addTeacher(teacher);
-            ab.addPerson(teacher); // To remove once fully integrated
         }
         return ab;
     }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical students.
+     */
+    public static AddressBook getTypicalAddressBookStudents() {
+        AddressBook ab = new AddressBook();
+        for (Student student : getTypicalStudents()) {
+            ab.addStudent(student);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical students.
+     */
+    public static AddressBook getTypicalAddressBookTeachers() {
+        AddressBook ab = new AddressBook();
+        for (Teacher teacher : getTypicalTeachers()) {
+            ab.addTeacher(teacher);
+        }
+        return ab;
+    }
+
 
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

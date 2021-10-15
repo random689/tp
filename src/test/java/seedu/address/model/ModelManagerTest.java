@@ -14,7 +14,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.StudentNameContainsKeywordsPredicate;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -99,7 +99,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -124,8 +124,6 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredStudentList(new StudentNameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        System.out.println("Test");
-        System.out.println(modelManager.getFilteredStudentList());
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
 

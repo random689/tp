@@ -114,7 +114,7 @@ public interface Model {
      * The teacher identity of {@code editedTeacher} must not be the same
      * as another existing student in the address book.
      */
-    void setTeacher(Teacher target, Teacher editedStudent);
+    void setTeacher(Teacher target, Teacher editedTeacher);
 
     /** Returns an unmodifiable view of the filtered teacher list */
     ObservableList<Teacher> getFilteredTeacherList();

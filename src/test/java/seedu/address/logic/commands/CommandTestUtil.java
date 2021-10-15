@@ -24,10 +24,10 @@ import seedu.address.logic.commands.descriptors.EditTeacherDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.StudentNameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
+import seedu.address.model.person.teacher.TeacherNameContainsKeyWordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.EditTeacherDescriptorBuilder;
 
@@ -221,7 +221,7 @@ public class CommandTestUtil {
         final String[] splitName = student.getName().fullName.split("\\s+");
         model.updateFilteredStudentList(new StudentNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredTeacherList().size());
+        assertEquals(1, model.getFilteredStudentList().size());
     }
 
     /**
@@ -233,7 +233,7 @@ public class CommandTestUtil {
 
         Teacher teacher = model.getFilteredTeacherList().get(targetIndex.getZeroBased());
         final String[] splitName = teacher.getName().fullName.split("\\s+");
-        model.updateFilteredStudentList(new StudentNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredTeacherList(new TeacherNameContainsKeyWordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTeacherList().size());
     }

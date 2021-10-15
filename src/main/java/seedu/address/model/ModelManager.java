@@ -188,11 +188,15 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        System.out.println(filteredStudents.equals(other.filteredStudents));
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && filteredTeachers.equals(other.filteredTeachers);
+    }
+
+    @Override
+    public String toString() {
+        return this.addressBook.toString();
     }
 
 }

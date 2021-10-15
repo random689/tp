@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookStudents;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBookTeachers;
+import static seedu.address.testutil.TypicalPersons.getTypicalTeachers;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,15 +27,9 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        Model expectedModel = new ModelManager(getTypicalAddressBookTeachers(), new UserPrefs());
 
-        System.out.println(model.getAddressBook());
-        ClearStudentCommand clearStudentCommand = new ClearStudentCommand();
-        clearStudentCommand.execute(model);
-        System.out.println(model.getAddressBook());
-        System.out.println(expectedModel.getAddressBook());
-
+        // after clearing students, should only be left with teachers.
         assertCommandSuccess(new ClearStudentCommand(), model, ClearStudentCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

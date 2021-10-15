@@ -25,7 +25,7 @@ import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.StudentNameContainsKeywordsPredicate;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;

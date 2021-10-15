@@ -116,7 +116,7 @@ public class EditStudentCommandTest {
 
         // edit student in filtered list into a duplicate in address book
         Student studentInList = (Student) model.getAddressBook()
-                .getPersonList().get(INDEX_SECOND_STUDENT.getZeroBased());
+                .getStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptorBuilder(studentInList).build());
 
@@ -141,7 +141,7 @@ public class EditStudentCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());

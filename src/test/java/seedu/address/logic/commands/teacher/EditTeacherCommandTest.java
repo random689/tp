@@ -47,17 +47,18 @@ public class EditTeacherCommandTest {
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setTeacher(model.getFilteredTeacherList().get(7), editedTeacher);
+        // this should be INDEX_FIRST_TEACHER - 1
+        expectedModel.setTeacher(model.getFilteredTeacherList().get(0), editedTeacher);
 
         assertCommandSuccess(editTeacherCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastTeacher = Index.fromOneBased(14);
+        Index indexLastTeacher = Index.fromOneBased(7);
         Teacher lastTeacher = model.getFilteredTeacherList().get(indexLastTeacher.getZeroBased());
 
-        TeacherBuilder teacherInList = new TeacherBuilder((Teacher) lastTeacher);
+        TeacherBuilder teacherInList = new TeacherBuilder(lastTeacher);
         Teacher editedTeacher = teacherInList.withName(VALID_NAME_DEE).withPhone(VALID_PHONE_DEE)
             .withTags(VALID_TAG_MONITOR).build();
 
@@ -117,9 +118,9 @@ public class EditTeacherCommandTest {
         showTeacherAtIndex(model, INDEX_FIRST_TEACHER);
 
         // edit teacher in filtered list into a duplicate in address book
-        Teacher teacherInList = (Teacher) model.getAddressBook()
-            .getPersonList().get(INDEX_SECOND_TEACHER.getZeroBased());
-        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
+        Teacher teacherInList = model.getAddressBook()
+            .getTeacherList().get(INDEX_SECOND_TEACHER.getZeroBased());
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_TEACHER,
             new EditTeacherDescriptorBuilder(teacherInList).build());
 
         assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_DUPLICATE_TEACHER);
@@ -143,7 +144,7 @@ public class EditTeacherCommandTest {
         showTeacherAtIndex(model, INDEX_FIRST_TEACHER);
         Index outOfBoundIndex = INDEX_SECOND_TEACHER;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeacherList().size());
 
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(outOfBoundIndex,
             new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());

@@ -115,7 +115,7 @@ public class UniqueTeacherList implements Iterable<Teacher> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueStudentList // instanceof handles nulls
+                || (other instanceof UniqueTeacherList // instanceof handles nulls
                         && internalList.equals(((UniqueTeacherList) other).internalList));
     }
 

@@ -19,7 +19,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.student.Student;
 import seedu.address.testutil.StudentBuilder;
@@ -100,7 +99,7 @@ class MedicalHistoryCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(outOfBoundIndex,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_BOB));

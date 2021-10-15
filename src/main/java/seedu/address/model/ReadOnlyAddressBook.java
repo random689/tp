@@ -11,12 +11,6 @@ import seedu.address.model.person.teacher.Teacher;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the whole list.
-     * This list will not contain any duplicate persons.
-     */
-    ObservableList<Person> getPersonList();
-
-    /**
      * Returns an unmodifiable view of the student list.
      * This list will not contain any duplicate students.
      */
