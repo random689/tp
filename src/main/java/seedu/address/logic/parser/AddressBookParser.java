@@ -12,7 +12,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.student.FilterStudentCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.student.ListStudentCommand;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.CopyStudentCommand;
 import seedu.address.logic.commands.student.DeleteStudentCommand;
@@ -24,6 +24,7 @@ import seedu.address.logic.commands.teacher.CopyTeacherCommand;
 import seedu.address.logic.commands.teacher.DeleteTeacherCommand;
 import seedu.address.logic.commands.teacher.EditTeacherCommand;
 import seedu.address.logic.commands.teacher.FilterTeacherCommand;
+import seedu.address.logic.commands.teacher.ListTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.CopyStudentCommandParser;
@@ -91,8 +92,11 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListStudentCommand.COMMAND_WORD:
+            return new ListStudentCommand();
+
+        case ListTeacherCommand.COMMAND_WORD:
+            return new ListTeacherCommand();
 
         case CopyStudentCommand.COMMAND_WORD:
             return new CopyStudentCommandParser().parse(arguments);
