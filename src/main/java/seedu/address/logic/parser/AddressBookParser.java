@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.student.FilterStudentCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -23,16 +23,19 @@ import seedu.address.logic.commands.teacher.ClearTeacherCommand;
 import seedu.address.logic.commands.teacher.CopyTeacherCommand;
 import seedu.address.logic.commands.teacher.DeleteTeacherCommand;
 import seedu.address.logic.commands.teacher.EditTeacherCommand;
+import seedu.address.logic.commands.teacher.FilterTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.CopyStudentCommandParser;
 import seedu.address.logic.parser.student.DeleteStudentCommandParser;
 import seedu.address.logic.parser.student.EditStudentCommandParser;
+import seedu.address.logic.parser.student.FilterStudentCommandParser;
 import seedu.address.logic.parser.student.MedicalHistoryCommandParser;
 import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
 import seedu.address.logic.parser.teacher.CopyTeacherCommandParser;
 import seedu.address.logic.parser.teacher.DeleteTeacherCommandParser;
 import seedu.address.logic.parser.teacher.EditTeacherCommandParser;
+import seedu.address.logic.parser.teacher.FilterTeacherCommandParser;
 
 /**
  * Parses user input.
@@ -103,8 +106,11 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case FilterCommand.COMMAND_WORD:
-            return new FilterCommandParser().parse(arguments);
+        case FilterStudentCommand.COMMAND_WORD:
+            return new FilterStudentCommandParser().parse(arguments);
+
+        case FilterTeacherCommand.COMMAND_WORD:
+            return new FilterTeacherCommandParser().parse(arguments);
 
         case MedicalHistoryCommand.COMMAND_WORD:
             return new MedicalHistoryCommandParser().parse(arguments);

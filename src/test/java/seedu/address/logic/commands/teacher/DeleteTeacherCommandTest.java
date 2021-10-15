@@ -66,7 +66,7 @@ public class DeleteTeacherCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showStudentAtIndex(model, INDEX_FIRST_TEACHER);
+        showTeacherAtIndex(model, INDEX_FIRST_TEACHER);
 
         Index outOfBoundIndex = INDEX_SECOND_TEACHER;
         // ensures that outOfBoundIndex is still in bounds of address book list

@@ -1,23 +1,22 @@
-package seedu.address.model.person;
+package seedu.address.model.person.teacher;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class StudentInvolvementContainsKeywordsPredicate implements Predicate<Student> {
+public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Teacher> {
     private final List<String> keywords;
 
-    public StudentInvolvementContainsKeywordsPredicate(List<String> keywords) {
+    public TeacherInvolvementContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
-    public boolean test(Student student) {
+    public boolean test(Teacher student) {
         boolean inInvolvement = false;
         boolean inTags = false;
         boolean isTagsPresent = false;
@@ -48,11 +47,11 @@ public class StudentInvolvementContainsKeywordsPredicate implements Predicate<St
         return (inInvolvement);
     }
 
-    private boolean inTagsChecker(int t, Student student) {
+    private boolean inTagsChecker(int t, Teacher teacher) {
         boolean inTag = false;
 
         for (int i = t; i < keywords.size(); i++) {
-            for (Tag s : student.getTags()) {
+            for (Tag s : teacher.getTags()) {
                 String tagNameLowerCase = s.tagName.toLowerCase();
                 String keywordCurrent = keywords.get(i).toLowerCase();
                 if (keywordCurrent.contains(tagNameLowerCase)) {
@@ -67,8 +66,8 @@ public class StudentInvolvementContainsKeywordsPredicate implements Predicate<St
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StudentInvolvementContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((StudentInvolvementContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof TeacherInvolvementContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TeacherInvolvementContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

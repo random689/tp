@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.student;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,24 +8,24 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.model.person.StudentInvolvementContainsKeywordsPredicate;
+import seedu.address.logic.commands.student.FilterStudentCommand;
+import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPredicate;
 
 
-public class FilterCommandParserTest {
+public class FilterStudentCommandParserTest {
 
-    private FilterCommandParser parser = new FilterCommandParser();
+    private FilterStudentCommandParser parser = new FilterStudentCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
-        FilterCommand expectedFilterCommand =
-                new FilterCommand(new StudentInvolvementContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        FilterStudentCommand expectedFilterCommand =
+                new FilterStudentCommand(new StudentInvolvementContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFilterCommand);
 
         // multiple whitespaces between keywords
