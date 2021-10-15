@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.InvolvementContainsKeywordsPredicate;
+import seedu.address.model.person.StudentInvolvementContainsKeywordsPredicate;
 
 /**
  * Filters and lists all persons in address book whose involvement contains any of the argument keywords.
@@ -19,18 +19,18 @@ public class FilterCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " donut buddies";
 
-    private final InvolvementContainsKeywordsPredicate predicate;
+    private final StudentInvolvementContainsKeywordsPredicate predicate;
 
-    public FilterCommand(InvolvementContainsKeywordsPredicate predicate) {
+    public FilterCommand(StudentInvolvementContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override

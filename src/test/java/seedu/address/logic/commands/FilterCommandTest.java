@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.InvolvementContainsKeywordsPredicate;
+import seedu.address.model.person.StudentInvolvementContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -27,10 +27,10 @@ public class FilterCommandTest {
 
     @Test
     public void equals() {
-        InvolvementContainsKeywordsPredicate firstPredicate =
-                new InvolvementContainsKeywordsPredicate(Collections.singletonList("first"));
-        InvolvementContainsKeywordsPredicate secondPredicate =
-                new InvolvementContainsKeywordsPredicate(Collections.singletonList("second"));
+        StudentInvolvementContainsKeywordsPredicate firstPredicate =
+                new StudentInvolvementContainsKeywordsPredicate(Collections.singletonList("first"));
+        StudentInvolvementContainsKeywordsPredicate secondPredicate =
+                new StudentInvolvementContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FilterCommand findFirstCommand = new FilterCommand(firstPredicate);
         FilterCommand findSecondCommand = new FilterCommand(secondPredicate);
@@ -55,27 +55,27 @@ public class FilterCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        InvolvementContainsKeywordsPredicate predicate = preparePredicate(" ");
+        StudentInvolvementContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterCommand command = new FilterCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound2() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        InvolvementContainsKeywordsPredicate predicate = preparePredicate("class t/owesmoney");
+        StudentInvolvementContainsKeywordsPredicate predicate = preparePredicate("class t/owesmoney");
         FilterCommand command = new FilterCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENSON), model.getFilteredStudentList());
     }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private InvolvementContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new InvolvementContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private StudentInvolvementContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new StudentInvolvementContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

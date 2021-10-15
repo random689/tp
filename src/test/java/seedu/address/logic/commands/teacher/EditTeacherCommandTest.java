@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DEE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showTeacherAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEACHER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEACHER;
@@ -47,7 +47,7 @@ public class EditTeacherCommandTest {
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(7), editedTeacher);
+        expectedModel.setTeacher(model.getFilteredTeacherList().get(7), editedTeacher);
 
         assertCommandSuccess(editTeacherCommand, model, expectedMessage, expectedModel);
     }
@@ -55,7 +55,7 @@ public class EditTeacherCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastTeacher = Index.fromOneBased(14);
-        Person lastTeacher = model.getFilteredPersonList().get(indexLastTeacher.getZeroBased());
+        Teacher lastTeacher = model.getFilteredTeacherList().get(indexLastTeacher.getZeroBased());
 
         TeacherBuilder teacherInList = new TeacherBuilder((Teacher) lastTeacher);
         Teacher editedTeacher = teacherInList.withName(VALID_NAME_DEE).withPhone(VALID_PHONE_DEE)
@@ -68,7 +68,7 @@ public class EditTeacherCommandTest {
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastTeacher, editedTeacher);
+        expectedModel.setTeacher(lastTeacher, editedTeacher);
 
         assertCommandSuccess(editTeacherCommand, model, expectedMessage, expectedModel);
     }
@@ -77,7 +77,7 @@ public class EditTeacherCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_TEACHER,
             new EditTeacherDescriptor());
-        Person editedTeacher = model.getFilteredPersonList().get(INDEX_FIRST_TEACHER.getZeroBased());
+        Person editedTeacher = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
 
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
 
@@ -88,9 +88,9 @@ public class EditTeacherCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_TEACHER);
+        showTeacherAtIndex(model, INDEX_FIRST_TEACHER);
 
-        Person teacherInFilteredList = model.getFilteredPersonList().get(0);
+        Person teacherInFilteredList = model.getFilteredTeacherList().get(0);
         Teacher editedTeacher = new TeacherBuilder((Teacher) teacherInFilteredList).withName(VALID_NAME_DEE).build();
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
             new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
@@ -98,14 +98,14 @@ public class EditTeacherCommandTest {
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedTeacher);
+        expectedModel.setTeacher(model.getFilteredTeacherList().get(0), editedTeacher);
 
         assertCommandSuccess(editTeacherCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateTeacherUnfilteredList_failure() {
-        Teacher firstTeacher = (Teacher) model.getFilteredPersonList().get(INDEX_FIRST_TEACHER.getZeroBased());
+        Teacher firstTeacher = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
         EditTeacherDescriptor descriptor = new EditTeacherDescriptorBuilder(firstTeacher).build();
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_SECOND_TEACHER, descriptor);
 
@@ -114,7 +114,7 @@ public class EditTeacherCommandTest {
 
     @Test
     public void execute_duplicateTeacherFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_TEACHER);
+        showTeacherAtIndex(model, INDEX_FIRST_TEACHER);
 
         // edit teacher in filtered list into a duplicate in address book
         Teacher teacherInList = (Teacher) model.getAddressBook()
@@ -127,7 +127,7 @@ public class EditTeacherCommandTest {
 
     @Test
     public void execute_invalidTeacherIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         EditTeacherDescriptor descriptor = new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build();
         EditTeacherCommand editCommand = new EditTeacherCommand(outOfBoundIndex, descriptor);
 
@@ -140,7 +140,7 @@ public class EditTeacherCommandTest {
      */
     @Test
     public void execute_invalidTeacherIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_TEACHER);
+        showTeacherAtIndex(model, INDEX_FIRST_TEACHER);
         Index outOfBoundIndex = INDEX_SECOND_TEACHER;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());

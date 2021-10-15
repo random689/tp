@@ -9,6 +9,8 @@ import javafx.scene.input.ClipboardContent;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.teacher.Teacher;
 
 public class CopyCommand extends Command {
 
@@ -36,7 +38,7 @@ public class CopyCommand extends Command {
      *
      * @param personList the person list to copy from
      */
-    public void copyToClipBoard(List<Person> personList) {
+    public void copyToClipBoard(List<Student> personList) {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
         url.putString(getCopyContent(personList));
@@ -49,7 +51,7 @@ public class CopyCommand extends Command {
      * @param personList the person list to copy from
      * @return the string representation
      */
-    public String getCopyContent(List<Person> personList) {
+    public String getCopyContent(List<Student> personList) {
         // TODO: convert to switch statement soon
         if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.PHONE)) {
             return getPhoneContent(personList);
@@ -70,7 +72,7 @@ public class CopyCommand extends Command {
      * @param personList the person list to copy from
      * @return the string representation
      */
-    public String getPhoneContent(List<Person> personList) {
+    public String getPhoneContent(List<Student> personList) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {
             if (i == personList.size() - 1) {
@@ -90,7 +92,7 @@ public class CopyCommand extends Command {
      * @param personList the person list to copy from
      * @return the string representation
      */
-    public String getEmailContent(List<Person> personList) {
+    public String getEmailContent(List<Student> personList) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {
             if (i == personList.size() - 1) {
@@ -109,7 +111,7 @@ public class CopyCommand extends Command {
      * @param personList the person list to copy from
      * @return the string representation
      */
-    public String getNameContent(List<Person> personList) {
+    public String getNameContent(List<Student> personList) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {
             if (i == personList.size() - 1) {
@@ -126,7 +128,7 @@ public class CopyCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         copyToClipBoard(lastShownList);
         return new CommandResult(MESSAGE_SUCCESS);
     }

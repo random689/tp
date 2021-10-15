@@ -27,6 +27,12 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
+        System.out.println(model.getAddressBook());
+        ClearStudentCommand clearStudentCommand = new ClearStudentCommand();
+        clearStudentCommand.execute(model);
+        System.out.println(model.getAddressBook());
+        System.out.println(expectedModel.getAddressBook());
+
         assertCommandSuccess(new ClearStudentCommand(), model, ClearStudentCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

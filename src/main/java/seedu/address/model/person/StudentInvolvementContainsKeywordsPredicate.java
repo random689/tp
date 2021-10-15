@@ -3,20 +3,21 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class InvolvementContainsKeywordsPredicate implements Predicate<Person> {
+public class StudentInvolvementContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
-    public InvolvementContainsKeywordsPredicate(List<String> keywords) {
+    public StudentInvolvementContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Student student) {
         boolean inInvolvement = false;
         boolean inTags = false;
         boolean isTagsPresent = false;
@@ -26,7 +27,7 @@ public class InvolvementContainsKeywordsPredicate implements Predicate<Person> {
             String keywordCurrent = keywords.get(i).toLowerCase();
 
             if (keywords.get(i).startsWith("t/")) {
-                inTags = inTagsChecker(i, person);
+                inTags = inTagsChecker(i, student);
                 isTagsPresent = true;
                 if (i == 0) {
                     isInvolvementPresent = false;
@@ -34,7 +35,7 @@ public class InvolvementContainsKeywordsPredicate implements Predicate<Person> {
                 break;
             }
 
-            if (person.getInvolvement().value.toLowerCase().contains(keywordCurrent)) {
+            if (student.getInvolvement().value.toLowerCase().contains(keywordCurrent)) {
                 inInvolvement = true;
             }
         }
@@ -47,11 +48,11 @@ public class InvolvementContainsKeywordsPredicate implements Predicate<Person> {
         return (inInvolvement);
     }
 
-    private boolean inTagsChecker(int t, Person person) {
+    private boolean inTagsChecker(int t, Student student) {
         boolean inTag = false;
 
         for (int i = t; i < keywords.size(); i++) {
-            for (Tag s : person.getTags()) {
+            for (Tag s : student.getTags()) {
                 String tagNameLowerCase = s.tagName.toLowerCase();
                 String keywordCurrent = keywords.get(i).toLowerCase();
                 if (keywordCurrent.contains(tagNameLowerCase)) {
@@ -66,8 +67,8 @@ public class InvolvementContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof InvolvementContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((InvolvementContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof StudentInvolvementContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((StudentInvolvementContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

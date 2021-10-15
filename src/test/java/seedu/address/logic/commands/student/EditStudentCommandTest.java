@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -45,17 +45,17 @@ public class EditStudentCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        System.out.println(model.getFilteredPersonList().get(0));
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        System.out.println(model.getFilteredStudentList().get(0));
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastStudent = Index.fromOneBased(7);
-        Person lastStudent = model.getFilteredPersonList().get(indexLastStudent.getZeroBased());
+        Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
-        StudentBuilder studentInList = new StudentBuilder((Student) lastStudent);
+        StudentBuilder studentInList = new StudentBuilder(lastStudent);
         Student editedStudent = studentInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_MONITOR).build();
 
@@ -66,7 +66,7 @@ public class EditStudentCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastStudent, editedStudent);
+        expectedModel.setStudent(lastStudent, editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
@@ -75,7 +75,7 @@ public class EditStudentCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptor());
-        Person editedStudent = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
@@ -86,24 +86,24 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Person studentInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Person editedStudent = new StudentBuilder((Student) studentInFilteredList).withName(VALID_NAME_BOB).build();
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateStudentUnfilteredList_failure() {
-        Student firstStudent = (Student) model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_SECOND_STUDENT, descriptor);
 
@@ -112,7 +112,7 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_duplicateStudentFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         // edit student in filtered list into a duplicate in address book
         Student studentInList = (Student) model.getAddressBook()
@@ -125,7 +125,7 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditStudentCommand editCommand = new EditStudentCommand(outOfBoundIndex, descriptor);
 
@@ -138,7 +138,7 @@ public class EditStudentCommandTest {
      */
     @Test
     public void execute_invalidStudentIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());

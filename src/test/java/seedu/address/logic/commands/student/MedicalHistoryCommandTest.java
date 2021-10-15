@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_HISTORY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_HISTORY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -30,8 +30,8 @@ class MedicalHistoryCommandTest {
 
     @Test
     public void execute_addMedicalHistoryUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        StudentBuilder personInList = new StudentBuilder((Student) firstPerson);
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        StudentBuilder personInList = new StudentBuilder(firstStudent);
         Student editedStudent = personInList.withMedicalHistory(MEDICAL_HISTORY_STUB).build();
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(editedStudent.getMedicalHistory().value));
@@ -40,15 +40,15 @@ class MedicalHistoryCommandTest {
                 editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedStudent);
+        expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(medicalHistoryCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_deleteMedicalHistoryUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder((Student) firstPerson).withMedicalHistory("").build();
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = new StudentBuilder(firstStudent).withMedicalHistory("").build();
 
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(editedStudent.getMedicalHistory().toString()));
@@ -57,17 +57,17 @@ class MedicalHistoryCommandTest {
                 editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedStudent);
+        expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(medicalHistoryCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student editedStudent = new StudentBuilder((Student) model.getFilteredPersonList().get(INDEX_FIRST_STUDENT
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        Student editedStudent = new StudentBuilder(model.getFilteredStudentList().get(INDEX_FIRST_STUDENT
                 .getZeroBased())).withMedicalHistory(MEDICAL_HISTORY_STUB).build();
 
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
@@ -77,14 +77,14 @@ class MedicalHistoryCommandTest {
                 editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedStudent);
+        expectedModel.setStudent(firstStudent, editedStudent);
 
         assertCommandSuccess(medicalHistoryCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(outOfBoundIndex,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_BOB));
 
@@ -97,7 +97,7 @@ class MedicalHistoryCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());

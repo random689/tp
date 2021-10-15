@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.InvolvementContainsKeywordsPredicate;
+import seedu.address.model.person.StudentInvolvementContainsKeywordsPredicate;
 
 
 
@@ -29,7 +29,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterCommand(new InvolvementContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FilterCommand(new StudentInvolvementContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
