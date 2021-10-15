@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
@@ -16,16 +15,20 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.commands.student.CopyStudentCommand;
 import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.commands.teacher.AddTeacherCommand;
 import seedu.address.logic.commands.teacher.ClearTeacherCommand;
+import seedu.address.logic.commands.teacher.CopyTeacherCommand;
 import seedu.address.logic.commands.teacher.EditTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
+import seedu.address.logic.parser.student.CopyStudentCommandParser;
 import seedu.address.logic.parser.student.EditStudentCommandParser;
 import seedu.address.logic.parser.student.MedicalHistoryCommandParser;
 import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
+import seedu.address.logic.parser.teacher.CopyTeacherCommandParser;
 import seedu.address.logic.parser.teacher.EditTeacherCommandParser;
 
 /**
@@ -82,8 +85,11 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case CopyCommand.COMMAND_WORD:
-            return new CopyCommandParser().parse(arguments);
+        case CopyStudentCommand.COMMAND_WORD:
+            return new CopyStudentCommandParser().parse(arguments);
+
+        case CopyTeacherCommand.COMMAND_WORD:
+            return new CopyTeacherCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

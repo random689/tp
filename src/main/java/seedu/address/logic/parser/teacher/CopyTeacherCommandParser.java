@@ -1,24 +1,26 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.teacher;
+
+import seedu.address.logic.commands.CopyCommand;
+import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
+import seedu.address.logic.commands.teacher.CopyTeacherCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COPY_FIELD;
 
-import java.util.Optional;
-
-import seedu.address.logic.commands.CopyCommand;
-import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-
-
-public class CopyCommandParser implements Parser<CopyCommand> {
-
+public class CopyTeacherCommandParser implements Parser<CopyTeacherCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the CopyCommand
      * and returns a CopyCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CopyCommand parse(String args) throws ParseException {
+
+    public CopyTeacherCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COPY_FIELD);
         Optional<String> fieldToCopy = argMultimap.getValue(PREFIX_COPY_FIELD);
@@ -27,7 +29,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
         } else {
             CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor(fieldToCopy.get());
             if (copyCommandDescriptor.hasValidField()) {
-                return new CopyCommand(copyCommandDescriptor);
+                return new CopyTeacherCommand(copyCommandDescriptor);
             } else {
                 throw new ParseException(CopyCommand.MESSAGE_NOT_VALID_FIELD);
             }

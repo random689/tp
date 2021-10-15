@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -14,15 +14,15 @@ import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for CopyCommand.
  */
 
-public class CopyCommandTest {
+public class CopyStudentCommandTest {
 
     private Model model;
 
@@ -43,7 +43,7 @@ public class CopyCommandTest {
                 sb.append(studentList.get(i).getPhone() + " ");
             }
         }
-        assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
+        assertEquals(new CopyStudentCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
                 sb.toString());
     }
 
@@ -59,7 +59,7 @@ public class CopyCommandTest {
                 sb.append(studentList.get(i).getEmail() + ",");
             }
         }
-        assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
+        assertEquals(new CopyStudentCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
                 sb.toString());
     }
 
@@ -75,7 +75,7 @@ public class CopyCommandTest {
                 sb.append(studentList.get(i).getName() + ", ");
             }
         }
-        assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
+        assertEquals(new CopyStudentCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
                 sb.toString());
     }
 
@@ -92,14 +92,14 @@ public class CopyCommandTest {
                 sb.append(studentList.get(i).getEmail() + ",");
             }
         }
-        assertNotEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
+        assertNotEquals(new CopyStudentCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
                 sb.toString());
     }
 
     @Test
     public void execute_invalidCommand_failure() {
         CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor("fish");
-        assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()), "");
+        assertEquals(new CopyStudentCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()), "");
     }
 
     @Test
@@ -109,16 +109,16 @@ public class CopyCommandTest {
         keywords.add("Alice");
         StudentNameContainsKeywordsPredicate nameContainsKeywordsPredicate = new StudentNameContainsKeywordsPredicate(keywords);
         model.updateFilteredStudentList(nameContainsKeywordsPredicate);
-        List<Student> personList = model.getFilteredStudentList();
+        List<Student> studentList = model.getFilteredStudentList();
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < personList.size(); i++) {
-            if (i == personList.size() - 1) {
-                sb.append(personList.get(i).getPhone());
+        for (int i = 0; i < studentList.size(); i++) {
+            if (i == studentList.size() - 1) {
+                sb.append(studentList.get(i).getPhone());
             } else {
-                sb.append(personList.get(i).getPhone() + " ");
+                sb.append(studentList.get(i).getPhone() + " ");
             }
         }
-        assertEquals(new CopyCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
+        assertEquals(new CopyStudentCommand(copyCommandDescriptor).getCopyContent(model.getFilteredStudentList()),
                 sb.toString());
     }
 

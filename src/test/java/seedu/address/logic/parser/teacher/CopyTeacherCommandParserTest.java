@@ -1,16 +1,16 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.teacher;
+
+import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.CopyCommand;
+import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
+import seedu.address.logic.commands.teacher.CopyTeacherCommand;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COPY_FIELD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.CopyCommand;
-import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-
-public class CopyCommandParserTest {
+public class CopyTeacherCommandParserTest {
 
     private static final String EMPTY_FIELD = " " + PREFIX_COPY_FIELD;
 
@@ -21,7 +21,7 @@ public class CopyCommandParserTest {
     private static final String INVALID_FIELD = " " + PREFIX_COPY_FIELD + "fish";
     private static final String INVALID_PREFIX = " " + PREFIX_GENDER + "phone";
 
-    private CopyCommandParser parser = new CopyCommandParser();
+    private CopyTeacherCommandParser parser = new CopyTeacherCommandParser();
 
     @Test
     public void parse_missingCopyField_failure() {
@@ -43,10 +43,10 @@ public class CopyCommandParserTest {
 
     @Test
     public void parse_validFields_success() {
-        assertParseSuccess(parser, VALID_FIELD_PHONE, new CopyCommand(new CopyCommandDescriptor("phone")));
-        assertParseSuccess(parser, VALID_FIELD_EMAIL, new CopyCommand(new CopyCommandDescriptor("email")));
+        assertParseSuccess(parser, VALID_FIELD_PHONE, new CopyTeacherCommand(new CopyCommandDescriptor("phone")));
+        assertParseSuccess(parser, VALID_FIELD_EMAIL, new CopyTeacherCommand(new CopyCommandDescriptor("email")));
 
         // check whitespace
-        assertParseSuccess(parser, VALID_FIELD_WITH_WHITESPACE, new CopyCommand(new CopyCommandDescriptor("phone")));
+        assertParseSuccess(parser, VALID_FIELD_WITH_WHITESPACE, new CopyTeacherCommand(new CopyCommandDescriptor("phone")));
     }
 }
