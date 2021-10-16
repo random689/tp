@@ -1,0 +1,244 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UniqueTeacherList</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.model.person.teacher</a>
+</div>
+
+<h1>Coverage Summary for Class: UniqueTeacherList (seedu.address.model.person.teacher)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UniqueTeacherList</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (10/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.6%
+  </span>
+  <span class="absValue">
+    (35/37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package seedu.address.model.person.teacher;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import static java.util.Objects.requireNonNull;
+<i class="no-highlight">4</i>&nbsp;import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;import java.util.Iterator;
+<i class="no-highlight">7</i>&nbsp;import java.util.List;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import javafx.collections.FXCollections;
+<i class="no-highlight">10</i>&nbsp;import javafx.collections.ObservableList;
+<i class="no-highlight">11</i>&nbsp;import seedu.address.model.person.exceptions.DuplicatePersonException;
+<i class="no-highlight">12</i>&nbsp;import seedu.address.model.person.exceptions.PersonNotFoundException;
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;/**
+<i class="no-highlight">15</i>&nbsp; * A list of teachers that enforces uniqueness between its elements and does not allow nulls.
+<i class="no-highlight">16</i>&nbsp; * A teacher is considered unique by comparing using {@code Teacher#isSameTeacher(teacher)}.
+<i class="no-highlight">17</i>&nbsp; * As such, adding and updating of teacher uses Teacher#isSameTeacher(Teacher) for
+<i class="no-highlight">18</i>&nbsp; * equality so as to ensure that the teacher being added or updated is unique in terms
+<i class="no-highlight">19</i>&nbsp; * of identity in the UniqueTeacherList. However, the removal of a teacher uses Teacher#equals(Object) so
+<i class="no-highlight">20</i>&nbsp; * as to ensure that the teacher with exactly the same fields will be removed.
+<i class="no-highlight">21</i>&nbsp; *
+<i class="no-highlight">22</i>&nbsp; * Supports a minimal set of list operations.
+<i class="no-highlight">23</i>&nbsp; *
+<i class="no-highlight">24</i>&nbsp; * @see Teacher#isSameTeacher(Teacher)
+<i class="no-highlight">25</i>&nbsp; */
+<b class="fc"><i class="no-highlight">26</i>&nbsp;public class UniqueTeacherList implements Iterable&lt;Teacher&gt; {</b>
+<i class="no-highlight">27</i>&nbsp;
+<b class="fc"><i class="no-highlight">28</i>&nbsp;    private final ObservableList&lt;Teacher&gt; internalList = FXCollections.observableArrayList();</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;    private final ObservableList&lt;Teacher&gt; internalUnmodifiableList =</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;            FXCollections.unmodifiableObservableList(internalList);</b>
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    /**
+<i class="no-highlight">34</i>&nbsp;     * Returns true if the list contains an equivalent teacher as the given argument.
+<i class="no-highlight">35</i>&nbsp;     */
+<i class="no-highlight">36</i>&nbsp;    public boolean contains(Teacher toCheck) {
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        requireNonNull(toCheck);</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        return internalList.stream().anyMatch(toCheck::isSameTeacher);</b>
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    /**
+<i class="no-highlight">42</i>&nbsp;     * Adds a teacher to the list.
+<i class="no-highlight">43</i>&nbsp;     * The teacher must not already exist in the list.
+<i class="no-highlight">44</i>&nbsp;     */
+<i class="no-highlight">45</i>&nbsp;    public void add(Teacher toAdd) {
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        requireNonNull(toAdd);</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;        if (contains(toAdd)) {</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;            throw new DuplicatePersonException();</b>
+<i class="no-highlight">49</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        internalList.add(toAdd);</b>
+<i class="no-highlight">51</i>&nbsp;    }
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;    /**
+<i class="no-highlight">54</i>&nbsp;     * Replaces the teacher {@code target} in the list with {@code editedTeacher}.
+<i class="no-highlight">55</i>&nbsp;     * {@code target} must exist in the list.
+<i class="no-highlight">56</i>&nbsp;     * The teacher identity of {@code editedTeacher} must not be the same as another existing teacher in the list.
+<i class="no-highlight">57</i>&nbsp;     */
+<i class="no-highlight">58</i>&nbsp;    public void setTeacher(Teacher target, Teacher editedTeacher) {
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        requireAllNonNull(target, editedTeacher);</b>
+<i class="no-highlight">60</i>&nbsp;
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        int index = internalList.indexOf(target);</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        if (index == -1) {</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;            throw new PersonNotFoundException();</b>
+<i class="no-highlight">64</i>&nbsp;        }
+<i class="no-highlight">65</i>&nbsp;
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        if (!target.isSameTeacher(editedTeacher) &amp;&amp; contains(editedTeacher)) {</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;            throw new DuplicatePersonException();</b>
+<i class="no-highlight">68</i>&nbsp;        }
+<i class="no-highlight">69</i>&nbsp;
+<b class="fc"><i class="no-highlight">70</i>&nbsp;        internalList.set(index, editedTeacher);</b>
+<i class="no-highlight">71</i>&nbsp;    }
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;    /**
+<i class="no-highlight">74</i>&nbsp;     * Removes the equivalent teacher from the list.
+<i class="no-highlight">75</i>&nbsp;     * The teacher must exist in the list.
+<i class="no-highlight">76</i>&nbsp;     */
+<i class="no-highlight">77</i>&nbsp;    public void remove(Teacher toRemove) {
+<b class="fc"><i class="no-highlight">78</i>&nbsp;        requireNonNull(toRemove);</b>
+<b class="fc"><i class="no-highlight">79</i>&nbsp;        if (!internalList.remove(toRemove)) {</b>
+<b class="fc"><i class="no-highlight">80</i>&nbsp;            throw new PersonNotFoundException();</b>
+<i class="no-highlight">81</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        internalList.remove(toRemove);</b>
+<i class="no-highlight">83</i>&nbsp;    }
+<i class="no-highlight">84</i>&nbsp;
+<i class="no-highlight">85</i>&nbsp;    public void setTeachers(UniqueTeacherList replacement) {
+<b class="fc"><i class="no-highlight">86</i>&nbsp;        requireNonNull(replacement);</b>
+<b class="fc"><i class="no-highlight">87</i>&nbsp;        internalList.setAll(replacement.internalList);</b>
+<i class="no-highlight">88</i>&nbsp;    }
+<i class="no-highlight">89</i>&nbsp;
+<i class="no-highlight">90</i>&nbsp;    /**
+<i class="no-highlight">91</i>&nbsp;     * Replaces the contents of this list with {@code teachers}.
+<i class="no-highlight">92</i>&nbsp;     * {@code teachers} must not contain duplicate teachers.
+<i class="no-highlight">93</i>&nbsp;     */
+<i class="no-highlight">94</i>&nbsp;    public void setTeachers(List&lt;Teacher&gt; teachers) {
+<b class="fc"><i class="no-highlight">95</i>&nbsp;        requireAllNonNull(teachers);</b>
+<b class="fc"><i class="no-highlight">96</i>&nbsp;        if (!teachersAreUnique(teachers)) {</b>
+<b class="fc"><i class="no-highlight">97</i>&nbsp;            throw new DuplicatePersonException();</b>
+<i class="no-highlight">98</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">99</i>&nbsp;        internalList.setAll(teachers);</b>
+<i class="no-highlight">100</i>&nbsp;    }
+<i class="no-highlight">101</i>&nbsp;
+<i class="no-highlight">102</i>&nbsp;    /**
+<i class="no-highlight">103</i>&nbsp;     * Returns the backing list as an unmodifiable {@code ObservableList}.
+<i class="no-highlight">104</i>&nbsp;     */
+<i class="no-highlight">105</i>&nbsp;    public ObservableList&lt;Teacher&gt; asUnmodifiableObservableList() {
+<b class="fc"><i class="no-highlight">106</i>&nbsp;        return internalUnmodifiableList;</b>
+<i class="no-highlight">107</i>&nbsp;    }
+<i class="no-highlight">108</i>&nbsp;
+<i class="no-highlight">109</i>&nbsp;    @Override
+<i class="no-highlight">110</i>&nbsp;    public Iterator&lt;Teacher&gt; iterator() {
+<b class="nc"><i class="no-highlight">111</i>&nbsp;        return internalList.iterator();</b>
+<i class="no-highlight">112</i>&nbsp;    }
+<i class="no-highlight">113</i>&nbsp;
+<i class="no-highlight">114</i>&nbsp;    @Override
+<i class="no-highlight">115</i>&nbsp;    public boolean equals(Object other) {
+<b class="fc"><i class="no-highlight">116</i>&nbsp;        return other == this // short circuit if same object</b>
+<i class="no-highlight">117</i>&nbsp;                || (other instanceof UniqueTeacherList // instanceof handles nulls
+<b class="fc"><i class="no-highlight">118</i>&nbsp;                        &amp;&amp; internalList.equals(((UniqueTeacherList) other).internalList));</b>
+<i class="no-highlight">119</i>&nbsp;    }
+<i class="no-highlight">120</i>&nbsp;
+<i class="no-highlight">121</i>&nbsp;    @Override
+<i class="no-highlight">122</i>&nbsp;    public int hashCode() {
+<b class="nc"><i class="no-highlight">123</i>&nbsp;        return internalList.hashCode();</b>
+<i class="no-highlight">124</i>&nbsp;    }
+<i class="no-highlight">125</i>&nbsp;
+<i class="no-highlight">126</i>&nbsp;    /**
+<i class="no-highlight">127</i>&nbsp;     * Returns true if {@code teachers} contains only unique teachers.
+<i class="no-highlight">128</i>&nbsp;     */
+<i class="no-highlight">129</i>&nbsp;    private boolean teachersAreUnique(List&lt;Teacher&gt; teachers) {
+<b class="fc"><i class="no-highlight">130</i>&nbsp;        for (int i = 0; i &lt; teachers.size() - 1; i++) {</b>
+<b class="fc"><i class="no-highlight">131</i>&nbsp;            for (int j = i + 1; j &lt; teachers.size(); j++) {</b>
+<b class="fc"><i class="no-highlight">132</i>&nbsp;                if (teachers.get(i).isSameTeacher(teachers.get(j))) {</b>
+<b class="fc"><i class="no-highlight">133</i>&nbsp;                    return false;</b>
+<i class="no-highlight">134</i>&nbsp;                }
+<i class="no-highlight">135</i>&nbsp;            }
+<i class="no-highlight">136</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">137</i>&nbsp;        return true;</b>
+<i class="no-highlight">138</i>&nbsp;    }
+<i class="no-highlight">139</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-16 09:17</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UiManager</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.ui</a>
+</div>
+
+<h1>Coverage Summary for Class: UiManager (seedu.address.ui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UiManager</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package seedu.address.ui;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.logging.Logger;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import javafx.application.Platform;
+<i class="no-highlight">6</i>&nbsp;import javafx.scene.control.Alert;
+<i class="no-highlight">7</i>&nbsp;import javafx.scene.control.Alert.AlertType;
+<i class="no-highlight">8</i>&nbsp;import javafx.scene.image.Image;
+<i class="no-highlight">9</i>&nbsp;import javafx.stage.Stage;
+<i class="no-highlight">10</i>&nbsp;import seedu.address.MainApp;
+<i class="no-highlight">11</i>&nbsp;import seedu.address.commons.core.LogsCenter;
+<i class="no-highlight">12</i>&nbsp;import seedu.address.commons.util.StringUtil;
+<i class="no-highlight">13</i>&nbsp;import seedu.address.logic.Logic;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;/**
+<i class="no-highlight">16</i>&nbsp; * The manager of the UI component.
+<i class="no-highlight">17</i>&nbsp; */
+<i class="no-highlight">18</i>&nbsp;public class UiManager implements Ui {
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    public static final String ALERT_DIALOG_PANE_FIELD_ID = &quot;alertDialogPane&quot;;
+<i class="no-highlight">21</i>&nbsp;
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    private static final Logger logger = LogsCenter.getLogger(UiManager.class);</b>
+<i class="no-highlight">23</i>&nbsp;    private static final String ICON_APPLICATION = &quot;/images/address_book_32.png&quot;;
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    private Logic logic;
+<i class="no-highlight">26</i>&nbsp;    private MainWindow mainWindow;
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    /**
+<i class="no-highlight">29</i>&nbsp;     * Creates a {@code UiManager} with the given {@code Logic}.
+<i class="no-highlight">30</i>&nbsp;     */
+<i class="no-highlight">31</i>&nbsp;    public UiManager(Logic logic) {
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        super();</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        this.logic = logic;</b>
+<i class="no-highlight">34</i>&nbsp;    }
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;    @Override
+<i class="no-highlight">37</i>&nbsp;    public void start(Stage primaryStage) {
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        logger.info(&quot;Starting UI...&quot;);</b>
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;        //Set the application icon.
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        primaryStage.getIcons().add(getImage(ICON_APPLICATION));</b>
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;        try {
+<b class="nc"><i class="no-highlight">44</i>&nbsp;            mainWindow = new MainWindow(primaryStage, logic);</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            mainWindow.show(); //This should be called before creating other UI parts</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;            mainWindow.fillInnerParts();</b>
+<i class="no-highlight">47</i>&nbsp;
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        } catch (Throwable e) {</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;            logger.severe(StringUtil.getDetails(e));</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;            showFatalErrorDialogAndShutdown(&quot;Fatal error during initializing&quot;, e);</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        }</b>
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;    private Image getImage(String imagePath) {
+<b class="nc"><i class="no-highlight">55</i>&nbsp;        return new Image(MainApp.class.getResourceAsStream(imagePath));</b>
+<i class="no-highlight">56</i>&nbsp;    }
+<i class="no-highlight">57</i>&nbsp;
+<i class="no-highlight">58</i>&nbsp;    void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);</b>
+<i class="no-highlight">60</i>&nbsp;    }
+<i class="no-highlight">61</i>&nbsp;
+<i class="no-highlight">62</i>&nbsp;    /**
+<i class="no-highlight">63</i>&nbsp;     * Shows an alert dialog on {@code owner} with the given parameters.
+<i class="no-highlight">64</i>&nbsp;     * This method only returns after the user has closed the alert dialog.
+<i class="no-highlight">65</i>&nbsp;     */
+<i class="no-highlight">66</i>&nbsp;    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
+<i class="no-highlight">67</i>&nbsp;                                               String contentText) {
+<b class="nc"><i class="no-highlight">68</i>&nbsp;        final Alert alert = new Alert(type);</b>
+<b class="nc"><i class="no-highlight">69</i>&nbsp;        alert.getDialogPane().getStylesheets().add(&quot;view/DarkTheme.css&quot;);</b>
+<b class="nc"><i class="no-highlight">70</i>&nbsp;        alert.initOwner(owner);</b>
+<b class="nc"><i class="no-highlight">71</i>&nbsp;        alert.setTitle(title);</b>
+<b class="nc"><i class="no-highlight">72</i>&nbsp;        alert.setHeaderText(headerText);</b>
+<b class="nc"><i class="no-highlight">73</i>&nbsp;        alert.setContentText(contentText);</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        alert.showAndWait();</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;    /**
+<i class="no-highlight">79</i>&nbsp;     * Shows an error alert dialog with {@code title} and error message, {@code e},
+<i class="no-highlight">80</i>&nbsp;     * and exits the application after the user has closed the alert dialog.
+<i class="no-highlight">81</i>&nbsp;     */
+<i class="no-highlight">82</i>&nbsp;    private void showFatalErrorDialogAndShutdown(String title, Throwable e) {
+<b class="nc"><i class="no-highlight">83</i>&nbsp;        logger.severe(title + &quot; &quot; + e.getMessage() + StringUtil.getDetails(e));</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        showAlertDialogAndWait(Alert.AlertType.ERROR, title, e.getMessage(), e.toString());</b>
+<b class="nc"><i class="no-highlight">85</i>&nbsp;        Platform.exit();</b>
+<b class="nc"><i class="no-highlight">86</i>&nbsp;        System.exit(1);</b>
+<i class="no-highlight">87</i>&nbsp;    }
+<i class="no-highlight">88</i>&nbsp;
+<i class="no-highlight">89</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-16 09:17</div>
+</div>
+</body>
+</html>

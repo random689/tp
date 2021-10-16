@@ -1,0 +1,214 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > EditStudentCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.logic.commands.student</a>
+</div>
+
+<h1>Coverage Summary for Class: EditStudentCommand (seedu.address.logic.commands.student)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EditStudentCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (34/34)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package seedu.address.logic.commands.student;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import static java.util.Objects.requireNonNull;
+<i class="no-highlight">4</i>&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+<i class="no-highlight">5</i>&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
+<i class="no-highlight">6</i>&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
+<i class="no-highlight">7</i>&nbsp;import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import java.util.List;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;import seedu.address.commons.core.Messages;
+<i class="no-highlight">12</i>&nbsp;import seedu.address.commons.core.index.Index;
+<i class="no-highlight">13</i>&nbsp;import seedu.address.logic.commands.CommandResult;
+<i class="no-highlight">14</i>&nbsp;import seedu.address.logic.commands.EditCommand;
+<i class="no-highlight">15</i>&nbsp;import seedu.address.logic.commands.descriptors.EditStudentDescriptor;
+<i class="no-highlight">16</i>&nbsp;import seedu.address.logic.commands.exceptions.CommandException;
+<i class="no-highlight">17</i>&nbsp;import seedu.address.model.Model;
+<i class="no-highlight">18</i>&nbsp;import seedu.address.model.person.Person;
+<i class="no-highlight">19</i>&nbsp;import seedu.address.model.person.Phone;
+<i class="no-highlight">20</i>&nbsp;import seedu.address.model.person.student.Address;
+<i class="no-highlight">21</i>&nbsp;import seedu.address.model.person.student.FormClass;
+<i class="no-highlight">22</i>&nbsp;import seedu.address.model.person.student.MedicalHistory;
+<i class="no-highlight">23</i>&nbsp;import seedu.address.model.person.student.Student;
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;/**
+<i class="no-highlight">26</i>&nbsp; * Edits the fields of an existing student in the New Address Book.
+<i class="no-highlight">27</i>&nbsp; */
+<b class="fc"><i class="no-highlight">28</i>&nbsp;public class EditStudentCommand extends EditCommand {</b>
+<i class="no-highlight">29</i>&nbsp;    public static final String TARGET = &quot;student&quot;;
+<i class="no-highlight">30</i>&nbsp;    public static final String COMMAND_WORD = &quot;editStudent&quot;;
+<i class="no-highlight">31</i>&nbsp;    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = &quot;Edited Student: %1$s&quot;;
+<b class="fc"><i class="no-highlight">32</i>&nbsp;    public static final String MESSAGE_DUPLICATE_STUDENT = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, TARGET);</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, TARGET)</b>
+<i class="no-highlight">34</i>&nbsp;        + &quot;[&quot; + PREFIX_ADDRESS + &quot;ADDRESS] &quot;
+<i class="no-highlight">35</i>&nbsp;        + &quot;[&quot; + PREFIX_FORM_CLASS + &quot;FORM CLASS] &quot;
+<i class="no-highlight">36</i>&nbsp;        + &quot;[&quot; + PREFIX_EMERGENCY_CONTACT + &quot;EMERGENCY CONTACT] &quot;
+<i class="no-highlight">37</i>&nbsp;        + &quot;[&quot; + PREFIX_TAG + &quot;TAG]...\n&quot;
+<i class="no-highlight">38</i>&nbsp;        + &quot;Example: &quot; + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;    private final Index index;
+<i class="no-highlight">41</i>&nbsp;    private final EditStudentDescriptor editStudentDescriptor;
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;    /**
+<i class="no-highlight">44</i>&nbsp;     * @param index of the student in the filtered person list to edit
+<i class="no-highlight">45</i>&nbsp;     * @param editStudentDescriptor details to edit the student with
+<i class="no-highlight">46</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">47</i>&nbsp;    public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        requireNonNull(editStudentDescriptor);</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        requireNonNull(index);</b>
+<i class="no-highlight">50</i>&nbsp;
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        this.index = index;</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);</b>
+<i class="no-highlight">53</i>&nbsp;    }
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;    /**
+<i class="no-highlight">56</i>&nbsp;     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
+<i class="no-highlight">57</i>&nbsp;     * edited with {@code editStudentDescriptor}.
+<i class="no-highlight">58</i>&nbsp;     */
+<i class="no-highlight">59</i>&nbsp;    private static Student createdEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        assert studentToEdit != null;</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        Person person = EditCommand.createEditedPerson(studentToEdit, editStudentDescriptor);</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        Phone updatedEmergencyContact =</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;                editStudentDescriptor.getEmergencyContact().orElse(studentToEdit.getEmergencyContact());</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;        FormClass updatedFormClass = editStudentDescriptor.getFormClass().orElse(studentToEdit.getFormClass());</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        MedicalHistory updatedMedicalHistory = studentToEdit.getMedicalHistory(); //edit command does not edit medical</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;        return new Student(person, updatedEmergencyContact, updatedFormClass, updatedAddress, updatedMedicalHistory);</b>
+<i class="no-highlight">68</i>&nbsp;    }
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;    @Override
+<i class="no-highlight">71</i>&nbsp;    public CommandResult execute(Model model) throws CommandException {
+<b class="fc"><i class="no-highlight">72</i>&nbsp;        requireNonNull(model);</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;        List&lt;Student&gt; lastShownList = model.getFilteredStudentList();</b>
+<i class="no-highlight">74</i>&nbsp;
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        if (index.getZeroBased() &gt;= lastShownList.size()) {</b>
+<b class="fc"><i class="no-highlight">76</i>&nbsp;            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);</b>
+<i class="no-highlight">77</i>&nbsp;        }
+<i class="no-highlight">78</i>&nbsp;
+<b class="fc"><i class="no-highlight">79</i>&nbsp;        Student studentToEdit = lastShownList.get(index.getZeroBased());</b>
+<b class="fc"><i class="no-highlight">80</i>&nbsp;        Student editedStudent = createdEditedStudent(studentToEdit, editStudentDescriptor);</b>
+<i class="no-highlight">81</i>&nbsp;
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        if (!studentToEdit.isSamePerson(editedStudent) &amp;&amp; model.hasStudent(editedStudent)) {</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);</b>
+<i class="no-highlight">84</i>&nbsp;        }
+<i class="no-highlight">85</i>&nbsp;
+<b class="fc"><i class="no-highlight">86</i>&nbsp;        model.setStudent(studentToEdit, editedStudent);</b>
+<b class="fc"><i class="no-highlight">87</i>&nbsp;        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);</b>
+<b class="fc"><i class="no-highlight">88</i>&nbsp;        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));</b>
+<i class="no-highlight">89</i>&nbsp;    }
+<i class="no-highlight">90</i>&nbsp;
+<i class="no-highlight">91</i>&nbsp;    @Override
+<i class="no-highlight">92</i>&nbsp;    public boolean equals(Object other) {
+<i class="no-highlight">93</i>&nbsp;        // short circuit if same object
+<b class="fc"><i class="no-highlight">94</i>&nbsp;        if (other == this) {</b>
+<b class="fc"><i class="no-highlight">95</i>&nbsp;            return true;</b>
+<i class="no-highlight">96</i>&nbsp;        }
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;        // instanceof handles nulls
+<b class="fc"><i class="no-highlight">99</i>&nbsp;        if (!(other instanceof EditStudentCommand)) {</b>
+<b class="fc"><i class="no-highlight">100</i>&nbsp;            return false;</b>
+<i class="no-highlight">101</i>&nbsp;        }
+<i class="no-highlight">102</i>&nbsp;
+<i class="no-highlight">103</i>&nbsp;        // state check
+<b class="fc"><i class="no-highlight">104</i>&nbsp;        EditStudentCommand e = (EditStudentCommand) other;</b>
+<b class="fc"><i class="no-highlight">105</i>&nbsp;        return index.equals(e.index)</b>
+<b class="fc"><i class="no-highlight">106</i>&nbsp;                &amp;&amp; editStudentDescriptor.equals(e.editStudentDescriptor);</b>
+<i class="no-highlight">107</i>&nbsp;    }
+<i class="no-highlight">108</i>&nbsp;
+<i class="no-highlight">109</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-16 09:17</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AddressBookStorage</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.storage</a>
+</div>
+
+<h1>Coverage Summary for Class: AddressBookStorage (seedu.address.storage)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">AddressBookStorage</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package seedu.address.storage;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.io.IOException;
+<i class="no-highlight">4</i>&nbsp;import java.nio.file.Path;
+<i class="no-highlight">5</i>&nbsp;import java.util.Optional;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import seedu.address.commons.exceptions.DataConversionException;
+<i class="no-highlight">8</i>&nbsp;import seedu.address.model.ReadOnlyAddressBook;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;/**
+<i class="no-highlight">11</i>&nbsp; * Represents a storage for {@link seedu.address.model.AddressBook}.
+<i class="no-highlight">12</i>&nbsp; */
+<i class="no-highlight">13</i>&nbsp;public interface AddressBookStorage {
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;    /**
+<i class="no-highlight">16</i>&nbsp;     * Returns the file path of the data file.
+<i class="no-highlight">17</i>&nbsp;     */
+<i class="no-highlight">18</i>&nbsp;    Path getAddressBookFilePath();
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    /**
+<i class="no-highlight">21</i>&nbsp;     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+<i class="no-highlight">22</i>&nbsp;     *   Returns {@code Optional.empty()} if storage file is not found.
+<i class="no-highlight">23</i>&nbsp;     * @throws DataConversionException if the data in storage is not in the expected format.
+<i class="no-highlight">24</i>&nbsp;     * @throws IOException if there was any problem when reading from the storage.
+<i class="no-highlight">25</i>&nbsp;     */
+<i class="no-highlight">26</i>&nbsp;    Optional&lt;ReadOnlyAddressBook&gt; readAddressBook() throws DataConversionException, IOException;
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    /**
+<i class="no-highlight">29</i>&nbsp;     * @see #getAddressBookFilePath()
+<i class="no-highlight">30</i>&nbsp;     */
+<i class="no-highlight">31</i>&nbsp;    Optional&lt;ReadOnlyAddressBook&gt; readAddressBook(Path filePath) throws DataConversionException, IOException;
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    /**
+<i class="no-highlight">34</i>&nbsp;     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+<i class="no-highlight">35</i>&nbsp;     * @param addressBook cannot be null.
+<i class="no-highlight">36</i>&nbsp;     * @throws IOException if there was any problem writing to the file.
+<i class="no-highlight">37</i>&nbsp;     */
+<i class="no-highlight">38</i>&nbsp;    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;    /**
+<i class="no-highlight">41</i>&nbsp;     * @see #saveAddressBook(ReadOnlyAddressBook)
+<i class="no-highlight">42</i>&nbsp;     */
+<i class="no-highlight">43</i>&nbsp;    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+<i class="no-highlight">44</i>&nbsp;
+<i class="no-highlight">45</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-16 09:17</div>
+</div>
+</body>
+</html>

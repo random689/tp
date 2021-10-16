@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SampleDataUtil</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.model.util</a>
+</div>
+
+<h1>Coverage Summary for Class: SampleDataUtil (seedu.address.model.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SampleDataUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    16.7%
+  </span>
+  <span class="absValue">
+    (3/18)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package seedu.address.model.util;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.Arrays;
+<i class="no-highlight">4</i>&nbsp;import java.util.Set;
+<i class="no-highlight">5</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import seedu.address.model.AddressBook;
+<i class="no-highlight">8</i>&nbsp;import seedu.address.model.ReadOnlyAddressBook;
+<i class="no-highlight">9</i>&nbsp;import seedu.address.model.person.Email;
+<i class="no-highlight">10</i>&nbsp;import seedu.address.model.person.Gender;
+<i class="no-highlight">11</i>&nbsp;import seedu.address.model.person.Involvement;
+<i class="no-highlight">12</i>&nbsp;import seedu.address.model.person.Name;
+<i class="no-highlight">13</i>&nbsp;import seedu.address.model.person.Phone;
+<i class="no-highlight">14</i>&nbsp;import seedu.address.model.person.student.Address;
+<i class="no-highlight">15</i>&nbsp;import seedu.address.model.person.student.FormClass;
+<i class="no-highlight">16</i>&nbsp;import seedu.address.model.person.student.Student;
+<i class="no-highlight">17</i>&nbsp;import seedu.address.model.person.teacher.OfficeTable;
+<i class="no-highlight">18</i>&nbsp;import seedu.address.model.person.teacher.Teacher;
+<i class="no-highlight">19</i>&nbsp;import seedu.address.model.tag.Tag;
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;/**
+<i class="no-highlight">22</i>&nbsp; * Contains utility methods for populating {@code AddressBook} with sample data.
+<i class="no-highlight">23</i>&nbsp; */
+<b class="nc"><i class="no-highlight">24</i>&nbsp;public class SampleDataUtil {</b>
+<i class="no-highlight">25</i>&nbsp;    public static Student[] getSampleStudents() {
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        return new Student[] {</b>
+<i class="no-highlight">27</i>&nbsp;            new Student(new Name(&quot;Alex Yeoh&quot;), new Phone(&quot;87438807&quot;), new Email(&quot;alexyeoh@example.com&quot;),
+<i class="no-highlight">28</i>&nbsp;                    new Gender(&quot;M&quot;), new Involvement(&quot;Class 4A&quot;),
+<i class="no-highlight">29</i>&nbsp;                    new Address(&quot;Blk 30 Geylang Street 29, #06-40&quot;),
+<b class="nc"><i class="no-highlight">30</i>&nbsp;                    new Phone(&quot;91934131&quot;), new FormClass(&quot;1E1&quot;), getTagSet(&quot;monitor&quot;)),</b>
+<i class="no-highlight">31</i>&nbsp;            new Student(new Name(&quot;Bernice Yu&quot;), new Phone(&quot;99272758&quot;), new Email(&quot;berniceyu@example.com&quot;),
+<i class="no-highlight">32</i>&nbsp;                    new Gender(&quot;F&quot;), new Involvement(&quot;Math class&quot;),
+<i class="no-highlight">33</i>&nbsp;                    new Address(&quot;Blk 30 Lorong 3 Serangoon Gardens, #07-18&quot;),
+<b class="nc"><i class="no-highlight">34</i>&nbsp;                    new Phone(&quot;95614132&quot;), new FormClass(&quot;1E4&quot;), getTagSet(&quot;rep&quot;)),</b>
+<i class="no-highlight">35</i>&nbsp;            new Student(new Name(&quot;Charlotte Oliveiro&quot;), new Phone(&quot;93210283&quot;), new Email(&quot;charlotte@example.com&quot;),
+<i class="no-highlight">36</i>&nbsp;                    new Gender(&quot;F&quot;), new Involvement(&quot;Bio class&quot;),
+<i class="no-highlight">37</i>&nbsp;                    new Address(&quot;Blk 11 Ang Mo Kio Street 74, #11-04&quot;),
+<b class="nc"><i class="no-highlight">38</i>&nbsp;                    new Phone(&quot;90234134&quot;), new FormClass(&quot;3B5&quot;), getTagSet(&quot;rep&quot;))</b>
+<i class="no-highlight">39</i>&nbsp;        };
+<i class="no-highlight">40</i>&nbsp;    }
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    public static Teacher[] getSampleTeachers() {
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        return new Teacher[] {</b>
+<i class="no-highlight">44</i>&nbsp;            new Teacher(new Name(&quot;David Li&quot;), new Phone(&quot;91031282&quot;), new Email(&quot;lidavid@example.com&quot;),
+<i class="no-highlight">45</i>&nbsp;                    new Gender(&quot;M&quot;), new Involvement(&quot;class 4A Co-Form&quot;), new OfficeTable(&quot;1&quot;),
+<b class="nc"><i class="no-highlight">46</i>&nbsp;                    getTagSet(&quot;family&quot;)),</b>
+<i class="no-highlight">47</i>&nbsp;            new Teacher(new Name(&quot;Irfan Ibrahim&quot;), new Phone(&quot;92492021&quot;), new Email(&quot;irfan@example.com&quot;),
+<i class="no-highlight">48</i>&nbsp;                    new Gender(&quot;N&quot;), new Involvement(&quot;Math HOD&quot;), new OfficeTable(&quot;2&quot;),
+<b class="nc"><i class="no-highlight">49</i>&nbsp;                    getTagSet(&quot;Colleague&quot;)),</b>
+<i class="no-highlight">50</i>&nbsp;            new Teacher(new Name(&quot;Roy Balakrishnan&quot;), new Phone(&quot;92624417&quot;), new Email(&quot;royb@example.com&quot;),
+<i class="no-highlight">51</i>&nbsp;                    new Gender(&quot;M&quot;), new Involvement(&quot;Math Department&quot;), new OfficeTable(&quot;3&quot;),
+<b class="nc"><i class="no-highlight">52</i>&nbsp;                    getTagSet(&quot;lunchbuddy&quot;))</b>
+<i class="no-highlight">53</i>&nbsp;        };
+<i class="no-highlight">54</i>&nbsp;    }
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;
+<i class="no-highlight">58</i>&nbsp;    public static ReadOnlyAddressBook getSampleAddressBook() {
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        AddressBook sampleAb = new AddressBook();</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;        for (Student sampleStudent : getSampleStudents()) {</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;            sampleAb.addStudent(sampleStudent);</b>
+<i class="no-highlight">62</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">63</i>&nbsp;        for (Teacher sampleTeacher : getSampleTeachers()) {</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;            sampleAb.addTeacher(sampleTeacher);</b>
+<i class="no-highlight">65</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">66</i>&nbsp;        return sampleAb;</b>
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;    /**
+<i class="no-highlight">70</i>&nbsp;     * Returns a tag set containing the list of strings given.
+<i class="no-highlight">71</i>&nbsp;     */
+<i class="no-highlight">72</i>&nbsp;    public static Set&lt;Tag&gt; getTagSet(String... strings) {
+<b class="fc"><i class="no-highlight">73</i>&nbsp;        return Arrays.stream(strings)</b>
+<b class="fc"><i class="no-highlight">74</i>&nbsp;                .map(Tag::new)</b>
+<b class="fc"><i class="no-highlight">75</i>&nbsp;                .collect(Collectors.toSet());</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-16 09:17</div>
+</div>
+</body>
+</html>

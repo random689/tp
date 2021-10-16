@@ -1,0 +1,279 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ArgumentTokenizer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.logic.parser</a>
+</div>
+
+<h1>Coverage Summary for Class: ArgumentTokenizer (seedu.address.logic.parser)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArgumentTokenizer</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.9%
+  </span>
+  <span class="absValue">
+    (31/32)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ArgumentTokenizer$PrefixPosition</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.3%
+  </span>
+  <span class="absValue">
+    (36/37)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package seedu.address.logic.parser;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">4</i>&nbsp;import java.util.Arrays;
+<i class="no-highlight">5</i>&nbsp;import java.util.List;
+<i class="no-highlight">6</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;/**
+<i class="no-highlight">9</i>&nbsp; * Tokenizes arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}&lt;br&gt;
+<i class="no-highlight">10</i>&nbsp; * e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.&lt;br&gt;
+<i class="no-highlight">11</i>&nbsp; * 1. An argument&#39;s value can be an empty string e.g. the value of {@code k/} in the above example.&lt;br&gt;
+<i class="no-highlight">12</i>&nbsp; * 2. Leading and trailing whitespaces of an argument value will be discarded.&lt;br&gt;
+<i class="no-highlight">13</i>&nbsp; * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
+<i class="no-highlight">14</i>&nbsp; * in the above example.&lt;br&gt;
+<i class="no-highlight">15</i>&nbsp; */
+<b class="nc"><i class="no-highlight">16</i>&nbsp;public class ArgumentTokenizer {</b>
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    /**
+<i class="no-highlight">19</i>&nbsp;     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
+<i class="no-highlight">20</i>&nbsp;     * respective argument values. Only the given prefixes will be recognized in the arguments string.
+<i class="no-highlight">21</i>&nbsp;     *
+<i class="no-highlight">22</i>&nbsp;     * @param argsString Arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}
+<i class="no-highlight">23</i>&nbsp;     * @param prefixes   Prefixes to tokenize the arguments string with
+<i class="no-highlight">24</i>&nbsp;     * @return ArgumentMultimap object that maps prefixes to their arguments
+<i class="no-highlight">25</i>&nbsp;     */
+<i class="no-highlight">26</i>&nbsp;    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        List&lt;PrefixPosition&gt; positions = findAllPrefixPositions(argsString, prefixes);</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        return extractArguments(argsString, positions);</b>
+<i class="no-highlight">29</i>&nbsp;    }
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;    /**
+<i class="no-highlight">32</i>&nbsp;     * Finds all zero-based prefix positions in the given arguments string.
+<i class="no-highlight">33</i>&nbsp;     *
+<i class="no-highlight">34</i>&nbsp;     * @param argsString Arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}
+<i class="no-highlight">35</i>&nbsp;     * @param prefixes   Prefixes to find in the arguments string
+<i class="no-highlight">36</i>&nbsp;     * @return List of zero-based prefix positions in the given arguments string
+<i class="no-highlight">37</i>&nbsp;     */
+<i class="no-highlight">38</i>&nbsp;    private static List&lt;PrefixPosition&gt; findAllPrefixPositions(String argsString, Prefix... prefixes) {
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        return Arrays.stream(prefixes)</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;                .flatMap(prefix -&gt; findPrefixPositions(argsString, prefix).stream())</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;                .collect(Collectors.toList());</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;    /**
+<i class="no-highlight">45</i>&nbsp;     * {@see findAllPrefixPositions}
+<i class="no-highlight">46</i>&nbsp;     */
+<i class="no-highlight">47</i>&nbsp;    private static List&lt;PrefixPosition&gt; findPrefixPositions(String argsString, Prefix prefix) {
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        List&lt;PrefixPosition&gt; positions = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">49</i>&nbsp;
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        while (prefixPosition != -1) {</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;            PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;            positions.add(extendedPrefix);</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;            prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);</b>
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        }</b>
+<i class="no-highlight">56</i>&nbsp;
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        return positions;</b>
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    /**
+<i class="no-highlight">61</i>&nbsp;     * Returns the index of the first occurrence of {@code prefix} in
+<i class="no-highlight">62</i>&nbsp;     * {@code argsString} starting from index {@code fromIndex}. An occurrence
+<i class="no-highlight">63</i>&nbsp;     * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
+<i class="no-highlight">64</i>&nbsp;     * such occurrence can be found.
+<i class="no-highlight">65</i>&nbsp;     * &lt;p&gt;
+<i class="no-highlight">66</i>&nbsp;     * E.g if {@code argsString} = &quot;e/hip/900&quot;, {@code prefix} = &quot;p/&quot; and
+<i class="no-highlight">67</i>&nbsp;     * {@code fromIndex} = 0, this method returns -1 as there are no valid
+<i class="no-highlight">68</i>&nbsp;     * occurrences of &quot;p/&quot; with whitespace before it. However, if
+<i class="no-highlight">69</i>&nbsp;     * {@code argsString} = &quot;e/hi p/900&quot;, {@code prefix} = &quot;p/&quot; and
+<i class="no-highlight">70</i>&nbsp;     * {@code fromIndex} = 0, this method returns 5.
+<i class="no-highlight">71</i>&nbsp;     */
+<i class="no-highlight">72</i>&nbsp;    private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
+<b class="fc"><i class="no-highlight">73</i>&nbsp;        int prefixIndex = argsString.indexOf(&quot; &quot; + prefix, fromIndex);</b>
+<b class="fc"><i class="no-highlight">74</i>&nbsp;        return prefixIndex == -1 ? -1</b>
+<b class="fc"><i class="no-highlight">75</i>&nbsp;                : prefixIndex + 1; // +1 as offset for whitespace</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;    /**
+<i class="no-highlight">79</i>&nbsp;     * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
+<i class="no-highlight">80</i>&nbsp;     * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
+<i class="no-highlight">81</i>&nbsp;     * {@code argsString}.
+<i class="no-highlight">82</i>&nbsp;     *
+<i class="no-highlight">83</i>&nbsp;     * @param argsString      Arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}
+<i class="no-highlight">84</i>&nbsp;     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
+<i class="no-highlight">85</i>&nbsp;     * @return ArgumentMultimap object that maps prefixes to their arguments
+<i class="no-highlight">86</i>&nbsp;     */
+<i class="no-highlight">87</i>&nbsp;    private static ArgumentMultimap extractArguments(String argsString, List&lt;PrefixPosition&gt; prefixPositions) {
+<i class="no-highlight">88</i>&nbsp;
+<i class="no-highlight">89</i>&nbsp;        // Sort by start position
+<b class="fc"><i class="no-highlight">90</i>&nbsp;        prefixPositions.sort((prefix1, prefix2) -&gt; prefix1.getStartPosition() - prefix2.getStartPosition());</b>
+<i class="no-highlight">91</i>&nbsp;
+<i class="no-highlight">92</i>&nbsp;        // Insert a PrefixPosition to represent the preamble
+<b class="fc"><i class="no-highlight">93</i>&nbsp;        PrefixPosition preambleMarker = new PrefixPosition(new Prefix(&quot;&quot;), 0);</b>
+<b class="fc"><i class="no-highlight">94</i>&nbsp;        prefixPositions.add(0, preambleMarker);</b>
+<i class="no-highlight">95</i>&nbsp;
+<i class="no-highlight">96</i>&nbsp;        // Add a dummy PrefixPosition to represent the end of the string
+<b class="fc"><i class="no-highlight">97</i>&nbsp;        PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(&quot;&quot;), argsString.length());</b>
+<b class="fc"><i class="no-highlight">98</i>&nbsp;        prefixPositions.add(endPositionMarker);</b>
+<i class="no-highlight">99</i>&nbsp;
+<i class="no-highlight">100</i>&nbsp;        // Map prefixes to their argument values (if any)
+<b class="fc"><i class="no-highlight">101</i>&nbsp;        ArgumentMultimap argMultimap = new ArgumentMultimap();</b>
+<b class="fc"><i class="no-highlight">102</i>&nbsp;        for (int i = 0; i &lt; prefixPositions.size() - 1; i++) {</b>
+<i class="no-highlight">103</i>&nbsp;            // Extract and store prefixes and their arguments
+<b class="fc"><i class="no-highlight">104</i>&nbsp;            Prefix argPrefix = prefixPositions.get(i).getPrefix();</b>
+<b class="fc"><i class="no-highlight">105</i>&nbsp;            String argValue = extractArgumentValue(argsString, prefixPositions.get(i), prefixPositions.get(i + 1));</b>
+<b class="fc"><i class="no-highlight">106</i>&nbsp;            argMultimap.put(argPrefix, argValue);</b>
+<i class="no-highlight">107</i>&nbsp;        }
+<i class="no-highlight">108</i>&nbsp;
+<b class="fc"><i class="no-highlight">109</i>&nbsp;        return argMultimap;</b>
+<i class="no-highlight">110</i>&nbsp;    }
+<i class="no-highlight">111</i>&nbsp;
+<i class="no-highlight">112</i>&nbsp;    /**
+<i class="no-highlight">113</i>&nbsp;     * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
+<i class="no-highlight">114</i>&nbsp;     * The end position of the value is determined by {@code nextPrefixPosition}.
+<i class="no-highlight">115</i>&nbsp;     */
+<i class="no-highlight">116</i>&nbsp;    private static String extractArgumentValue(String argsString,
+<i class="no-highlight">117</i>&nbsp;                                               PrefixPosition currentPrefixPosition,
+<i class="no-highlight">118</i>&nbsp;                                               PrefixPosition nextPrefixPosition) {
+<b class="fc"><i class="no-highlight">119</i>&nbsp;        Prefix prefix = currentPrefixPosition.getPrefix();</b>
+<i class="no-highlight">120</i>&nbsp;
+<b class="fc"><i class="no-highlight">121</i>&nbsp;        int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();</b>
+<b class="fc"><i class="no-highlight">122</i>&nbsp;        String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());</b>
+<i class="no-highlight">123</i>&nbsp;
+<b class="fc"><i class="no-highlight">124</i>&nbsp;        return value.trim();</b>
+<i class="no-highlight">125</i>&nbsp;    }
+<i class="no-highlight">126</i>&nbsp;
+<i class="no-highlight">127</i>&nbsp;    /**
+<i class="no-highlight">128</i>&nbsp;     * Represents a prefix&#39;s position in an arguments string.
+<i class="no-highlight">129</i>&nbsp;     */
+<i class="no-highlight">130</i>&nbsp;    private static class PrefixPosition {
+<i class="no-highlight">131</i>&nbsp;        private int startPosition;
+<i class="no-highlight">132</i>&nbsp;        private final Prefix prefix;
+<i class="no-highlight">133</i>&nbsp;
+<b class="fc"><i class="no-highlight">134</i>&nbsp;        PrefixPosition(Prefix prefix, int startPosition) {</b>
+<b class="fc"><i class="no-highlight">135</i>&nbsp;            this.prefix = prefix;</b>
+<b class="fc"><i class="no-highlight">136</i>&nbsp;            this.startPosition = startPosition;</b>
+<i class="no-highlight">137</i>&nbsp;        }
+<i class="no-highlight">138</i>&nbsp;
+<i class="no-highlight">139</i>&nbsp;        int getStartPosition() {
+<b class="fc"><i class="no-highlight">140</i>&nbsp;            return startPosition;</b>
+<i class="no-highlight">141</i>&nbsp;        }
+<i class="no-highlight">142</i>&nbsp;
+<i class="no-highlight">143</i>&nbsp;        Prefix getPrefix() {
+<b class="fc"><i class="no-highlight">144</i>&nbsp;            return prefix;</b>
+<i class="no-highlight">145</i>&nbsp;        }
+<i class="no-highlight">146</i>&nbsp;    }
+<i class="no-highlight">147</i>&nbsp;
+<i class="no-highlight">148</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-16 09:17</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DeleteTeacherCommand</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">seedu.address.logic.commands.teacher</a>
+</div>
+
+<h1>Coverage Summary for Class: DeleteTeacherCommand (seedu.address.logic.commands.teacher)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DeleteTeacherCommand</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package seedu.address.logic.commands.teacher;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import static java.util.Objects.requireNonNull;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import java.util.List;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import seedu.address.commons.core.Messages;
+<i class="no-highlight">8</i>&nbsp;import seedu.address.commons.core.index.Index;
+<i class="no-highlight">9</i>&nbsp;import seedu.address.logic.commands.Command;
+<i class="no-highlight">10</i>&nbsp;import seedu.address.logic.commands.CommandResult;
+<i class="no-highlight">11</i>&nbsp;import seedu.address.logic.commands.exceptions.CommandException;
+<i class="no-highlight">12</i>&nbsp;import seedu.address.model.Model;
+<i class="no-highlight">13</i>&nbsp;import seedu.address.model.person.teacher.Teacher;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;public class DeleteTeacherCommand extends Command {
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    public static final String COMMAND_WORD = &quot;deleteTeacher&quot;;
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    public static final String MESSAGE_DELETE_PERSON_SUCCESS = &quot;Deleted Person: %1$s&quot;;
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;    public static final String MESSAGE_USAGE = COMMAND_WORD
+<i class="no-highlight">22</i>&nbsp;            + &quot;: Deletes the person identified by the index number used in the displayed person list.\n&quot;
+<i class="no-highlight">23</i>&nbsp;            + &quot;Parameters: INDEX (must be a positive integer)\n&quot;
+<i class="no-highlight">24</i>&nbsp;            + &quot;Example: &quot; + COMMAND_WORD + &quot; 1&quot;;
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    private final Index targetIndex;
+<i class="no-highlight">27</i>&nbsp;
+<b class="fc"><i class="no-highlight">28</i>&nbsp;    public DeleteTeacherCommand(Index targetIndex) {</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        this.targetIndex = targetIndex;</b>
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    @Override
+<i class="no-highlight">33</i>&nbsp;    public CommandResult execute(Model model) throws CommandException {
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        requireNonNull(model);</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        List&lt;Teacher&gt; lastShownList = model.getFilteredTeacherList();</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        if (targetIndex.getZeroBased() &gt;= lastShownList.size()) {</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);</b>
+<i class="no-highlight">39</i>&nbsp;        }
+<i class="no-highlight">40</i>&nbsp;
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        Teacher teacherToDelete = lastShownList.get(targetIndex.getZeroBased());</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        model.deleteTeacher(teacherToDelete);</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, teacherToDelete));</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;    @Override
+<i class="no-highlight">47</i>&nbsp;    public boolean equals(Object other) {
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        return other == this // short circuit if same object</b>
+<i class="no-highlight">49</i>&nbsp;                || (other instanceof DeleteTeacherCommand // instanceof handles nulls
+<b class="fc"><i class="no-highlight">50</i>&nbsp;                &amp;&amp; targetIndex.equals(((DeleteTeacherCommand) other).targetIndex)); // state check</b>
+<i class="no-highlight">51</i>&nbsp;    }
+<i class="no-highlight">52</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-10-16 09:17</div>
+</div>
+</body>
+</html>

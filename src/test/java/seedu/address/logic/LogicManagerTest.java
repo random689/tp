@@ -25,6 +25,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.ListStudentCommand;
+import seedu.address.logic.commands.teacher.ListTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -67,9 +68,15 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
+    public void execute_validStudentCommand_success() throws Exception {
         String listCommand = ListStudentCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListStudentCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validTeacherCommand_success() throws Exception {
+        String listCommand = ListTeacherCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListTeacherCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -100,7 +107,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredTeacherList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTeacherList().remove(0));
     }
 
     /**

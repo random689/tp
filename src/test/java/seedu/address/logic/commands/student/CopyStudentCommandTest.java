@@ -25,10 +25,12 @@ import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 public class CopyStudentCommandTest {
 
     private Model model;
+    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     }
 
     @Test
