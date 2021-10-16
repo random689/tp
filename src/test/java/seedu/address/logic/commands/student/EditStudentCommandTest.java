@@ -28,7 +28,7 @@ import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditStudentCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code EditStudentCommand}.
  */
 public class EditStudentCommandTest {
 

@@ -17,6 +17,7 @@ import seedu.address.model.person.student.MedicalHistory;
 /**
  * Parses input arguments and creates a new {@code MedicalHistoryCommand} object.
  */
+
 public class MedicalHistoryCommandParser implements Parser<MedicalHistoryCommand> {
 
     /**

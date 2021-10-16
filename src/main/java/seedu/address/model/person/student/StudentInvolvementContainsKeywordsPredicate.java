@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
  */
 public class StudentInvolvementContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;

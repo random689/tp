@@ -13,13 +13,15 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
+/**
+ * Parses input arguments and creates a new {@code CopyStudentCommand} object
+ */
 
 public class CopyStudentCommandParser implements Parser<CopyStudentCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the CopyCommand
-     * and returns a CopyCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the CopyStudentCommand
+     * and returns a CopyStudentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CopyStudentCommand parse(String args) throws ParseException {

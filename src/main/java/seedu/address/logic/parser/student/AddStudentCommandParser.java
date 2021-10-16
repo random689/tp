@@ -31,6 +31,10 @@ import seedu.address.model.person.student.FormClass;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new {@code AddStudentCommand} object
+ */
+
 public class AddStudentCommandParser implements Parser<AddStudentCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
