@@ -137,6 +137,18 @@ public class TypicalPersons {
             .withMedicalHistory("Unable to live on land")
             .build();
 
+    public static final Student EDITED_FISH_NOT_IN_LIST = new StudentBuilder()
+            .withName("Fish")
+            .withPhone("57901790417") // phone is edited
+            .withEmail("fish@thebottomofthesea.com")
+            .withAddress("Saltwater lakes")
+            .withEmergencyContact("4314123414141")
+            .withInvolvement("Swimming class")
+            .withFormClass("1T2")
+            .withGender("M")
+            .withMedicalHistory("Unable to live on land")
+            .build();
+
     public static final Student CARP_NOT_IN_LIST = new StudentBuilder()
             .withName("Carp")
             .withPhone("18943411908")
