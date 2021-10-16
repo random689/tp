@@ -124,4 +124,16 @@ public interface Model {
      */
     void updateFilteredTeacherList(Predicate<Teacher> predicate);
 
+    /**
+     * Undos the previous action.
+     * @return True if undo is success, false otherwise
+     */
+    boolean undo();
+
+    /**
+     * Undos the previous action.
+     * @return true if other model has equal history, false otherwise
+     */
+    boolean hasEqualHistory(Model other);
+
 }

@@ -184,6 +184,16 @@ public class AddTeacherCommandTest {
         public void updateFilteredTeacherList(Predicate<Teacher> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEqualHistory(Model other) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -17,6 +17,7 @@ import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.student.FilterStudentCommand;
 import seedu.address.logic.commands.student.FindStudentCommand;
 import seedu.address.logic.commands.student.ListStudentCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.commands.teacher.AddTeacherCommand;
 import seedu.address.logic.commands.teacher.ClearTeacherCommand;
@@ -124,6 +125,9 @@ public class AddressBookParser {
 
         case MedicalHistoryCommand.COMMAND_WORD: // TODO: check that medical history only updates for students?
             return new MedicalHistoryCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

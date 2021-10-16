@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Teacher> filteredTeachers;
+    private final Stack<AddressBook> history = new Stack<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         filteredTeachers = new FilteredList<>(this.addressBook.getTeacherList());
+        history.push(new AddressBook(addressBook));
     }
 
     public ModelManager() {
@@ -84,6 +87,9 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        // fitting to our name, we need to create a new AddressBook here because else, the stack will store by
+        // reference, which is not what we want
+        this.history.push(new AddressBook(this.addressBook));
     }
 
     @Override
@@ -102,18 +108,20 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         addressBook.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        this.history.push(new AddressBook(this.addressBook));
     }
 
     @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
+        this.history.push(new AddressBook(this.addressBook));
     }
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         addressBook.setStudent(target, editedStudent);
+        this.history.push(new AddressBook(this.addressBook));
     }
 
     //Teacher
@@ -127,18 +135,20 @@ public class ModelManager implements Model {
     public void addTeacher(Teacher teacher) {
         addressBook.addTeacher(teacher);
         updateFilteredTeacherList(PREDICATE_SHOW_ALL_TEACHERS);
+        this.history.push(new AddressBook(this.addressBook));
     }
 
     @Override
     public void deleteTeacher(Teacher target) {
         addressBook.removeTeacher(target);
+        this.history.push(new AddressBook(this.addressBook));
     }
 
     @Override
     public void setTeacher(Teacher target, Teacher editedTeacher) {
         requireAllNonNull(target, editedTeacher);
-
         addressBook.setTeacher(target, editedTeacher);
+        this.history.push(new AddressBook(this.addressBook));
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -171,6 +181,32 @@ public class ModelManager implements Model {
     public void updateFilteredTeacherList(Predicate<Teacher> predicate) {
         requireNonNull(predicate);
         filteredTeachers.setPredicate(predicate);
+    }
+
+    //=========== History =============================================================
+
+    /**
+     * Undos the last operation
+     *
+     * @return True if undo was a success, false otherwise
+     */
+    public boolean undo() {
+        if (history.size() <= 1) {
+            return false;
+        }
+        history.pop();
+        this.addressBook.resetData(history.lastElement());
+        return true;
+    }
+
+    @Override
+    public boolean hasEqualHistory(Model obj) {
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        ModelManager other = (ModelManager) obj;
+        return history.equals(other.history);
     }
 
     @Override
