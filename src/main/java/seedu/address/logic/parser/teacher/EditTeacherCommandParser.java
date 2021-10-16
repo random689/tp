@@ -27,8 +27,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditTeacherCommand object
+ * Parses input arguments and creates a new {@code EditTeacherCommand} object
  */
+
 public class EditTeacherCommandParser implements Parser<EditTeacherCommand> {
 
     /**

@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Teacher}'s {@code Name} matches any of the keywords given.
  */
 public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Teacher> {
     private final List<String> keywords;
@@ -16,7 +16,7 @@ public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Te
     }
 
     @Override
-    public boolean test(Teacher student) {
+    public boolean test(Teacher teacher) {
         boolean inInvolvement = false;
         boolean inTags = false;
         boolean isTagsPresent = false;
@@ -26,7 +26,7 @@ public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Te
             String keywordCurrent = keywords.get(i).toLowerCase();
 
             if (keywords.get(i).startsWith("t/")) {
-                inTags = inTagsChecker(i, student);
+                inTags = inTagsChecker(i, teacher);
                 isTagsPresent = true;
                 if (i == 0) {
                     isInvolvementPresent = false;
@@ -34,7 +34,7 @@ public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Te
                 break;
             }
 
-            if (student.getInvolvement().value.toLowerCase().contains(keywordCurrent)) {
+            if (teacher.getInvolvement().value.toLowerCase().contains(keywordCurrent)) {
                 inInvolvement = true;
             }
         }

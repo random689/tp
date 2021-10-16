@@ -19,7 +19,7 @@ import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
 
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for CopyCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code CopyTeacherCommand}.
  */
 
 public class CopyTeacherCommandTest {

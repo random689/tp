@@ -29,8 +29,9 @@ import seedu.address.model.person.teacher.Teacher;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddTeacherCommand object
+ * Parses input arguments and creates a new {@code AddTeacherCommand} object
  */
+
 public class AddTeacherCommandParser implements Parser<AddTeacherCommand> {
 
     /**
