@@ -19,6 +19,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPredicate;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code FilterTeacherCommand}.
+ */
+
 public class FilterTeacherCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());

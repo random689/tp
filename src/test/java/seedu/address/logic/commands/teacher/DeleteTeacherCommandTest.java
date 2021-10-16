@@ -19,8 +19,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.teacher.Teacher;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteTeacherCommand}.
  */
 public class DeleteTeacherCommandTest {
 

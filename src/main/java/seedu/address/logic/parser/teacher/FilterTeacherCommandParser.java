@@ -10,13 +10,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new {@code FilterTeacherCommand} object
  */
+
 public class FilterTeacherCommandParser implements Parser<FilterTeacherCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FilterTeacherCommand
+     * and returns a FilterTeacherCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterTeacherCommand parse(String args) throws ParseException {

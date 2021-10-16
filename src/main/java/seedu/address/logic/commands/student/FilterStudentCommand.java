@@ -9,14 +9,14 @@ import seedu.address.model.Model;
 import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPredicate;
 
 /**
- * Filters and lists all persons in address book whose involvement contains any of the argument keywords.
+ * Filters and lists all students in address book whose involvement contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FilterStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "filterStudent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose involvement contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all students whose involvement contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: " + COMMAND_WORD + " [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " donut buddies";

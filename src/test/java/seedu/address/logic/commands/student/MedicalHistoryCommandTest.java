@@ -23,6 +23,10 @@ import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code MedicalHistoryCommand}.
+ */
+
 class MedicalHistoryCommandTest {
     private static final String MEDICAL_HISTORY_STUB = "Some medical history";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
