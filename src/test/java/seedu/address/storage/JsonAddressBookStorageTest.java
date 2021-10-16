@@ -71,14 +71,14 @@ public class JsonAddressBookStorageTest {
         //assertEquals(original, new AddressBook(readBack)); #Broke for now, will fix next time
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         //assertEquals(original, new AddressBook(readBack)); #Broke for now, will fix next time
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         //assertEquals(original, new AddressBook(readBack)); #Broke for now, will fix next time

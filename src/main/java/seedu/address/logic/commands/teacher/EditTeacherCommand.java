@@ -4,7 +4,6 @@ package seedu.address.logic.commands.teacher;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -53,25 +52,21 @@ public class EditTeacherCommand extends EditCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Teacher> lastShownList = model.getFilteredTeacherList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (!(personToEdit instanceof Teacher)) {
-            throw new CommandException("The person you are trying to edit is not a teacher!");
-        }
-        Teacher teacherToEdit = (Teacher) personToEdit;
+        Teacher teacherToEdit = lastShownList.get(index.getZeroBased());
         Teacher editedTeacher = createdEditedTeacher(teacherToEdit, editTeacherDescriptor);
 
-        if (!teacherToEdit.isSamePerson(editedTeacher) && model.hasPerson(editedTeacher)) {
+        if (!teacherToEdit.isSamePerson(editedTeacher) && model.hasTeacher(editedTeacher)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEACHER);
         }
 
-        model.setPerson(teacherToEdit, editedTeacher);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setTeacher(teacherToEdit, editedTeacher);
+        model.updateFilteredTeacherList(Model.PREDICATE_SHOW_ALL_TEACHERS);
         return new CommandResult(String.format(MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher));
     }
 

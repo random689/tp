@@ -52,7 +52,7 @@ public class Teacher extends Person {
 
     /**
      * Returns true if both teacher have the same name and office table
-     * This defines a weaker notion of equality between two students
+     * This defines a weaker notion of equality between two teacher
      */
     public boolean isSameTeacher(Teacher otherTeacher) {
         if (otherTeacher == this) {

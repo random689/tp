@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPredicate;
 import seedu.address.testutil.StudentBuilder;
 
 
@@ -19,17 +20,17 @@ public class FilterContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        InvolvementContainsKeywordsPredicate firstPredicate =
-                new InvolvementContainsKeywordsPredicate(firstPredicateKeywordList);
-        InvolvementContainsKeywordsPredicate secondPredicate =
-                new InvolvementContainsKeywordsPredicate(secondPredicateKeywordList);
+        StudentInvolvementContainsKeywordsPredicate firstPredicate =
+                new StudentInvolvementContainsKeywordsPredicate(firstPredicateKeywordList);
+        StudentInvolvementContainsKeywordsPredicate secondPredicate =
+                new StudentInvolvementContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        InvolvementContainsKeywordsPredicate firstPredicateCopy =
-                new InvolvementContainsKeywordsPredicate(firstPredicateKeywordList);
+        StudentInvolvementContainsKeywordsPredicate firstPredicateCopy =
+                new StudentInvolvementContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -45,8 +46,8 @@ public class FilterContainsKeywordsPredicateTest {
     @Test
     public void test_involvementTag() {
         List<String> predicateKeywordList = Arrays.asList("first", "t/second");
-        InvolvementContainsKeywordsPredicate predicate =
-                new InvolvementContainsKeywordsPredicate(predicateKeywordList);
+        StudentInvolvementContainsKeywordsPredicate predicate =
+                new StudentInvolvementContainsKeywordsPredicate(predicateKeywordList);
         assertFalse(predicate.test(new StudentBuilder().withTags("second").build()));
 
         assertFalse(predicate.test(new StudentBuilder().withInvolvement("first").build()));
@@ -55,8 +56,8 @@ public class FilterContainsKeywordsPredicateTest {
 
         List<String> secondPredicateKeywordList = Arrays.asList("t/first", "second");
 
-        InvolvementContainsKeywordsPredicate predicate2 =
-                new InvolvementContainsKeywordsPredicate(secondPredicateKeywordList);
+        StudentInvolvementContainsKeywordsPredicate predicate2 =
+                new StudentInvolvementContainsKeywordsPredicate(secondPredicateKeywordList);
 
         assertTrue(predicate2.test(new StudentBuilder().withTags("first", "second").build()));
 
@@ -69,17 +70,17 @@ public class FilterContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        InvolvementContainsKeywordsPredicate predicate =
-                new InvolvementContainsKeywordsPredicate(Collections.emptyList());
+        StudentInvolvementContainsKeywordsPredicate predicate =
+                new StudentInvolvementContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new StudentBuilder().withName("Alice").build()));
 
         // Non-matching keyword
-        predicate = new InvolvementContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new StudentInvolvementContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate =
-                new InvolvementContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new StudentInvolvementContainsKeywordsPredicate(
+                        Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }

@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
 import seedu.address.model.person.teacher.Teacher;
@@ -19,7 +17,6 @@ import seedu.address.model.person.teacher.UniqueTeacherList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
     private final UniqueStudentList students;
     private final UniqueTeacherList teachers;
 
@@ -31,7 +28,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
         students = new UniqueStudentList();
         teachers = new UniqueTeacherList();
     }
@@ -47,14 +43,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
-
-    /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
-     */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
-    }
 
     /**
      * Replaces the contents of the student list with {@code students}.
@@ -78,47 +66,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
         setStudents(newData.getStudentList());
         setTeachers(newData.getTeacherList());
-    }
-
-    //// person-level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-
-        return persons.contains(person);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addPerson(Person p) {
-        persons.add(p);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removePerson(Person key) {
-        persons.remove(key);
     }
 
     /// student-level operation
@@ -147,7 +96,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
         students.setStudent(target, editedStudent);
     }
 
@@ -203,15 +151,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return students.asUnmodifiableObservableList().size()
-                + teachers.asUnmodifiableObservableList().size()
-                + " persons";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return students.asUnmodifiableObservableList().size() + " students "
+                + teachers.asUnmodifiableObservableList().size() + " teachers.";
     }
 
     @Override
@@ -226,13 +167,22 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+        if (other == this) {
+            return true; // short circuit if same object
+        } else {
+            if (other instanceof AddressBook) {
+                // handles nulls
+                AddressBook otherAddressBook = (AddressBook) other;
+                return students.equals(otherAddressBook.students)
+                        && teachers.equals(otherAddressBook.teachers);
+            } else {
+                return false;
+            }
+        }
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
-    }
+        return students.hashCode() + teachers.hashCode();
+    } // TODO: refine later
 }

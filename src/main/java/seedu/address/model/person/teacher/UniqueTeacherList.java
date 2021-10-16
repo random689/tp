@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.person.student.UniqueStudentList;
 
 /**
  * A list of teachers that enforces uniqueness between its elements and does not allow nulls.
@@ -115,7 +114,7 @@ public class UniqueTeacherList implements Iterable<Teacher> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueStudentList // instanceof handles nulls
+                || (other instanceof UniqueTeacherList // instanceof handles nulls
                         && internalList.equals(((UniqueTeacherList) other).internalList));
     }
 
