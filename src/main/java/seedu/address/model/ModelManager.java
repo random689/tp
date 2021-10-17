@@ -40,7 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
         filteredTeachers = new FilteredList<>(this.addressBook.getTeacherList());
-        history.push(new AddressBook(addressBook));
+        history.push(new AddressBook(this.addressBook));
     }
 
     public ModelManager() {
