@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.logic.commands.student.CopyStudentCommand;
@@ -124,6 +125,9 @@ public class AddressBookParser {
 
         case MedicalHistoryCommand.COMMAND_WORD: // TODO: check that medical history only updates for students?
             return new MedicalHistoryCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

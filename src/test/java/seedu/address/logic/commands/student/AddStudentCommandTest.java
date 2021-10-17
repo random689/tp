@@ -138,6 +138,16 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public boolean undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEqualHistory(Model other) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
