@@ -36,11 +36,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.teacher.Teacher;
 
 /**
- * A utility class containing a list of {@code Student} objects to be used in tests.
+ * A utility class containing a list of {@code Student} and {@code Teacher} objects to be used in tests.
  */
 public class TypicalPersons {
 
@@ -123,6 +123,42 @@ public class TypicalPersons {
             .withFormClass("1T1")
             .withGender("M")
             .withMedicalHistory("")
+            .build();
+
+    public static final Student FISH_NOT_IN_LIST = new StudentBuilder()
+            .withName("Fish")
+            .withPhone("18941908")
+            .withEmail("fish@thebottomofthesea.com")
+            .withAddress("Saltwater lakes")
+            .withEmergencyContact("4314123414141")
+            .withInvolvement("Swimming class")
+            .withFormClass("1T2")
+            .withGender("M")
+            .withMedicalHistory("Unable to live on land")
+            .build();
+
+    public static final Student EDITED_FISH_NOT_IN_LIST = new StudentBuilder()
+            .withName("Fish")
+            .withPhone("57901790417") // phone is edited
+            .withEmail("fish@thebottomofthesea.com")
+            .withAddress("Saltwater lakes")
+            .withEmergencyContact("4314123414141")
+            .withInvolvement("Swimming class")
+            .withFormClass("1T2")
+            .withGender("M")
+            .withMedicalHistory("Unable to live on land")
+            .build();
+
+    public static final Student CARP_NOT_IN_LIST = new StudentBuilder()
+            .withName("Carp")
+            .withPhone("18943411908")
+            .withEmail("carp@thebottomofthesea.com")
+            .withAddress("Freshwater lakes")
+            .withEmergencyContact("4123414141")
+            .withInvolvement("Swimming class")
+            .withFormClass("1T2")
+            .withGender("F")
+            .withMedicalHistory("Unable to live on land")
             .build();
 
     public static final Teacher ALI = new TeacherBuilder()
@@ -263,23 +299,55 @@ public class TypicalPersons {
             .withTags(VALID_TAG_MONITOR, VALID_TAG_REP)
             .build();
 
+    public static final Teacher EXTRA_TEACHER_NOT_IN_LIST = new TeacherBuilder()
+            .withName("Nur teacher")
+            .withPhone("9482442")
+            .withEmail("best@example.com")
+            .withGender("M")
+            .withInvolvement("Math HOD")
+            .withOfficeTable("7")
+            .build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code AddressBook} with all the typical students and teachers.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Student student : getTypicalStudents()) {
-            ab.addPerson(student);
+            ab.addStudent(student);
         }
         for (Teacher teacher: getTypicalTeachers()) {
-            ab.addPerson(teacher);
+            ab.addTeacher(teacher);
         }
         return ab;
     }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical students.
+     */
+    public static AddressBook getTypicalAddressBookStudents() {
+        AddressBook ab = new AddressBook();
+        for (Student student : getTypicalStudents()) {
+            ab.addStudent(student);
+        }
+        return ab;
+    }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical students.
+     */
+    public static AddressBook getTypicalAddressBookTeachers() {
+        AddressBook ab = new AddressBook();
+        for (Teacher teacher : getTypicalTeachers()) {
+            ab.addTeacher(teacher);
+        }
+        return ab;
+    }
+
 
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));

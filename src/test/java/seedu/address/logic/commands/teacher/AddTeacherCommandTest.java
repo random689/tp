@@ -21,9 +21,13 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.TeacherBuilder;
+
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code AddTeacherCommand}.
+ */
 
 public class AddTeacherCommandTest {
 
@@ -34,20 +38,20 @@ public class AddTeacherCommandTest {
 
     @Test
     public void execute_teacherAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingTeacherAdded modelStub = new ModelStubAcceptingTeacherAdded();
         Teacher validTeacher = new TeacherBuilder().build();
 
         CommandResult commandResult = new AddTeacherCommand(validTeacher).execute(modelStub);
 
         assertEquals(String.format(AddTeacherCommand.MESSAGE_SUCCESS, validTeacher), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTeacher), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validTeacher), modelStub.teachersAdded);
     }
 
     @Test
     public void execute_duplicateTeacher_throwsCommandException() {
         Teacher validTeacher = new TeacherBuilder().build();
         AddTeacherCommand addTeacherCommand = new AddTeacherCommand(validTeacher);
-        ModelStub modelStub = new ModelStubWithPerson(validTeacher);
+        ModelStub modelStub = new ModelStubWithTeacher(validTeacher);
 
         assertThrows(CommandException.class,
             AddTeacherCommand.MESSAGE_DUPLICATE_TEACHER, () -> addTeacherCommand.execute(modelStub));
@@ -112,11 +116,6 @@ public class AddTeacherCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -127,65 +126,110 @@ public class AddTeacherCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public ObservableList<Student> getFilteredStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTeacher(Teacher teacher) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTeacher(Teacher teacher) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTeacher(Teacher target, Teacher editedStudent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTeacher(Teacher target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Teacher> getFilteredTeacherList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTeacherList(Predicate<Teacher> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEqualHistory(Model other) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single teacher.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithTeacher extends ModelStub {
+        private final Teacher teacher;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithTeacher(Teacher teacher) {
+            requireNonNull(teacher);
+            this.teacher = teacher;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTeacher(Teacher teacher) {
+            requireNonNull(teacher);
+            return this.teacher.isSameTeacher(teacher);
         }
     }
 
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTeacherAdded extends ModelStub {
+        final ArrayList<Teacher> teachersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTeacher(Teacher teacher) {
+            requireNonNull(teacher);
+            return teachersAdded.stream().anyMatch(teacher::isSameTeacher);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTeacher(Teacher teacher) {
+            requireNonNull(teacher);
+            teachersAdded.add(teacher);
         }
 
         @Override

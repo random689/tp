@@ -23,14 +23,15 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.OfficeTable;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.teacher.OfficeTable;
+import seedu.address.model.person.teacher.Teacher;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddTeacherCommand object
+ * Parses input arguments and creates a new {@code AddTeacherCommand} object
  */
+
 public class AddTeacherCommandParser implements Parser<AddTeacherCommand> {
 
     /**

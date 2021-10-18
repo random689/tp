@@ -7,9 +7,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.OfficeTable;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.teacher.OfficeTable;
+import seedu.address.model.person.teacher.Teacher;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

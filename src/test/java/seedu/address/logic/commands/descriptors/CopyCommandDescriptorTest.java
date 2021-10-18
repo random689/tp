@@ -13,6 +13,7 @@ public class CopyCommandDescriptorTest {
         // same values -> returns true
         CopyCommandDescriptor phoneDescriptor = new CopyCommandDescriptor("phone");
         CopyCommandDescriptor emailDescriptor = new CopyCommandDescriptor("email");
+        CopyCommandDescriptor nameDescriptor = new CopyCommandDescriptor("name");
         CopyCommandDescriptor invalidDescriptor = new CopyCommandDescriptor("fish");
         CopyCommandDescriptor anotherPhone = new CopyCommandDescriptor("phone");
 
@@ -30,5 +31,16 @@ public class CopyCommandDescriptorTest {
 
         // different descriptors, check if both are equal
         assertNotEquals(emailDescriptor, phoneDescriptor);
+
+        // different descriptors, check if both are equal
+        assertNotEquals(nameDescriptor, phoneDescriptor);
+    }
+
+    @Test
+    public void stringEquality() {
+        CopyCommandDescriptor nameDescriptor = new CopyCommandDescriptor("name");
+        CopyCommandDescriptor invalidDescriptor = new CopyCommandDescriptor("fish");
+        assertEquals(nameDescriptor.toString(), "name");
+        assertEquals(invalidDescriptor.toString(), "invalid");
     }
 }

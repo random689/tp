@@ -2,7 +2,7 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.MedicalHistory;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Student;
+import seedu.address.model.person.student.MedicalHistory;
+import seedu.address.model.person.student.Student;
 
 /**
  * Changes the medical history of an existing student inside the New Address Book.
@@ -51,7 +51,7 @@ public class MedicalHistoryCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -65,8 +65,8 @@ public class MedicalHistoryCommand extends Command {
         Student editedStudent = new Student(studentToEdit, studentToEdit.getEmergencyContact(),
             studentToEdit.getFormClass(), studentToEdit.getAddress(), medicalHistory);
 
-        model.setPerson(studentToEdit, editedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(generateSuccessMessage(editedStudent));
     }
 

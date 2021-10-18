@@ -13,7 +13,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Teacher;
+import seedu.address.model.person.teacher.Teacher;
 
 /**
  * Adds a teacher to the address book.
@@ -57,11 +57,11 @@ public class AddTeacherCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasTeacher(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEACHER);
         }
 
-        model.addPerson(toAdd);
+        model.addTeacher(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -3,19 +3,26 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.logic.commands.student.AddStudentCommand;
+import seedu.address.logic.commands.student.DeleteStudentCommand;
+import seedu.address.logic.commands.student.FilterStudentCommand;
+import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPredicate;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -74,28 +81,90 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasStudent(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+        modelManager.addStudent(ALICE);
+        assertTrue(modelManager.hasStudent(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTeacherList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTeacherList().remove(0));
+    }
+
+    // Check that histories are equal, actual testing of the UNDO command is in the UndoCommandTest section.
+
+    @Test
+    public void historiesAreEqual_addingPeople_success() {
+        ModelManager modelManager = new ModelManagerBuilder().with(new AddStudentCommand(ALICE)).build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_ALICE));
+    }
+
+    @Test
+    public void historiesAreEqual_addingMultiplePeople_success() {
+        ModelManager modelManager =
+                new ModelManagerBuilder().with(new AddStudentCommand(ALICE)).with(new AddStudentCommand(BOB)).build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_PEOPLE));
+    }
+
+    @Test
+    public void historiesAreEqual_deletingPeople_success() {
+        ModelManager modelManager =
+                new ModelManagerBuilder()
+                        .with(new AddStudentCommand(ALICE))
+                        .with(new AddStudentCommand(BOB))
+                        .with(new DeleteStudentCommand(INDEX_THIRD_STUDENT))
+                        .build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_PEOPLE));
+    }
+
+    @Test
+    public void historiesAreEqual_filteringPeople_success() {
+        // filtering people should not add on to the history
+        StudentInvolvementContainsKeywordsPredicate firstPredicate =
+                new StudentInvolvementContainsKeywordsPredicate(Collections.singletonList("first"));
+        ModelManager modelManager =
+                new ModelManagerBuilder()
+                        .with(new AddStudentCommand(ALICE))
+                        .with(new AddStudentCommand(BOB))
+                        .with(new DeleteStudentCommand(INDEX_FIRST_STUDENT))
+                        .with(new FilterStudentCommand(firstPredicate))
+                        .build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.DELETING_ALICE));
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.FILTER_BY_TAG));
+    }
+
+    @Test
+    public void historiesAreEqual_commandException_success() {
+        // if the command execution runs into a CommandException, the history of the ModelManager should not be updated
+        StudentInvolvementContainsKeywordsPredicate firstPredicate =
+                new StudentInvolvementContainsKeywordsPredicate(Collections.singletonList("first"));
+        ModelManager modelManager =
+                new ModelManagerBuilder()
+                        .with(new AddStudentCommand(ALICE))
+                        .with(new AddStudentCommand(BOB))
+                        .with(new DeleteStudentCommand(INDEX_FIRST_STUDENT))
+                        .with(new FilterStudentCommand(firstPredicate))
+                        .build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.DELETING_ALICE));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withStudent(ALICE).withStudent(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -103,6 +172,7 @@ public class ModelManagerTest {
         modelManager = new ModelManager(addressBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
+
 
         // same object -> returns true
         assertTrue(modelManager.equals(modelManager));
@@ -118,11 +188,12 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredStudentList(new StudentNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
+
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTeacherList(Model.PREDICATE_SHOW_ALL_TEACHERS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
