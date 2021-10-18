@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Meeting's description in the address book.
+ * Represents a meeting-related information in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINTS = "Description should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Description can be any values, and it should not be blank.";
 
     /*
      * The first character of the description must not be a whitespace,
@@ -54,5 +54,3 @@ public class Description {
         return value.hashCode();
     }
 }
-
-
