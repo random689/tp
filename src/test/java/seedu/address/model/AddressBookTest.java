@@ -78,29 +78,34 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasStudent_nullPerson_throwsNullPointerException() {
+    public void hasStudent_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
     }
 
     @Test
-    public void hasTeacher_nullPerson_throwsNullPointerException() {
+    public void hasTeacher_nullTeacher_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasTeacher(null));
     }
 
     @Test
-    public void hasPerson_studentNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+    public void hasTeacher_studentNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasTeacher(ALI));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        //same name and address = same person
+    public void hasTeacher_teacherInAddressBook_returnsTrue() {
+        addressBook.addTeacher(ALI);
+        assertTrue(addressBook.hasTeacher(ALI));
+    }
+
+    @Test
+    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        //same name and address = same student
         addressBook.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_MONITOR)
                 .build();
@@ -108,12 +113,26 @@ public class AddressBookTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void hasTeacher_teacherWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        //same name and address = same student
+        addressBook.addTeacher(ALI);
+        Teacher editedAli = new TeacherBuilder(ALI).withTags(VALID_TAG_MONITOR)
+                .build();
+        assertTrue(addressBook.hasTeacher(editedAli));
+    }
+
+    @Test
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
     }
 
+    @Test
+    public void getTeacherList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getTeacherList().remove(0));
+    }
+
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose student list and teacher list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
@@ -128,7 +147,6 @@ public class AddressBookTest {
         public void setTeacher(Collection<Teacher> teacher) {
             this.teachers.setAll(teacher);
         }
-
 
         @Override
         public ObservableList<Student> getStudentList() {

@@ -57,7 +57,8 @@ public class MedicalHistoryCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased()); //todo maybe remove the typecasting at this part using if else instead?
+        Person personToEdit = lastShownList.get(index.getZeroBased());
+        //todo maybe remove the typecasting at this part using if else instead?
         if (!(personToEdit instanceof Student)) {
             throw new CommandException("You cannot add medical history to a teacher!");
         }

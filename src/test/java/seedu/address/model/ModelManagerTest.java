@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALI;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -72,19 +73,35 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasStudent_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasTeacher_nullTeacher_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTeacher(null));
+    }
+
+    @Test
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasTeacher_teacherNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTeacher(ALI));
+    }
+
+    @Test
+    public void hasStudent_studentInAddressBook_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
+    }
+
+    @Test
+    public void hasTeacher_teacherInAddressBook_returnsTrue() {
+        modelManager.addTeacher(ALI);
+        assertTrue(modelManager.hasTeacher(ALI));
     }
 
     @Test
