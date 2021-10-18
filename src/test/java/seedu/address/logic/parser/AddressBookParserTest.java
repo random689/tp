@@ -116,7 +116,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-
     public void parseCommand_editStudent() throws Exception {
         Student student = new StudentBuilder().build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
