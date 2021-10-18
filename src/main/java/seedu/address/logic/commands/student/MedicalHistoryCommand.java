@@ -22,8 +22,8 @@ import seedu.address.model.person.student.Student;
 public class MedicalHistoryCommand extends Command {
     public static final String COMMAND_WORD = "medical";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the medical history of the person identified "
-            + "by the index number used in the last person listing. "
+            + ": Edits the medical history of the student identified "
+            + "by the index number used in the last student listing. "
             + "Existing medical history will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "m/ [MEDICAL_HISTORY]\n"
@@ -31,14 +31,14 @@ public class MedicalHistoryCommand extends Command {
             + "m/ ADHD";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Medical_History: %2$s";
-    public static final String MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS = "Added medical history to Person: %1$s";
-    public static final String MESSAGE_DELETE_MEDICAL_HISTORY_SUCCESS = "Removed medical history from Person: %1$s";
+    public static final String MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS = "Added medical history to Student: %1$s";
+    public static final String MESSAGE_DELETE_MEDICAL_HISTORY_SUCCESS = "Removed medical history from Student: %1$s";
 
     private final Index index;
     private final MedicalHistory medicalHistory;
 
     /**
-     * @param index of the student in the filtered person list to edit the {@code MedicalHistory}
+     * @param index of the student in the filtered student list to edit the {@code MedicalHistory}
      * @param medicalHistory of the student to be updated to
      */
     public MedicalHistoryCommand(Index index, MedicalHistory medicalHistory) {
@@ -58,6 +58,7 @@ public class MedicalHistoryCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        //todo maybe remove the typecasting at this part using if else instead?
         if (!(personToEdit instanceof Student)) {
             throw new CommandException("You cannot add medical history to a teacher!");
         }

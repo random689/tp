@@ -28,7 +28,7 @@ public class FindTeacherCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTeacherList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredTeacherList().size()));
+                String.format(Messages.MESSAGE_TEACHERS_LISTED_OVERVIEW, model.getFilteredTeacherList().size()));
     }
 
     @Override
