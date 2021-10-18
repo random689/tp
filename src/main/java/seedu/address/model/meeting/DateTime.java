@@ -19,20 +19,20 @@ public class DateTime implements Comparable<DateTime>{
             "Meeting datetime must not be in the past. The current datetime is: %s";
     public static final String VALIDATION_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}";
 
-    private final LocalDateTime value;
-    private final String saveFormat;
+    public final String value;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code DateTime}.
      *
-     * @param dateTime A valid datetime.
+     * @param input A valid datetime.
      */
-    public DateTime(String dateTime) {
-        requireNonNull(dateTime);
-        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        value = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
-        checkArgument(isPresentDateTime(value), PRESENT_CONSTRAINT);
-        saveFormat = dateTime;
+    public DateTime(String input) {
+        requireNonNull(input);
+        checkArgument(isValidDateTime(input), MESSAGE_CONSTRAINTS);
+        dateTime = LocalDateTime.parse(input, DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
+        checkArgument(isPresentDateTime(dateTime), PRESENT_CONSTRAINT);
+        value = input;
     }
 
     /**
@@ -40,7 +40,7 @@ public class DateTime implements Comparable<DateTime>{
      * @return datetime in user-friendly format.
      */
     public String getUserFormat() {
-        return value.format(DateTimeFormatter.ofPattern("EEE dd MMM yyyy, hh:mm a"));
+        return dateTime.format(DateTimeFormatter.ofPattern("EEE dd MMM yyyy, hh:mm a"));
     }
 
     /**
@@ -67,14 +67,15 @@ public class DateTime implements Comparable<DateTime>{
 
     @Override
     public String toString() {
-        return saveFormat;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime // instanceof handles nulls
-                && value.equals(((DateTime) other).value)); // state check
+                && value.equals(((DateTime) other).value))
+                && dateTime.equals(((DateTime) other).dateTime); // state check
     }
 
     @Override
@@ -84,6 +85,6 @@ public class DateTime implements Comparable<DateTime>{
 
     @Override
     public int compareTo(DateTime other) {
-        return this.value.compareTo(other.value);
+        return this.dateTime.compareTo(other.dateTime);
     }
 }

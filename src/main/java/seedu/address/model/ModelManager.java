@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 
@@ -97,7 +98,7 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-    //Students
+    // Students
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -124,7 +125,7 @@ public class ModelManager implements Model {
         this.history.push(new AddressBook(this.addressBook));
     }
 
-    //Teacher
+    // Teacher
     @Override
     public boolean hasTeacher(Teacher teacher) {
         requireNonNull(teacher);
@@ -148,6 +149,25 @@ public class ModelManager implements Model {
     public void setTeacher(Teacher target, Teacher editedTeacher) {
         requireAllNonNull(target, editedTeacher);
         addressBook.setTeacher(target, editedTeacher);
+        this.history.push(new AddressBook(this.addressBook));
+    }
+
+    // Meeting
+    @Override
+    public boolean hasMeetingConflict(Meeting meeting) {
+        requireNonNull(meeting);
+        return addressBook.hasConflict(meeting);
+    }
+
+    @Override
+    public void addMeeting(Meeting meeting) {
+        addressBook.addMeeting(meeting);
+        this.history.push(new AddressBook(this.addressBook));
+    }
+
+    @Override
+    public void deleteMeeting(Meeting target) {
+        addressBook.removeMeeting(target);
         this.history.push(new AddressBook(this.addressBook));
     }
 

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 
@@ -123,6 +124,24 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTeacherList(Predicate<Teacher> predicate);
+
+    //Meetings
+    /**
+     * Returns true if a meeting that clashes with {@code meeting} exists in the address book.
+     */
+    boolean hasMeetingConflict(Meeting meeting);
+
+    /**
+     * Adds the given meeting.
+     * {@code meeting} must not clash with another meeting in the address book.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
+     * Deletes the given meeting.
+     * The meeting must exist in the address book.
+     */
+    void deleteMeeting(Meeting target);
 
     /**
      * Undos the previous action.

@@ -32,6 +32,18 @@ public class Meeting implements Comparable<Meeting>{
         return title;
     }
 
+    public Description getVenue() {
+        return venue;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Attendee getAttendee() {
+        return attendee;
+    }
+
     /**
      * Returns true if there is a datetime conflict with the other meeting, false otherwise.
      *

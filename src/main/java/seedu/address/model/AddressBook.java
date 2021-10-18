@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.NonConflictMeetingList;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
 import seedu.address.model.person.teacher.Teacher;
@@ -19,6 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
     private final UniqueTeacherList teachers;
+    private final NonConflictMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         students = new UniqueStudentList();
         teachers = new UniqueTeacherList();
+        meetings = new NonConflictMeetingList();
     }
 
     public AddressBook() {}
@@ -70,14 +74,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         setTeachers(newData.getTeacherList());
     }
 
-    /// student-level operation
+    //// student-level operation
 
     /**
      * Adds a student to the address book.
      * The student must not already exist in the address book.
      */
-    public void addStudent(Student s) {
-        students.add(s);
+    public void addStudent(Student student) {
+        students.add(student);
     }
 
     /**
@@ -108,14 +112,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.contains(student);
     }
 
-    /// teacher-level operation
+    //// teacher-level operation
 
     /**
      * Adds a teacher to the address book.
      * The teacher must not already exist in the address book.
      */
-    public void addTeacher(Teacher t) {
-        teachers.add(t);
+    public void addTeacher(Teacher teacher) {
+        teachers.add(teacher);
     }
 
     /**
@@ -147,6 +151,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         return teachers.contains(teacher);
     }
 
+    //// meeting-level operations
+
+    /**
+     * Adds a meeting to the address book.
+     * The meeting must not clash with another existing meeting.
+     */
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeMeeting(Meeting key) {
+        meetings.remove(key);
+    }
+
+    /**
+     * Returns true if a meeting that clashes with {@code meeting} exists in the address book.
+     *
+     */
+    public boolean hasConflict(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.hasConflictWith(meeting);
+    }
+
     //// util methods
 
     @Override
@@ -163,6 +194,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Teacher> getTeacherList() {
         return teachers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override

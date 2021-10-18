@@ -42,6 +42,9 @@ public class Attendee {
             return "Students";
         case "P":
             return "Parents";
+        default:
+            // should never reach this part
+            return "Invalid";
         }
     }
 
