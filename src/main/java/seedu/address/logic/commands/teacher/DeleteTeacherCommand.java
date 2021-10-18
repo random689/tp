@@ -16,10 +16,10 @@ public class DeleteTeacherCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteTeacher";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_TEACHER_SUCCESS = "Deleted Teacher: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the teacher identified by the index number used in the displayed teacher list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -35,12 +35,12 @@ public class DeleteTeacherCommand extends Command {
         List<Teacher> lastShownList = model.getFilteredTeacherList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
         }
 
         Teacher teacherToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTeacher(teacherToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, teacherToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TEACHER_SUCCESS, teacherToDelete));
     }
 
     @Override

@@ -31,7 +31,7 @@ public class DeleteTeacherCommandTest {
         Teacher teacherToDelete = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(INDEX_FIRST_TEACHER);
 
-        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_PERSON_SUCCESS, teacherToDelete);
+        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_TEACHER_SUCCESS, teacherToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTeacher(teacherToDelete);
@@ -44,7 +44,7 @@ public class DeleteTeacherCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTeacherList().size() + 1);
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DeleteTeacherCommandTest {
         Teacher teacherToDelete = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(INDEX_FIRST_TEACHER);
 
-        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_PERSON_SUCCESS, teacherToDelete);
+        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_TEACHER_SUCCESS, teacherToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTeacher(teacherToDelete);
@@ -73,7 +73,7 @@ public class DeleteTeacherCommandTest {
 
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     @Test

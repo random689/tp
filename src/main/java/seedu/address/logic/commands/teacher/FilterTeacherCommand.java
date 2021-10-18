@@ -9,14 +9,14 @@ import seedu.address.model.Model;
 import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPredicate;
 
 /**
- * Filters and lists all persons in address book whose involvement contains any of the argument keywords.
+ * Filters and lists all teachers in address book whose involvement contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FilterTeacherCommand extends Command {
 
     public static final String COMMAND_WORD = "filterTeacher";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose involvement contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all teachers whose involvement contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: " + COMMAND_WORD + " [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " donut buddies";
@@ -36,7 +36,7 @@ public class FilterTeacherCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTeacherList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredTeacherList().size()));
+                String.format(Messages.MESSAGE_TEACHERS_LISTED_OVERVIEW, model.getFilteredTeacherList().size()));
     }
 
     @Override

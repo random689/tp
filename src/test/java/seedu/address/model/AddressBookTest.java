@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALI;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -17,10 +18,12 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.teacher.Teacher;
+import seedu.address.model.person.teacher.exceptions.DuplicateTeacherException;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TeacherBuilder;
 
 public class AddressBookTest {
 
@@ -49,15 +52,29 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        //same name and address = same person
+    public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
+        // Two students with the same identity fields
+        //same name and address = same student
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_MONITOR)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        AddressBookStub newData = new AddressBookStub();
+        newData.setStudent(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateTeachers_throwsDuplicateTeacherException() {
+        // Two teachers with the same identity fields
+        //same name and table number = same teacher
+        Teacher editedAli = new TeacherBuilder(ALI).withTags(VALID_TAG_MONITOR)
+                .build();
+        List<Teacher> newTeachers = Arrays.asList(ALI, editedAli);
+        AddressBookStub newData = new AddressBookStub();
+        newData.setTeacher(newTeachers);
+
+        assertThrows(DuplicateTeacherException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -102,9 +119,16 @@ public class AddressBookTest {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
         private final ObservableList<Teacher> teachers = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        AddressBookStub() {}
+
+        public void setStudent(Collection<Student> students) {
             this.students.setAll(students);
         }
+
+        public void setTeacher(Collection<Teacher> teacher) {
+            this.teachers.setAll(teacher);
+        }
+
 
         @Override
         public ObservableList<Student> getStudentList() {
