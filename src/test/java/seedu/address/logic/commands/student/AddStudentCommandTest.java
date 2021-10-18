@@ -25,6 +25,12 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.StudentBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code AddStudentCommand}.
+ */
+
+
+
 public class AddStudentCommandTest {
 
     @Test
@@ -128,6 +134,16 @@ public class AddStudentCommandTest {
 
         @Override
         public boolean hasStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEqualHistory(Model other) {
             throw new AssertionError("This method should not be called.");
         }
 

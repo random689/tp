@@ -35,12 +35,16 @@ public class MainWindow extends UiPart<Stage> {
     private TeacherListPanel teacherListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private MeetingWindow meetingWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem meetingMenuItem;
 
     @FXML
     private StackPane studentListPanelPlaceholder;
@@ -70,6 +74,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        meetingWindow = new MeetingWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -154,6 +160,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the meeting window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleMeeting() {
+        if (!meetingWindow.isShowing()) {
+            meetingWindow.show();
+        } else {
+            meetingWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -167,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        meetingWindow.hide();
         primaryStage.hide();
     }
 

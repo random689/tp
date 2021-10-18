@@ -25,6 +25,10 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.TeacherBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code AddTeacherCommand}.
+ */
+
 public class AddTeacherCommandTest {
 
     @Test
@@ -178,6 +182,16 @@ public class AddTeacherCommandTest {
 
         @Override
         public void updateFilteredTeacherList(Predicate<Teacher> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEqualHistory(Model other) {
             throw new AssertionError("This method should not be called.");
         }
     }

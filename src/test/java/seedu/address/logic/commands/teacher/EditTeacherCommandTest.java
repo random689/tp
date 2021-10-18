@@ -31,7 +31,7 @@ import seedu.address.testutil.EditTeacherDescriptorBuilder;
 import seedu.address.testutil.TeacherBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditTeacherCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code EditTeacherCommand}.
  */
 public class EditTeacherCommandTest {
 
