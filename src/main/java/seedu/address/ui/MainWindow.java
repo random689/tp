@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private MeetingWindow meetingWindow;
+    private MedicalWindow medicalWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -76,6 +77,8 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         meetingWindow = new MeetingWindow();
+
+        medicalWindow = new MedicalWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -161,6 +164,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the medical window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleMedical() {
+        if (!medicalWindow.isShowing()) {
+            medicalWindow.show();
+        } else {
+            medicalWindow.focus();
+        }
+    }
+
+    /**
      * Opens the meeting window or focuses on it if it's already opened.
      */
     @FXML
@@ -186,6 +201,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         meetingWindow.hide();
+        medicalWindow.hide();
         primaryStage.hide();
     }
 
@@ -214,6 +230,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowMedical()) {
+                handleMedical();
             }
 
             return commandResult;
