@@ -3,7 +3,7 @@ package seedu.address.logic.commands.student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -48,13 +48,13 @@ public class FilterStudentCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noStudentFound() {
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         StudentInvolvementContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterStudentCommand command = new FilterStudentCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
@@ -63,8 +63,8 @@ public class FilterStudentCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound2() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+    public void execute_multipleKeywords_multipleStudentsFound2() {
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 1);
         StudentInvolvementContainsKeywordsPredicate predicate = preparePredicate("class t/owesmoney");
         FilterStudentCommand command = new FilterStudentCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.TypicalModels.FIRST_PREDICATE;
+import static seedu.address.model.TypicalModels.FIRST_STUDENT_PREDICATE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.CARP_NOT_IN_LIST;
 import static seedu.address.testutil.TypicalPersons.EDITED_FISH_NOT_IN_LIST;
@@ -125,7 +125,7 @@ public class UndoCommandTest {
 
     @Test
     public void filter_doesNotAffectHistory() {
-        FilterStudentCommand filterStudentCommand = new FilterStudentCommand(FIRST_PREDICATE);
+        FilterStudentCommand filterStudentCommand = new FilterStudentCommand(FIRST_STUDENT_PREDICATE);
         filterStudentCommand.execute(model);
         assertTrue(model.hasEqualHistory(expectedModel));
         filterStudentCommand.execute(expectedModel);
