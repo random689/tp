@@ -132,7 +132,7 @@ public class EditTeacherCommandTest {
         EditTeacherDescriptor descriptor = new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build();
         EditTeacherCommand editCommand = new EditTeacherCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     /**
@@ -149,7 +149,7 @@ public class EditTeacherCommandTest {
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(outOfBoundIndex,
                 new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
 
-        assertCommandFailure(editTeacherCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editTeacherCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     @Test

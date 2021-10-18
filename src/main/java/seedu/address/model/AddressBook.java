@@ -13,7 +13,7 @@ import seedu.address.model.person.teacher.UniqueTeacherList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameStudent / .isSameTeacher comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -35,7 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Students and Teachers in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();

@@ -38,7 +38,7 @@ public class EditTeacherCommand extends EditCommand {
     private final EditTeacherDescriptor editTeacherDescriptor;
 
     /**
-     * @param index of the teacher in the filtered person list to edit
+     * @param index of the teacher in the filtered teacher list to edit
      * @param editTeacherDescriptor details to edit the teacher with
      */
     public EditTeacherCommand(Index index, EditTeacherDescriptor editTeacherDescriptor) {
@@ -55,13 +55,13 @@ public class EditTeacherCommand extends EditCommand {
         List<Teacher> lastShownList = model.getFilteredTeacherList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
         }
 
         Teacher teacherToEdit = lastShownList.get(index.getZeroBased());
         Teacher editedTeacher = createdEditedTeacher(teacherToEdit, editTeacherDescriptor);
 
-        if (!teacherToEdit.isSamePerson(editedTeacher) && model.hasTeacher(editedTeacher)) {
+        if (!teacherToEdit.isSameTeacher(editedTeacher) && model.hasTeacher(editedTeacher)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEACHER);
         }
 
