@@ -1,19 +1,14 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.MeetingConflictException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.person.Person;
 
 
 /**
@@ -22,14 +17,14 @@ import seedu.address.model.person.Person;
  * A meeting is considered unique by comparing using {@code Meeting#hasConflictWith(Meeting)}.
  * As such, adding of Meeting uses Meeting#hasConflictWith(Meeting)
  * for equality so as to ensure that the meeting being added does not clash with another meeting
- * in the UniqueMeetingList. However, the removal of a meeting uses Meeting#equals(Object) so
+ * in the NonConflictMeetingList. However, the removal of a meeting uses Meeting#equals(Object) so
  * as to ensure that the Meeting with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Meeting#hasConflictWith(Meeting)
  */
-public class UniqueMeetingList implements Iterable<Meeting> {
+public class NonConflictMeetingList implements Iterable<Meeting> {
 
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
@@ -46,7 +41,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
 
     /**
      * Adds a meeting to the list and sorts the list in ascending order of datetime.
-     * The Meeting must not already exist in the list.
+     * The Meeting must not clash with any existing meetings in the list.
      */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
@@ -66,7 +61,6 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         if (!internalList.remove(toRemove)) {
             throw new MeetingNotFoundException();
         }
-        internalList.remove(toRemove);
     }
 
     /**
@@ -84,8 +78,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniqueMeetingList // instanceof handles nulls
-            && internalList.equals(((UniqueMeetingList) other).internalList));
+            || (other instanceof NonConflictMeetingList // instanceof handles nulls
+            && internalList.equals(((NonConflictMeetingList) other).internalList));
     }
 
     @Override

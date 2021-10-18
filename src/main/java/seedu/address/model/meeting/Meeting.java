@@ -4,27 +4,32 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Person;
-
 public class Meeting implements Comparable<Meeting>{
 
+    private final Attendee attendee;
     private final DateTime dateTime;
-    private final Description description;
-    private Person person;
+    private final Description title;
+    private final Description venue;
 
     /**
      * Constructs a {@code Meeting}.
      *
      * @param dateTime datetime of the meeting.
-     * @param description details of the meeting.
-     * @param person person to meet with.
+     * @param attendee attendee of the meeting.
+     * @param title summary of the meeting.
+     * @param venue details of the meeting.
      */
-    public Meeting(DateTime dateTime, Description description, Person person) {
-        requireAllNonNull(dateTime, description, person);
+    public Meeting(DateTime dateTime, Attendee attendee, Description title, Description venue) {
+        requireAllNonNull(dateTime, attendee, title, venue);
 
         this.dateTime = dateTime;
-        this.description = description;
-        this.person = person;
+        this.attendee = attendee;
+        this.title = title;
+        this.venue = venue;
+    }
+
+    public Description getTitle() {
+        return title;
     }
 
     /**
@@ -38,12 +43,12 @@ public class Meeting implements Comparable<Meeting>{
 
     @Override
     public String toString() {
-        return String.format("Datetime: %s\nDescription: %s\nPerson: %s",
-                dateTime.getUserFormat(), description.toString(), person.toString());
+        return String.format("Title: %s\nAttendee: %s\nDatetime: %s\nVenue: %s",
+                title.toString(), attendee.toString(), dateTime.getUserFormat(), venue.toString());
     }
 
     /**
-     * Returns true if both meetings have the same datetime and description, and belong to the same person.
+     * Returns true if both meetings have the same title, attendee, datetime and venue.
      * This defines a stronger notion of equality between two meetings.
      */
     @Override
@@ -58,14 +63,15 @@ public class Meeting implements Comparable<Meeting>{
 
         Meeting otherMeeting = (Meeting) other;
         return this.dateTime.equals(otherMeeting.dateTime)
-            && this.person.equals(otherMeeting.person)
-            && this.description.equals(otherMeeting.description);
+            && this.attendee.equals(otherMeeting.attendee)
+            && this.title.equals(otherMeeting.title)
+            && this.venue.equals(otherMeeting.venue);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(dateTime, description, person);
+        return Objects.hash(title, attendee, dateTime, venue);
     }
 
     @Override
