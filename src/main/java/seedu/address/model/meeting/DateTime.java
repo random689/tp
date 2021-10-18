@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Meeting's datetime in the address book.
@@ -13,10 +14,10 @@ import java.time.format.DateTimeFormatter;
 public class DateTime implements Comparable<DateTime>{
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting datetime should be of the format YYYY-MM-DD HH:MM";
+            "Meeting datetime should be of the format YYYY-MM-DD HH:mm";
     public static final String PRESENT_CONSTRAINT =
             "Meeting datetime must not be in the past. The current datetime is: %s";
-    public static final String VALIDATION_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0:9]{2}";
+    public static final String VALIDATION_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}";
 
     private final LocalDateTime value;
     private final String saveFormat;
@@ -46,7 +47,15 @@ public class DateTime implements Comparable<DateTime>{
      * Returns true if a given string is a valid datetime.
      */
     public static boolean isValidDateTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            try {
+                LocalDateTime.parse(test, DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
+            } catch (DateTimeParseException e) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
