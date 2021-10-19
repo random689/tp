@@ -4,11 +4,9 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.student.Student;
 
 /**
  * Controller for a Medical page
@@ -17,9 +15,12 @@ public class MedicalWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(MedicalWindow.class);
     public static final String DISPLAY_MESSAGE = "Alex \nADHD, break leg, need wheelchair, asthma";
     private static final String FXML = "MedicalWindow.fxml";
+    private Student student;
 
     @FXML
-    private Label displayMessage;
+    private Label name;
+    @FXML
+    private Label medicalHistory;
 
     /**
      * Creates a new MedicalWindow.
@@ -28,7 +29,10 @@ public class MedicalWindow extends UiPart<Stage> {
      */
     public MedicalWindow(Stage root) {
         super(FXML, root);
-        displayMessage.setText(DISPLAY_MESSAGE);
+        if (student != null) {
+            setContent(student);
+        }
+
     }
 
     /**
@@ -83,4 +87,8 @@ public class MedicalWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    public void setContent(Student student) {
+        name.setText(student.getName().fullName);
+        medicalHistory.setText(student.getMedicalHistory().value);
+    }
 }
