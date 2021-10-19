@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.teacher;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
+import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -121,6 +124,44 @@ public class CopyTeacherCommandTest {
         }
         assertEquals(new CopyTeacherCommand(copyCommandDescriptor).getCopyContent(model.getFilteredTeacherList()),
                 sb.toString());
+    }
+
+    @Test
+    public void equals() {
+        final CopyTeacherCommand copyEmailCommand = new CopyTeacherCommand(
+                new CopyCommandDescriptor("email"));
+        final CopyTeacherCommand anotherCopyEmailCommand = new CopyTeacherCommand(
+                new CopyCommandDescriptor("email"));
+        final CopyTeacherCommand copyPhoneCommand = new CopyTeacherCommand(
+                new CopyCommandDescriptor("phone"));
+        final CopyTeacherCommand invalidCommand = new CopyTeacherCommand(
+                new CopyCommandDescriptor("invalid"));
+        final CopyTeacherCommand anotherInvalidCommand = new CopyTeacherCommand(
+                new CopyCommandDescriptor("invalid2"));
+
+        // same values -> returns true
+        assertTrue(copyEmailCommand.equals(anotherCopyEmailCommand));
+
+        // same object -> returns true
+        assertTrue(copyEmailCommand.equals(copyEmailCommand));
+
+        // null -> returns false
+        assertFalse(copyEmailCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(copyEmailCommand.equals(new ClearStudentCommand()));
+
+        // different descriptor but command still valid -> returns false
+        assertFalse(copyEmailCommand.equals(copyPhoneCommand));
+
+        // different descriptor but command invalid -> returns false
+        assertFalse(copyEmailCommand.equals(invalidCommand));
+
+        // different descriptor but command invalid -> returns false
+        assertFalse(copyEmailCommand.equals(invalidCommand));
+
+        // all invalid commands are the same -> returns true
+        assertTrue(invalidCommand.equals(anotherInvalidCommand));
     }
 
 }

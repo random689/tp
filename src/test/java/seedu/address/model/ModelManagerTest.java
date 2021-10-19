@@ -5,8 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEACHER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEACHER;
+import static seedu.address.testutil.TypicalPersons.ALI;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BEN;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
@@ -21,8 +25,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.DeleteStudentCommand;
 import seedu.address.logic.commands.student.FilterStudentCommand;
+import seedu.address.logic.commands.teacher.AddTeacherCommand;
+import seedu.address.logic.commands.teacher.DeleteTeacherCommand;
+import seedu.address.logic.commands.teacher.FilterTeacherCommand;
 import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPredicate;
 import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
+import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -80,17 +88,17 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasStudent_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasStudent_studentInAddressBook_returnsTrue() {
         modelManager.addStudent(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
     }
@@ -101,6 +109,22 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTeacher_nullTeacher_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTeacher(null));
+    }
+
+    @Test
+    public void hasTeacher_teacherNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTeacher(ALI));
+    }
+
+    @Test
+    public void hasTeacher_teacherInAddressBook_returnsTrue() {
+        modelManager.addTeacher(ALI);
+        assertTrue(modelManager.hasTeacher(ALI));
+    }
+
+    @Test
     public void getFilteredTeacherList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTeacherList().remove(0));
     }
@@ -108,32 +132,56 @@ public class ModelManagerTest {
     // Check that histories are equal, actual testing of the UNDO command is in the UndoCommandTest section.
 
     @Test
-    public void historiesAreEqual_addingPeople_success() {
+    public void historiesAreEqual_addingStudent_success() {
         ModelManager modelManager = new ModelManagerBuilder().with(new AddStudentCommand(ALICE)).build();
         assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_ALICE));
     }
 
     @Test
-    public void historiesAreEqual_addingMultiplePeople_success() {
-        ModelManager modelManager =
-                new ModelManagerBuilder().with(new AddStudentCommand(ALICE)).with(new AddStudentCommand(BOB)).build();
-        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_PEOPLE));
+    public void historiesAreEqual_addingTeacher_success() {
+        ModelManager modelManager = new ModelManagerBuilder().with(new AddTeacherCommand(ALI)).build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_ALI));
     }
 
     @Test
-    public void historiesAreEqual_deletingPeople_success() {
+    public void historiesAreEqual_addingMultipleStudents_success() {
+        ModelManager modelManager =
+                new ModelManagerBuilder().with(new AddStudentCommand(ALICE)).with(new AddStudentCommand(BOB)).build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_STUDENT));
+    }
+
+    @Test
+    public void historiesAreEqual_addingMultipleTeachers_success() {
+        ModelManager modelManager =
+                new ModelManagerBuilder().with(new AddTeacherCommand(ALI)).with(new AddTeacherCommand(BEN)).build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_TEACHER));
+    }
+
+    @Test
+    public void historiesAreEqual_deletingStudent_success() {
         ModelManager modelManager =
                 new ModelManagerBuilder()
                         .with(new AddStudentCommand(ALICE))
                         .with(new AddStudentCommand(BOB))
                         .with(new DeleteStudentCommand(INDEX_THIRD_STUDENT))
                         .build();
-        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_PEOPLE));
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_STUDENT));
     }
 
     @Test
-    public void historiesAreEqual_filteringPeople_success() {
-        // filtering people should not add on to the history
+    public void historiesAreEqual_deletingTeacher_success() {
+        ModelManager modelManager =
+                new ModelManagerBuilder()
+                        .with(new AddTeacherCommand(ALI))
+                        .with(new AddTeacherCommand(BEN))
+                        .with(new DeleteTeacherCommand(INDEX_THIRD_TEACHER))
+                        .build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.ADD_MULTIPLE_TEACHER));
+    }
+
+    @Test
+    public void historiesAreEqual_filteringStudent_success() {
+        // filtering student should not add on to the history
         StudentInvolvementContainsKeywordsPredicate firstPredicate =
                 new StudentInvolvementContainsKeywordsPredicate(Collections.singletonList("first"));
         ModelManager modelManager =
@@ -144,7 +192,23 @@ public class ModelManagerTest {
                         .with(new FilterStudentCommand(firstPredicate))
                         .build();
         assertTrue(modelManager.hasEqualHistory(TypicalModels.DELETING_ALICE));
-        assertTrue(modelManager.hasEqualHistory(TypicalModels.FILTER_BY_TAG));
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.FILTER_STUDENT_BY_TAG));
+    }
+
+    @Test
+    public void historiesAreEqual_filteringTeacher_success() {
+        // filtering teacher should not add on to the history
+        TeacherInvolvementContainsKeywordsPredicate firstPredicate =
+                new TeacherInvolvementContainsKeywordsPredicate(Collections.singletonList("first"));
+        ModelManager modelManager =
+                new ModelManagerBuilder()
+                        .with(new AddTeacherCommand(ALI))
+                        .with(new AddTeacherCommand(BEN))
+                        .with(new DeleteTeacherCommand(INDEX_FIRST_TEACHER))
+                        .with(new FilterTeacherCommand(firstPredicate))
+                        .build();
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.DELETING_ALI));
+        assertTrue(modelManager.hasEqualHistory(TypicalModels.FILTER_TEACHER_BY_TAG));
     }
 
     @Test

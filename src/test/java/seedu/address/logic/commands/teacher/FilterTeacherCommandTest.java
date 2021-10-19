@@ -3,7 +3,7 @@ package seedu.address.logic.commands.teacher;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_TEACHERS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALI;
 import static seedu.address.testutil.TypicalPersons.BEN;
@@ -50,13 +50,13 @@ public class FilterTeacherCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different teacher -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noTeacherFound() {
+        String expectedMessage = String.format(MESSAGE_TEACHERS_LISTED_OVERVIEW, 0);
         TeacherInvolvementContainsKeywordsPredicate predicate = preparePredicate(" ");
         FilterTeacherCommand command = new FilterTeacherCommand(predicate);
         expectedModel.updateFilteredTeacherList(predicate);
@@ -65,9 +65,9 @@ public class FilterTeacherCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound2() { //TODO: probably need to remove the 2 at the back
+    public void execute_multipleKeywords_multipleTeachersFound2() { //TODO: probably need to remove the 2 at the back
         // TODO: probably need to do filtering in a different way
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_TEACHERS_LISTED_OVERVIEW, 2);
         TeacherInvolvementContainsKeywordsPredicate predicate = preparePredicate("math t/friends");
         FilterTeacherCommand command = new FilterTeacherCommand(predicate);
         expectedModel.updateFilteredTeacherList(predicate);

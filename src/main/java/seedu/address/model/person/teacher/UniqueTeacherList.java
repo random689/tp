@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.teacher.exceptions.DuplicateTeacherException;
+import seedu.address.model.person.teacher.exceptions.TeacherNotFoundException;
 
 /**
  * A list of teachers that enforces uniqueness between its elements and does not allow nulls.
@@ -45,7 +45,7 @@ public class UniqueTeacherList implements Iterable<Teacher> {
     public void add(Teacher toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTeacherException();
         }
         internalList.add(toAdd);
     }
@@ -60,11 +60,11 @@ public class UniqueTeacherList implements Iterable<Teacher> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TeacherNotFoundException();
         }
 
         if (!target.isSameTeacher(editedTeacher) && contains(editedTeacher)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTeacherException();
         }
 
         internalList.set(index, editedTeacher);
@@ -77,7 +77,7 @@ public class UniqueTeacherList implements Iterable<Teacher> {
     public void remove(Teacher toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TeacherNotFoundException();
         }
         internalList.remove(toRemove);
     }
@@ -94,7 +94,7 @@ public class UniqueTeacherList implements Iterable<Teacher> {
     public void setTeachers(List<Teacher> teachers) {
         requireAllNonNull(teachers);
         if (!teachersAreUnique(teachers)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTeacherException();
         }
         internalList.setAll(teachers);
     }
