@@ -16,13 +16,13 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.student.Student;
 
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -167,7 +167,8 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the medical window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleMedical() {
+    public void handleMedical(Student student) {
+        medicalWindow.setContent(student);
         if (!medicalWindow.isShowing()) {
             medicalWindow.show();
         } else {
@@ -233,7 +234,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowMedical()) {
-                handleMedical();
+                handleMedical(commandResult.getStudent());
             }
 
             return commandResult;
