@@ -4,7 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-public class Meeting implements Comparable<Meeting>{
+public class Meeting implements Comparable<Meeting> {
 
     private final Attendee attendee;
     private final DateTime dateTime;

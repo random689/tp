@@ -28,6 +28,13 @@ public class MeetingWindow extends UiPart<Stage> {
     private StackPane meetingListPanelPlaceholder;
 
     /**
+     * Creates a new HelpWindow.
+     */
+    public MeetingWindow() {
+        this(new Stage());
+    }
+
+    /**
      * Creates a new MeetingWindow.
      *
      * @param root Stage to use as the root of the MeetingWindow.
@@ -41,12 +48,6 @@ public class MeetingWindow extends UiPart<Stage> {
         System.out.println(meetingList.size());
         this.meetingListPanel = new MeetingListPanel(meetingList);
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
-    }
-    /**
-     * Creates a new HelpWindow.
-     */
-    public MeetingWindow() {
-        this(new Stage());
     }
 
     /**

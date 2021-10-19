@@ -26,6 +26,15 @@ public class DateTimeTest {
     }
 
     @Test
+    public void isPastDateTime() {
+        // null dateTime
+        assertThrows(NullPointerException.class, () -> DateTime.isPastDateTime(null));
+
+        // expired datetime
+        assertTrue(DateTime.isPastDateTime("2019-04-12 12:23"));
+    }
+
+    @Test
     public void isValidDateTime() {
         // null dateTime
         assertThrows(NullPointerException.class, () -> DateTime.isValidDateTime(null));

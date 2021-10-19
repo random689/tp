@@ -11,14 +11,14 @@ import java.time.format.DateTimeParseException;
  * Represents a Meeting's datetime in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DateTime implements Comparable<DateTime>{
+public class DateTime implements Comparable<DateTime> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting datetime should be of the format YYYY-MM-DD HH:mm";
     public static final String PRESENT_CONSTRAINT =
             "Meeting datetime must not be in the past. The current datetime is: %s";
     public static final String VALIDATION_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}";
-    private static final  DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
 
     public final String value;
     private final LocalDateTime dateTime;
@@ -61,6 +61,9 @@ public class DateTime implements Comparable<DateTime>{
 
     /**
      * Returns true if a given datetime is in the past.
+     *
+     * @param input A valid String representation of the datetime.
+     * @return true if datetime is in the past, false otherwise.
      */
     public static boolean isPastDateTime(String input) {
         LocalDateTime dateTime = LocalDateTime.parse(input, FORMATTER);
