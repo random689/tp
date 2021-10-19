@@ -196,22 +196,27 @@ Clears all entries from NewAddressBook.
 
 Format: `clear`
 
-### Filter students by other fields: `filter`
-Filters students by either:
+### Filter students/teachers by other fields: `filterStudent` / `filterTeacher`
+Filters students/teachers by either:
 - tag
 - involvement
-- form class
-- medical history
 
-Format: `filter ft/FILTER CATERGORY [ft/FILTER CATERGORY]...`
+Format: 
+- `filterStudent INVOLVEMENT_FILTER_CATEGORY [t/] [TAG_FILTER CATEGORY]...`
+- `filterTeacher INVOLVEMENT_FILTER_CATEGORY [t/] [TAG_FILTER CATEGORY]...`
 
-Search is not case sensitive e.g. “student” same as “STUDENT”
+Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
 
-Only full words will be matched e.g. “Class A1” will not match “Class A”.
+The filter category is not case-sensitive e.g. “student” same as “STUDENT” but "t/" is not the same as "T/"
 
-More than 1 filter is allowed e.g.  `filter ft/[filter category 1] ft/[filter category 2]`.
+More than 1 filter is allowed e.g.  `INVOLVEMENT_FILTER_CATERGORY [t/] [TAG_FILTER CATERGORY] [TAG_FILTER CATERGORY]`.
 
-Example: ` filter ft/3d ft/Biology` - will return all contacts with the tag “3d” and “Biology”.
+Example: 
+- `filterStudent class t/rep` - will return all students with the involvement containing “class” and tag containing 
+  “rep”.
+- `filterStudent class` - will return all students with the involvement containing “class”.
+- `filterTeacher t/colleague admin` - will return all teachers with the tag containing “colleague” and "admin".
+
 
 ### Copying fields
 For a filtered sublist of people, copy data based on a certain field to the clipboard. The fields that can be copied are:
