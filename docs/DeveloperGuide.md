@@ -158,10 +158,15 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by a stack inside `ModelManager`, with stores a copy of `AddressBook`. Every time this address book updates, a copy is made and is pushed on the stack. As such, `ModelManager` exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
+The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as an a 
+field. 
+Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, 
+`ModelManager` 
+exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** It is needed for one to store a **copy** of the `AddressBook`, otherwise any modifications to the existing `AddressBook` would also alter the copies i nthe stack
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** It is needed for one to store a 
+**copy** of the address book, otherwise any modifications to the existing address book would also alter the copies 
+in the stack.</div>
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
@@ -197,8 +202,8 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be. 
-</div>
+The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be. 
+
 
 
 #### Design considerations:

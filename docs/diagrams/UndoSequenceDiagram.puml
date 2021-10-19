@@ -9,7 +9,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -33,10 +33,10 @@ activate UndoCommand
 UndoCommand -> Model : undo()
 activate Model
 
-Model -> VersionedAddressBook : resetData(ReadOnlyAddressBook)
-activate VersionedAddressBook
+Model -> AddressBook : resetData(ReadOnlyAddressBook)
+activate AddressBook
 
-deactivate VersionedAddressBook
+deactivate AddressBook
 
 Model --> UndoCommand: undoSuccess
 deactivate Model
