@@ -9,7 +9,7 @@ public class DuplicatePersonException extends RuntimeException {
         super("Operation would result in duplicate persons");
     }
 
-    public DuplicatePersonException(String message) {
-        super(message);
+    public DuplicatePersonException(String target) {
+        super("Operation would result in duplicate " + target);
     }
 }
