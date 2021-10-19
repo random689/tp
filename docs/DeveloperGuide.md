@@ -158,8 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as a 
-field.
+The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as a field.
 Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such,
 `ModelManager`
 exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
