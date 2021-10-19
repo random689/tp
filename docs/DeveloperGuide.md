@@ -159,18 +159,18 @@ This section describes some noteworthy details on how certain features are imple
 #### Proposed Implementation
 
 The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as a 
-field. 
-Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, 
-`ModelManager` 
+field.
+Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such,
+`ModelManager`
 exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**It is needed for one to store a 
-**copy** of the address book, otherwise any modifications to the existing address book would also alter the copies 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**It is needed for one to store a
+**copy** of the address book, otherwise any modifications to the existing address book would also alter the copies
 in the stack.</div>
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The app creates an address book with the initial address book state, and a copy of this address book, `ab0`, will be pushed into the stack. 
+Step 1. The user launches the application for the first time. The app creates an address book with the initial address book state, and a copy of this address book, `ab0`, will be pushed into the stack.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -178,7 +178,7 @@ Step 2. The user executes `deleteStudent 1` command to delete the 1st student in
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `student n/David …​` (check this!) to add a new person. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack. 
+Step 3. The user executes `student n/David …​` (check this!) to add a new person. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -202,7 +202,7 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be. 
+The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be.
 
 
 
@@ -219,7 +219,7 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large. 
+We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
 
 ### CopyStudent / CopyTeacher
 
@@ -261,7 +261,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
 * **Alternative 2:** Model handles the copying
     * Pros: Easier to maintain and will work like the other commands
     * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
-    
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
