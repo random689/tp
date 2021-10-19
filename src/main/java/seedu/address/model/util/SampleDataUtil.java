@@ -6,6 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.meeting.Attendee;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
@@ -53,6 +57,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static Meeting[] getSampleMeetings() {
+        return new Meeting[] {
+            new Meeting(new DateTime("2060-01-02 11:12"), new Attendee("T"),
+                    new Description("Meeting with Math Department"), new Description("Meeting room 1")),
+            new Meeting(new DateTime("2060-03-10 23:12"), new Attendee("S"),
+                new Description("Math consult with class 4A"), new Description("Zoom")),
+            new Meeting(new DateTime("2060-10-02 15:33"), new Attendee("P"),
+                new Description("Meeting with Axel Yeoh's parents"), new Description("Classroom 4D")),
+        };
+    }
+
 
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
@@ -62,6 +77,9 @@ public class SampleDataUtil {
         }
         for (Teacher sampleTeacher : getSampleTeachers()) {
             sampleAb.addTeacher(sampleTeacher);
+        }
+        for (Meeting sampleMeeting : getSampleMeetings()) {
+            sampleAb.addMeeting(sampleMeeting);
         }
         return sampleAb;
     }

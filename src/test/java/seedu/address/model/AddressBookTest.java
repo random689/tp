@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.teacher.Teacher;
@@ -37,6 +38,11 @@ public class AddressBookTest {
     @Test
     public void teacherConstructor() {
         assertEquals(Collections.emptyList(), addressBook.getTeacherList());
+    }
+
+    @Test
+    public void meetingConstructor() {
+        assertEquals(Collections.emptyList(), addressBook.getMeetingList());
     }
 
     @Test
@@ -120,10 +126,10 @@ public class AddressBookTest {
 
     @Test
     public void hasTeacher_teacherWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        // same name and office table = same teacher
+        // same name and office table number = same teacher
         addressBook.addTeacher(ALI);
         Teacher editedAli = new TeacherBuilder(ALI).withTags(VALID_TAG_MONITOR)
-                .build();
+            .build();
         assertTrue(addressBook.hasTeacher(editedAli));
     }
 
@@ -138,11 +144,12 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose student list and teacher list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose students and teachers list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
         private final ObservableList<Teacher> teachers = FXCollections.observableArrayList();
+        private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
         AddressBookStub() {};
 
@@ -162,6 +169,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Teacher> getTeacherList() {
             return teachers;
+        }
+
+        @Override
+        public ObservableList<Meeting> getMeetingList() {
+            return meetings;
         }
     }
 
