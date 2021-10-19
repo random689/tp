@@ -30,7 +30,7 @@ public class DeleteTeacherCommandTest {
         Teacher teacherToDelete = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(INDEX_FIRST_TEACHER);
 
-        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_PERSON_SUCCESS, teacherToDelete);
+        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_TEACHER_SUCCESS, teacherToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTeacher(teacherToDelete);
@@ -43,7 +43,7 @@ public class DeleteTeacherCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTeacherList().size() + 1);
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -53,11 +53,11 @@ public class DeleteTeacherCommandTest {
         Teacher teacherToDelete = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(INDEX_FIRST_TEACHER);
 
-        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_PERSON_SUCCESS, teacherToDelete);
+        String expectedMessage = String.format(DeleteTeacherCommand.MESSAGE_DELETE_TEACHER_SUCCESS, teacherToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTeacher(teacherToDelete);
-        showNoPerson(expectedModel);
+        showNoTeacher(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -72,7 +72,7 @@ public class DeleteTeacherCommandTest {
 
         DeleteTeacherCommand deleteCommand = new DeleteTeacherCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -93,14 +93,14 @@ public class DeleteTeacherCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different teacher -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPerson(Model model) {
+    private void showNoTeacher(Model model) {
         model.updateFilteredTeacherList(p -> false);
 
         assertTrue(model.getFilteredTeacherList().isEmpty());

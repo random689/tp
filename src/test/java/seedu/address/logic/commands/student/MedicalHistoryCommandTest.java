@@ -34,8 +34,8 @@ class MedicalHistoryCommandTest {
     @Test
     public void execute_addMedicalHistoryUnfilteredList_success() {
         Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        StudentBuilder personInList = new StudentBuilder(firstStudent);
-        Student editedStudent = personInList.withMedicalHistory(MEDICAL_HISTORY_STUB).build();
+        StudentBuilder studentInList = new StudentBuilder(firstStudent);
+        Student editedStudent = studentInList.withMedicalHistory(MEDICAL_HISTORY_STUB).build();
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(editedStudent.getMedicalHistory().value));
 
@@ -86,12 +86,12 @@ class MedicalHistoryCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidStudentIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(outOfBoundIndex,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_BOB));
 
-        assertCommandFailure(medicalHistoryCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(medicalHistoryCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -99,7 +99,7 @@ class MedicalHistoryCommandTest {
      * but smaller than size of address book
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidStudentIndexFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -108,7 +108,7 @@ class MedicalHistoryCommandTest {
         MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(outOfBoundIndex,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_BOB));
 
-        assertCommandFailure(medicalHistoryCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(medicalHistoryCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
