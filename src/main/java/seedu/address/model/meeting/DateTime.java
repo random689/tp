@@ -32,7 +32,8 @@ public class DateTime implements Comparable<DateTime> {
         requireNonNull(input);
         checkArgument(isValidDateTime(input), MESSAGE_CONSTRAINTS);
         dateTime = LocalDateTime.parse(input, FORMATTER);
-        checkArgument(dateTime.isAfter(LocalDateTime.now()), PRESENT_CONSTRAINT);
+        checkArgument(dateTime.isAfter(LocalDateTime.now()), String.format(PRESENT_CONSTRAINT,
+            LocalDateTime.now()));
         value = input;
     }
 
