@@ -78,16 +78,9 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         meetingWindow = new MeetingWindow();
-<<<<<<< HEAD
-
-
-=======
-
-
-
->>>>>>> master
         meetingWindow.setWindowDefaultSize(new GuiSettings(500, 600, 191, 45));
         medicalWindow = new MedicalWindow();
+        
     }
 
     public Stage getPrimaryStage() {
