@@ -77,7 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         meetingWindow = new MeetingWindow();
-        meetingWindow.setWindowDefaultSize(logic.getGuiSettings());
+        meetingWindow.setWindowDefaultSize(new GuiSettings(500, 600, 191, 45));
     }
 
     public Stage getPrimaryStage() {

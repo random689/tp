@@ -15,10 +15,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.model.person.teacher.UniqueTeacherList;
+import seedu.address.model.person.teacher.exceptions.DuplicateTeacherException;
+import seedu.address.model.person.teacher.exceptions.TeacherNotFoundException;
 import seedu.address.testutil.TeacherBuilder;
 
 public class UniqueTeacherListTest {
@@ -57,7 +57,7 @@ public class UniqueTeacherListTest {
     @Test
     public void add_duplicateTeacher_throwsDuplicateTeacherException() {
         uniqueTeacherList.add(ALI);
-        assertThrows(DuplicatePersonException.class, () -> uniqueTeacherList.add(ALI));
+        assertThrows(DuplicateTeacherException.class, () -> uniqueTeacherList.add(ALI));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class UniqueTeacherListTest {
 
     @Test
     public void setTeacher_targetTeacherNotInList_throwsTeacherNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueTeacherList.setTeacher(ALI, ALI));
+        assertThrows(TeacherNotFoundException.class, () -> uniqueTeacherList.setTeacher(ALI, ALI));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class UniqueTeacherListTest {
     public void setTeacher_editedTeacherHasNonUniqueIdentity_throwsDuplicateTeacherException() {
         uniqueTeacherList.add(ALI);
         uniqueTeacherList.add(BEN);
-        assertThrows(DuplicatePersonException.class, () -> uniqueTeacherList.setTeacher(ALI, BEN));
+        assertThrows(DuplicateTeacherException.class, () -> uniqueTeacherList.setTeacher(ALI, BEN));
     }
 
     @Test
@@ -119,7 +119,7 @@ public class UniqueTeacherListTest {
 
     @Test
     public void remove_teacherDoesNotExist_throwsTeacherNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniqueTeacherList.remove(ALI));
+        assertThrows(TeacherNotFoundException.class, () -> uniqueTeacherList.remove(ALI));
     }
 
     @Test
@@ -162,7 +162,7 @@ public class UniqueTeacherListTest {
     @Test
     public void setTeachers_listWithDuplicateTeachers_throwsDuplicateTeacherException() {
         List<Teacher> listWithDuplicateTeachers = Arrays.asList(ALI, ALI);
-        assertThrows(DuplicatePersonException.class, () -> uniqueTeacherList.setTeachers(listWithDuplicateTeachers));
+        assertThrows(DuplicateTeacherException.class, () -> uniqueTeacherList.setTeachers(listWithDuplicateTeachers));
     }
 
     @Test

@@ -167,7 +167,7 @@ public class AddTeacherCommandTest {
         }
 
         @Override
-        public void setTeacher(Teacher target, Teacher editedStudent) {
+        public void setTeacher(Teacher target, Teacher editedTeacher) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -236,7 +236,7 @@ public class AddTeacherCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the teacher being added.
      */
     private class ModelStubAcceptingTeacherAdded extends ModelStub {
         final ArrayList<Teacher> teachersAdded = new ArrayList<>();

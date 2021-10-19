@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.person.student.exceptions.DuplicateStudentException;
+import seedu.address.model.person.student.exceptions.StudentNotFoundException;
 
 
 /**
@@ -48,7 +48,7 @@ public class UniqueStudentList implements Iterable<Student> {
     public void add(Student toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateStudentException();
         }
         internalList.add(toAdd);
     }
@@ -63,11 +63,11 @@ public class UniqueStudentList implements Iterable<Student> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new StudentNotFoundException();
         }
 
         if (!target.isSameStudent(editedStudent) && contains(editedStudent)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateStudentException();
         }
 
         internalList.set(index, editedStudent);
@@ -75,12 +75,12 @@ public class UniqueStudentList implements Iterable<Student> {
 
     /**
      * Removes the equivalent student from the list.
-     * The person must exist in the list.
+     * The student must exist in the list.
      */
     public void remove(Student toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new StudentNotFoundException();
         }
     }
 
@@ -96,7 +96,7 @@ public class UniqueStudentList implements Iterable<Student> {
     public void setStudents(List<Student> students) {
         requireAllNonNull(students);
         if (!studentsAreUnique(students)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateStudentException();
         }
         internalList.setAll(students);
     }

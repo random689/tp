@@ -19,9 +19,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.exceptions.DuplicateStudentException;
 import seedu.address.model.person.teacher.Teacher;
+import seedu.address.model.person.teacher.exceptions.DuplicateTeacherException;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TeacherBuilder;
 
@@ -57,15 +58,29 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        //same name and address = same person
+    public void resetData_withDuplicateStudent_throwsDuplicateStudentException() {
+        // Two student with the same identity fields
+        // same name and address = same student
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_MONITOR)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        AddressBookStub newData = new AddressBookStub();
+        newData.setStudents(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateTeacher_throwsDuplicateTeacherException() {
+        // Two teacher with the same identity fields
+        // same name and office table = same teacher
+        Teacher editedAli = new TeacherBuilder(ALI).withTags(VALID_TAG_MONITOR)
+                .build();
+        List<Teacher> newTeachers = Arrays.asList(ALI, editedAli);
+        AddressBookStub newData = new AddressBookStub();
+        newData.setTeachers(newTeachers);
+
+        assertThrows(DuplicateTeacherException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -102,7 +117,7 @@ public class AddressBookTest {
 
     @Test
     public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        //same name and address = same student
+        // same name and address = same student
         addressBook.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_MONITOR)
                 .build();
@@ -111,7 +126,7 @@ public class AddressBookTest {
 
     @Test
     public void hasTeacher_teacherWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        //same name and office table number = same teacher
+        // same name and office table number = same teacher
         addressBook.addTeacher(ALI);
         Teacher editedAli = new TeacherBuilder(ALI).withTags(VALID_TAG_MONITOR)
             .build();
@@ -136,8 +151,14 @@ public class AddressBookTest {
         private final ObservableList<Teacher> teachers = FXCollections.observableArrayList();
         private final ObservableList<Meeting> meetings = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        AddressBookStub() {};
+
+        public void setStudents(Collection<Student> students) {
             this.students.setAll(students);
+        }
+
+        public void setTeachers(Collection<Teacher> teachers) {
+            this.teachers.setAll(teachers);
         }
 
         @Override

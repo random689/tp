@@ -179,7 +179,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void setTeacher(Teacher target, Teacher editedStudent) {
+        public void setTeacher(Teacher target, Teacher editedTeacher) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -233,12 +233,12 @@ public class AddStudentCommandTest {
         @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
-            return this.student.isSamePerson(student);
+            return this.student.isSameStudent(student);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the student being added.
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
         final ArrayList<Student> studentsAdded = new ArrayList<>();
