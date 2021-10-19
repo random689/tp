@@ -2,24 +2,30 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
+import seedu.address.model.meeting.Meeting;
 
 /**
- * Controller for a help page
+ * Window to show upcoming meetings.
  */
 public class MeetingWindow extends UiPart<Stage> {
-
-    public static final String DISPLAY_MESSAGE = "Hi fill me up gary tq, change a new picture also if can, "
-            + "colour also can, add command also can like help";
 
     private static final Logger logger = LogsCenter.getLogger(MeetingWindow.class);
     private static final String FXML = "MeetingWindow.fxml";
 
+    private Logic logic;
+
+    // Independent Ui parts residing in this Ui container
+    private MeetingListPanel meetingListPanel;
+
     @FXML
-    private Label displayMessage;
+    private StackPane meetingListPanelPlaceholder;
 
     /**
      * Creates a new MeetingWindow.
@@ -28,9 +34,14 @@ public class MeetingWindow extends UiPart<Stage> {
      */
     public MeetingWindow(Stage root) {
         super(FXML, root);
-        displayMessage.setText(DISPLAY_MESSAGE);
     }
 
+    void fillInnerParts(ObservableList<Meeting> meetingList) {
+        System.out.println("=================================================================");
+        System.out.println(meetingList.size());
+        this.meetingListPanel = new MeetingListPanel(meetingList);
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+    }
     /**
      * Creates a new HelpWindow.
      */
@@ -57,7 +68,7 @@ public class MeetingWindow extends UiPart<Stage> {
      * </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing upcoming meetings.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -81,6 +92,18 @@ public class MeetingWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Sets the default size based on {@code guiSettings}.
+     */
+    public void setWindowDefaultSize(GuiSettings guiSettings) {
+        getRoot().setHeight(guiSettings.getWindowHeight());
+        getRoot().setWidth(guiSettings.getWindowWidth());
+        if (guiSettings.getWindowCoordinates() != null) {
+            getRoot().setX(guiSettings.getWindowCoordinates().getX());
+            getRoot().setY(guiSettings.getWindowCoordinates().getY());
+        }
     }
 
 }

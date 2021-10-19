@@ -126,6 +126,9 @@ public interface Model {
     void updateFilteredTeacherList(Predicate<Teacher> predicate);
 
     //Meetings
+    /** Returns an unmodifiable view of the meeting list */
+    ObservableList<Meeting> getMeetingList();
+
     /**
      * Returns true if a meeting that clashes with {@code meeting} exists in the address book.
      */

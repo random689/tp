@@ -1,15 +1,17 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.MeetingConflictException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
-
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of meetings that enforces uniqueness between its
@@ -53,6 +55,18 @@ public class NonConflictMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Replaces the contents of this list with {@code meetings}.
+     * {@code meetings} must not contain conflicting meetings.
+     */
+    public void setMeetings(List<Meeting> meetings) {
+        requireAllNonNull(meetings);
+        if (!meetingsNoConflict(meetings)) {
+            throw new DuplicatePersonException();
+        }
+        internalList.setAll(meetings);
+    }
+
+    /**
      * Removes the equivalent meeting from the list.
      * The meeting must exist in the list.
      */
@@ -85,5 +99,19 @@ public class NonConflictMeetingList implements Iterable<Meeting> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code meetings} contains only non-conflicting meetings.
+     */
+    private boolean meetingsNoConflict(List<Meeting> meetings) {
+        for (int i = 0; i < meetings.size() - 1; i++) {
+            for (int j = i + 1; j < meetings.size(); j++) {
+                if (meetings.get(i).hasConflictWith(meetings.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

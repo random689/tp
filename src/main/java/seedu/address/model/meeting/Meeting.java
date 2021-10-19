@@ -44,6 +44,10 @@ public class Meeting implements Comparable<Meeting>{
         return attendee;
     }
 
+    public String getDisplayDateTime() {
+        return dateTime.getUserFormat();
+    }
+
     /**
      * Returns true if there is a datetime conflict with the other meeting, false otherwise.
      *

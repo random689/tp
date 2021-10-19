@@ -18,6 +18,7 @@ public class DateTime implements Comparable<DateTime>{
     public static final String PRESENT_CONSTRAINT =
             "Meeting datetime must not be in the past. The current datetime is: %s";
     public static final String VALIDATION_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}";
+    private static final  DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
 
     public final String value;
     private final LocalDateTime dateTime;
@@ -30,8 +31,8 @@ public class DateTime implements Comparable<DateTime>{
     public DateTime(String input) {
         requireNonNull(input);
         checkArgument(isValidDateTime(input), MESSAGE_CONSTRAINTS);
-        dateTime = LocalDateTime.parse(input, DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
-        checkArgument(isPresentDateTime(dateTime), PRESENT_CONSTRAINT);
+        dateTime = LocalDateTime.parse(input, FORMATTER);
+        checkArgument(dateTime.isAfter(LocalDateTime.now()), PRESENT_CONSTRAINT);
         value = input;
     }
 
@@ -49,7 +50,7 @@ public class DateTime implements Comparable<DateTime>{
     public static boolean isValidDateTime(String test) {
         if (test.matches(VALIDATION_REGEX)) {
             try {
-                LocalDateTime.parse(test, DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm"));
+                LocalDateTime.parse(test, FORMATTER);
             } catch (DateTimeParseException e) {
                 return false;
             }
@@ -59,10 +60,11 @@ public class DateTime implements Comparable<DateTime>{
     }
 
     /**
-     * Returns true if a given datetime is not in the past.
+     * Returns true if a given datetime is in the past.
      */
-    private static boolean isPresentDateTime(LocalDateTime dateTime) {
-        return dateTime.isAfter(LocalDateTime.now());
+    public static boolean isPastDateTime(String input) {
+        LocalDateTime dateTime = LocalDateTime.parse(input, FORMATTER);
+        return dateTime.isBefore(LocalDateTime.now());
     }
 
     @Override

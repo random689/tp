@@ -59,12 +59,12 @@ public class SampleDataUtil {
 
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
-            new Meeting(new DateTime("2022-01-02 11:12"), new Attendee("T"),
+            new Meeting(new DateTime("2060-01-02 11:12"), new Attendee("T"),
                     new Description("Meeting with Math Department"), new Description("Meeting room 1")),
-            new Meeting(new DateTime("2022-03-10 23:12"), new Attendee("S"),
+            new Meeting(new DateTime("2060-03-10 23:12"), new Attendee("S"),
                 new Description("Math consult with class 4A"), new Description("Zoom")),
-            new Meeting(new DateTime("2022-10-02 15:33"), new Attendee("P"),
-                new Description("Meeting with Axel Yeoh's parents"), new Description("Classroom 4D"))
+            new Meeting(new DateTime("2060-10-02 15:33"), new Attendee("P"),
+                new Description("Meeting with Axel Yeoh's parents"), new Description("Classroom 4D")),
         };
     }
 

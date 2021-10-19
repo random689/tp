@@ -171,6 +171,11 @@ public class ModelManager implements Model {
         this.history.push(new AddressBook(this.addressBook));
     }
 
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return addressBook.getMeetingList();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

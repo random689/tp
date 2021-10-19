@@ -35,17 +35,7 @@ public class Attendee {
 
     @Override
     public String toString() {
-        switch (value) {
-        case "T":
-            return "Teachers";
-        case "S":
-            return "Students";
-        case "P":
-            return "Parents";
-        default:
-            // should never reach this part
-            return "Invalid";
-        }
+        return value;
     }
 
     @Override

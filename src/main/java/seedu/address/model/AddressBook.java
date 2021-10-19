@@ -65,6 +65,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the meeting list with {@code meetings}.
+     * {@code meetings} must not contain conflicting meetings.
+     */
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings.setMeetings(meetings);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -72,6 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setStudents(newData.getStudentList());
         setTeachers(newData.getTeacherList());
+        setMeetings(newData.getMeetingList());
     }
 
     //// student-level operation
@@ -183,7 +192,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return students.asUnmodifiableObservableList().size() + " students "
-                + teachers.asUnmodifiableObservableList().size() + " teachers.";
+                + teachers.asUnmodifiableObservableList().size() + " teachers "
+                + meetings.asUnmodifiableObservableList().size() + " meetings.";
     }
 
     @Override
