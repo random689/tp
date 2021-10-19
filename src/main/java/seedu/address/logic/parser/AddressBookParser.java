@@ -36,6 +36,7 @@ import seedu.address.logic.parser.student.EditStudentCommandParser;
 import seedu.address.logic.parser.student.FilterStudentCommandParser;
 import seedu.address.logic.parser.student.FindStudentCommandParser;
 import seedu.address.logic.parser.student.MedicalHistoryCommandParser;
+import seedu.address.logic.parser.student.ShowMedicalHistoryCommandParser;
 import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
 import seedu.address.logic.parser.teacher.CopyTeacherCommandParser;
 import seedu.address.logic.parser.teacher.DeleteTeacherCommandParser;
@@ -119,7 +120,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case ShowMedicalHistoryCommand.COMMAND_WORD:
-            return new ShowMedicalHistoryCommand();
+            return new ShowMedicalHistoryCommandParser().parse(arguments);
 
         case FilterStudentCommand.COMMAND_WORD:
             return new FilterStudentCommandParser().parse(arguments);
