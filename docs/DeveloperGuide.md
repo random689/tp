@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `TeacherListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` and `Teacher` object residing in the `Model`.
 
 ### Logic component
 
@@ -158,13 +158,13 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as an a 
+The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as a 
 field. 
 Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, 
 `ModelManager` 
 exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** It is needed for one to store a 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**It is needed for one to store a 
 **copy** of the address book, otherwise any modifications to the existing address book would also alter the copies 
 in the stack.</div>
 
@@ -221,6 +221,47 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
 
 We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large. 
 
+### CopyStudent / CopyTeacher
+
+#### Implementation
+
+The `CopyCommand` class extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers.
+This command is supported by the method in the `Model` interface, namely the `Model#getFilteredStudentList()` and `Model#getFilteredTeacherList()` methods.
+
+Given below is an example usage scenario and how the copy mechanism behaves.
+
+Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
+will be initialized with the all the students and teachers respectively from the loaded book data.
+
+Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI.
+The `copyStudent` command calls `Model#getFilteredStudentList`, loading the current list of filtered student, which in this case is all the students from the loaded book data.
+Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `getNameContent` since the input was name,
+appending all the names of the students in the filtered student list to the user's clipboard.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+
+If the copy command fails its execution, it will not call `Model#getFilteredStudentList` / `Model#getFilteredTeacherList`,
+so the user's clipboard will not have any data written into it.
+
+The following sequence diagram shows how the copy operation works for a copyStudent command.
+*Works the same for teachers
+
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for `CopyCommand` and should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+**Design considerations:**
+
+**Aspect: How copy executes:**
+
+* **Alternative 1 (current choice):** CopyCommand handles the copying
+    * Pros: Easy to implement.
+    * Cons: May violate some coding principles
+
+* **Alternative 2:** Model handles the copying
+    * Pros: Easier to maintain and will work like the other commands
+    * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
+    
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
