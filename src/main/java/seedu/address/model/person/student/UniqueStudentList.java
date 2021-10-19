@@ -82,7 +82,6 @@ public class UniqueStudentList implements Iterable<Student> {
         if (!internalList.remove(toRemove)) {
             throw new StudentNotFoundException();
         }
-        internalList.remove(toRemove);
     }
 
     public void setStudents(UniqueStudentList replacement) {
