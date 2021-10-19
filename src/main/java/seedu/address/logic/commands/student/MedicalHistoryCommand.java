@@ -12,7 +12,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.student.Student;
 
@@ -56,12 +55,8 @@ public class MedicalHistoryCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
-        //Todo Remove the typecasting here, use if else instead?
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        if (!(personToEdit instanceof Student)) {
-            throw new CommandException("You cannot add medical history to a teacher!");
-        }
-        Student studentToEdit = (Student) personToEdit;
+
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(studentToEdit, studentToEdit.getEmergencyContact(),
             studentToEdit.getFormClass(), studentToEdit.getAddress(), medicalHistory);
 

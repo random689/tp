@@ -8,6 +8,6 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
  */
 public class DuplicateTeacherException extends DuplicatePersonException {
     public DuplicateTeacherException() {
-        super("Operation would result in duplicate teachers");
+        super("teachers");
     }
 }
