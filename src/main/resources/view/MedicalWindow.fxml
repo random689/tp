@@ -21,7 +21,12 @@
 
             <HBox alignment="CENTER">
                 <children>
-                    <Label fx:id="displayMessage" text="Label">
+                    <Label fx:id="name" text="Label">
+                        <HBox.margin>
+                            <Insets right="5.0" />
+                        </HBox.margin>
+                    </Label>
+                    <Label fx:id="medicalHistory" text="Label">
                         <HBox.margin>
                             <Insets right="5.0" />
                         </HBox.margin>
