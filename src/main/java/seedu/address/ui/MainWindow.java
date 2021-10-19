@@ -72,12 +72,21 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
+
         setAccelerators();
 
         helpWindow = new HelpWindow();
 
         meetingWindow = new MeetingWindow();
+<<<<<<< HEAD
 
+
+=======
+
+
+
+>>>>>>> master
+        meetingWindow.setWindowDefaultSize(new GuiSettings(500, 600, 191, 45));
         medicalWindow = new MedicalWindow();
     }
 
@@ -183,6 +192,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleMeeting() {
         if (!meetingWindow.isShowing()) {
             meetingWindow.show();
+            meetingWindow.fillInnerParts(logic.getMeetingList());
         } else {
             meetingWindow.focus();
         }

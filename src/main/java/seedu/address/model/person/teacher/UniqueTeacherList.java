@@ -79,7 +79,6 @@ public class UniqueTeacherList implements Iterable<Teacher> {
         if (!internalList.remove(toRemove)) {
             throw new TeacherNotFoundException();
         }
-        internalList.remove(toRemove);
     }
 
     public void setTeachers(UniqueTeacherList replacement) {

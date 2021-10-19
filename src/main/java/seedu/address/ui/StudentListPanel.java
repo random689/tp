@@ -44,5 +44,4 @@ public class StudentListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
