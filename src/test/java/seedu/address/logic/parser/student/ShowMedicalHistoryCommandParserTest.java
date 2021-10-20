@@ -1,20 +1,13 @@
 package seedu.address.logic.parser.student;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.student.FindStudentCommand;
 import seedu.address.logic.commands.student.ShowMedicalHistoryCommand;
-import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 
 class ShowMedicalHistoryCommandParserTest {
     private final ShowMedicalHistoryCommandParser parser = new ShowMedicalHistoryCommandParser();

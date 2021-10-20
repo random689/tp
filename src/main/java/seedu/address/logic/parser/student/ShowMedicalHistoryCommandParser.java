@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new {@code ShowMedicalHistoryCommand} object
  */
-public class ShowMedicalHistoryCommandParser implements Parser<ShowMedicalHistoryCommand>  {
+public class ShowMedicalHistoryCommandParser implements Parser<ShowMedicalHistoryCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ShowMedicalHistoryCommand
      * and returns a ShowMedicalHistoryCommand object for execution.

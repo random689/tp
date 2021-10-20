@@ -13,7 +13,6 @@ import seedu.address.model.person.student.Student;
  */
 public class MedicalWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(MedicalWindow.class);
-    public static final String DISPLAY_MESSAGE = "Alex \nADHD, break leg, need wheelchair, asthma";
     private static final String FXML = "MedicalWindow.fxml";
     private Student student;
 
