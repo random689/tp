@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.TeacherBuilder;
@@ -166,7 +167,7 @@ public class AddTeacherCommandTest {
         }
 
         @Override
-        public void setTeacher(Teacher target, Teacher editedStudent) {
+        public void setTeacher(Teacher target, Teacher editedTeacher) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -182,6 +183,26 @@ public class AddTeacherCommandTest {
 
         @Override
         public void updateFilteredTeacherList(Predicate<Teacher> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Meeting> getMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasMeetingConflict(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMeeting(Meeting target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -215,7 +236,7 @@ public class AddTeacherCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the teacher being added.
      */
     private class ModelStubAcceptingTeacherAdded extends ModelStub {
         final ArrayList<Teacher> teachersAdded = new ArrayList<>();

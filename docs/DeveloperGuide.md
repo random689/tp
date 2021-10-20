@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `TeacherListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student` and `Teacher` object residing in the `Model`.
 
 ### Logic component
 
@@ -170,7 +170,7 @@ in the stack.</div>
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The app creates an address book with the initial address book state, and a copy of this address book, `ab0`, will be pushed into the stack. 
+Step 1. The user launches the application for the first time. The app creates an address book with the initial address book state, and a copy of this address book, `ab0`, will be pushed into the stack.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -178,7 +178,7 @@ Step 2. The user executes `deleteStudent 1` command to delete the 1st student in
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `student n/David …​` (check this!) to add a new person. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack. 
+Step 3. The user executes `student n/David …​` (check this!) to add a new person. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -202,6 +202,7 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
+
 The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be. 
 
 
@@ -219,12 +220,80 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large. 
+We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
+
+### CopyStudent / CopyTeacher
+
+#### Implementation
+
+The `CopyCommand` class extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers.
+This command is supported by the method in the `Model` interface, namely the `Model#getFilteredStudentList()` and `Model#getFilteredTeacherList()` methods.
+
+Given below is an example usage scenario and how the copy mechanism behaves.
+
+Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
+will be initialized with the all the students and teachers respectively from the loaded book data.
+
+Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI.
+The `copyStudent` command calls `Model#getFilteredStudentList`, loading the current list of filtered student, which in this case is all the students from the loaded book data.
+Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `getNameContent` since the input was name,
+appending all the names of the students in the filtered student list to the user's clipboard.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+
+If the copy command fails its execution, it will not call `Model#getFilteredStudentList` / `Model#getFilteredTeacherList`,
+so the user's clipboard will not have any data written into it.
+
+The following sequence diagram shows how the copy operation works for a copyStudent command.
+*Works the same for teachers
+
+![CopySequenceDiagram](images/CopySequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for `CopyCommand` and should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+**Design considerations:**
+
+**Aspect: How copy executes:**
+
+* **Alternative 1 (current choice):** CopyCommand handles the copying
+    * Pros: Easy to implement.
+    * Cons: May violate some coding principles
+
+* **Alternative 2:** Model handles the copying
+    * Pros: Easier to maintain and will work like the other commands
+    * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Filter command:
+
+Implementation: 
+
+When a `filterStudent` is called, it uses the `filterStudentCommandParser` to parse the additional inputs given by the 
+user, such as the filter categories given. It then pass on the details to `FilterStudentCommand` with the 
+`StudentInvolvementContainsKeywordsPredicate`, which gets and updates the view using `model.getFilteredStudentList()` 
+and `model.updateFilteredStudentList(predicate)`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** It is the same for filtering teachers.</div>
+
+The following sequence diagram shows how it works for a filterStudent command.
+*Works the same for teachers
+
+![FilterSequenceDiagram](images/FilterDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How to implement Filter:**
+
+* **Alternative 1 (current choice):** Adapts find command.
+    * Pros: Easy to implement, saves time.
+    * Cons: Only provides one level filter.
+
+* **Alternative 2:** Update model itself. For instance, have an `updateFilteredFilteredStudentList(predicate)` command etc...
+    * Pros: Allows for greater options in filtering, like nested filters etc.
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
 

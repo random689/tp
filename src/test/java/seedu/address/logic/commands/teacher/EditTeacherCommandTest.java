@@ -25,7 +25,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.EditTeacherDescriptorBuilder;
 import seedu.address.testutil.TeacherBuilder;
@@ -78,7 +77,7 @@ public class EditTeacherCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_TEACHER,
                 new EditTeacherDescriptor());
-        Person editedTeacher = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
+        Teacher editedTeacher = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
 
         String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
 
@@ -91,7 +90,7 @@ public class EditTeacherCommandTest {
     public void execute_filteredList_success() {
         showTeacherAtIndex(model, INDEX_FIRST_TEACHER);
 
-        Person teacherInFilteredList = model.getFilteredTeacherList().get(0);
+        Teacher teacherInFilteredList = model.getFilteredTeacherList().get(0);
         Teacher editedTeacher = new TeacherBuilder((Teacher) teacherInFilteredList).withName(VALID_NAME_DEE).build();
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
                 new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
@@ -132,7 +131,7 @@ public class EditTeacherCommandTest {
         EditTeacherDescriptor descriptor = new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build();
         EditTeacherCommand editCommand = new EditTeacherCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     /**
@@ -149,7 +148,7 @@ public class EditTeacherCommandTest {
         EditTeacherCommand editTeacherCommand = new EditTeacherCommand(outOfBoundIndex,
                 new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build());
 
-        assertCommandFailure(editTeacherCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editTeacherCommand, model, Messages.MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX);
     }
 
     @Test
