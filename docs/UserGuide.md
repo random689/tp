@@ -209,6 +209,8 @@ Filters by involvement first, to filter by tag, add `t/`, followed by tag terms 
 
 The filter category is not case-sensitive e.g. “student” same as “STUDENT” but "t/" is not the same as "T/"
 
+Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
+
 More than 1 filter is allowed e.g.  `INVOLVEMENT_FILTER_CATERGORY [t/] [TAG_FILTER CATERGORY] [TAG_FILTER CATERGORY]`.
 
 Example: 
