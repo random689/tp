@@ -158,13 +158,14 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as a field.
-Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such,
-`ModelManager`
+The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as an a 
+field. 
+Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, 
+`ModelManager` 
 exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**It is needed for one to store a
-**copy** of the address book, otherwise any modifications to the existing address book would also alter the copies
+<div markdown="span" class="alert alert-info">:information_source: **Note:** It is needed for one to store a 
+**copy** of the address book, otherwise any modifications to the existing address book would also alter the copies 
 in the stack.</div>
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
@@ -201,7 +202,8 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be.
+
+The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be. 
 
 
 
@@ -260,6 +262,33 @@ The following sequence diagram shows how the copy operation works for a copyStud
 * **Alternative 2:** Model handles the copying
     * Pros: Easier to maintain and will work like the other commands
     * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
+
+
+### Adding meetings
+#### Implementation Details
+The mechanism of adding meetings is showcased in the sequence diagram below:
+
+![MeetSequenceDiagram](images/MeetSeqDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
+
+Whenever a Meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order.
+
+#### Design considerations:
+
+**Aspect: Representation of a Meeting**
+
+* **Alternative 1 (current choice):** Meeting is not linked with any contacts in NewAddressBook.
+  * Pros: Users can have more flexibility of planning meetings with any persons, provided they specify the type of persons (parents, teachers, or students) attending the meeting.
+  * Cons: Users will need to come up with their own title for each meeting
+
+* **Alternative 2:** Meeting references a Person (either Student or Teacher) stored in NewAddressBook.
+  * Pros: User just have to specify the type and index of the Person in the list and the UI would generate a pre-defined title with the specified person's name
+  * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed.
+
 
 ### \[Proposed\] Data archiving
 
