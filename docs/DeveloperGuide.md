@@ -263,6 +263,33 @@ The following sequence diagram shows how the copy operation works for a copyStud
     * Pros: Easier to maintain and will work like the other commands
     * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
 
+
+### Adding meetings
+#### Implementation Details
+The mechanism of adding meetings is showcased in the sequence diagram below:
+
+![MeetSequenceDiagram](images/MeetSeqDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
+
+Whenever a Meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order.
+
+#### Design considerations:
+
+**Aspect: Representation of a Meeting**
+
+* **Alternative 1 (current choice):** Meeting is not linked with any contacts in NewAddressBook.
+  * Pros: Users can have more flexibility of planning meetings with any persons, provided they specify the type of persons (parents, teachers, or students) attending the meeting.
+  * Cons: Users will need to come up with their own title for each meeting
+
+* **Alternative 2:** Meeting references a Person (either Student or Teacher) stored in NewAddressBook.
+  * Pros: User just have to specify the type and index of the Person in the list and the UI would generate a pre-defined title with the specified person's name
+  * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed.
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
