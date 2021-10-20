@@ -70,4 +70,5 @@ destroy FilterStudentCommand
 
 [<--LogicManager
 deactivate LogicManager
+destroy StudentInvolvementContainsKeywordsPredicate
 @enduml
