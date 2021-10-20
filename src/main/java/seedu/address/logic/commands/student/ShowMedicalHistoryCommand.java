@@ -34,7 +34,15 @@ public class ShowMedicalHistoryCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
+
         Student studentToShow = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(SHOWING_MEDICAL_HISTORY_MESSAGE, false, false, true, studentToShow);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ShowMedicalHistoryCommand // instanceof handles nulls
+                && targetIndex.equals(((ShowMedicalHistoryCommand) other).targetIndex)); // state check
     }
 }
