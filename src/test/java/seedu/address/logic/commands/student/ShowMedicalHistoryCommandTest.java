@@ -1,9 +1,12 @@
 package seedu.address.logic.commands.student;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.student.ShowMedicalHistoryCommand.SHOWING_MEDICAL_HISTORY_MESSAGE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -37,5 +40,27 @@ class ShowMedicalHistoryCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(showCommand, model, expectedCommandResult, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        ShowMedicalHistoryCommand showFirstCommand = new ShowMedicalHistoryCommand(INDEX_FIRST_STUDENT);
+        ShowMedicalHistoryCommand showSecondCommand = new ShowMedicalHistoryCommand(INDEX_SECOND_STUDENT);
+
+        // same object -> returns true
+        assertTrue(showFirstCommand.equals(showFirstCommand));
+
+        // same values -> returns true
+        ShowMedicalHistoryCommand showFirstCommandCopy = new ShowMedicalHistoryCommand(INDEX_FIRST_STUDENT);
+        assertTrue(showFirstCommand.equals(showFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(showFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(showFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(showFirstCommand.equals(showSecondCommand));
     }
 }

@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.student.Student;
 public class CommandResultTest {
-    Student alice = ALICE;
-    Student bob = BOB;
+    private Student alice = ALICE;
+    private Student bob = BOB;
 
     @Test
     public void equals() {
