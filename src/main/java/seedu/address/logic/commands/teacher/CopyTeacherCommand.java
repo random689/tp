@@ -9,7 +9,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
-import seedu.address.logic.commands.student.CopyStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.teacher.Teacher;
 

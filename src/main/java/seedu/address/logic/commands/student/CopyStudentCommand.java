@@ -11,7 +11,6 @@ import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.student.Student;
-import seedu.address.ui.StudentListPanel;
 
 public class CopyStudentCommand extends CopyCommand {
 
