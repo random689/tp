@@ -265,6 +265,33 @@ The following sequence diagram shows how the copy operation works for a copyStud
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Filter command:
+
+Implementation: 
+
+When a `filterStudent` is called, it uses the `filterStudentCommandParser` to parse the additional inputs given by the 
+user, such as the filter categories given. It then pass on the details to `FilterStudentCommand` with the 
+`StudentInvolvementContainsKeywordsPredicate`, which gets and updates the view using `model.getFilteredStudentList()` 
+and `model.updateFilteredStudentList(predicate)`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** It is the same for filtering teachers.</div>
+
+The following sequence diagram shows how it works for a filterStudent command.
+*Works the same for teachers
+
+![FilterSequenceDiagram](images/FilterDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How to implement Filter:**
+
+* **Alternative 1 (current choice):** Adapts find command.
+    * Pros: Easy to implement, saves time.
+    * Cons: Only provides one level filter.
+
+* **Alternative 2:** Update model itself. For instance, have an `updateFilteredFilteredStudentList(predicate)` command etc...
+    * Pros: Allows for greater options in filtering, like nested filters etc.
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
 
