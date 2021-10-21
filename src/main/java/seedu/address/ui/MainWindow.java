@@ -16,13 +16,13 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.student.Student;
 
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private MeetingWindow meetingWindow;
+    private MedicalWindow medicalWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -78,6 +79,7 @@ public class MainWindow extends UiPart<Stage> {
 
         meetingWindow = new MeetingWindow();
         meetingWindow.setWindowDefaultSize(new GuiSettings(500, 600, 191, 45));
+        medicalWindow = new MedicalWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -163,6 +165,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the medical window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleMedical(Student student) {
+        medicalWindow.setContent(student);
+        if (!medicalWindow.isShowing()) {
+            medicalWindow.show();
+        } else {
+            medicalWindow.focus();
+        }
+    }
+
+    /**
      * Opens the meeting window or focuses on it if it's already opened.
      */
     @FXML
@@ -189,6 +204,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         meetingWindow.hide();
+        medicalWindow.hide();
         primaryStage.hide();
     }
 
@@ -217,6 +233,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowMedical()) {
+                handleMedical(commandResult.getStudent());
             }
 
             return commandResult;

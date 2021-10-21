@@ -19,6 +19,7 @@ import seedu.address.logic.commands.student.FilterStudentCommand;
 import seedu.address.logic.commands.student.FindStudentCommand;
 import seedu.address.logic.commands.student.ListStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
+import seedu.address.logic.commands.student.ShowMedicalHistoryCommand;
 import seedu.address.logic.commands.teacher.AddTeacherCommand;
 import seedu.address.logic.commands.teacher.ClearTeacherCommand;
 import seedu.address.logic.commands.teacher.CopyTeacherCommand;
@@ -35,6 +36,7 @@ import seedu.address.logic.parser.student.EditStudentCommandParser;
 import seedu.address.logic.parser.student.FilterStudentCommandParser;
 import seedu.address.logic.parser.student.FindStudentCommandParser;
 import seedu.address.logic.parser.student.MedicalHistoryCommandParser;
+import seedu.address.logic.parser.student.ShowMedicalHistoryCommandParser;
 import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
 import seedu.address.logic.parser.teacher.CopyTeacherCommandParser;
 import seedu.address.logic.parser.teacher.DeleteTeacherCommandParser;
@@ -117,13 +119,16 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ShowMedicalHistoryCommand.COMMAND_WORD:
+            return new ShowMedicalHistoryCommandParser().parse(arguments);
+
         case FilterStudentCommand.COMMAND_WORD:
             return new FilterStudentCommandParser().parse(arguments);
 
         case FilterTeacherCommand.COMMAND_WORD:
             return new FilterTeacherCommandParser().parse(arguments);
 
-        case MedicalHistoryCommand.COMMAND_WORD: // TODO: check that medical history only updates for students?
+        case MedicalHistoryCommand.COMMAND_WORD:
             return new MedicalHistoryCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
