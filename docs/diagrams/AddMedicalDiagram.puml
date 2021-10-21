@@ -51,9 +51,6 @@ activate Model
 
 Model --> MedicalHistoryCommand
 
-MedicalHistoryCommand -> Model : updateFilteredStudentList()
-Model --> MedicalHistoryCommand
-
 create CommandResult
 MedicalHistoryCommand -> CommandResult
 activate CommandResult
