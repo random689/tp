@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -74,6 +75,12 @@ public interface Model {
     void deleteStudent(Student target);
 
     /**
+     * Deletes the given students.
+     * The students must exist in the address book.
+     */
+    void massDeleteStudent(List<Student> target);
+
+    /**
      * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the address book.
      * The student identity of {@code editedStudent} must not be the same
@@ -107,6 +114,12 @@ public interface Model {
      * The teacher must exist in the address book.
      */
     void deleteTeacher(Teacher target);
+
+    /**
+     * Deletes the given teachers.
+     * The teachers must exist in the address book.
+     */
+    void massDeleteTeacher(List<Teacher> target);
 
     /**
      * Replaces the given teacher {@code target} with {@code editedTeacher}.

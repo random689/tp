@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -125,6 +126,14 @@ public class ModelManager implements Model {
         this.history.push(new AddressBook(this.addressBook));
     }
 
+    @Override
+    public void massDeleteStudent(List<Student> target) {
+        for (int i = 0; i < target.size(); i++) {
+            addressBook.removeStudent(target.get(i));
+        }
+        this.history.push(new AddressBook(this.addressBook));
+    }
+
     // Teacher
     @Override
     public boolean hasTeacher(Teacher teacher) {
@@ -149,6 +158,14 @@ public class ModelManager implements Model {
     public void setTeacher(Teacher target, Teacher editedTeacher) {
         requireAllNonNull(target, editedTeacher);
         addressBook.setTeacher(target, editedTeacher);
+        this.history.push(new AddressBook(this.addressBook));
+    }
+
+    @Override
+    public void massDeleteTeacher(List<Teacher> target) {
+        for (int i = 0; i < target.size(); i++) {
+            addressBook.removeTeacher(target.get(i));
+        }
         this.history.push(new AddressBook(this.addressBook));
     }
 
