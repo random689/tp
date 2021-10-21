@@ -42,7 +42,6 @@ public class MedicalHistoryCommand extends Command {
      */
     public MedicalHistoryCommand(Index index, MedicalHistory medicalHistory) {
         requireAllNonNull(index, medicalHistory);
-
         this.index = index;
         this.medicalHistory = medicalHistory;
     }

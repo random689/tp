@@ -1,5 +1,18 @@
 @startuml
 'https://plantuml.com/sequence-diagram'
+!include Style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MedicalHistoryCommandParser" as MedicalHistoryCommandParser LOGIC_COLOR
+participant ":MedicalHistoryCommand" as MedicalHistoryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR_T4
+end box
 
 [-> LogicManager : execute("medical 1 m/ADHD")
 activate LogicManager
@@ -36,9 +49,6 @@ activate MedicalHistoryCommand
 MedicalHistoryCommand -> Model : setStudent()
 activate Model
 
-Model --> MedicalHistoryCommand
-
-MedicalHistoryCommand -> Model : updateFilteredStudentList()
 Model --> MedicalHistoryCommand
 
 create CommandResult
