@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/sequence-diagram'
+
+[-> LogicManager : execute("medical 1 m/ADHD")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("medical 1 m/ADHD")
+activate AddressBookParser
+
+create MedicalHistoryCommandParser
+AddressBookParser -> MedicalHistoryCommandParser
+activate MedicalHistoryCommandParser
+
+MedicalHistoryCommandParser --> AddressBookParser
+deactivate MedicalHistoryCommandParser
+
+AddressBookParser -> MedicalHistoryCommandParser : parse(args)
+activate MedicalHistoryCommandParser
+
+create MedicalHistoryCommand
+MedicalHistoryCommandParser -> MedicalHistoryCommand
+activate MedicalHistoryCommand
+MedicalHistoryCommand --> MedicalHistoryCommandParser
+deactivate MedicalHistoryCommand
+
+MedicalHistoryCommandParser --> AddressBookParser
+deactivate MedicalHistoryCommandParser
+destroy MedicalHistoryCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> MedicalHistoryCommand : execute()
+activate MedicalHistoryCommand
+
+MedicalHistoryCommand -> Model : setStudent()
+activate Model
+
+Model --> MedicalHistoryCommand
+
+MedicalHistoryCommand -> Model : updateFilteredStudentList()
+Model --> MedicalHistoryCommand
+
+create CommandResult
+MedicalHistoryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MedicalHistoryCommand
+deactivate
+
+MedicalHistoryCommand --> LogicManager : result
+deactivate MedicalHistoryCommand
+destroy MedicalHistoryCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

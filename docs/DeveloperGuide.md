@@ -322,6 +322,48 @@ The following sequence diagram shows how it works for a filterStudent command.
     * Pros: Allows for greater options in filtering, like nested filters etc.
     * Cons: We must ensure that the implementation of each individual command are correct.
 
+###  Adding medical history of students:
+#### Implementation Details
+The `MedicalHistoryCommand` extends the `Command` class. When a `MedicalHistoryCommand` is called, it uses the
+`MedicalHistoryCommandParser` to parse the inputs given by the user, which include the index of the student based on the 
+list of students, and the desired medical history to assign to the student. The parser then passes the details to 
+`MedicalHistoryCommand` which then updates the student with the desired medical history using 
+model.setStudent(studentToEdit, editedStudent) and updates the view using `model.updateFilteredStudentList(predicate)`
+This works as the command is supported by the method in the `Model` interface, specifically the Model#setStudent() and
+Model#updateFilteredStudentList() methods.
+
+:information_source: **Note:** Cannot add medical history to teachers.
+
+Given below is an example usage scenario and how the mechanism works.
+
+Step 1. The user launches the application for the first time. The `filteredStudentList` (and teacher list) will be 
+initialised from the saved data.
+
+Step 2. The user types the command `medical INDEX m/MEDICAL_HISTORY` to add the `medicalHistory` to the desired `student`
+at `index`. The `medical` command calls Model#getFilteredStudentList to obtain the current list of students, then finds
+the desired student based on the `index`, and proceeds to edit the `medicalHistory` field of the student. Then the 
+Model#updateFilteredStudentList is called to show the updated list with the added `medicalHistory`.
+
+The following sequence diagram shows how the `medical` command works.
+
+![AddMedicalHistorySequenceDiagram](images/MedicalDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How to implement MedicalHistory:**
+
+* **Alternative 1 (current choice):** Add the `medicalHistory` only when the teacher wants to.
+    * Pros: Saves the user time as most students do not have notable `medicalHistory`.
+    * Cons: Slightly more complicated than forcing users to input a `medicalHistory` each time they add a student.
+
+* **Alternative 2:** Allow users to use the `editStudent` command to edit the `medicalHistory`
+    * Pros: Easier to implement
+    * Cons: Not as specific than using the `medical` command
+  
+* **Alternative 3:** Force users to input `medicalHistory` for each `student` they wish to add.
+    * Pros: Easier to implement
+    * Cons: Does not make sense as most students do not have notable `medicalHistory`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

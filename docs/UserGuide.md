@@ -135,6 +135,19 @@ the current medical history.
 Examples:
 * `medical 1 m/ADHD`
 
+### Display a pop-up window to view medical history of a student: `showMedical`
+
+Displays a pop-up window for the user to view the full medical history of the student in NewAddressBook.
+
+Format: `showMedical INDEX`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Shows the `medicalHistory` of the student at the specifed index. The index must be a positive valid integer.
+Does not work for teachers, as teachers do not have `medicalHistory`
+
+Examples:
+* `showMedical 1`
+
 ### Listing all persons : `list`
 
 Shows a list of all persons stored in NewAddressBook.
