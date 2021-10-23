@@ -59,14 +59,14 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        address.setText(student.getAddress().value);
-        email.setText(student.getEmail().value);
+        phone.setText("Contact: " + student.getPhone().value);
+        address.setText("Address: " + student.getAddress().value);
+        email.setText("Email: " + student.getEmail().value);
         formClass.setText(student.getFormClass().value);
-        gender.setText(student.getGender().value);
+        gender.setText("Gender: " + student.getGender().value);
         medicalHistory.setText(student.getMedicalHistory().value);
         involvement.setText(student.getInvolvement().value);
-        emergencyContact.setText(student.getEmergencyContact().value);
+        emergencyContact.setText("Emergency Contact: " + student.getEmergencyContact().value);
         student.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
