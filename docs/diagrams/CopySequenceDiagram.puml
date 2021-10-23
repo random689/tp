@@ -57,12 +57,6 @@ deactivate Model
 CopyStudentCommand -> CopyStudentCommand : copyToClipBoard(list)
 activate CopyStudentCommand
 
-CopyStudentCommand -> CopyStudentCommand : getCopyContent(list)
-activate CopyStudentCommand
-
-CopyStudentCommand --> CopyStudentCommand : content to be copied
-deactivate CopyStudentCommand
-
 CopyStudentCommand --> CopyStudentCommand : content to be copied
 deactivate CopyStudentCommand
 

@@ -257,7 +257,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
 
 * **Alternative 1 (current choice):** CopyCommand handles the copying
     * Pros: Easy to implement.
-    * Cons: May violate some coding principles
+    * Cons: Will not be able to copy across tables.
 
 * **Alternative 2:** Model handles the copying
     * Pros: Easier to maintain and will work like the other commands
