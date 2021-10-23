@@ -67,7 +67,7 @@ activate CommandResult
 CommandResult --> CopyStudentCommand
 deactivate CommandResult
 
-CopyStudentCommand --> LogicManager
+CopyStudentCommand --> LogicManager : result
 deactivate CopyStudentCommand
 CopyStudentCommand -[hidden]-> LogicManager
 destroy CopyStudentCommand

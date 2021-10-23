@@ -249,7 +249,8 @@ The following sequence diagram shows how the copy operation works for a copyStud
 
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
-:information_source: **Note:** The lifeline for `CopyCommand` and should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 **Design considerations:**
 
@@ -262,7 +263,6 @@ The following sequence diagram shows how the copy operation works for a copyStud
 * **Alternative 2:** Model handles the copying
     * Pros: Easier to maintain and will work like the other commands
     * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
-
 
 ### Adding meetings
 #### Implementation Details
