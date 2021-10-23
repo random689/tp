@@ -31,7 +31,6 @@
             </HBox>
             <HBox prefHeight="0.0" prefWidth="130.0">
                 <children>
-                    <Label fx:id="officeTable" styleClass="cell_small_label" text="\$officeTable" wrapText="true" />
                     <Label fx:id="involvement" styleClass="cell_small_label" text="\$involvement" wrapText="true">
                         <HBox.margin>
                             <Insets left="4.0" />
@@ -41,6 +40,7 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
             <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" wrapText="true" />
+              <Label fx:id="officeTable" styleClass="cell_small_label" text="\$officeTable" wrapText="true" />
         </VBox>
       <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
          <padding>

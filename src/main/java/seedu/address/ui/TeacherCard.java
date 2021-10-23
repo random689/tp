@@ -56,7 +56,7 @@ public class TeacherCard extends UiPart<Region> {
         phone.setText("Contact : " + teacher.getPhone().value);
         email.setText("Email: " + teacher.getEmail().value);
         gender.setText("Gender: " + teacher.getGender().value);
-        officeTable.setText("Table no: " + teacher.getOfficeTable().value);
+        officeTable.setText("Table number: " + teacher.getOfficeTable().value);
         involvement.setText(teacher.getInvolvement().value);
         teacher.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
