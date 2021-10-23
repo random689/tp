@@ -31,7 +31,7 @@
                      <Insets left="4.0" />
                   </HBox.margin>
                </Label>
-            <Label fx:id="medicalHistory" styleClass="cell_small_label" text="\$medicalHistory" wrapText="true">
+            <Label fx:id="medicalHistory" maxWidth="100.0" styleClass="cell_small_label" text="\$medicalHistory">
                   <HBox.margin>
                      <Insets left="4.0" />
                   </HBox.margin>
