@@ -3,7 +3,9 @@ package seedu.address.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
@@ -13,6 +15,7 @@ import seedu.address.model.person.student.Student;
 public class CopyStudentCommand extends CopyCommand {
 
     public static final String COMMAND_WORD = "copyStudent";
+    private final Logger logger = LogsCenter.getLogger(CopyStudentCommand.class);
 
     /**
      * Constructor for {@code CopyStudentCommand}
@@ -29,6 +32,7 @@ public class CopyStudentCommand extends CopyCommand {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
         copyToClipBoard(lastShownList);
+        logger.info("Contents copied to clipboard!");
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

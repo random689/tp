@@ -5,6 +5,8 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.image.Image?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.StackPane?>
+
 
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,7 +22,18 @@
         <URL value="@Extensions.css" />
         <URL value="@MeetingWindow.css" />
       </stylesheets>
+
       <VBox>
+        <StackPane fx:id="meetingCommandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
         <VBox fx:id="meetingList" minWidth="340" prefWidth="340" minHeight="600" prefHeight="600" styleClass="pane-with-border">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10"/>
