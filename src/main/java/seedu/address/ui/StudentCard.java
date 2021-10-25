@@ -63,7 +63,7 @@ public class StudentCard extends UiPart<Region> {
         address.setText("Address: " + student.getAddress().value);
         email.setText("Email: " + student.getEmail().value);
         formClass.setText(student.getFormClass().value);
-        gender.setText("Gender: " + student.getGender().value);
+        gender.setText("Gender: " + student.getGender().fullGenderString());
         medicalHistory.setText(student.getMedicalHistory().value);
         involvement.setText(student.getInvolvement().value);
         emergencyContact.setText("Emergency Contact: " + student.getEmergencyContact().value);

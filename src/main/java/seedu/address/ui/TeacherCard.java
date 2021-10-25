@@ -55,7 +55,7 @@ public class TeacherCard extends UiPart<Region> {
         name.setText(teacher.getName().fullName);
         phone.setText("Contact : " + teacher.getPhone().value);
         email.setText("Email: " + teacher.getEmail().value);
-        gender.setText("Gender: " + teacher.getGender().value);
+        gender.setText("Gender: " + teacher.getGender().fullGenderString());
         officeTable.setText("Table number: " + teacher.getOfficeTable().value);
         involvement.setText(teacher.getInvolvement().value);
         teacher.getTags().stream()

@@ -23,10 +23,6 @@ public class FilterTeacherCommand extends Command {
 
     private final TeacherInvolvementContainsKeywordsPredicate predicate;
 
-    // TODO: currently, an incorrect command gives no people instead of warning the user, should we change it? ie.
-    //  something like filterStudent /t rep where we use /t instead of t/ does warn the user that the command is
-    //  invalid.
-
     public FilterTeacherCommand(TeacherInvolvementContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

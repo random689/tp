@@ -4,13 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's form class in the address book.
+ * Represents a Person's gender in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
+
 public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender class should only contain one of M (male),F (female),N (non binary)";
+            "Gender class should only contain one of M (male), F (female), N (non binary)";
 
     public final String value;
 
@@ -30,6 +31,19 @@ public class Gender {
      */
     public static boolean isValidGender(String test) {
         return test.matches("M") || test.matches("F") || test.matches("N");
+    }
+
+    public String fullGenderString() {
+        switch (value) {
+        case "M":
+            return "Male";
+        case "F":
+            return "Female";
+        case "N":
+            return "Non-binary";
+        default:
+            return "";
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_HISTORY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -20,14 +21,12 @@ import seedu.address.model.person.student.Student;
  */
 public class MedicalHistoryCommand extends Command {
     public static final String COMMAND_WORD = "medical";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the medical history of the student identified "
-            + "by the index number used in the last student listing. "
+    public static final String MESSAGE_USAGE = "Edits the medical history of the student identified "
+            + "by the index number used in the last student listing. \n"
             + "Existing medical history will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "m/ [MEDICAL_HISTORY]\n" // TODO: swtich to command prefix
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "m/ ADHD";
+            + PREFIX_MEDICAL_HISTORY + "[MEDICAL_HISTORY]\n"
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MEDICAL_HISTORY + "ADHD";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Medical_History: %2$s";
     public static final String MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS = "Added medical history to Student: %1$s";

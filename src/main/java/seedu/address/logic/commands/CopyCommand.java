@@ -47,7 +47,6 @@ public abstract class CopyCommand extends Command {
      * @return the string representation
      */
     public String getCopyContent(List<? extends Person> personList) {
-        // TODO: convert to switch statement soon
         if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.PHONE)) {
             return getPhoneContent(personList);
         }
