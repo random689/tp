@@ -10,10 +10,11 @@ import seedu.address.model.person.Person;
 public abstract class CopyCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Fields have been copied to clipboard!";
-    public static final String MESSAGE_NOT_VALID_FIELD = "Field specified is not a valid field! Only the 'phone' "
-            + "field is supported.";
-    public static final String NO_FIELD_PROVIDED = "At least one field to copy must be provided. Use the c/ prefix.";
-    public static final String MESSAGE_USAGE = "Just get good lol";
+    public static final String MESSAGE_NOT_VALID_FIELD = "Field specified is not a valid field! Only the 'phone', "
+            + "'email' and 'name' "
+            + "fields are supported.";
+    public static final String NO_FIELD_PROVIDED = "One field to copy must be provided. Use the c/ prefix.";
+    public static final String EMPTY_LIST = "List is empty! Nothing is copied to the clipboard.";
 
     private CopyCommandDescriptor copyCommandDescriptor;
 
@@ -46,7 +47,6 @@ public abstract class CopyCommand extends Command {
      * @return the string representation
      */
     public String getCopyContent(List<? extends Person> personList) {
-        // TODO: convert to switch statement soon
         if (copyCommandDescriptor.getField().equals(CopyCommandDescriptor.Field.PHONE)) {
             return getPhoneContent(personList);
         }
