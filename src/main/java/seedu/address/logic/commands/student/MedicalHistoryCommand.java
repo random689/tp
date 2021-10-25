@@ -25,7 +25,7 @@ public class MedicalHistoryCommand extends Command {
             + "by the index number used in the last student listing. "
             + "Existing medical history will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "m/ [MEDICAL_HISTORY]\n"
+            + "m/ [MEDICAL_HISTORY]\n" // TODO: swtich to command prefix
             + "Example: " + COMMAND_WORD + " 1 "
             + "m/ ADHD";
 
