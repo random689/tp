@@ -294,7 +294,7 @@ How this command works:
 Examples:
 * `medical 1 m/ADHD` 
 
-### Viewing the full medical history of a student: `showMedical`
+#### Viewing the full medical history of a student: `showMedical`
 
 Displays a pop-up window for the user to view the full medical history of the student in NewAddressBook.
 
