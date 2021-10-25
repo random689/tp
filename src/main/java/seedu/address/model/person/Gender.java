@@ -33,6 +33,12 @@ public class Gender {
         return test.matches("M") || test.matches("F") || test.matches("N");
     }
 
+    /**
+     * Gets the full string representation of the gender
+     *
+     * @return the full string representation of the gender
+     */
+
     public String fullGenderString() {
         switch (value) {
         case "M":
