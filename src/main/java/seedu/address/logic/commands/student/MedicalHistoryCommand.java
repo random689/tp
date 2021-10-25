@@ -30,7 +30,7 @@ public class MedicalHistoryCommand extends Command {
             + "m/ ADHD";
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Medical_History: %2$s";
-    public static final String MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS = "Added medical history to Student: %1$s";
+    public static final String MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS = "Set medical history of Student: %1$s";
     public static final String MESSAGE_DELETE_MEDICAL_HISTORY_SUCCESS = "Removed medical history from Student: %1$s";
 
     private final Index index;
