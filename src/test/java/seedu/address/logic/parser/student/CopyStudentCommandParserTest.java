@@ -36,16 +36,20 @@ public class CopyStudentCommandParserTest {
     @Test
     public void parse_missingFields_failure() {
         // no field specified, c/ prefix mixed up with something else
-        assertParseFailure(parser, INVALID_PREFIX, CopyCommand.NO_FIELD_PROVIDED + "\n" + CopyCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, INVALID_PREFIX,
+                CopyCommand.NO_FIELD_PROVIDED + "\n" + CopyStudentCommand.MESSAGE_USAGE);
 
         // no prefix at all
-        assertParseFailure(parser, "", CopyCommand.NO_FIELD_PROVIDED + "\n" + CopyCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "", CopyCommand.NO_FIELD_PROVIDED + "\n"
+                + CopyStudentCommand.MESSAGE_USAGE);
     }
 
     @Test
     public void parse_validFields_success() {
-        assertParseSuccess(parser, VALID_FIELD_PHONE, new CopyStudentCommand(new CopyCommandDescriptor("phone")));
-        assertParseSuccess(parser, VALID_FIELD_EMAIL, new CopyStudentCommand(new CopyCommandDescriptor("email")));
+        assertParseSuccess(parser, VALID_FIELD_PHONE,
+                new CopyStudentCommand(new CopyCommandDescriptor("phone")));
+        assertParseSuccess(parser, VALID_FIELD_EMAIL,
+                new CopyStudentCommand(new CopyCommandDescriptor("email")));
 
         // check whitespace
         assertParseSuccess(parser, VALID_FIELD_WITH_WHITESPACE, new CopyStudentCommand(new CopyCommandDescriptor(

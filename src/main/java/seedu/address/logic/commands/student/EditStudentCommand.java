@@ -35,7 +35,7 @@ public class EditStudentCommand extends EditCommand {
         + "[" + PREFIX_FORM_CLASS + "FORM CLASS] "
         + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT] "
         + "[" + PREFIX_TAG + "TAG]...\n"
-        + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
+        + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE; // TODO: make this more specific to students
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
