@@ -53,10 +53,10 @@ public class TeacherCard extends UiPart<Region> {
         this.teacher = teacher;
         id.setText(displayedIndex + ". ");
         name.setText(teacher.getName().fullName);
-        phone.setText(teacher.getPhone().value);
-        email.setText(teacher.getEmail().value);
-        gender.setText(teacher.getGender().value);
-        officeTable.setText(teacher.getOfficeTable().value);
+        phone.setText("Contact : " + teacher.getPhone().value);
+        email.setText("Email: " + teacher.getEmail().value);
+        gender.setText("Gender: " + teacher.getGender().value);
+        officeTable.setText("Table number: " + teacher.getOfficeTable().value);
         involvement.setText(teacher.getInvolvement().value);
         teacher.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
