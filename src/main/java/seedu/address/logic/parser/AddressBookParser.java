@@ -18,7 +18,6 @@ import seedu.address.logic.commands.student.EditStudentCommand;
 import seedu.address.logic.commands.student.FilterStudentCommand;
 import seedu.address.logic.commands.student.FindStudentCommand;
 import seedu.address.logic.commands.student.ListStudentCommand;
-import seedu.address.logic.commands.student.MassDeleteStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.commands.student.ShowMedicalHistoryCommand;
 import seedu.address.logic.commands.teacher.AddTeacherCommand;
@@ -29,7 +28,6 @@ import seedu.address.logic.commands.teacher.EditTeacherCommand;
 import seedu.address.logic.commands.teacher.FilterTeacherCommand;
 import seedu.address.logic.commands.teacher.FindTeacherCommand;
 import seedu.address.logic.commands.teacher.ListTeacherCommand;
-import seedu.address.logic.commands.teacher.MassDeleteTeacherCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.CopyStudentCommandParser;
@@ -37,7 +35,6 @@ import seedu.address.logic.parser.student.DeleteStudentCommandParser;
 import seedu.address.logic.parser.student.EditStudentCommandParser;
 import seedu.address.logic.parser.student.FilterStudentCommandParser;
 import seedu.address.logic.parser.student.FindStudentCommandParser;
-import seedu.address.logic.parser.student.MassDeleteStudentCommandParser;
 import seedu.address.logic.parser.student.MedicalHistoryCommandParser;
 import seedu.address.logic.parser.student.ShowMedicalHistoryCommandParser;
 import seedu.address.logic.parser.teacher.AddTeacherCommandParser;
@@ -46,7 +43,6 @@ import seedu.address.logic.parser.teacher.DeleteTeacherCommandParser;
 import seedu.address.logic.parser.teacher.EditTeacherCommandParser;
 import seedu.address.logic.parser.teacher.FilterTeacherCommandParser;
 import seedu.address.logic.parser.teacher.FindTeacherCommandParser;
-import seedu.address.logic.parser.teacher.MassDeleteTeacherCommandParser;
 
 /**
  * Parses user input.
@@ -137,12 +133,6 @@ public class AddressBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
-
-        case MassDeleteStudentCommand.COMMAND_WORD:
-            return new MassDeleteStudentCommandParser().parse(arguments);
-
-        case MassDeleteTeacherCommand.COMMAND_WORD:
-            return new MassDeleteTeacherCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
