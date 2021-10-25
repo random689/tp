@@ -2,10 +2,15 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.student.Student;
 
 /**
  * Clears the student address book.
@@ -18,10 +23,11 @@ public class ClearStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        AddressBook newAddressBook = new AddressBook();
-        // get the teacher list while ignoring the student list
-        newAddressBook.setTeachers(model.getAddressBook().getTeacherList());
-        model.setAddressBook(newAddressBook);
+        ReadOnlyAddressBook readOnlyAddressBook = model.getAddressBook();
+        AddressBook copiedAddressBook = new AddressBook(readOnlyAddressBook);
+        List<Student> emptyStudentList = new ArrayList<>();
+        copiedAddressBook.setStudents(emptyStudentList);
+        model.setAddressBook(copiedAddressBook);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
