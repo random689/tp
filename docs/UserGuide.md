@@ -23,8 +23,6 @@ features such as keeping track of upcoming meetings, recording the medical histo
 
 3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
-(Comment: msising 3rd student entry could be a potential nitpick)
-
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data.<br>
 ![Ui](images/Ui.png)
 
