@@ -30,14 +30,15 @@ public class FormClassTest {
         assertFalse(FormClass.isValidFormClass("")); // empty string
         assertFalse(FormClass.isValidFormClass(" ")); // spaces only
         assertFalse(FormClass.isValidFormClass(" 4E1")); // contains whitespace at start
-        assertFalse(FormClass.isValidFormClass("4E1E1")); // not in the format of Number-String-Number
         assertFalse(FormClass.isValidFormClass("4@1")); // contains non-alphanumeric character
-        assertFalse(FormClass.isValidFormClass("E1")); // not in the format of Number-String-Number
+        assertFalse(FormClass.isValidFormClass("E1")); // does not start with 1-5
+        assertFalse(FormClass.isValidFormClass("8E1")); // does not start with 1-5
 
         // valid FormClass
-        assertTrue(FormClass.isValidFormClass("4e1")); // alphanumeric characters
+        assertTrue(FormClass.isValidFormClass("4e1")); // in the correct format
         assertTrue(FormClass.isValidFormClass("4E1")); // with capital letters
         assertTrue(FormClass.isValidFormClass("4Harmony1")); // long names
-        assertTrue(FormClass.isValidFormClass("10N12")); // more than digit at start and end
+        assertTrue(FormClass.isValidFormClass("1N12")); // more than digit at start and end
+        assertTrue(FormClass.isValidFormClass("1Science4Life")); // alphanumeric mix
     }
 }
