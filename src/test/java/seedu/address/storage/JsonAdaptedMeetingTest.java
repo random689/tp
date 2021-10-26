@@ -43,7 +43,7 @@ public class JsonAdaptedMeetingTest {
                 null, VALID_TITLE, VALID_VENUE, VALID_ATTENDEE);
 
         String expectedMessage = String.format(JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT,
-        DateTime.class.getSimpleName());
+                DateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 

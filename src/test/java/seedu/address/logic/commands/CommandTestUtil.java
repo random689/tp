@@ -127,7 +127,7 @@ public class CommandTestUtil {
     public static final EditTeacherDescriptor DESC_DEE;
 
     //meetings
-    public static final String VALID_DATETIME_1 = "2022-08-20 13:24" ;
+    public static final String VALID_DATETIME_1 = "2022-08-20 13:24";
     public static final String VALID_DATETIME_2 = "2026-01-20 10:00";
     public static final String VALID_DATETIME_3 = "2023-10-20 12:20";
     public static final String VALID_ATTENDEE_1 = "T";
@@ -143,7 +143,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATETIME = "2022-20-08 02:02";
     public static final String INVALID_ATTENDEE = "Y";
     public static final String INVALID_TITLE = ""; //empty string not allowed
-    public static final String InVALID_VENUE = " "; //space not allowed
+    public static final String IMVALID_VENUE = " "; //space not allowed
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder()

@@ -1,20 +1,21 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.meeting.exceptions.MeetingConflictException;
-import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
-import seedu.address.testutil.MeetingBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_1;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBookObjects.BIOLOGY_CONSULT;
 import static seedu.address.testutil.TypicalAddressBookObjects.PRESENTATION;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.meeting.exceptions.MeetingConflictException;
+import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.testutil.MeetingBuilder;
 
 public class NonConflictMeetingListTest {
 
@@ -75,7 +76,8 @@ public class NonConflictMeetingListTest {
     @Test
     public void setMeetings_listWithDuplicateMeetings_throwsMeetingConflictException() {
         List<Meeting> listWithConflictingMeetings = Arrays.asList(PRESENTATION, PRESENTATION);
-        assertThrows(MeetingConflictException.class, () -> nonConflictMeetingList.setMeetings(listWithConflictingMeetings));
+        assertThrows(MeetingConflictException.class, () ->
+                nonConflictMeetingList.setMeetings(listWithConflictingMeetings));
     }
 
     @Test

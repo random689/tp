@@ -1,11 +1,11 @@
 package seedu.address.model;
 
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEACHER;
 import static seedu.address.testutil.TypicalAddressBookObjects.ALI;
 import static seedu.address.testutil.TypicalAddressBookObjects.ALICE;
 import static seedu.address.testutil.TypicalAddressBookObjects.BEN;
 import static seedu.address.testutil.TypicalAddressBookObjects.BOB;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEACHER;
 
 import java.util.Collections;
 

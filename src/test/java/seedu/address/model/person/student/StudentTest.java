@@ -35,11 +35,11 @@ public class StudentTest {
         // null -> returns false
         assertFalse(ALICE.isSameStudent(null));
 
-        // same name, all other attributes different -> returns true
+        // same name and address, all other attributes different -> returns true
         Student editedAlice = new StudentBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withGender(VALID_GENDER_BOB).withInvolvement(VALID_INVOLVEMENT_BOB)
-                .withFormClass(VALID_FORM_CLASS_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB).withTags(VALID_TAG_MONITOR).build();
+                .withFormClass(VALID_FORM_CLASS_BOB).withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
+                .withTags(VALID_TAG_MONITOR).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns true

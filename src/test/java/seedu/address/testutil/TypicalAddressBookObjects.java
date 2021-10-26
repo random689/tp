@@ -53,7 +53,8 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 
 /**
- * A utility class containing a list of {@code Student}, {@code Teacher} and {@code Meeting} objects to be used in tests.
+ * A utility class containing a list of {@code Student},
+ * {@code Teacher} and {@code Meeting} objects to be used in tests.
  */
 public class TypicalAddressBookObjects {
 

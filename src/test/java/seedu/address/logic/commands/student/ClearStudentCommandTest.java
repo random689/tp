@@ -3,7 +3,6 @@ package seedu.address.logic.commands.student;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalAddressBookObjects.ALICE;
 import static seedu.address.testutil.TypicalAddressBookObjects.BENSON;
 import static seedu.address.testutil.TypicalAddressBookObjects.CARL;
@@ -12,6 +11,7 @@ import static seedu.address.testutil.TypicalAddressBookObjects.ELLE;
 import static seedu.address.testutil.TypicalAddressBookObjects.FIONA;
 import static seedu.address.testutil.TypicalAddressBookObjects.GEORGE;
 import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 

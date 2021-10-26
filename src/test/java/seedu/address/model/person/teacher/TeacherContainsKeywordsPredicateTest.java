@@ -1,16 +1,18 @@
 package seedu.address.model.person.teacher;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPredicate;
-import seedu.address.testutil.StudentBuilder;
-import seedu.address.testutil.TeacherBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.TeacherBuilder;
+
+
+
 
 
 public class TeacherContainsKeywordsPredicateTest {
@@ -29,7 +31,7 @@ public class TeacherContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-       TeacherInvolvementContainsKeywordsPredicate firstPredicateCopy =
+        TeacherInvolvementContainsKeywordsPredicate firstPredicateCopy =
                 new TeacherInvolvementContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
