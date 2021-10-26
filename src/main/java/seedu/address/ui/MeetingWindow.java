@@ -37,11 +37,6 @@ public class MeetingWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
-    @FXML
-    private void handleQuitMeeting() {
-        this.hide();
-    }
-
     /**
      * Creates a new MeetingWindow.
      *
@@ -84,6 +79,11 @@ public class MeetingWindow extends UiPart<Stage> {
         logger.fine("Showing upcoming meetings.");
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    @FXML
+    private void handleQuitMeeting() {
+        this.hide();
     }
 
     /**
