@@ -20,14 +20,15 @@
                 <URL value="@MedicalWindow.css" />
             </stylesheets>
 
-            <VBox alignment="CENTER" minWidth="240" prefWidth="240" minHeight="100" prefHeight="100" styleClass="pane-with-border">
+            <VBox alignment="CENTER" minWidth="300" prefWidth="300" minHeight="200" prefHeight="200"
+                  styleClass="pane-with-border">
                 <children>
-                    <Label fx:id="name" text="Label">
+                    <Label fx:id="name" styleClass="cell_big_label" text="Label" wrapText="true">
                         <HBox.margin>
                             <Insets right="5.0" />
                         </HBox.margin>
                     </Label>
-                    <Label fx:id="medicalHistory" text="Label">
+                    <Label fx:id="medicalHistory" text="Label" wrapText="true">
                         <HBox.margin>
                             <Insets right="5.0" />
                         </HBox.margin>
