@@ -233,19 +233,19 @@ appending all the names of the students in the filtered student list to the user
 
 The following sequence diagram shows how the copy operation works for a copyStudent command. The `copyTeacher` command works similarly, so we will only discuss students here. If the user specifies another field to be copied, such as `phone` or `email`, the command also works similarly, so we will not discuss them here.
 
-(Isn't this diagram too complicated)
+(Comment: Isn't this diagram too complicated)
 
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-:information_source: **Note:** The lifeline for `CopyCommand` and should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `CopyCommand` and should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 **Design considerations:**
 
 **Aspect: How copy executes:**
 
-(Probably need to be more specific about this, and justify why alternative 1 is better)
+(Comment: Probably need to be more specific about this, and justify why alternative 1 is better)
 * **Alternative 1 (current choice):** CopyCommand handles the copying
     * Pros: Easy to implement.
     * Cons: May violate some coding principles
@@ -255,7 +255,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
     * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
 
 <div markdown="span" class="alert alert-info">:information_source: 
-:information_source: **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
+**Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
 </div>
 
 
