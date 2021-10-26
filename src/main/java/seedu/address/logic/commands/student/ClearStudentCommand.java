@@ -2,26 +2,43 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.student.Student;
 
-/**
- * Clears the student address book.
- */
 public class ClearStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "clearStudent";
-    public static final String MESSAGE_SUCCESS = "Student Address book has been cleared!";
+
+    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted %d students";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes the student in existing view.\n"
+            + "Example: " + COMMAND_WORD;
+
+    public static final String NOTHING_TO_DELETE = "There are no students to clear!";
+
+    private final List<Student> studentsToEliminate = new ArrayList<>();
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        AddressBook newAddressBook = new AddressBook();
-        // get the teacher list while ignoring the student list
-        newAddressBook.setTeachers(model.getAddressBook().getTeacherList());
-        model.setAddressBook(newAddressBook);
-        return new CommandResult(MESSAGE_SUCCESS);
+        List<Student> lastShownList = model.getFilteredStudentList();
+
+        if (lastShownList.size() < 1) {
+            throw new CommandException(NOTHING_TO_DELETE);
+        }
+
+        for (Student studentInList : lastShownList) {
+            studentsToEliminate.add(studentInList);
+        }
+
+        model.massDeleteStudent(studentsToEliminate);
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentsToEliminate.size()));
     }
 }
