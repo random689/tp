@@ -156,19 +156,13 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Undo feature
 
-#### Proposed Implementation
+The undo mechanism is facilitated by a stack inside `ModelManager`. Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, `ModelManager` exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
 
-The undo mechanism is facilitated by a stack inside `ModelManager`, which has an address book as an a 
-field. 
-Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, 
-`ModelManager` 
-exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** It is needed for one to store a **copy** of the address book, otherwise any modifications to the existing address book would also alter the copies in the stack.
+</div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** It is needed for one to store a 
-**copy** of the address book, otherwise any modifications to the existing address book would also alter the copies 
-in the stack.</div>
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The app creates an address book with the initial address book state, and a copy of this address book, `ab0`, will be pushed into the stack.
 
@@ -178,20 +172,20 @@ Step 2. The user executes `deleteStudent 1` command to delete the 1st student in
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `student n/David …​` (check this!) to add a new person. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
+Step 3. The user executes `student n/David …​` to add a new student. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** If a command fails its execution, it will not save the address book.
 </div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager::undo`, which will pop the front element from the stack and restore `ab2`'s contents. The top of the stack is now `ab1`.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the stack has size 1, it means that copy of the address book inside the stack is the same as when the app first stated. In this case, the app does not execute the `undo` operation, but rather tells the user that they are already at the oldest change.
-
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** If the stack has size 1, it means that copy of the address book inside the stack is the same as when the app first started. In this case, the app does not execute the `undo` operation, but rather tells the user that they are already at the oldest change.
 </div>
 
 The following sequence diagram shows how the undo operation works:
