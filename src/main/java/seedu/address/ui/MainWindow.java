@@ -240,6 +240,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleMedical(commandResult.getStudent());
             }
 
+            if (commandResult.isShowMeeting()) {
+                handleMeeting();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
