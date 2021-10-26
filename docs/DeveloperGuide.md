@@ -217,12 +217,11 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
 
 We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
 
-### CopyStudent / CopyTeacher
+### Copy Command
 
-#### Implementation
+The `CopyStudentCommand/CopyTeacher` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand::getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
 
-The `CopyCommand` class extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers.
-This command is supported by the method in the `Model` interface, namely the `Model#getFilteredStudentList()` and `Model#getFilteredTeacherList()` methods.
+As such, this command is supported by the method in the `Model` interface, namely the `Model::getFilteredStudentList()` and `Model::getFilteredTeacherList()` methods.
 
 Given below is an example usage scenario and how the copy mechanism behaves.
 
@@ -254,6 +253,10 @@ The following sequence diagram shows how the copy operation works for a copyStud
 * **Alternative 2:** Model handles the copying
     * Pros: Easier to maintain and will work like the other commands
     * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
+
+<div markdown="span" class="alert alert-info">:information_source: 
+:information_source: **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
+</div>
 
 
 ### Adding meetings
