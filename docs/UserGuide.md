@@ -31,7 +31,7 @@ features such as keeping track of upcoming meetings, recording the medical histo
 5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`listStudent`** : Lists all contacts.
+    * **`listStudents`** : Lists all contacts.
 
     * **`student n/John Doe p/98765432 e/johnd@example.com g/M a/311, 
          Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`** : Adds a student named "John Doe" to NewAddressBook.
@@ -90,7 +90,7 @@ Action | Format | Window
 **Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | | Main
-**Record a student's medical history** | | Main
+**Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **List all students** |`listStudents` | Main
 **Copy a field from students** | `copyStudent c/FIELD` | Main
 **Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
@@ -103,7 +103,7 @@ Action | Format | Window
 **Copy a  field from teachers** | `copy c/FIELD` | Main
 **Help** | `help` | Main
 **Exit NewAddressBook** | `exit` | Main
-**Open meetings window** | `showMeetings` | Main
+**Open meetings window** | `showMeeting` | Main
 **Add meeting** | `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE` | Meetings
 **Remove meetings** | | Meetings
 **Close meetings window** | | Meetings
@@ -460,6 +460,11 @@ Example:
 NewAddressBook automatically removes meetings that have expired whenever you load the app. 
 So you don't have to worry about deleting them!
 </div>
+
+#### Display meeting window: `showMeeting`
+Displays the meeting window.
+
+Format: `showMeeting`
 
 #### Add meeting: `meet`
 Adds a meeting to NewAddressBook.
