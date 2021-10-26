@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DummyMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.QuitMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class MeetingParser {
@@ -35,6 +36,10 @@ public class MeetingParser {
         switch (commandWord) {
         case "fish":
             return new DummyMeetingCommand();
+
+        case "quitMeeting":
+            return new QuitMeetingCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
