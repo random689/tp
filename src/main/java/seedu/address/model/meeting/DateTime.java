@@ -6,17 +6,19 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
- * Represents a Meeting's datetime in the address book.
+ * Represents a Meeting's datetime in NewAddressBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime implements Comparable<DateTime> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting datetime should be of the format YYYY-MM-DD HH:mm";
+            "Meeting datetime must be valid and should be of the format YYYY-MM-DD HH:mm";
     public static final String VALIDATION_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").withResolverStyle(ResolverStyle.STRICT);
     private static final DateTimeFormatter USER_OUTPUT_FORMATTER =
             DateTimeFormatter.ofPattern("EEE dd MMM yyyy, hh:mm a");
 
