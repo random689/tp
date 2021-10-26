@@ -357,10 +357,9 @@ Examples:
 
 #### Edit a teacher: `editTeacher`
 
-Edits an existing teacher in NewAddressBook.
+Edits an existing teacher in the address book.
 
-Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] 
-[i/INVOLVEMENT] [t/TAG]…​`
+Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
