@@ -23,6 +23,8 @@ features such as keeping track of upcoming meetings, recording the medical histo
 
 3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
+(Comment: msising 3rd student entry could be a potential nitpick)
+
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data.<br>
 ![Ui](images/Ui.png)
 
@@ -36,7 +38,7 @@ features such as keeping track of upcoming meetings, recording the medical histo
 
     * **`deleteStudent 3`** : Deletes the 3rd student shown in the student list.
 
-    * **`clearStudent`** : Deletes all students.
+    * **`clearStudent`** : Deletes all displayed students.
 
     * **`exit`** : Exits the app.
 
@@ -87,7 +89,7 @@ Action | Format | Window
 **Delete a student** | `deleteStudent INDEX` | Main
 **Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
-**Filter a student by** | | Main
+**Filter a student** | | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **List all students** |`listStudents` | Main
 **Copy a field from students** | `copyStudent c/FIELD` | Main
@@ -96,7 +98,7 @@ Action | Format | Window
 **Delete a teacher** | `deleteTeacher INDEX` | Main
 **Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
-**Filter a teacher by** | | Main
+**Filter a teacher** | | Main
 **List all teachers** | `listTeachers` | Main
 **Copy a  field from teachers** | `copy c/FIELD` | Main
 **Help** | `help` | Main
@@ -184,7 +186,7 @@ Format: `editStudent [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 
 
 * Edits the student at the specified `INDEX`. 
-* `INDEX` refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
@@ -205,7 +207,7 @@ Format: `deleteStudent INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 Examples:
 * `listStudents` followed by `deleteStudent 2` deletes the 2nd student in the address book.
@@ -213,7 +215,7 @@ Examples:
 
 #### Clear all student contacts : `clearStudent`
 
-Clears all students from NewAddressBook.
+Clears all **currently displayed** students from the address book. If the currently displayed list is empty, the application warns the user that the list is empty and nothing is cleared.
 
 Format: `clearStudent`
 
@@ -233,21 +235,23 @@ Format: `findStudent KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findStudent John` returns `john` and `John Doe`
 * `findStudent alex Yu` returns `Alex Yeoh`, `Bernice Yu`<br>
-  ![result for 'find alex yu'](images/findAlexDavidResult.png)
 
-#### Filter students: `filterStudent`
-Filters students by:
+#### Filter students: `filterStudent`.
+
+One can filter students by:
 - tag
 - involvement
 
 Format:
-- `filterStudent [INVOLVEMENT] [t/][TAG]…​`
+- `filterStudent [INVOLVEMENT] [t/TAG]…​`
 
 Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
 
 The filter category is not case-sensitive e.g. “student” same as “STUDENT” but "t/" is not the same as "T/"
 
 Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
+
+(Comment: this is unclear! This is supposed to be t/tag1 tag2 or t/tag1 t/tag2)
 
 More than 1 filter is allowed e.g.  `INVOLVEMENT_FILTER_CATERGORY [t/] [TAG_FILTER CATERGORY] [TAG_FILTER CATERGORY]`.
 
@@ -259,31 +263,37 @@ Example:
 
 #### List all students : `listStudents`
 
-Shows a list of all students stored in NewAddressBook.
+Shows a list of all students stored in the address book.
 
 Format: `listStudents`
 
-#### Copying fields from students `copyStudent`
-Copy specified data from all students shown in the students list to the clipboard. The fields that can be copied are:
+#### Copying fields from students: `copyStudent`.
+Copy specified data from students in the last shown student's list to the user's clipboard. The fields that can be copied are:
 
 - email
 - phone numbers
-- Name
+- name
 
-Format: `copyStudent c/FIELD`
+Format: `copyStudent [c/FIELD_TO_COPY]`
+
+`FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
 
 Example:
-* `listStudents` followed by `copyStudent c/email` copies the emails of all students in NewAddressBook to the user's clipboard.
-* `findStudent Betsy` followed by `copyStudent c/phone` copies the emails of students in the results of the `findStudent` command.
+* `listStudents` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
+* `findStudent Betsy` followed by `copyStudent c/phone` copies the phones of students whose name matches Betsy. The definition of "matches" is as per the definition in the `findStudent` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the last shown student list to the user, nothing will be copied to the clipboard.
+</div>
 
 ### Managing medical history of students
 
 #### Modify medical history of a student: `medical`
-Format: `medical INDEX m/MEDICAL_HISTORY`
+Format: `medical INDEX [m/MEDICAL_HISTORY]`
 
 * Adds the medical history to the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 How this command works:
 1. Adds a medical history to an existing student in NewAddressBook if the student does not have any existing medical history.
@@ -302,7 +312,7 @@ Format: `showMedical INDEX`
 
 * View the full medical history of the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 Examples:
 * `showMedical 1`
@@ -347,14 +357,13 @@ Examples:
 
 #### Edit a teacher: `editTeacher`
 
-Edits an existing teacher in NewAddressBook.
+Edits an existing teacher in the address book.
 
-Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] 
-[i/INVOLVEMENT] [t/TAG]…​`
+Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed teacher list. The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refers to the index number shown in the displayed teacher list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the teacher will be removed i.e adding of tags is not cumulative.
@@ -375,7 +384,7 @@ Format: `deleteTeacher INDEX`
 
 * Deletes the teacher at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed teacher list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 Examples:
 * `listTeacher` followed by `deleteTeacher 2` deletes the 2nd teacher in the address book.

@@ -8,10 +8,10 @@ title: NewAddressBook
 
 ![Ui](images/Ui.png)
 
-**NewAddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+NewAddressBook is a desktop app built for secondary school teachers handling large classes to help manage their contacts of their students and colleagues efficiently. NewAddressBook also supports other features such as keeping track of upcoming meetings, recording the medical histories of your students.
 
 * If you are interested in using NewAddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing NewAddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
