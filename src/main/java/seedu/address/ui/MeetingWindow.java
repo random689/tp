@@ -37,6 +37,11 @@ public class MeetingWindow extends UiPart<Stage> {
     @FXML
     private StackPane resultDisplayPlaceholder;
 
+    @FXML
+    private void handleQuitMeeting() {
+        this.hide();
+    }
+
     /**
      * Creates a new MeetingWindow.
      *
@@ -125,6 +130,9 @@ public class MeetingWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText, Window.MEETING);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            if (commandResult.isQuitMeeting()) {
+                handleQuitMeeting();
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

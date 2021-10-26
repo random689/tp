@@ -209,11 +209,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    @FXML
-    private void handleQuitMeeting() {
-        meetingWindow.hide();
-        primaryStage.show();
-    }
+
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
@@ -248,10 +244,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowMeeting()) {
                 handleMeeting();
-            }
-
-            if (commandResult.isQuitMeeting()) {
-                handleQuitMeeting();
             }
 
             return commandResult;
