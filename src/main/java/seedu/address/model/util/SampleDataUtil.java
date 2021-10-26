@@ -50,7 +50,7 @@ public class SampleDataUtil {
                     getTagSet("family")),
             new Teacher(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Gender("N"), new Involvement("Math HOD"), new OfficeTable("2"),
-                    getTagSet("Colleague")),
+                    getTagSet("gymbuds")),
             new Teacher(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Gender("M"), new Involvement("Colleague"), new OfficeTable("3"),
                     getTagSet("lunchbuddy"))
