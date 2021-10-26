@@ -20,7 +20,7 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false, false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -35,16 +35,19 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false, false)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false)));
 
         //different showMedical value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, false)));
 
         //different student value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, alice)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, alice, false)));
+
+        //different showMeeting value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, true)));
     }
 
     @Test
@@ -58,19 +61,24 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false, alice)
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false, alice, false)
                 .hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false, alice)
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false, alice, false)
                 .hashCode());
 
         // different showMedical value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true, alice)
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true, alice, false)
                 .hashCode());
 
         // different student -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true, bob)
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true, bob, false)
                 .hashCode());
+
+        //different showMeeting value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, false, alice, true)
+                .hashCode());
+
     }
 }
