@@ -2,6 +2,12 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDEE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDEE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDEE_3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_3;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CHO;
@@ -30,20 +36,28 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CHO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DEE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_3;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 
 /**
- * A utility class containing a list of {@code Student} and {@code Teacher} objects to be used in tests.
+ * A utility class containing a list of {@code Student}, {@code Teacher} and {@code Meeting} objects to be used in tests.
  */
 public class TypicalPersons {
 
+    //Students
     public static final Student ALICE = new StudentBuilder()
             .withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
@@ -161,6 +175,58 @@ public class TypicalPersons {
             .withMedicalHistory("Unable to live on land")
             .build();
 
+    public static final Student HOON = new StudentBuilder()
+            .withName("Hoon Meier")
+            .withPhone("8482424")
+            .withEmail("stefan@example.com")
+            .withAddress("little india")
+            .withEmergencyContact("91939100")
+            .withInvolvement("English rep")
+            .withFormClass("3E2")
+            .withGender("N")
+            .withMedicalHistory("")
+            .build();
+
+    public static final Student IDA = new StudentBuilder()
+            .withName("Ida Mueller")
+            .withPhone("8482131")
+            .withEmail("hans@example.com")
+            .withAddress("chicago ave")
+            .withEmergencyContact("91939100")
+            .withInvolvement("Bio rep")
+            .withFormClass("2T1")
+            .withGender("F")
+            .withMedicalHistory("")
+            .build();
+
+    // Manually added - Student's details found in {@code CommandTestUtil}
+    public static final Student AMY = new StudentBuilder()
+            .withName(VALID_NAME_AMY)
+            .withPhone(VALID_PHONE_AMY)
+            .withEmail(VALID_EMAIL_AMY)
+            .withAddress(VALID_ADDRESS_AMY)
+            .withInvolvement(VALID_INVOLVEMENT_AMY)
+            .withTags(VALID_TAG_REP)
+            .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
+            .withFormClass(VALID_FORM_CLASS_AMY)
+            .withGender(VALID_GENDER_AMY)
+            .withMedicalHistory("")
+            .build();
+
+    public static final Student BOB = new StudentBuilder()
+            .withName(VALID_NAME_BOB)
+            .withPhone(VALID_PHONE_BOB)
+            .withEmail(VALID_EMAIL_BOB)
+            .withAddress(VALID_ADDRESS_BOB)
+            .withInvolvement(VALID_INVOLVEMENT_BOB)
+            .withTags(VALID_TAG_MONITOR, VALID_TAG_REP)
+            .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
+            .withFormClass(VALID_FORM_CLASS_BOB)
+            .withGender(VALID_GENDER_BOB)
+            .withMedicalHistory("")
+            .build();
+
+    //Teachers
     public static final Teacher ALI = new TeacherBuilder()
             .withName("Ali Paula")
             .withPhone("94351253")
@@ -227,58 +293,7 @@ public class TypicalPersons {
             .withOfficeTable("7")
             .build();
 
-    // Manually added
-    public static final Student HOON = new StudentBuilder()
-            .withName("Hoon Meier")
-            .withPhone("8482424")
-            .withEmail("stefan@example.com")
-            .withAddress("little india")
-            .withEmergencyContact("91939100")
-            .withInvolvement("English rep")
-            .withFormClass("3E2")
-            .withGender("N")
-            .withMedicalHistory("")
-            .build();
-
-    public static final Student IDA = new StudentBuilder()
-            .withName("Ida Mueller")
-            .withPhone("8482131")
-            .withEmail("hans@example.com")
-            .withAddress("chicago ave")
-            .withEmergencyContact("91939100")
-            .withInvolvement("Bio rep")
-            .withFormClass("2T1")
-            .withGender("F")
-            .withMedicalHistory("")
-            .build();
-
-    // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Student AMY = new StudentBuilder()
-            .withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY)
-            .withAddress(VALID_ADDRESS_AMY)
-            .withInvolvement(VALID_INVOLVEMENT_AMY)
-            .withTags(VALID_TAG_REP)
-            .withEmergencyContact(VALID_EMERGENCY_CONTACT_AMY)
-            .withFormClass(VALID_FORM_CLASS_AMY)
-            .withGender(VALID_GENDER_AMY)
-            .withMedicalHistory("")
-            .build();
-
-    public static final Student BOB = new StudentBuilder()
-            .withName(VALID_NAME_BOB)
-            .withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB)
-            .withAddress(VALID_ADDRESS_BOB)
-            .withInvolvement(VALID_INVOLVEMENT_BOB)
-            .withTags(VALID_TAG_MONITOR, VALID_TAG_REP)
-            .withEmergencyContact(VALID_EMERGENCY_CONTACT_BOB)
-            .withFormClass(VALID_FORM_CLASS_BOB)
-            .withGender(VALID_GENDER_BOB)
-            .withMedicalHistory("")
-            .build();
-
+    //Manually added - Teacher's details found in {@code CommandTestUtil}
     public static final Teacher CHO = new TeacherBuilder()
         .withName(VALID_NAME_CHO)
         .withPhone(VALID_PHONE_CHO)
@@ -308,6 +323,50 @@ public class TypicalPersons {
             .withOfficeTable("7")
             .build();
 
+    //Meetings
+    public static final Meeting MEET_PARENTS = new MeetingBuilder()
+            .withDateTime("2022-06-10 10:00")
+            .withAttendee("P")
+            .withTitle("Meet the Parents Session")
+            .withVenue("4E1 Classroom")
+            .build();
+
+    public static final Meeting DEPARTMENT_MEETING = new MeetingBuilder()
+            .withDateTime("2022-12-12 12:00")
+            .withAttendee("T")
+            .withTitle("Math Department Meeting")
+            .withVenue("Meeting Room B")
+            .build();
+
+    public static final Meeting CONSULTATION = new MeetingBuilder()
+            .withDateTime("2022-05-20 18:00")
+            .withAttendee("S")
+            .withTitle("Math Consultation with Alex")
+            .withVenue("Outside Staff Room")
+            .build();
+
+    //Manually added - Meeting's details found in {@code CommandTestUtil}
+    public static final Meeting BIOLOGY_CONSULT = new MeetingBuilder()
+            .withDateTime(VALID_DATETIME_1)
+            .withAttendee(VALID_ATTENDEE_1)
+            .withTitle(VALID_TITLE_1)
+            .withVenue(VALID_VENUE_1)
+            .build();
+
+    public static final Meeting STAFF_MEETING = new MeetingBuilder()
+            .withDateTime(VALID_DATETIME_2)
+            .withAttendee(VALID_ATTENDEE_2)
+            .withTitle(VALID_TITLE_2)
+            .withVenue(VALID_VENUE_2)
+            .build();
+
+    public static final Meeting PRESENTATION = new MeetingBuilder()
+            .withDateTime(VALID_DATETIME_3)
+            .withAttendee(VALID_ATTENDEE_3)
+            .withTitle(VALID_TITLE_3)
+            .withVenue(VALID_VENUE_3)
+            .build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
@@ -323,31 +382,11 @@ public class TypicalPersons {
         for (Teacher teacher: getTypicalTeachers()) {
             ab.addTeacher(teacher);
         }
-        return ab;
-    }
-
-    /**
-     * Returns an {@code AddressBook} with all the typical students.
-     */
-    public static AddressBook getTypicalAddressBookStudents() {
-        AddressBook ab = new AddressBook();
-        for (Student student : getTypicalStudents()) {
-            ab.addStudent(student);
+        for (Meeting meeting: getTypicalMeetings()) {
+            ab.addMeeting(meeting);
         }
         return ab;
     }
-
-    /**
-     * Returns an {@code AddressBook} with all the typical students.
-     */
-    public static AddressBook getTypicalAddressBookTeachers() {
-        AddressBook ab = new AddressBook();
-        for (Teacher teacher : getTypicalTeachers()) {
-            ab.addTeacher(teacher);
-        }
-        return ab;
-    }
-
 
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
@@ -355,5 +394,9 @@ public class TypicalPersons {
 
     public static List<Teacher> getTypicalTeachers() {
         return new ArrayList<>(Arrays.asList(ALI, BEN, CAR, DAN, EL, FIO, GEO));
+    }
+
+    public static List<Meeting> getTypicalMeetings() {
+        return new ArrayList<>(Arrays.asList(MEET_PARENTS, DEPARTMENT_MEETING, CONSULTATION));
     }
 }
