@@ -61,7 +61,7 @@ public class FilterContainsKeywordsPredicateTest {
 
         assertTrue(predicate2.test(new StudentBuilder().withTags("first", "second").build()));
 
-        assertTrue(predicate2.test(new StudentBuilder().withTags("first").build()));
+        assertFalse(predicate2.test(new StudentBuilder().withTags("first").build()));
 
         assertFalse(predicate2.test(new StudentBuilder().withInvolvement("first").build()));
     }
