@@ -18,4 +18,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_OFFICE_TABLE = new Prefix("o/");
     public static final Prefix PREFIX_COPY_FIELD = new Prefix("c/");
     public static final Prefix PREFIX_MEDICAL_HISTORY = new Prefix("m/");
+    public static final Prefix PREFIX_MEETING_TITLE = new Prefix("r/");
+    public static final Prefix PREFIX_MEETING_DATETIME = new Prefix("d/");
+    public static final Prefix PREFIX_MEETING_VENUE = new Prefix("v/");
+    public static final Prefix PREFIX_MEETING_ATTENDEE = new Prefix("w/");
 }

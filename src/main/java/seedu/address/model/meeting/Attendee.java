@@ -22,7 +22,7 @@ public class Attendee {
     public Attendee(String attendee) {
         requireNonNull(attendee);
         checkArgument(isValidAttendee(attendee), MESSAGE_CONSTRAINTS);
-        value = attendee;
+        value = attendee.toUpperCase();
     }
 
     /**

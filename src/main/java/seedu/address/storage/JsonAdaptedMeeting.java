@@ -8,7 +8,6 @@ import seedu.address.model.meeting.Attendee;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.exceptions.MeetingExpiredException;
 
 /**
  * Jackson-friendly version of {@link Meeting}.
@@ -50,7 +49,7 @@ public class JsonAdaptedMeeting {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
-    public Meeting toModelType() throws IllegalValueException, MeetingExpiredException {
+    public Meeting toModelType() throws IllegalValueException {
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 DateTime.class.getSimpleName()));
@@ -58,9 +57,7 @@ public class JsonAdaptedMeeting {
         if (!DateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        if (DateTime.isPastDateTime(dateTime)) {
-            throw new MeetingExpiredException();
-        }
+
         final DateTime modelDateTime = new DateTime(dateTime);
 
         if (title == null) {

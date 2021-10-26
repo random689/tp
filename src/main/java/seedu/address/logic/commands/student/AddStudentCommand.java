@@ -23,6 +23,12 @@ import seedu.address.model.person.student.Student;
 public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "student";
 
+    // TODO: we should standardise the way we warn users that an input is invalid. For example, some warnings are:
+    //  throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+    //                    MedicalHistoryCommand.MESSAGE_USAGE));
+    //  whereas some other warnings are simply return
+    //                    CommandResult(MedicalHistoryCommand.MESSAGE_USAGE)
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "

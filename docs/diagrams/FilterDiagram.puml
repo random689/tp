@@ -1,5 +1,19 @@
 @startuml
 'https://plantuml.com/sequence-diagram'
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FilterStudentCommandParser" as FilterStudentCommandParser LOGIC_COLOR
+participant ":StudentInvolvementContainsKeywordsPredicate" as StudentInvolvementContainsKeywordsPredicate LOGIC_COLOR
+participant "d:FilterStudentCommand" as FilterStudentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
 
 [-> LogicManager : execute("filterStudent class")
 activate LogicManager
@@ -25,18 +39,18 @@ create FilterStudentCommand
 StudentInvolvementContainsKeywordsPredicate -> FilterStudentCommand
 activate FilterStudentCommand
 
-FilterStudentCommand --> StudentInvolvementContainsKeywordsPredicate
+FilterStudentCommand --> StudentInvolvementContainsKeywordsPredicate :d
 deactivate FilterStudentCommand
 
-StudentInvolvementContainsKeywordsPredicate --> FilterStudentCommandParser
+StudentInvolvementContainsKeywordsPredicate --> FilterStudentCommandParser :d
 deactivate
 
-FilterStudentCommandParser --> AddressBookParser
+FilterStudentCommandParser --> AddressBookParser :d
 deactivate FilterStudentCommandParser
 FilterStudentCommandParser -[hidden]-> AddressBookParser
 destroy FilterStudentCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager :d
 deactivate AddressBookParser
 
 LogicManager -> FilterStudentCommand : execute()
