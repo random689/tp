@@ -29,17 +29,17 @@ public class SampleDataUtil {
     public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Gender("M"), new Involvement("Class 4A"),
+                    new Gender("M"), new Involvement("Class monitor"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
-                    new Phone("91934131"), new FormClass("1E1"), getTagSet("monitor")),
+                    new Phone("91934131"), new FormClass("1E1"), getTagSet("Responsible")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Gender("F"), new Involvement("Math class"),
+                    new Gender("F"), new Involvement("Math rep"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    new Phone("95614132"), new FormClass("1E4"), getTagSet("rep")),
+                    new Phone("95614132"), new FormClass("1E4"), getTagSet("Naughty")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Gender("F"), new Involvement("Bio class"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    new Phone("90234134"), new FormClass("3B5"), getTagSet("rep"))
+                    new Phone("90234134"), new FormClass("3B5"), getTagSet("Quiet"))
         };
     }
 
@@ -52,7 +52,7 @@ public class SampleDataUtil {
                     new Gender("N"), new Involvement("Math HOD"), new OfficeTable("2"),
                     getTagSet("Colleague")),
             new Teacher(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Gender("M"), new Involvement("Math Department"), new OfficeTable("3"),
+                    new Gender("M"), new Involvement("Colleague"), new OfficeTable("3"),
                     getTagSet("lunchbuddy"))
         };
     }
