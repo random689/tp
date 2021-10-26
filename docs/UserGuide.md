@@ -23,8 +23,6 @@ features such as keeping track of upcoming meetings, recording the medical histo
 
 3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
-(Comment: msising 3rd student entry could be a potential nitpick)
-
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data.<br>
 ![Ui](images/Ui.png)
 
@@ -74,7 +72,7 @@ You can do so by entering the `showMeeting` command  or by clicking on the `Show
 The following image shows the Meetings Window:
 
 
-### Functionalities Summary
+### Commands Summary
 
 <div markdown="span" class="alert alert-primary">
 :information_source: Some commands work only in the <b>Main</b> application window, while others work only in the <b>Meetings</b> window. 
@@ -85,33 +83,33 @@ the command is compatible with.
 Action | Format | Window
 --------|---------|----------
 **Add student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​` | Main
-**Clear all students** | `clearStudent` | Main
+**Clear students** | `clearStudent` | Main
+**Copy a field from students** | `copyStudent [c/FIELD_TO_COPY]` | Main
 **Delete a student** | `deleteStudent INDEX` | Main
 **Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | | Main
-**Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **List all students** |`listStudents` | Main
-**Copy a field from students** | `copyStudent c/FIELD` | Main
+**Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
+**Copy a field from teachers** | `copy c/FIELD_TO_COPY` | Main
 **Clear all teachers** | `clearTeacher` | Main
 **Delete a teacher** | `deleteTeacher INDEX` | Main
 **Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** | | Main
 **List all teachers** | `listTeachers` | Main
-**Copy a  field from teachers** | `copy c/FIELD` | Main
-**Help** | `help` | Main
-**Exit NewAddressBook** | `exit` | Main
-**Open meetings window** | `showMeeting` | Main
 **Add meeting** | `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE` | Meetings
 **Remove meetings** | | Meetings
+**Open meetings window** | `showMeetings` | Main
 **Close meetings window** | | Meetings
+**Exit** | `exit` | Main
 **Undo**| `undo` | Both
+**View help** | `help` | Main
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -138,11 +136,44 @@ Action | Format | Window
 
 </div>
 
+The commands offered are:
+1. [Managing Student Contacts](#managing-student-contacts)
+  - [Add a student](#add-a-student--student)
+  - [Clear student contacts](#clear-student-contacts--clearstudent)
+  - [Copying fields from students](#copying-fields-from-students--copystudent)
+  - [Delete a student](#delete-a-student--deletestudent)
+  - [Edit a student](#edit-a-student--editstudent)
+  - [Find students by name](#find-students-by-name--findstudent)
+  - [Filter students](#filter-students--filterstudent)
+  - [List all students](#list-all-students--liststudents)
+
+2. [Managing Teacher Contacts](#managing-student-contacts)
+  - [Add a teacher](#add-a-teacher--teacher)
+  - [Clear teacher contacts](#clear-teacher-contacts--clearteacher)
+  - [Copying fields from teachers](#copying-fields-from-teachers--copyteacher)
+  - [Delete a teacher](#delete-a-teacher--deleteteacher)
+  - [Edit a teacher](#edit-a-teacher--editteacher)
+  - [Find teachers by name](#find-teachers-by-name--findteacher)
+  - [Filter teachers](#filter-teachers--filterteacher)
+  - [List all teachers](#list-all-teachers--listteachers)
+
+3. [Managing Meetings](#managing-meetings)
+  - [Add a meeting](#add-a-meeting--meet)
+  - [Delete a meeting](#delete-a-meeting)
+  - [Show meetings window](#show-meetings-window--showmeeting) 
+  - [Quit meetings window](#quit-meetings-window)
+
+
+4. [General](#general)
+ - [Exiting the program](#exiting-the-program--exit)
+ - [Undo the latest change](#undo-the-latest-change--undo)
+ - [Viewing help](#viewing-help--help)
+
 ### Managing Student Contacts
 
-#### Add a student: `student`
+#### Add a student : `student`
 
-Adds a student to NewAddressBook.
+Adds a student to the address book.
 
 Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
 f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​`
@@ -177,7 +208,51 @@ Examples:
 - `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977`
 - `student n/Betsy Crowe p/83958294 e/bc33@example.com a/Adams road, block 8, #03-05 f/3C1 g/F i/Dance society em/96122134 t/President t/exco`
 
-#### Edit a student: `editStudent`
+#### Clear student contacts : `clearStudent`
+
+Clears all **currently displayed** students from the address book. If the currently displayed list is empty, the application warns the user that the list is empty and nothing is cleared.
+
+Format: `clearStudent`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudents` command. 
+</div>
+
+(Comment: probably change it to plural).
+#### Copying fields from students : `copyStudent` 
+Copy specified data from students in the last shown student's list to the user's clipboard. The fields that can be copied are:
+
+- email
+- phone numbers
+- name
+
+Format: `copyStudent [c/FIELD_TO_COPY]`
+
+`FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
+
+Example:
+* `listStudents` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
+* `findStudent Betsy` followed by `copyStudent c/phone` copies the phones of students whose name matches Betsy. The definition of "matches" is as per the definition in the `findStudent` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the last shown student list to the user is empty, nothing will be copied to the clipboard.
+</div>
+
+#### Delete a student : `deleteStudent`
+
+Deletes the specified student from NewAddressBook.
+
+Format: `deleteStudent INDEX`
+
+* Deletes the student at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
+Examples:
+* `listStudents` followed by `deleteStudent 2` deletes the 2nd student in the address book.
+* `findStudent Betsy` followed by `deleteStudent 1` deletes the 1st student in the results of the `findStudent` command.
+
+#### Edit a student : `editStudent`
 
 Edits an existing student in NewAddressBook.
 
@@ -199,27 +274,8 @@ Examples:
 *  `editStudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `editStudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-#### Delete a student : `deleteStudent`
 
-Deletes the specified student from NewAddressBook.
-
-Format: `deleteStudent INDEX`
-
-* Deletes the student at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
-
-Examples:
-* `listStudents` followed by `deleteStudent 2` deletes the 2nd student in the address book.
-* `findStudent Betsy` followed by `deleteStudent 1` deletes the 1st student in the results of the `findStudent` command.
-
-#### Clear all student contacts : `clearStudent`
-
-Clears all **currently displayed** students from the address book. If the currently displayed list is empty, the application warns the user that the list is empty and nothing is cleared.
-
-Format: `clearStudent`
-
-#### Locate students by name: `findStudent`
+#### Find students by name : `findStudent`
 
 Finds students whose names contain any of the given keywords.
 
@@ -236,7 +292,7 @@ Examples:
 * `findStudent John` returns `john` and `John Doe`
 * `findStudent alex Yu` returns `Alex Yeoh`, `Bernice Yu`<br>
 
-#### Filter students: `filterStudent`.
+#### Filter students : `filterStudent`
 
 One can filter students by:
 - tag
@@ -247,7 +303,7 @@ Format:
 
 Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
 
-The filter category is not case-sensitive e.g. “student” same as “STUDENT” but "t/" is not the same as "T/"
+The filter category is not case-sensitive e.g. “student” same as “STUDENT” but "t/" is not the same as "T/".
 
 Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
 
@@ -267,26 +323,7 @@ Shows a list of all students stored in the address book.
 
 Format: `listStudents`
 
-#### Copying fields from students: `copyStudent`.
-Copy specified data from students in the last shown student's list to the user's clipboard. The fields that can be copied are:
 
-- email
-- phone numbers
-- name
-
-Format: `copyStudent [c/FIELD_TO_COPY]`
-
-`FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
-
-Example:
-* `listStudents` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
-* `findStudent Betsy` followed by `copyStudent c/phone` copies the phones of students whose name matches Betsy. The definition of "matches" is as per the definition in the `findStudent` command.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the last shown student list to the user, nothing will be copied to the clipboard.
-</div>
-
-### Managing medical history of students
 
 #### Modify medical history of a student: `medical`
 Format: `medical INDEX [m/MEDICAL_HISTORY]`
@@ -319,7 +356,7 @@ Examples:
 
 ### Managing Teacher Contacts
 
-#### Add a teacher: `teacher`
+#### Add a teacher : `teacher`
 
 Adds a teacher to NewAddressBook.
 
@@ -355,7 +392,50 @@ Examples:
 - `teacher n/Messi p/94629424 e/j77@example.com o/12 g/M i/Math Department`
 - `teacher n/Eden p/83958294 e/bc33@example.com g/N i/Class 3D Co-form t/buddy t/colleague`
 
-#### Edit a teacher: `editTeacher`
+#### Clear teacher contacts : `clearTeacher`
+
+Clears all **currently displayed** teachers from the address book. If the currently displayed list is empty, the application warns the user that the list is empty and nothing is cleared.
+
+Format: `clearTeacher`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you want to delete all teachers from the address book, simply make sure the currently displayed list contains all teachers. You can make all teachers appear in the displayed list by the `listTeachers` command. 
+</div>
+
+#### Copying fields from teachers : `copyTeacher`
+Copy specified data from all teachers shown in the teachers list to the clipboard. The fields that can be copied are:
+
+- email
+- phone numbers
+- name
+
+Format: `copyTeacher [c/FIELD_TO_COPY]`
+
+`FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
+
+Example:
+* `listTeacher` followed by `copyTeacher c/email` copies the emails of all teachers to the user's clipboard.
+* `findTeacher Betsy` followed by `copyTeacher c/phone` copies the phones of teachers whose name matches Betsy. The definition of "matches" is as per the definition in the `findTeacher` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the last shown teacher list to the user is empty, nothing will be copied to the clipboard.
+</div>
+
+#### Delete a teacher : `deleteTeacher`
+
+Deletes the specified teacher from NewAddressBook.
+
+Format: `deleteTeacher INDEX`
+
+* Deletes the teacher at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed teacher list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
+Examples:
+* `listTeacher` followed by `deleteTeacher 2` deletes the 2nd teacher in the address book.
+* `findTeacher Betsy` followed by `deleteTeacher 1` deletes the 1st teacher in the results of the `findTeacher` command.
+
+#### Edit a teacher : `editTeacher`
 
 Edits an existing teacher in the address book.
 
@@ -372,31 +452,15 @@ Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TA
 You can remove all the teacher’s tags by typing `t/` without specifying any tags after it.
 </div>
 
+(Comment: should we have examples more specific to teachers and students)?
+
 Examples:
 *  `editTeacher 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teacher to be `91234567` and `johndoe@example.com` respectively.
 *  `editTeacher 2 n/Betsy Crower t/` Edits the name of the 2nd teacher to be `Betsy Crower` and clears all existing tags.
 
-#### Delete a teacher : `deleteTeacher`
 
-Deletes the specified teacher from NewAddressBook.
 
-Format: `deleteTeacher INDEX`
-
-* Deletes the teacher at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed teacher list.
-* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
-
-Examples:
-* `listTeacher` followed by `deleteTeacher 2` deletes the 2nd teacher in the address book.
-* `findTeacher Betsy` followed by `deleteTeacher 1` deletes the 1st teacher in the results of the `findTeacher` command.
-
-#### Clear all teacher contacts : `clearTeacher`
-
-Clears all teachers from NewAddressBook.
-
-Format: `clearTeacher`
-
-#### Locate teachers by name: `findTeacher`
+#### Find teachers by name : `findTeacher`
 
 Finds teachers whose names contain any of the given keywords.
 
@@ -412,19 +476,22 @@ Format: `findTeacher KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findTeacher John` returns `john` and `John Doe`
 * `findTeacher alex Yu` returns `Alex Yeoh`, `Bernice Yu`<br>
-  ![result for 'find alex yu'](images/findAlexDavidResult.png)
 
-#### Filter teachers: `filterTeacher`
-Filters teachers by:
+#### Filter teachers : `filterTeacher`
+One can filter teachers by:
 - tag
 - involvement
+
+(Comment: again, this is unclear!)
 
 Format:
 - `filterTeacher [INVOLVEMENT] [t/][TAG]…​`
 
+(Comment: this is also unclear)
+
 Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
 
-The filter category is not case-sensitive e.g. “teacher” same as “TEACHER” but "t/" is not the same as "T/"
+The filter category is not case-sensitive e.g. “teacher” same as “TEACHER” but "t/" is not the same as "T/".
 
 Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
 
@@ -442,32 +509,21 @@ Shows a list of all teachers stored in NewAddressBook.
 
 Format: `listTeachers`
 
-#### Copying fields from teachers `copyTeacher`
-Copy specified data from all teachers shown in the teachers list to the clipboard. The fields that can be copied are:
-
-- email
-- phone numbers
-- Name
-
-Format: `copyTeacher c/FIELD`
-
-Example:
-* `listTeachers` followed by `copyTeacher c/email` copies the emails of all teachers in NewAddressBook to the user's clipboard.
-* `findTeacher Betsy` followed by `copyTeacher c/phone` copies the emails of teachers in the results of the `findTeacher` command.
 
 ### Managing Meetings
+
+(Comment: some brief description?)
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 NewAddressBook automatically removes meetings that have expired whenever you load the app. 
 So you don't have to worry about deleting them!
 </div>
 
-#### Display meeting window: `showMeeting`
-Displays the meeting window.
+#### Add a meeting : `meet`
 
-Format: `showMeeting`
+(Comment: maybe it would be better to change command word to meeting?)
 
-#### Add meeting: `meet`
-Adds a meeting to NewAddressBook.
+(Comment: square brackets to indicate optional? Or is everything compulsory here)
 
 Format: `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE`
 
@@ -491,9 +547,32 @@ with an existing meeting.
 Example:
 * `meet r/Meeting with Ms.Lee d/2040-07-12 14:30 v/Seminar room 3 w/P`
 
+
+#### Delete a meeting: 
+
+(To be filled up)
+
+#### Show meetings window : `showMeeting`
+
+Pops out the meeting window. 
+
+#### Quit meetings window :
+
+Closes the meeting window.
+
 ### General
 
-#### undo the latest change: `undo`
+#### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+#### Undo the latest change : `undo`
+
+Undoes the last change. This command only works for operations that adds, deletes, or edits infomation. This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone. 
+
+(Comment: maybe show a table showing which commands can be undone)?
 
 #### Viewing help : `help`
 
@@ -502,12 +581,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-#### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### NewAddressBook Data File
 
