@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.exceptions.MeetingConflictException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 /**
  * A list of meetings that enforces uniqueness between its
@@ -61,7 +60,7 @@ public class NonConflictMeetingList implements Iterable<Meeting> {
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
         if (!meetingsNoConflict(meetings)) {
-            throw new DuplicatePersonException();
+            throw new MeetingConflictException();
         }
         internalList.setAll(meetings);
     }
