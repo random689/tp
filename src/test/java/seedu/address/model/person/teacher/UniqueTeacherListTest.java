@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.teacher;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.teacher.Teacher;
-import seedu.address.model.person.teacher.UniqueTeacherList;
 import seedu.address.model.person.teacher.exceptions.DuplicateTeacherException;
 import seedu.address.model.person.teacher.exceptions.TeacherNotFoundException;
 import seedu.address.testutil.TeacherBuilder;
@@ -44,9 +42,9 @@ public class UniqueTeacherListTest {
     @Test
     public void contains_teacherWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTeacherList.add(ALI);
-        Teacher editedAlice = new TeacherBuilder(ALI).withTags(VALID_TAG_MONITOR)
+        Teacher editedAli = new TeacherBuilder(ALI).withTags(VALID_TAG_MONITOR)
                 .build();
-        assertTrue(uniqueTeacherList.contains(editedAlice));
+        assertTrue(uniqueTeacherList.contains(editedAli));
     }
 
     @Test
@@ -87,12 +85,12 @@ public class UniqueTeacherListTest {
     @Test
     public void setTeacher_editedTeacherHasSameIdentity_success() {
         uniqueTeacherList.add(ALI);
-        Teacher editedAlice =
+        Teacher editedAli =
                 new TeacherBuilder(ALI).withOfficeTable(VALID_OFFICE_TABLE_CHO).withTags(VALID_TAG_MONITOR)
                 .build();
-        uniqueTeacherList.setTeacher(ALI, editedAlice);
+        uniqueTeacherList.setTeacher(ALI, editedAli);
         UniqueTeacherList expectedUniqueTeacherList = new UniqueTeacherList();
-        expectedUniqueTeacherList.add(editedAlice);
+        expectedUniqueTeacherList.add(editedAli);
         assertEquals(expectedUniqueTeacherList, uniqueTeacherList);
     }
 
