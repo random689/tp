@@ -92,7 +92,7 @@ Action | Format | Window
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | | Main
 **List all students** |`listStudents` | Main
-**Record a student's medical history** | | Main
+**Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copy c/FIELD_TO_COPY` | Main
 **Clear all teachers** | `clearTeacher` | Main
@@ -162,7 +162,8 @@ The commands offered are:
 3. [Managing Meetings](#managing-meetings)
   - [Add a meeting](#add-a-meeting--meet)
   - [Delete a meeting](#delete-a-meeting)
-  - [Show meetings window](#show-meetings-window--showMeeting) 
+  - [Show meetings window](#show-meetings-window--showmeeting) 
+  - [Quit meetings window](#quit-meetings-window)
 
 
 4. [General](#general)
@@ -524,8 +525,6 @@ So you don't have to worry about deleting them!
 
 (Comment: maybe it would be better to change command word to meeting?)
 
-Adds a meeting to NewAddressBook.
-
 (Comment: square brackets to indicate optional? Or is everything compulsory here)
 
 Format: `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE`
@@ -558,6 +557,10 @@ Example:
 #### Show meetings window : `showMeeting`
 
 Pops out the meeting window. 
+
+#### Quit meetings window :
+
+Closes the meeting window.
 
 ### General
 

@@ -25,25 +25,32 @@ public class CommandResult {
     /** The student to show medical history. */
     private Student student;
 
+    /** Meeting window should be shown to the user. */
+    private final boolean showMeeting;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showMedical) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showMedical,
+            boolean showMeeting) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showMedical = showMedical;
+        this.showMeeting = showMeeting;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showMedical, Student student) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showMedical, Student student,
+            boolean showMeeting) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showMedical = showMedical;
         this.student = student;
+        this.showMeeting = showMeeting;
     }
 
     /**
@@ -51,7 +58,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -71,7 +78,11 @@ public class CommandResult {
     }
 
     public Student getStudent() {
-        return this.student;
+        return student;
+    }
+
+    public boolean isShowMeeting() {
+        return showMeeting;
     }
 
     @Override
@@ -90,12 +101,13 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && showMedical == otherCommandResult.showMedical
-                && student == otherCommandResult.student;
+                && student == otherCommandResult.student
+                && showMeeting == otherCommandResult.showMeeting;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showMedical, student);
+        return Objects.hash(feedbackToUser, showHelp, exit, showMedical, student, showMeeting);
     }
 
 }

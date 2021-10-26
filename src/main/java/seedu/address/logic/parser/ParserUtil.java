@@ -9,6 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.Attendee;
+import seedu.address.model.meeting.DateTime;
+import seedu.address.model.meeting.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
@@ -185,5 +188,65 @@ public class ParserUtil {
             throw new ParseException(OfficeTable.MESSAGE_CONSTRAINTS);
         }
         return new OfficeTable(tableNumber);
+    }
+
+    /**
+     * Parses a {@code String title} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static Description parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Description.isValidDescription(trimmedTitle)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(title);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(dateTime);
+    }
+
+    /**
+     * Parses a {@code String venue} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venue} is invalid.
+     */
+    public static Description parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!Description.isValidDescription(trimmedVenue)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(venue);
+    }
+
+    /**
+     * Parses a {@code String attendee} into a {@code seedu.address.model.meeting.Attendee}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendee} is invalid.
+     */
+    public static Attendee parseAttendee(String attendee) throws ParseException {
+        requireNonNull(attendee);
+        String trimmedAttendee = attendee.trim();
+        if (!Attendee.isValidAttendee(trimmedAttendee)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Attendee(attendee);
     }
 }
