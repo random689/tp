@@ -13,6 +13,6 @@ public class ShowMeetingCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, false, false, false, true);
+        return new CommandResult(SHOWING_HELP_MESSAGE, false, false, false, true, false);
     }
 }

@@ -37,7 +37,7 @@ public class ShowMedicalHistoryCommand extends Command {
 
         Student studentToShow = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(SHOWING_MEDICAL_HISTORY_MESSAGE, false, false, true, studentToShow,
-                false);
+                false, false);
     }
 
     @Override
