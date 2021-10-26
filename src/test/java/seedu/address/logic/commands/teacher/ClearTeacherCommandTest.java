@@ -4,14 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTeacherAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEACHER;
-import static seedu.address.testutil.TypicalPersons.ALI;
-import static seedu.address.testutil.TypicalPersons.BEN;
-import static seedu.address.testutil.TypicalPersons.CAR;
-import static seedu.address.testutil.TypicalPersons.DAN;
-import static seedu.address.testutil.TypicalPersons.EL;
-import static seedu.address.testutil.TypicalPersons.FIO;
-import static seedu.address.testutil.TypicalPersons.GEO;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBookObjects.ALI;
+import static seedu.address.testutil.TypicalAddressBookObjects.BEN;
+import static seedu.address.testutil.TypicalAddressBookObjects.CAR;
+import static seedu.address.testutil.TypicalAddressBookObjects.DAN;
+import static seedu.address.testutil.TypicalAddressBookObjects.EL;
+import static seedu.address.testutil.TypicalAddressBookObjects.FIO;
+import static seedu.address.testutil.TypicalAddressBookObjects.GEO;
+import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 

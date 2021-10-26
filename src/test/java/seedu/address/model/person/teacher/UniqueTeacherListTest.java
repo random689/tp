@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_OFFICE_TABLE_CHO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALI;
-import static seedu.address.testutil.TypicalPersons.BEN;
+import static seedu.address.testutil.TypicalAddressBookObjects.ALI;
+import static seedu.address.testutil.TypicalAddressBookObjects.BEN;
 
 import java.util.Arrays;
 import java.util.Collections;

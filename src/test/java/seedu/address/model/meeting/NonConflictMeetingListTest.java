@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_1;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.BIOLOGY_CONSULT;
-import static seedu.address.testutil.TypicalPersons.PRESENTATION;
+import static seedu.address.testutil.TypicalAddressBookObjects.BIOLOGY_CONSULT;
+import static seedu.address.testutil.TypicalAddressBookObjects.PRESENTATION;
 
 public class NonConflictMeetingListTest {
 

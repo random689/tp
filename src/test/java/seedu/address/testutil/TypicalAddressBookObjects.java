@@ -55,7 +55,7 @@ import seedu.address.model.person.teacher.Teacher;
 /**
  * A utility class containing a list of {@code Student}, {@code Teacher} and {@code Meeting} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalAddressBookObjects {
 
     //Students
     public static final Student ALICE = new StudentBuilder()
@@ -369,7 +369,7 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalAddressBookObjects() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical students and teachers.

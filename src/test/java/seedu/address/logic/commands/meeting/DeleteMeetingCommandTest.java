@@ -3,23 +3,18 @@ package seedu.address.logic.commands.meeting;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.student.DeleteStudentCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.student.Student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

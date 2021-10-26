@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TEACHERS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALI;
-import static seedu.address.testutil.TypicalPersons.BEN;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBookObjects.ALI;
+import static seedu.address.testutil.TypicalAddressBookObjects.BEN;
+import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;

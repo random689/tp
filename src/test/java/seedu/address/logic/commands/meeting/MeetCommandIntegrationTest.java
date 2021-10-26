@@ -2,18 +2,15 @@ package seedu.address.logic.commands.meeting;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.teacher.AddTeacherCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.TeacherBuilder;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code MeetCommand}.

@@ -12,12 +12,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalAddressBookObjects.ALICE;
+import static seedu.address.testutil.TypicalAddressBookObjects.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
