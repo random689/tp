@@ -156,6 +156,8 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Undo feature
 
+#### Implementation details
+
 The undo mechanism is facilitated by a stack inside `ModelManager`. Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, `ModelManager` exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
 
 <div markdown="span" class="alert alert-info">:information_source: 
@@ -219,6 +221,7 @@ We chose Alternative 1 because of the limited timespan of our problem. Also, giv
 
 ### Copy Command
 
+#### Implementation details
 The `CopyStudentCommand/CopyTeacher` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand::getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
 
 As such, this command is supported by the method in the `Model` interface, namely the `Model::getFilteredStudentList()` and `Model::getFilteredTeacherList()` methods.
@@ -241,7 +244,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
 **Note:** The lifeline for `CopyCommand` and should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-**Design considerations:**
+#### Design considerations:
 
 **Aspect: How copy executes:**
 
@@ -260,6 +263,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
 
 
 ### Adding meetings
+
 #### Implementation Details
 The mechanism of adding meetings is showcased in the sequence diagram below:
 
@@ -284,24 +288,19 @@ Whenever a Meeting is added to the list, the list will be sorted so that when th
   * Pros: User just have to specify the type and index of the Person in the list and the UI would generate a pre-defined title with the specified person's name
   * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed.
 
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Filter command:
 
-Implementation: 
+#### Implementation: 
+
+We discuss only the student case here, since it is the same for teachers.
 
 When a `filterStudent` is called, it uses the `filterStudentCommandParser` to parse the additional inputs given by the 
-user, such as the filter categories given. It then pass on the details to `FilterStudentCommand` with the 
-`StudentInvolvementContainsKeywordsPredicate`, which gets and updates the view using `model.getFilteredStudentList()` 
-and `model.updateFilteredStudentList(predicate)`
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** It is the same for filtering teachers.</div>
+user, such as the filter categories given. It then creates a `StudentInvolvementContainsKeywordsPredicate` with the relevant keywords entered by the user, and passes this predicate object to the `FilterStudentCommand` which gets and updates the view using `model.getFilteredStudentList()` 
+and `model.updateFilteredStudentList(predicate)`.
 
 The following sequence diagram shows how it works for a filterStudent command.
-*Works the same for teachers
+
+(Comment: is there really a need for `studentInvolvementContainsKeywordsPredicate` here? Do you need the CommandResult and the `getFilteredStudentList` back? After all, we are just using `getFilteredStudentList` for the size of the list.)
 
 ![FilterSequenceDiagram](images/FilterDiagram.png)
 
@@ -318,6 +317,7 @@ The following sequence diagram shows how it works for a filterStudent command.
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 ###  Adding medical history of students:
+
 #### Implementation Details
 The `MedicalHistoryCommand` extends the `Command` class. When a `MedicalHistoryCommand` is called, it uses the
 `MedicalHistoryCommandParser` to parse the inputs given by the user, which include the index of the student based on the 
