@@ -64,24 +64,18 @@ public class FilterContainsKeywordsPredicateTest {
         assertFalse(predicate2.test(new StudentBuilder().withTags("first").build()));
 
         assertFalse(predicate2.test(new StudentBuilder().withInvolvement("first").build()));
-    }
 
+        List<String> thirdPredicateKeywordList = Arrays.asList("first", "second");
 
-    @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        StudentInvolvementContainsKeywordsPredicate predicate =
-                new StudentInvolvementContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new StudentBuilder().withName("Alice").build()));
+        StudentInvolvementContainsKeywordsPredicate predicate3 =
+                new StudentInvolvementContainsKeywordsPredicate(thirdPredicateKeywordList);
 
-        // Non-matching keyword
-        predicate = new StudentInvolvementContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate3.test(new StudentBuilder().withInvolvement("firstsecond").build()));
 
-        // Keywords match phone, email and address, but does not match name
-        predicate = new StudentInvolvementContainsKeywordsPredicate(
-                        Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").build()));
+        assertFalse(predicate3.test(new StudentBuilder().withInvolvement("first").build()));
+
+        assertFalse(predicate3.test(new StudentBuilder().withTags("firstsecond").build()));
+
+        assertFalse(predicate3.test(new StudentBuilder().withTags("first", "second").build()));
     }
 }

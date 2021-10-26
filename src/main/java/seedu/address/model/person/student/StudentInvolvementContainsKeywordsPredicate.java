@@ -23,7 +23,6 @@ public class StudentInvolvementContainsKeywordsPredicate implements Predicate<St
         boolean isInvolvementPresent = true;
 
         for (int i = 0; i < keywords.size(); i++) {
-            String keywordCurrent = keywords.get(i).toLowerCase();
 
             if (keywords.get(i).startsWith("t/")) {
                 inTags = inTagsChecker(i, student);
@@ -33,11 +32,9 @@ public class StudentInvolvementContainsKeywordsPredicate implements Predicate<St
                 }
                 break;
             }
-
-            if (student.getInvolvement().value.toLowerCase().contains(keywordCurrent)) {
-                inInvolvement = true;
-            }
         }
+        inInvolvement = inInvolvementChecker(student);
+
         if (isTagsPresent && !isInvolvementPresent) {
             return inTags;
         } else if (isTagsPresent && isInvolvementPresent) {
@@ -68,6 +65,26 @@ public class StudentInvolvementContainsKeywordsPredicate implements Predicate<St
         }
 
         return true;
+    }
+
+    private boolean inInvolvementChecker(Student student) {
+        boolean toReturn = true;
+        String studentInvolvement = student.getInvolvement().value.toLowerCase();
+        for (int i = 0; i < keywords.size(); i++) {
+            String keywordCurrent = keywords.get(i).toLowerCase();
+            if (keywordCurrent.startsWith("t/")) {
+                return toReturn;
+            }
+
+            if (!studentInvolvement.contains(keywordCurrent)) {
+                toReturn = false;
+            }
+        }
+
+        if (keywords.size() < 1) {
+            return false;
+        }
+        return toReturn;
     }
 
     @Override
