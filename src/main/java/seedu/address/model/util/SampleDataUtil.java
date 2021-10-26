@@ -53,7 +53,7 @@ public class SampleDataUtil {
                     getTagSet("Colleague")),
             new Teacher(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Gender("M"), new Involvement("Colleague"), new OfficeTable("3"),
-                    getTagSet("Lunch Buddy"))
+                    getTagSet("lunchbuddy"))
         };
     }
 
