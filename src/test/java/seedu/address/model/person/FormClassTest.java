@@ -30,12 +30,14 @@ public class FormClassTest {
         assertFalse(FormClass.isValidFormClass("")); // empty string
         assertFalse(FormClass.isValidFormClass(" ")); // spaces only
         assertFalse(FormClass.isValidFormClass(" 4E1")); // contains whitespace at start
+        assertFalse(FormClass.isValidFormClass("4E1E1")); // not in the format of Number-String-Number
+        assertFalse(FormClass.isValidFormClass("4@1")); // contains non-alphanumeric character
+        assertFalse(FormClass.isValidFormClass("E1")); // not in the format of Number-String-Number
 
         // valid FormClass
-        assertTrue(FormClass.isValidFormClass("Euphoria")); // alphabets only
-        assertTrue(FormClass.isValidFormClass("43")); // numbers only
         assertTrue(FormClass.isValidFormClass("4e1")); // alphanumeric characters
         assertTrue(FormClass.isValidFormClass("4E1")); // with capital letters
-        assertTrue(FormClass.isValidFormClass("4 Harmony 1")); // long names
+        assertTrue(FormClass.isValidFormClass("4Harmony1")); // long names
+        assertTrue(FormClass.isValidFormClass("10N12")); // more than digit at start and end
     }
 }
