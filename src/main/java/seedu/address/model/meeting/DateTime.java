@@ -64,7 +64,6 @@ public class DateTime implements Comparable<DateTime> {
     /**
      * Returns true if a given datetime is in the past.
      *
-     * @param input A valid String representation of the datetime.
      * @return true if datetime is in the past, false otherwise.
      */
     public boolean isPastDateTime() {

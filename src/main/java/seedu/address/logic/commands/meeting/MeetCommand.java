@@ -66,5 +66,4 @@ public class MeetCommand extends Command {
             || (other instanceof MeetCommand // instanceof handles nulls
             && toAdd.equals(((MeetCommand) other).toAdd));
     }
-
 }
