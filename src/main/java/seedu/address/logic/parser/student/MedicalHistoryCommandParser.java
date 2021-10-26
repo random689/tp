@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_HISTORY;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -34,9 +33,14 @@ public class MedicalHistoryCommandParser implements Parser<MedicalHistoryCommand
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
+        } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MedicalHistoryCommand.MESSAGE_USAGE), ive);
+                    MedicalHistoryCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (!argMultimap.getValue(PREFIX_MEDICAL_HISTORY).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MedicalHistoryCommand.MESSAGE_USAGE));
         }
 
         String medicalHistory = argMultimap.getValue(PREFIX_MEDICAL_HISTORY).orElse("");

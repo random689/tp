@@ -29,7 +29,7 @@ public class CopyStudentCommandParser implements Parser<CopyStudentCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COPY_FIELD);
         Optional<String> fieldToCopy = argMultimap.getValue(PREFIX_COPY_FIELD);
         if (!fieldToCopy.isPresent()) {
-            throw new ParseException(CopyCommand.NO_FIELD_PROVIDED + "\n" + CopyCommand.MESSAGE_USAGE);
+            throw new ParseException(CopyCommand.NO_FIELD_PROVIDED + "\n" + CopyStudentCommand.MESSAGE_USAGE);
         } else {
             CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor(fieldToCopy.get());
             if (copyCommandDescriptor.hasValidField()) {
