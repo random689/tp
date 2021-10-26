@@ -36,7 +36,7 @@ class ShowMedicalHistoryCommandTest {
         Student studentToShow = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         ShowMedicalHistoryCommand showCommand = new ShowMedicalHistoryCommand(INDEX_FIRST_STUDENT);
         CommandResult expectedCommandResult = new CommandResult(SHOWING_MEDICAL_HISTORY_MESSAGE,
-                false, false, true, studentToShow, false);
+                false, false, true, studentToShow, false, false);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(showCommand, model, expectedCommandResult, expectedModel);
