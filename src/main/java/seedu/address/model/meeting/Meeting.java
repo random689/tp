@@ -94,4 +94,8 @@ public class Meeting implements Comparable<Meeting> {
     public int compareTo(Meeting other) {
         return this.dateTime.compareTo(other.dateTime);
     }
+
+    public boolean isExpiredMeeting() {
+        return dateTime.isPastDateTime();
+    }
 }

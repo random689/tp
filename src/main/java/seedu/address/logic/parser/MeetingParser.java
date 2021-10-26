@@ -7,10 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DummyMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
+<<<<<<< HEAD
 import seedu.address.logic.commands.QuitMeetingCommand;
+=======
+import seedu.address.logic.commands.meeting.MeetCommand;
+>>>>>>> 6399326dc2abc60ed0af77ddfb49fb4c6c1e0eb7
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.meeting.MeetCommandParser;
 
 public class MeetingParser {
 
@@ -34,8 +38,9 @@ public class MeetingParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case "fish":
-            return new DummyMeetingCommand();
+
+        case MeetCommand.COMMAND_WORD:
+            return new MeetCommandParser().parse(arguments);
 
         case "quitMeeting":
             return new QuitMeetingCommand();

@@ -20,21 +20,6 @@ public class DateTimeTest {
     }
 
     @Test
-    public void constructor_pastDateTime_throwsIllegalArgumentException() {
-        String pastDateTime = "1998-07-12 12:12";
-        assertThrows(IllegalArgumentException.class, () -> new DateTime(pastDateTime));
-    }
-
-    @Test
-    public void isPastDateTime() {
-        // null dateTime
-        assertThrows(NullPointerException.class, () -> DateTime.isPastDateTime(null));
-
-        // expired datetime
-        assertTrue(DateTime.isPastDateTime("2019-04-12 12:23"));
-    }
-
-    @Test
     public void isValidDateTime() {
         // null dateTime
         assertThrows(NullPointerException.class, () -> DateTime.isValidDateTime(null));
@@ -54,13 +39,9 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDateTime("2022-08-2 02:2")); // Missing digit for day
         assertFalse(DateTime.isValidDateTime("2022/08/20 02:2")); // Wrong separator used for date
         assertFalse(DateTime.isValidDateTime("2022-08-20 02-12")); // Wrong separator used for time
-        assertFalse(DateTime.isValidDateTime("2022-08-20 40:12")); // invalid value of hour
-        assertFalse(DateTime.isValidDateTime("2022-08-20 12:80")); // invalid value of minute
-        assertFalse(DateTime.isValidDateTime("2022-08-32 12:30")); // invalid day (more than 31)
-        assertFalse(DateTime.isValidDateTime("2022-13-21 12:30")); // invalid day (more than 31)
+        assertFalse(DateTime.isValidDateTime("2022-02-29 12:12")); //invalid due to strict parsing
 
         // valid dateTimes
         assertTrue(DateTime.isValidDateTime("2022-08-20 13:24"));
-        assertTrue(DateTime.isValidDateTime("2022-02-31 13:24")); // day does not match but < 32
     }
 }
