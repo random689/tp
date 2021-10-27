@@ -10,7 +10,7 @@ to help **manage their contacts of their students and colleagues** efficiently. 
 features such as keeping track of upcoming meetings, recording the medical histories of your students.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ---------------------------------------------------------------------------------------------------------------
 
