@@ -622,13 +622,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### NewAddressBook Data File
+--------------------------------------------------------------------------------------------------------------------
+## NewAddressBook Data File
 
-#### Saving the data
+### Saving the data
 
 NewAddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### Editing the data file
+### Editing the data file
 
 NewAddressBook data are saved as a JSON file `[JAR file location]/data/newaddressbook.json`. Advanced users are welcome to update data directly by editing the data file.
 
