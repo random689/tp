@@ -218,6 +218,14 @@ Parameters:
  
 * `GENDER` The gender of the student
   * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
+  * case-insensitive
+  
+* `INVOLVEMENT` The User's involvement with the student
+  * should not be blank
+  * not to be confused with form class. 
+  
+* `EMERGENCY_NUMBER` The emergency number of the student
+  * should only contain numbers, and should be at least 3 digits long
 
 * `FORM_CLASS` A form class associated with the student
     * should only contain alphanumeric characters
@@ -233,7 +241,8 @@ A student can have any number of tags (including 0)
 
 Examples:
 - `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977`
-- `student n/Betsy Crowe p/83958294 e/bc33@example.com a/Adams road, block 8, #03-05 f/3C1 g/F i/Dance society em/96122134 t/President t/exco`
+- `student n/Betsy Crowe p/83958294 e/bc33@example.com a/Adams road, block 8, #03-05 f/3C1 g/F i/Bio rep em/96122134 
+  t/President t/exco`
 
 #### Clear student contacts : `clearStudent`
 
@@ -404,6 +413,9 @@ Parameters:
 * `OFFICE_TABLE_NUMBER` The teacher's table number in the school office
   * should only contain numbers, and it should have at least 1 digit
 
+* `INVOLVEMENT` The User's involvement with the teacher
+    * should not be blank
+
 * `TAG` A tag associated with the teacher
     * should only contain alphanumeric characters
 
@@ -413,7 +425,7 @@ A teacher can have any number of tags (including 0)
 
 Examples:
 - `teacher n/Messi p/94629424 e/j77@example.com o/12 g/M i/Math Department`
-- `teacher n/Eden p/83958294 e/bc33@example.com g/N i/Class 3D Co-form t/buddy t/colleague`
+- `teacher n/Eden p/83958294 e/bc33@example.com o/15 g/N i/Class 3D Co-form t/buddy t/colleague`
 
 #### Clear teacher contacts : `clearTeacher`
 

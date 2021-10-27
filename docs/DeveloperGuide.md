@@ -100,6 +100,10 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteStudent 1")` API call.
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** When the user calls a valid command 
+from the `Meeting` window, the interaction within the `Logic` component only has 1 key difference: `LogicManager` 
+calls the `MeetingParser#parseCommand`. The rest of the implementation is similar to the diagram below.
+
 ![Interactions Inside the Logic Component for the `deleteStudent 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -485,7 +489,7 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **involvement**: A label attached to each student specifying the student's involvement with the teacher
+* **Involvement**: A label attached to each student/teacher specifying the person's involvement with the User.
 
 --------------------------------------------------------------------------------------------------------------------
 
