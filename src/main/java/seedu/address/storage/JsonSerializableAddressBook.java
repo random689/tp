@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.exceptions.MeetingExpiredException;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.teacher.Teacher;
 
@@ -82,12 +81,12 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedMeeting jsonAdaptedMeeting : meetings) {
-            Meeting meeting;
-            try {
-                meeting = jsonAdaptedMeeting.toModelType();
-            } catch (MeetingExpiredException e) {
+            Meeting meeting = jsonAdaptedMeeting.toModelType();
+
+            if (meeting.isExpiredMeeting()) {
                 continue;
             }
+
             if (addressBook.hasConflict(meeting)) {
                 throw new IllegalValueException(MESSAGE_MEETING_CONFLICT);
             }

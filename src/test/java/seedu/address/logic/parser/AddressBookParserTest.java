@@ -31,6 +31,7 @@ import seedu.address.logic.commands.student.FilterStudentCommand;
 import seedu.address.logic.commands.student.FindStudentCommand;
 import seedu.address.logic.commands.student.ListStudentCommand;
 import seedu.address.logic.commands.student.MedicalHistoryCommand;
+import seedu.address.logic.commands.student.ShowMedicalHistoryCommand;
 import seedu.address.logic.commands.teacher.AddTeacherCommand;
 import seedu.address.logic.commands.teacher.ClearTeacherCommand;
 import seedu.address.logic.commands.teacher.CopyTeacherCommand;
@@ -113,6 +114,13 @@ public class AddressBookParserTest {
         DeleteTeacherCommand command = (DeleteTeacherCommand) parser.parseCommand(
                 DeleteTeacherCommand.COMMAND_WORD + " " + INDEX_FIRST_TEACHER.getOneBased());
         assertEquals(new DeleteTeacherCommand(INDEX_FIRST_TEACHER), command);
+    }
+
+    @Test
+    public void parseCommand_showMedical() throws Exception {
+        ShowMedicalHistoryCommand command = (ShowMedicalHistoryCommand) parser
+                .parseCommand(ShowMedicalHistoryCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new ShowMedicalHistoryCommand(INDEX_FIRST_STUDENT), command);
     }
 
     @Test

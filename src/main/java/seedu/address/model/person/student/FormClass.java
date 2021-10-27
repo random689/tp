@@ -10,13 +10,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class FormClass {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Form class can take any values, and it should not be blank";
+            "Form class should be alphanumeric, and be in the form of '|1-5|String|[alphanumeric]|.\n"
+                    + "For Example: '4E1' or '3Hope'.";
 
     /*
      * The first character of FormClass must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^[1-5][a-zA-Z]\\p{Alnum}+";
 
     public final String value;
 

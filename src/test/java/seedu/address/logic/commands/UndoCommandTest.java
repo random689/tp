@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.TypicalModels.FIRST_STUDENT_PREDICATE;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.CARP_NOT_IN_LIST;
-import static seedu.address.testutil.TypicalPersons.EDITED_FISH_NOT_IN_LIST;
-import static seedu.address.testutil.TypicalPersons.EXTRA_TEACHER_NOT_IN_LIST;
-import static seedu.address.testutil.TypicalPersons.FISH_NOT_IN_LIST;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAddressBookObjects.ALICE;
+import static seedu.address.testutil.TypicalAddressBookObjects.CARP_NOT_IN_LIST;
+import static seedu.address.testutil.TypicalAddressBookObjects.EDITED_FISH_NOT_IN_LIST;
+import static seedu.address.testutil.TypicalAddressBookObjects.EXTRA_TEACHER_NOT_IN_LIST;
+import static seedu.address.testutil.TypicalAddressBookObjects.FISH_NOT_IN_LIST;
+import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

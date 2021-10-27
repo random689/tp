@@ -19,11 +19,12 @@ public interface Logic {
     /**
      * Executes the command and returns the result.
      * @param commandText The command as entered by the user.
+     * @param window The window the user is executing this command from.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText, Window window) throws CommandException, ParseException;
 
     /**
      * Returns the AddressBook.

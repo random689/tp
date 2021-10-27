@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.Window;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -18,7 +22,7 @@ public class MeetingWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(MeetingWindow.class);
     private static final String FXML = "MeetingWindow.fxml";
-
+    private ResultDisplay resultDisplay;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
@@ -27,27 +31,30 @@ public class MeetingWindow extends UiPart<Stage> {
     @FXML
     private StackPane meetingListPanelPlaceholder;
 
-    /**
-     * Creates a new HelpWindow.
-     */
-    public MeetingWindow() {
-        this(new Stage());
-    }
+    @FXML
+    private StackPane meetingCommandBoxPlaceholder;
+
+    @FXML
+    private StackPane resultDisplayPlaceholder;
 
     /**
      * Creates a new MeetingWindow.
      *
      * @param root Stage to use as the root of the MeetingWindow.
      */
-    public MeetingWindow(Stage root) {
+    public MeetingWindow(Stage root, Logic logic) {
         super(FXML, root);
+        this.logic = logic;
     }
 
     void fillInnerParts(ObservableList<Meeting> meetingList) {
-        System.out.println("=================================================================");
-        System.out.println(meetingList.size());
+        logger.info("Loaded meeting list of size " + meetingList.size());
         this.meetingListPanel = new MeetingListPanel(meetingList);
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        meetingCommandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
     }
 
     /**
@@ -104,6 +111,25 @@ public class MeetingWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             getRoot().setX(guiSettings.getWindowCoordinates().getX());
             getRoot().setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Executes the command and returns the result.
+     *
+     * @see seedu.address.logic.Logic#execute(String, Window)
+     */
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        try {
+            System.out.println(commandText);
+            CommandResult commandResult = logic.execute(commandText, Window.MEETING);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            return commandResult;
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         }
     }
 

@@ -6,19 +6,21 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
- * Represents a Meeting's datetime in the address book.
+ * Represents a Meeting's datetime in NewAddressBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime implements Comparable<DateTime> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting datetime should be of the format YYYY-MM-DD HH:mm";
-    public static final String PRESENT_CONSTRAINT =
-            "Meeting datetime must not be in the past. The current datetime is: %s";
+            "Meeting datetime must be valid and should be of the format YYYY-MM-DD HH:mm";
     public static final String VALIDATION_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").withResolverStyle(ResolverStyle.STRICT);
+    private static final DateTimeFormatter USER_OUTPUT_FORMATTER =
+            DateTimeFormatter.ofPattern("EEE dd MMM yyyy, hh:mm a");
 
     public final String value;
     private final LocalDateTime dateTime;
@@ -32,17 +34,16 @@ public class DateTime implements Comparable<DateTime> {
         requireNonNull(input);
         checkArgument(isValidDateTime(input), MESSAGE_CONSTRAINTS);
         dateTime = LocalDateTime.parse(input, FORMATTER);
-        checkArgument(dateTime.isAfter(LocalDateTime.now()), String.format(PRESENT_CONSTRAINT,
-            LocalDateTime.now()));
         value = input;
     }
 
     /**
-     *
-     * @return datetime in user-friendly format.
+     * Gets the current datetime in user-friendly format
+     * @return String representation of current datetime.
      */
-    public String getUserFormat() {
-        return dateTime.format(DateTimeFormatter.ofPattern("EEE dd MMM yyyy, hh:mm a"));
+    public static String getCurrentDateTime() {
+        requireNonNull(USER_OUTPUT_FORMATTER);
+        return LocalDateTime.now().format(USER_OUTPUT_FORMATTER);
     }
 
     /**
@@ -63,12 +64,18 @@ public class DateTime implements Comparable<DateTime> {
     /**
      * Returns true if a given datetime is in the past.
      *
-     * @param input A valid String representation of the datetime.
      * @return true if datetime is in the past, false otherwise.
      */
-    public static boolean isPastDateTime(String input) {
-        LocalDateTime dateTime = LocalDateTime.parse(input, FORMATTER);
+    public boolean isPastDateTime() {
         return dateTime.isBefore(LocalDateTime.now());
+    }
+
+    /**
+     *
+     * @return datetime in user-friendly format.
+     */
+    public String getUserFormat() {
+        return dateTime.format(USER_OUTPUT_FORMATTER);
     }
 
     @Override

@@ -34,8 +34,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.CHO;
-import static seedu.address.testutil.TypicalPersons.DEE;
+import static seedu.address.testutil.TypicalAddressBookObjects.CHO;
+import static seedu.address.testutil.TypicalAddressBookObjects.DEE;
 
 import org.junit.jupiter.api.Test;
 

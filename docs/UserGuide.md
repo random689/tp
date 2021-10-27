@@ -3,22 +3,15 @@ layout: page
 title: User Guide
 ---
 
-## NewAddressBook - User Guide
+{:toc}
 
-NewAddressBook is a **desktop app built for secondary school teachers** handling large classes to help **manage their contacts of their students and colleagues**.
+--------------------------------------------------------------------------------------------------------------------
 
-## Features
-- [Viewing help](#viewing-help)
-- [Adding students](#adding-students)
-- [Adding teachers](#adding-teachers)
-- [Listing all persons](#listing-all-persons)
-- [Finding contacts by name](#finding-contacts-by-name)
-- [Deleting a person](#deleting-a-person)
-- [Clearing all entries](#clearing-all-entries)
-- [Filter students by other fields](#filter-students-by-other-fields)
-- [Copying fields](#copying-fields)
-- [Adding grades to students](#adding-grades-to-students)
-- [Exiting the program](#exiting-the-program)
+## Introduction
+
+NewAddressBook is a **desktop app built for secondary school teachers** handling large classes 
+to help **manage their contacts of their students and colleagues** efficiently. NewAddressBook also supports other
+features such as keeping track of upcoming meetings, recording the medical histories of your students.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,39 +19,105 @@ NewAddressBook is a **desktop app built for secondary school teachers** handling
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `NewAddressBook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `NewAddressBook.jar` from [here](https://github.com/AY2122S1-CS2103-T16-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your NewAddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data.<br>
+![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`listStudents`** : Lists all contacts.
 
-   * **`student`**`
-     student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty ` : Adds a student named `John Doe` to NewAddressBook.
+    * **`student n/John Doe p/98765432 e/johnd@example.com g/M a/311, 
+         Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`** : Adds a student named "John Doe" to NewAddressBook.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`deleteStudent 3`** : Deletes the 3rd student shown in the student list.
 
-   * **`clear`** : Deletes all contacts.
+    * **`clearStudent`** : Deletes all displayed students.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Overview](#overview) section for a summary of commands available and the  [Features](#features) section for details of each command.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** If you face any issues launching NewAddressBook, go to the `data` folder, delete `newaddressbook.json`
+and try launching again.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Overview
+
+### User Interface (UI)
+The following image shows the different parts of NewAddressBook's main application window:
+
+* The **Command Box** is where you type in commands for execution.
+* The **Result Box** displays the result of the commands executed. 
+* The **Student List** displays the list of students in NewAddressBook.
+* The **Teacher List** displays the list of teachers in NewAddressBook.
+* The **Data Source** displays information about where the data for NewAddressBook is stored.
+
+#### Individual Student Display
+The image below shows the various aspects that describes an individual student in NewAddressBook:
+
+#### Individual Teacher Display
+The image below shows the various aspects that describes an individual teacher in NewAddressBook:
+
+#### Meeting Window
+In NewAddressBook, meetings are not displayed in the main window. Instead, you will need to open up the Meetings window. 
+You can do so by entering the `showMeeting` command  or by clicking on the `Show Meetings` button in the menu bar.
+The following image shows the Meetings Window:
+
+
+### Commands Summary
+
+<div markdown="span" class="alert alert-primary">
+:information_source: Some commands work only in the <b>Main</b> application window, while others work only in the <b>Meetings</b> window. 
+The only command that works on <b>both</b> windows is the `undo` command. The Window column of the table below indicates which window
+the command is compatible with.
+</div>
+
+Action | Format | Window
+--------|---------|----------
+**Add student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​` | Main
+**Clear students** | `clearStudent` | Main
+**Copy a field from students** | `copyStudent [c/FIELD_TO_COPY]` | Main
+**Delete a student** | `deleteStudent INDEX` | Main
+**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
+**Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
+**Filter a student** | | Main
+**List all students** |`listStudents` | Main
+**Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
+**Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
+**Copy a field from teachers** | `copy c/FIELD_TO_COPY` | Main
+**Clear all teachers** | `clearTeacher` | Main
+**Delete a teacher** | `deleteTeacher INDEX` | Main
+**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
+**Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
+**Filter a teacher** | | Main
+**List all teachers** | `listTeachers` | Main
+**Add meeting** | `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE` | Meetings
+**Remove meetings** | | Meetings
+**Open meetings window** | `showMeetings` | Main
+**Close meetings window** | | Meetings
+**Exit** | `exit` | Main
+**Undo**| `undo` | Both
+**View help** | `help` | Main
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addStudent` command, `NAME` under `n/NAME` represents the student's name that you should provide. 
+  For instance, if the student's name is "John Doe", then you should input `n/John Doe` in the `addStudent` command.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -73,203 +132,473 @@ NewAddressBook is a **desktop app built for secondary school teachers** handling
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help : `help`
+The commands offered are:
+1. [Managing Student Contacts](#managing-student-contacts)
+  - [Add a student](#add-a-student--student)
+  - [Clear student contacts](#clear-student-contacts--clearstudent)
+  - [Copying fields from students](#copying-fields-from-students--copystudent)
+  - [Delete a student](#delete-a-student--deletestudent)
+  - [Edit a student](#edit-a-student--editstudent)
+  - [Find students by name](#find-students-by-name--findstudent)
+  - [Filter students](#filter-students--filterstudent)
+  - [List all students](#list-all-students--liststudents)
 
-Shows a message explaning how to access the help page.
+2. [Managing Teacher Contacts](#managing-student-contacts)
+  - [Add a teacher](#add-a-teacher--teacher)
+  - [Clear teacher contacts](#clear-teacher-contacts--clearteacher)
+  - [Copying fields from teachers](#copying-fields-from-teachers--copyteacher)
+  - [Delete a teacher](#delete-a-teacher--deleteteacher)
+  - [Edit a teacher](#edit-a-teacher--editteacher)
+  - [Find teachers by name](#find-teachers-by-name--findteacher)
+  - [Filter teachers](#filter-teachers--filterteacher)
+  - [List all teachers](#list-all-teachers--listteachers)
 
-![help message](images/helpMessage.png)
+3. [Managing Meetings](#managing-meetings)
+  - [Add a meeting](#add-a-meeting--meet)
+  - [Delete a meeting](#delete-a-meeting)
+  - [Show meetings window](#show-meetings-window--showmeeting) 
+  - [Quit meetings window](#quit-meetings-window)
 
-Format: `help`
 
+4. [General](#general)
+ - [Exiting the program](#exiting-the-program--exit)
+ - [Undo the latest change](#undo-the-latest-change--undo)
+ - [Viewing help](#viewing-help--help)
 
-### Adding a student: `student`
+### Managing Student Contacts
 
-Adds a student to NewAddressBook.
+#### Add a student : `student`
+
+Adds a student to the address book.
 
 Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
-f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​`
+f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​`
 
-- `GENDER` can only be one of  the following: M (Male), F (Female) or N (Non-binary)
+Parameters:
+* `NAME` The name of the student
+  * should not be blank
+  * should only contain alphanumeric characters and spaces
+
+* `PHONE_NUMBER` The phone number of the student
+  * should only contain numbers, and it should be at least 3 digits long 
+
+* `EMAIL` The email of the student
+  * should not be blank 
+  * should be of the format `local-part@domain`
+
+* `ADDRESS` The address of the student
+  * should not be blank
+ 
+* `GENDER` The gender of the student
+  * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
+
+* `TAG` A tag associated with the student
+  * should only contain alphanumeric characters
+  
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of medical histories (including 0)
-</div>
-
 Examples:
-- `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/asthma`
+- `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977`
 - `student n/Betsy Crowe p/83958294 e/bc33@example.com a/Adams road, block 8, #03-05 f/3C1 g/F i/Dance society em/96122134 t/President t/exco`
 
-### Adding a teacher: `teacher`
+#### Clear student contacts : `clearStudent`
 
-Adds a teacher to NewAddressBook.
+Clears all **currently displayed** students from the address book. If the currently displayed list is empty, the application warns the user that the list is empty and nothing is cleared.
 
-Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INVOLVEMENT [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A teacher can have any number of tags (including 0), such as whether he/she is a relief teacher.
-</div>
-
-Examples:
-* `teacher n/Gabe p/91234567 e/gabe@example.com g/M o/151 i/Lunch buddy`
-* `teacher n/Lebron p/91234567 e/lbj@example.com g/F o/12 i/Math HOD t/relief`
-
-### Adding a medical history to a student: `medical`
-
-Adds a medical history to an existing student in NewAddressBook.
-
-Format: `medical INDEX m/MEDICAL_HISTORY`
+Format: `clearStudent`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Edits the student at the specified index. The index must be a positive integer.
-To edit an existing medical history, simply use the same command, which will overwrite 
-the current medical history.
+If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudents` command. 
 </div>
 
+(Comment: probably change it to plural).
+#### Copying fields from students : `copyStudent` 
+Copy specified data from students in the last shown student's list to the user's clipboard. The fields that can be copied are:
+
+- email
+- phone numbers
+- name
+
+Format: `copyStudent [c/FIELD_TO_COPY]`
+
+`FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
+
+Example:
+* `listStudents` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
+* `findStudent Betsy` followed by `copyStudent c/phone` copies the phones of students whose name matches Betsy. The definition of "matches" is as per the definition in the `findStudent` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the last shown student list to the user is empty, nothing will be copied to the clipboard.
+</div>
+
+#### Delete a student : `deleteStudent`
+
+Deletes the specified student from NewAddressBook.
+
+Format: `deleteStudent INDEX`
+
+* Deletes the student at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
 Examples:
-* `medical 1 m/ADHD`
+* `listStudents` followed by `deleteStudent 2` deletes the 2nd student in the address book.
+* `findStudent Betsy` followed by `deleteStudent 1` deletes the 1st student in the results of the `findStudent` command.
 
-### Listing all persons : `list`
-
-Shows a list of all persons stored in NewAddressBook.
-
-Format: `list`
-
-### Editing a student : `editStudent`
+#### Edit a student : `editStudent`
 
 Edits an existing student in NewAddressBook.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `editStudent [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+[f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+
+* Edits the student at the specified `INDEX`. 
+* `INDEX` refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the student’s tags by typing `t/` without specifying any tags after it.
+</div>
 
 Examples:
-*  `editStudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `editStudent 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `editStudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `editStudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+#### Find students by name : `findStudent`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Finds students whose names contain any of the given keywords.
+
+Format: `findStudent KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findStudent John` returns `john` and `John Doe`
+* `findStudent alex Yu` returns `Alex Yeoh`, `Bernice Yu`<br>
 
-### Deleting a person : `delete`
+#### Filter students : `filterStudent`
 
-Deletes the specified person from NewAddressBook.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from NewAddressBook.
-
-Format: `clear`
-
-### Filter students by other fields: `filter`
-Filters students by either:
+One can filter students by:
 - tag
 - involvement
-- form class
-- medical history
 
-Format: `filter ft/FILTER CATERGORY [ft/FILTER CATERGORY]...`
+Format:
+- `filterStudent [INVOLVEMENT] [t/TAG]…​`
 
-Search is not case sensitive e.g. “student” same as “STUDENT”
+Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
 
-Only full words will be matched e.g. “Class A1” will not match “Class A”.
+The filter category is not case-sensitive e.g. “student” same as “STUDENT” but "t/" is not the same as "T/".
 
-More than 1 filter is allowed e.g.  `filter ft/[filter category 1] ft/[filter category 2]`.
+Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
 
-Example: ` filter ft/3d ft/Biology` - will return all contacts with the tag “3d” and “Biology”.
+(Comment: this is unclear! This is supposed to be t/tag1 tag2 or t/tag1 t/tag2)
 
-### Copying fields
-For a filtered sublist of people, copy data based on a certain field to the clipboard. The fields that can be copied are:
+More than 1 filter is allowed e.g.  `INVOLVEMENT_FILTER_CATERGORY [t/] [TAG_FILTER CATERGORY] [TAG_FILTER CATERGORY]`.
+
+Example:
+- `filterStudent class t/rep` - will return all students with the involvement containing “class” and tag containing
+  “rep”.
+- `filterStudent class` - will return all students with the involvement containing “class”.
+- `filterStudent t/naughty special` - will return all students with the tag containing “naughty” and "special".
+
+#### List all students : `listStudents`
+
+Shows a list of all students stored in the address book.
+
+Format: `listStudents`
+
+
+
+#### Modify medical history of a student: `medical`
+Format: `medical INDEX [m/MEDICAL_HISTORY]`
+
+* Adds the medical history to the student at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
+How this command works:
+1. Adds a medical history to an existing student in NewAddressBook if the student does not have any existing medical history.
+2. Overwrites the medical history of a student in NewAddressBook if the student already has an existing medical history.
+3. Removes the medical history of a student in NewAddressBook if the student already has an existing medical history
+   and an empty `MEDICAL_HISTORY` is given.
+
+Examples:
+* `medical 1 m/ADHD` 
+
+#### Viewing the full medical history of a student: `showMedical`
+
+Displays a pop-up window for the user to view the full medical history of the student in NewAddressBook.
+
+Format: `showMedical INDEX`
+
+* View the full medical history of the student at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
+Examples:
+* `showMedical 1`
+
+### Managing Teacher Contacts
+
+#### Add a teacher : `teacher`
+
+Adds a teacher to NewAddressBook.
+
+Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER 
+i/INVOLVEMENT [t/TAG]…​`
+
+Parameters:
+* `NAME` The name of the teacher
+    * should not be blank
+    * should only contain alphanumeric characters and spaces
+
+* `PHONE_NUMBER` The phone number of the teacher
+    * should only contain numbers, and it should be at least 3 digits long
+
+* `EMAIL` The email of the teacher
+    * should not be blank
+    * should be of the format `local-part@domain`
+
+* `GENDER` The gender of the teacher
+    * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
+
+* `OFFICE_TABLE_NUMBER` The teacher's table number in the school office
+  * should only contain numbers, and it should have at least 1 digit
+
+* `TAG` A tag associated with the teacher
+    * should only contain alphanumeric characters
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A teacher can have any number of tags (including 0)
+</div>
+
+Examples:
+- `teacher n/Messi p/94629424 e/j77@example.com o/12 g/M i/Math Department`
+- `teacher n/Eden p/83958294 e/bc33@example.com g/N i/Class 3D Co-form t/buddy t/colleague`
+
+#### Clear teacher contacts : `clearTeacher`
+
+Clears all **currently displayed** teachers from the address book. If the currently displayed list is empty, the application warns the user that the list is empty and nothing is cleared.
+
+Format: `clearTeacher`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you want to delete all teachers from the address book, simply make sure the currently displayed list contains all teachers. You can make all teachers appear in the displayed list by the `listTeachers` command. 
+</div>
+
+#### Copying fields from teachers : `copyTeacher`
+Copy specified data from all teachers shown in the teachers list to the clipboard. The fields that can be copied are:
 
 - email
-- handphone number
+- phone numbers
 - name
 
-Format: `copy f/FIELD`
+Format: `copyTeacher [c/FIELD_TO_COPY]`
 
-Example: `copy f/email` - will copy all the email of the filtered sublist of people to the user's clipboard.
+`FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
 
-### Exiting the program : `exit`
+Example:
+* `listTeacher` followed by `copyTeacher c/email` copies the emails of all teachers to the user's clipboard.
+* `findTeacher Betsy` followed by `copyTeacher c/phone` copies the phones of teachers whose name matches Betsy. The definition of "matches" is as per the definition in the `findTeacher` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the last shown teacher list to the user is empty, nothing will be copied to the clipboard.
+</div>
+
+#### Delete a teacher : `deleteTeacher`
+
+Deletes the specified teacher from NewAddressBook.
+
+Format: `deleteTeacher INDEX`
+
+* Deletes the teacher at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed teacher list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
+Examples:
+* `listTeacher` followed by `deleteTeacher 2` deletes the 2nd teacher in the address book.
+* `findTeacher Betsy` followed by `deleteTeacher 1` deletes the 1st teacher in the results of the `findTeacher` command.
+
+#### Edit a teacher : `editTeacher`
+
+Edits an existing teacher in the address book.
+
+Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
+
+
+* Edits the teacher at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed teacher list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the teacher will be removed i.e adding of tags is not cumulative.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all the teacher’s tags by typing `t/` without specifying any tags after it.
+</div>
+
+(Comment: should we have examples more specific to teachers and students)?
+
+Examples:
+*  `editTeacher 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teacher to be `91234567` and `johndoe@example.com` respectively.
+*  `editTeacher 2 n/Betsy Crower t/` Edits the name of the 2nd teacher to be `Betsy Crower` and clears all existing tags.
+
+
+
+#### Find teachers by name : `findTeacher`
+
+Finds teachers whose names contain any of the given keywords.
+
+Format: `findTeacher KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Teachers matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `findTeacher John` returns `john` and `John Doe`
+* `findTeacher alex Yu` returns `Alex Yeoh`, `Bernice Yu`<br>
+
+#### Filter teachers : `filterTeacher`
+One can filter teachers by:
+- tag
+- involvement
+
+(Comment: again, this is unclear!)
+
+Format:
+- `filterTeacher [INVOLVEMENT] [t/][TAG]…​`
+
+(Comment: this is also unclear)
+
+Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
+
+The filter category is not case-sensitive e.g. “teacher” same as “TEACHER” but "t/" is not the same as "T/".
+
+Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
+
+More than 1 filter is allowed e.g.  `INVOLVEMENT_FILTER_CATERGORY [t/] [TAG_FILTER CATERGORY] [TAG_FILTER CATERGORY]`.
+
+Example:
+- `filterTeacher Math Dept t/rep` - will return all teachers with the involvement containing “Math Dept” and tag containing
+  “rep”.
+- `filterTeacher Math Dept` - will return all teachers with the involvement containing “Math Dept”.
+- `filterTeacher t/colleague admin` - will return all teachers with the tag containing “colleague” and "admin".
+
+#### List all teachers : `listTeachers`
+
+Shows a list of all teachers stored in NewAddressBook.
+
+Format: `listTeachers`
+
+
+### Managing Meetings
+
+(Comment: some brief description?)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+NewAddressBook automatically removes meetings that have expired whenever you load the app. 
+So you don't have to worry about deleting them!
+</div>
+
+#### Add a meeting : `meet`
+
+(Comment: maybe it would be better to change command word to meeting?)
+
+(Comment: square brackets to indicate optional? Or is everything compulsory here)
+
+Format: `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE`
+
+Parameters:
+* `TITLE` A brief summary of the meeting. 
+* `DATE_TIME` A valid date and time of the meeting. 
+  * should be of the format `YYYY-MM-DD HH:mm`
+* `VENUE`: The venue of the meeting.
+* `ATTENDEE_TYPE`: The type of person(s) you are meeting with.
+  * can only be one of the following: `S` (students), `T` (teachers), `P` (parents)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You cannot add meetings in the past.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+NewAddressBook will prevent you from adding a meeting if the new meeting clashes (exact same date and time) 
+with an existing meeting.
+</div>
+
+Example:
+* `meet r/Meeting with Ms.Lee d/2040-07-12 14:30 v/Seminar room 3 w/P`
+
+
+#### Delete a meeting: 
+
+(To be filled up)
+
+#### Show meetings window : `showMeeting`
+
+Pops out the meeting window. 
+
+#### Quit meetings window :
+
+Closes the meeting window.
+
+### General
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Adding grades to students
-Changes the grades or adds a new grade for the student.
+#### Undo the latest change : `undo`
 
-`grades /s STUDENT NAME /u UPDATED GRADES`
+Undoes the last change. This command only works for operations that adds, deletes, or edits infomation. This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone. 
 
-The updated grades hould be in a dictionary form, seperated by commas.
+(Comment: maybe show a table showing which commands can be undone)?
 
-Example: `grades /s John Smith /u Biology:A,Chemistry:B,Chinese:C`
+#### Viewing help : `help`
 
-Note that one can add an unlimited number of subjects.
+Shows a message explaining how to access the help page.
 
-If the subject grade is already present, the subject grade will be updated to reflect the new grade specified in the command. Otherwise, a new subject grade will be added.
+![help message](images/helpMessage.png)
 
-In the example command above, assume John Smith has the following grades:
-- English: D
-- Biology: B
-- Chinese: D
+Format: `help`
 
-Then after executing the command, the grades will be updated to
-- English: D
-- Biology: A
-- Chemistry: B
-- Chinese: C
+### NewAddressBook Data File
 
-
-### Saving the data
+#### Saving the data
 
 NewAddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
-NewAddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+NewAddressBook data are saved as a JSON file `[JAR file location]/data/newaddressbook.json`. Advanced users are welcome to update data directly by editing the data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, NewAddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, NewAddressBook will discard all data and start with an 
+empty data file at the next run. In the event that the modification you make causes NewAddressBook to stop functioning 
+properly, please manually remove the data file and launch the app again.
 </div>
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -279,17 +608,3 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NewAddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**Student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [m/MEDICAL_HISTORY]…​ [t/TAG]…​` <br> e.g., `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977 m/asthma t/representative`
-**Teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` <br> e.g., `teacher n/Gabe p/91234567 e/gabe@example.com g/M o/151 i/Lunch buddy`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit<Teacher/Student> INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editStudent 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Copy** | `copy f/FIELD` <br> e.g., `copy f/email`
-**List** | `list`
-**Help** | `help`
