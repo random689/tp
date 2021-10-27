@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-{:toc}
+* Table of Contents
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,7 +25,8 @@ features such as keeping track of upcoming meetings, recording the medical histo
 3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data.<br>
-![Ui](images/Ui.png)
+<br>
+   ![Ui](images/Ui.png)
 
 5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -54,6 +56,8 @@ and try launching again.
 ### User Interface (UI)
 The following shows the different parts of NewAddressBook's main application window:
 
+![MainUi](images/MainUi.png)
+
 * The **Command Box** is where you type in commands for execution.
 * The **Result Box** displays the result of the commands executed. 
 * The **Student List** displays the list of students in NewAddressBook.
@@ -61,20 +65,37 @@ The following shows the different parts of NewAddressBook's main application win
 * The **Data Source** displays information about where the data for NewAddressBook is stored.
 
 #### Individual Student Display
-The image below shows the various aspects that describes an individual student in NewAddressBook:
+The following image shows the various aspects that describes an individual student in NewAddressBook:
+
+![StudentUi](images/StudentUi.png)
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Medical History** will only appear if you have added medical history for that student. 
+Otherwise, it will not be shown. This allows you to easily observe whether a student has any medical history.
+</div>
 
 #### Individual Teacher Display
-The image below shows the various aspects that describes an individual teacher in NewAddressBook:
+The following image shows the various aspects that describes an individual teacher in NewAddressBook:
+
+![TeacherUi](images/TeacherUi.png)
 
 #### Meeting Window
+
 In NewAddressBook, meetings are not displayed in the main window. Instead, you will need to open up the Meetings window. 
-You can do so by entering the `showMeeting` command  or by clicking on the `Show Meetings` button in the menu bar.
+You can do so by entering the `showMeeting` command in the main window's input box or by clicking on the `Show Meetings` button in the menu bar.
 The following image shows the Meetings Window:
 
-The following shows the different part of NewAddressBook's meeting application window:
-* The **Command Box** is where you type in commands for execution on meetings.
-* The **Result Box** displays the result of the commands executed.
-* The **Meeting List** displays the list of meetings in NewAddressBook.
+The following shows NewAddressBook's meeting window:
+
+![MeetingWindowUi](images/MeetingWindowUi.png)
+
+The meeting window has its own input box, result box, and a meetings list.
+
+#### Individual Meeting Display
+
+The following image shows the various aspects that describes an upcoming meeting in NewAddressBook:
+
+![MeetingUi](images/MeetingUi.png)
 
 ### Commands Summary
 
@@ -96,25 +117,25 @@ Action | Format | Window
 **List all students** |`listStudents` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
-**Copy a field from teachers** | `copy c/FIELD_TO_COPY` | Main
-**Clear all teachers** | `clearTeacher` | Main
+**Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
+**Clear teachers** | `clearTeacher` | Main
 **Delete a teacher** | `deleteTeacher INDEX` | Main
 **Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** | | Main
 **List all teachers** | `listTeachers` | Main
-**Add meeting** | `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE` | Meetings
-**Remove meetings** | `deleteMeeting INDEX` | Meetings
-**Clear meetings** |  | Meetings
-**Open meetings window** | `showMeeting` | Main
-**Close meetings window** | `quitMeeting` | Meetings
 **Exit** | `exit` | Main
-**Undo**| `undo` | Main
 **View help** | `help` | Main
+**Open meetings window** | `showMeeting` | Main
+**Add meeting** | `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE` | Meetings
+**Remove meeting** | `deleteMeeting INDEX` | Meetings
+**Clear all meetings** | `clearMeeting`  | Meetings
+**Close meetings window** | `quitMeeting` | Meetings
+**Undo**| `undo` | Both
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Commands
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -151,6 +172,8 @@ The commands offered are:
   - [Find students by name](#find-students-by-name--findstudent)
   - [Filter students](#filter-students--filterstudent)
   - [List all students](#list-all-students--liststudents)
+  - [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
+  - [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showMedical)
 
 2. [Managing Teacher Contacts](#managing-student-contacts)
   - [Add a teacher](#add-a-teacher--teacher)
@@ -165,7 +188,7 @@ The commands offered are:
 3. [Managing Meetings](#managing-meetings)
   - [Add a meeting](#add-a-meeting--meet)
   - [Delete a meeting](#delete-a-meeting)
-  - [Clear meeting](#clear-meeting)
+  - [Clear all meetings](#clear-meeting)
   - [Show meetings window](#show-meetings-window--showmeeting) 
   - [Quit meetings window](#quit-meetings-window)
   
@@ -331,7 +354,7 @@ Shows a list of all students stored in the address book.
 
 Format: `listStudents`
 
-#### Modify medical history of a student: `medical`
+#### Modify medical history of a student : `medical`
 Format: `medical INDEX [m/MEDICAL_HISTORY]`
 
 * Adds the medical history to the student at the specified `INDEX`.
@@ -518,7 +541,7 @@ Format: `listTeachers`
 
 ### Managing Meetings
 
-(Comment: some brief description?)
+NewAddressBook also allows you to keep track of upcoming meetings with parents, teachers or students.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 NewAddressBook automatically removes meetings that have expired whenever you load the app. 
@@ -526,10 +549,6 @@ So you don't have to worry about deleting them!
 </div>
 
 #### Add a meeting : `meet`
-
-(Comment: maybe it would be better to change command word to meeting?)
-
-(Comment: square brackets to indicate optional? Or is everything compulsory here)
 
 Format: `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE`
 
@@ -550,11 +569,16 @@ NewAddressBook will prevent you from adding a meeting if the new meeting clashes
 with an existing meeting.
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you provide an invalid date, the error message given by NewAddressBook is the same as when you provide an invalid datetime format.
+For example, "2022-02-29" is an invalid date since 2022 is not a leap year.
+</div>
+
 Example:
 * `meet r/Meeting with Ms.Lee d/2040-07-12 14:30 v/Seminar room 3 w/P`
 
 
-#### Delete a meeting:  `deleteMeeting`
+#### Delete a meeting :  `deleteMeeting`
 
 Deletes the specified meeting from NewAddressBook.
 
@@ -568,17 +592,23 @@ Examples:
 * `deleteMeeting 2` deletes the 2nd meeting in the address book.
 * `deleteMeeting 0` will return an error since the index is not positive.
 
-#### Clear meetings:  `clearMeeting`
+#### Clear meetings :  `clearMeeting`
 
-(To be filled up)
+Clears all meetings in NewAddressBook.
+
+Format: `clearMeeting`
 
 #### Show meetings window : `showMeeting`
 
 Pops out the meeting window. 
 
-#### Quit meetings window :
+Format: `showMeeting`
+
+#### Quit meetings window : `quitMeeting`
 
 Closes the meeting window.
+
+Format: `quitMeeting`
 
 
 ### General
@@ -591,9 +621,8 @@ Format: `exit`
 
 #### Undo the latest change : `undo`
 
-Undoes the last change. This command only works for operations that adds, deletes, or edits infomation. This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone. 
-
-(Comment: maybe show a table showing which commands can be undone)?
+Undoes the last change. This command only works for operations that adds, deletes, or edits infomation. 
+This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone.
 
 #### Viewing help : `help`
 
