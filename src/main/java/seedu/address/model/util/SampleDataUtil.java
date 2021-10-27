@@ -52,7 +52,7 @@ public class SampleDataUtil {
                     new Gender("N"), new Involvement("Math HOD"), new OfficeTable("2"),
                     getTagSet("gymbuds")),
             new Teacher(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Gender("M"), new Involvement("Colleague"), new OfficeTable("3"),
+                    new Gender("M"), new Involvement("Math Department"), new OfficeTable("3"),
                     getTagSet("lunchbuddy"))
         };
     }
@@ -64,7 +64,7 @@ public class SampleDataUtil {
             new Meeting(new DateTime("2060-03-10 23:12"), new Attendee("S"),
                 new Description("Math consult with class 4A"), new Description("Zoom")),
             new Meeting(new DateTime("2060-10-02 15:33"), new Attendee("P"),
-                new Description("Meeting with Axel Yeoh's parents"), new Description("Classroom 4D")),
+                new Description("Meeting with Mrs. Lee"), new Description("Classroom 4D")),
         };
     }
 
