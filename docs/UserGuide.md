@@ -2,20 +2,16 @@
 layout: page
 title: User Guide
 ---
-
-* Table of Contents
-  {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Introduction
 
-NewAddressBook is a **desktop app built for secondary school teachers** handling large classes 
+NewAddressBook is a **desktop app built for secondary school teachers** handling large classes
 to help **manage their contacts of their students and colleagues** efficiently. NewAddressBook also supports other
 features such as keeping track of upcoming meetings, recording the medical histories of your students.
 
---------------------------------------------------------------------------------------------------------------------
+* Table of Contents
+{:toc}
 
+---------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -134,7 +130,6 @@ Action | Format | Window
 **Undo**| `undo` | Both
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -187,10 +182,10 @@ The commands offered are:
 
 3. [Managing Meetings](#managing-meetings)
   - [Add a meeting](#add-a-meeting--meet)
-  - [Delete a meeting](#delete-a-meeting)
-  - [Clear all meetings](#clear-meeting)
+  - [Delete a meeting](#delete-a-meeting--deletemeeting)
+  - [Clear all meetings](#clear-meetings--clearmeeting)
   - [Show meetings window](#show-meetings-window--showmeeting) 
-  - [Quit meetings window](#quit-meetings-window)
+  - [Quit meetings window](#quit-meetings-window--quitmeeting)
   
 4. [General](#general)
  - [Exiting the program](#exiting-the-program--exit)
@@ -290,7 +285,6 @@ Edits an existing student in NewAddressBook.
 
 Format: `editStudent [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​`
-
 
 * Edits the student at the specified `INDEX`. 
 * `INDEX` refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
@@ -487,8 +481,6 @@ Examples:
 *  `editTeacher 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teacher to be `91234567` and `johndoe@example.com` respectively.
 *  `editTeacher 2 n/Betsy Crower t/` Edits the name of the 2nd teacher to be `Betsy Crower` and clears all existing tags.
 
-
-
 #### Find teachers by name : `findTeacher`
 
 Finds teachers whose names contain any of the given keywords.
@@ -538,7 +530,6 @@ Shows a list of all teachers stored in NewAddressBook.
 
 Format: `listTeachers`
 
-
 ### Managing Meetings
 
 NewAddressBook also allows you to keep track of upcoming meetings with parents, teachers or students.
@@ -577,8 +568,7 @@ For example, "2022-02-29" is an invalid date since 2022 is not a leap year.
 Example:
 * `meet r/Meeting with Ms.Lee d/2040-07-12 14:30 v/Seminar room 3 w/P`
 
-
-#### Delete a meeting :  `deleteMeeting`
+#### Delete a meeting : `deleteMeeting`
 
 Deletes the specified meeting from NewAddressBook.
 
@@ -592,7 +582,7 @@ Examples:
 * `deleteMeeting 2` deletes the 2nd meeting in the address book.
 * `deleteMeeting 0` will return an error since the index is not positive.
 
-#### Clear meetings :  `clearMeeting`
+#### Clear meetings : `clearMeeting`
 
 Clears all meetings in NewAddressBook.
 
@@ -609,7 +599,6 @@ Format: `showMeeting`
 Closes the meeting window.
 
 Format: `quitMeeting`
-
 
 ### General
 
@@ -632,13 +621,14 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### NewAddressBook Data File
+--------------------------------------------------------------------------------------------------------------------
+## NewAddressBook Data File
 
-#### Saving the data
+### Saving the data
 
 NewAddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-#### Editing the data file
+### Editing the data file
 
 NewAddressBook data are saved as a JSON file `[JAR file location]/data/newaddressbook.json`. Advanced users are welcome to update data directly by editing the data file.
 
@@ -648,10 +638,7 @@ empty data file at the next run. In the event that the modification you make cau
 properly, please manually remove the data file and launch the app again.
 </div>
 
-
-
 --------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
