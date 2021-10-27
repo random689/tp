@@ -51,10 +51,11 @@ public class Meeting implements Comparable<Meeting> {
     /**
      * Returns true if there is a datetime conflict with the other meeting, false otherwise.
      *
-     * @param other The other meeting.
+     * @param otherMeeting The other meeting.
      */
-    public boolean hasConflictWith(Meeting other) {
-        return this.dateTime.equals(other.dateTime);
+    public boolean hasConflictWith(Meeting otherMeeting) {
+        return otherMeeting != null
+                && this.dateTime.equals(otherMeeting.dateTime);
     }
 
     @Override
