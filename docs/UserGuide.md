@@ -3,18 +3,16 @@ layout: page
 title: User Guide
 ---
 
-* Table of Contents
-  {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
 ## Introduction
 
-NewAddressBook is a **desktop app built for secondary school teachers** handling large classes 
+NewAddressBook is a **desktop app built for secondary school teachers** handling large classes
 to help **manage their contacts of their students and colleagues** efficiently. NewAddressBook also supports other
 features such as keeping track of upcoming meetings, recording the medical histories of your students.
 
---------------------------------------------------------------------------------------------------------------------
+* Table of Contents
+  {:toc}
+
+---------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -187,10 +185,10 @@ The commands offered are:
 
 3. [Managing Meetings](#managing-meetings)
   - [Add a meeting](#add-a-meeting--meet)
-  - [Delete a meeting](#delete-a-meeting)
-  - [Clear all meetings](#clear-meeting)
+  - [Delete a meeting](#delete-a-meeting--deletemeeting)
+  - [Clear all meetings](#clear-meetings--clearmeeting)
   - [Show meetings window](#show-meetings-window--showmeeting) 
-  - [Quit meetings window](#quit-meetings-window)
+  - [Quit meetings window](#quit-meetings-window--quitmeeting)
   
 4. [General](#general)
  - [Exiting the program](#exiting-the-program--exit)
@@ -610,7 +608,6 @@ Closes the meeting window.
 
 Format: `quitMeeting`
 
-
 ### General
 
 #### Exiting the program : `exit`
@@ -647,8 +644,6 @@ If your changes to the data file makes its format invalid, NewAddressBook will d
 empty data file at the next run. In the event that the modification you make causes NewAddressBook to stop functioning 
 properly, please manually remove the data file and launch the app again.
 </div>
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
