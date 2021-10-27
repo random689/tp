@@ -568,7 +568,7 @@ For example, "2022-02-29" is an invalid date since 2022 is not a leap year.
 Example:
 * `meet r/Meeting with Ms.Lee d/2040-07-12 14:30 v/Seminar room 3 w/P`
 
-#### Delete a meeting :  `deleteMeeting`
+#### Delete a meeting : `deleteMeeting`
 
 Deletes the specified meeting from NewAddressBook.
 
@@ -582,7 +582,7 @@ Examples:
 * `deleteMeeting 2` deletes the 2nd meeting in the address book.
 * `deleteMeeting 0` will return an error since the index is not positive.
 
-#### Clear meetings :  `clearMeeting`
+#### Clear meetings : `clearMeeting`
 
 Clears all meetings in NewAddressBook.
 
