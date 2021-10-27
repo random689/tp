@@ -1,12 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.person.student;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.person.student.FormClass;
 
 public class FormClassTest {
 
@@ -30,12 +28,15 @@ public class FormClassTest {
         assertFalse(FormClass.isValidFormClass("")); // empty string
         assertFalse(FormClass.isValidFormClass(" ")); // spaces only
         assertFalse(FormClass.isValidFormClass(" 4E1")); // contains whitespace at start
+        assertFalse(FormClass.isValidFormClass("4@1")); // contains non-alphanumeric character
+        assertFalse(FormClass.isValidFormClass("E1")); // does not start with 1-5
+        assertFalse(FormClass.isValidFormClass("8E1")); // does not start with 1-5
 
         // valid FormClass
-        assertTrue(FormClass.isValidFormClass("Euphoria")); // alphabets only
-        assertTrue(FormClass.isValidFormClass("43")); // numbers only
-        assertTrue(FormClass.isValidFormClass("4e1")); // alphanumeric characters
+        assertTrue(FormClass.isValidFormClass("4e1")); // in the correct format
         assertTrue(FormClass.isValidFormClass("4E1")); // with capital letters
-        assertTrue(FormClass.isValidFormClass("4 Harmony 1")); // long names
+        assertTrue(FormClass.isValidFormClass("4Harmony1")); // long names
+        assertTrue(FormClass.isValidFormClass("1N12")); // more than digit at start and end
+        assertTrue(FormClass.isValidFormClass("1Science4Life")); // alphanumeric mix
     }
 }

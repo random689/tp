@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.model.Model;
@@ -125,6 +127,20 @@ public class CopyTeacherCommandTest {
         assertEquals(new CopyTeacherCommand(copyCommandDescriptor).getCopyContent(model.getFilteredTeacherList()),
                 sb.toString());
     }
+
+    @Test
+    public void execute_copyFromEmptyList_failure() {
+        CopyCommandDescriptor copyCommandDescriptor = new CopyCommandDescriptor("email");
+        List<String> keywords = new ArrayList<>();
+        // some random name that should not be inside the address book
+        keywords.add("blajfpoqiujwfocmqpoujfiojqpfdoijqopiwjfcopiqwjfcoijopijopijopci");
+        TeacherNameContainsKeywordsPredicate nameContainsKeywordsPredicate =
+                new TeacherNameContainsKeywordsPredicate(keywords);
+        model.updateFilteredTeacherList(nameContainsKeywordsPredicate);
+        assertCommandSuccess(new CopyTeacherCommand(copyCommandDescriptor), model, CopyCommand.EMPTY_LIST,
+                model);
+    }
+
 
     @Test
     public void equals() {

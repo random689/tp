@@ -32,15 +32,18 @@ public class CopyCommandDescriptor {
      * @param fieldToCopy A string to represent which field to copy
      */
     public CopyCommandDescriptor(String fieldToCopy) {
-        // TODO: change to switch statement soon
         requireNonNull(fieldToCopy);
-        if (fieldToCopy.equals("phone")) {
+        switch (fieldToCopy) {
+        case "phone":
             this.fieldToCopy = Field.PHONE;
-        } else if (fieldToCopy.equals("email")) {
+            break;
+        case "email":
             this.fieldToCopy = Field.EMAIL;
-        } else if (fieldToCopy.equals("name")) {
+            break;
+        case "name":
             this.fieldToCopy = Field.NAME;
-        } else {
+            break;
+        default:
             this.fieldToCopy = Field.INVALID;
         }
     }

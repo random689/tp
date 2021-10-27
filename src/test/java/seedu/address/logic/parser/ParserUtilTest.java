@@ -30,6 +30,10 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_INVOLVEMENT = " ";
     private static final String INVALID_FORM_CLASS = " ";
+    private static final String INVALID_DATETIME = "19-08-2022 02:02";
+    private static final String INVALID_ATTENDEE = "-";
+    private static final String INVALID_TITLE = " ";
+    private static final String INVALID_VENUE = "";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,6 +43,10 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_INVOLVEMENT = "Math class";
     private static final String VALID_FORM_CLASS = "4E1";
+    private static final String VALID_DATETIME = "2022-06-10 10:00";
+    private static final String VALID_ATTENDEE = "P";
+    private static final String VALID_TITLE = "Meet the Parents Session";
+    private static final String VALID_VENUE = "4E1 Classroom";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -246,8 +254,6 @@ public class ParserUtilTest {
         assertEquals(expectedFormClass, ParserUtil.parseFormClass(formClassWithWhitespace));
     }
 
-
-
     @Test
     public void parseGender_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseGender((String) null));
@@ -256,5 +262,45 @@ public class ParserUtilTest {
     @Test
     public void parseGender_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseFormClass(INVALID_FORM_CLASS));
+    }
+
+    @Test
+    public void parseDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime((String) null));
+    }
+
+    @Test
+    public void parseDateTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATETIME));
+    }
+
+    @Test
+    public void parseAttendee_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendee((String) null));
+    }
+
+    @Test
+    public void parseAttendee_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendee(INVALID_ATTENDEE));
+    }
+
+    @Test
+    public void parseTitle_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle((String) null));
+    }
+
+    @Test
+    public void parseTitle_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    }
+
+    @Test
+    public void parseVenue_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseVenue((String) null));
+    }
+
+    @Test
+    public void parseVenue_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseVenue(INVALID_VENUE));
     }
 }

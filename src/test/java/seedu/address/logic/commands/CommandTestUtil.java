@@ -8,6 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_ATTENDEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,19 +40,13 @@ import seedu.address.testutil.EditTeacherDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    // students
+    // Students
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_NAME_CHO = "Cho li";
-    public static final String VALID_NAME_DEE = "Dee ku";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_PHONE_CHO = "33333333";
-    public static final String VALID_PHONE_DEE = "44444444";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_EMAIL_CHO = "cho@example.com";
-    public static final String VALID_EMAIL_DEE = "dee@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_MONITOR = "monitor";
@@ -57,38 +55,22 @@ public class CommandTestUtil {
     public static final String VALID_EMERGENCY_CONTACT_BOB = "91304141";
     public static final String VALID_INVOLVEMENT_AMY = "Bio class";
     public static final String VALID_INVOLVEMENT_BOB = "Dance";
-    public static final String VALID_INVOLVEMENT_CHO = "PE Dept";
-    public static final String VALID_INVOLVEMENT_DEE = "4A Co-Form";
-    public static final String VALID_FORM_CLASS_AMY = "4E1";
-    public static final String VALID_FORM_CLASS_BOB = "2E1";
     public static final String VALID_GENDER_AMY = "F";
     public static final String VALID_GENDER_BOB = "M";
-    public static final String VALID_GENDER_CHO = "F";
-    public static final String VALID_GENDER_DEE = "N";
-    public static final String VALID_OFFICE_TABLE_CHO = "4";
-    public static final String VALID_OFFICE_TABLE_DEE = "12";
+    public static final String VALID_FORM_CLASS_AMY = "4E1";
+    public static final String VALID_FORM_CLASS_BOB = "2E1";
     public static final String VALID_MEDICAL_HISTORY_AMY = "ADHD";
     public static final String VALID_MEDICAL_HISTORY_BOB = "Autistic";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String NAME_DESC_CHO = " " + PREFIX_NAME + VALID_NAME_CHO;
-    public static final String NAME_DESC_DEE = " " + PREFIX_NAME + VALID_NAME_DEE;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String PHONE_DESC_CHO = " " + PREFIX_PHONE + VALID_PHONE_CHO;
-    public static final String PHONE_DESC_DEE = " " + PREFIX_PHONE + VALID_PHONE_DEE;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String EMAIL_DESC_CHO = " " + PREFIX_EMAIL + VALID_EMAIL_CHO;
-    public static final String EMAIL_DESC_DEE = " " + PREFIX_EMAIL + VALID_EMAIL_DEE;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
-    public static final String GENDER_DESC_CHO = " " + PREFIX_GENDER + VALID_GENDER_CHO;
-    public static final String GENDER_DESC_DEE = " " + PREFIX_GENDER + VALID_GENDER_DEE;
     public static final String INVOLVEMENT_DESC_AMY = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_AMY;
     public static final String INVOLVEMENT_DESC_BOB = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_BOB;
-    public static final String INVOLVEMENT_DESC_CHO = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_CHO;
-    public static final String INVOLVEMENT_DESC_DEE = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_DEE;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String EMERGENCY_CONTACT_DESC_AMY = " " + PREFIX_EMERGENCY_CONTACT
@@ -99,9 +81,34 @@ public class CommandTestUtil {
     public static final String TAG_DESC_MONITOR = " " + PREFIX_TAG + VALID_TAG_MONITOR;
     public static final String FORM_CLASS_DESC_AMY = " " + PREFIX_FORM_CLASS + VALID_FORM_CLASS_AMY;
     public static final String FORM_CLASS_DESC_BOB = " " + PREFIX_FORM_CLASS + VALID_FORM_CLASS_BOB;
+
+    //Teachers
+    public static final String VALID_NAME_CHO = "Cho li";
+    public static final String VALID_NAME_DEE = "Dee ku";
+    public static final String VALID_PHONE_CHO = "33333333";
+    public static final String VALID_PHONE_DEE = "44444444";
+    public static final String VALID_EMAIL_CHO = "cho@example.com";
+    public static final String VALID_EMAIL_DEE = "dee@example.com";
+    public static final String VALID_INVOLVEMENT_CHO = "PE Dept";
+    public static final String VALID_INVOLVEMENT_DEE = "4A Co-Form";
+    public static final String VALID_GENDER_CHO = "F";
+    public static final String VALID_GENDER_DEE = "N";
+    public static final String VALID_OFFICE_TABLE_CHO = "4";
+    public static final String VALID_OFFICE_TABLE_DEE = "12";
+    public static final String NAME_DESC_CHO = " " + PREFIX_NAME + VALID_NAME_CHO;
+    public static final String NAME_DESC_DEE = " " + PREFIX_NAME + VALID_NAME_DEE;
+    public static final String PHONE_DESC_CHO = " " + PREFIX_PHONE + VALID_PHONE_CHO;
+    public static final String PHONE_DESC_DEE = " " + PREFIX_PHONE + VALID_PHONE_DEE;
+    public static final String EMAIL_DESC_CHO = " " + PREFIX_EMAIL + VALID_EMAIL_CHO;
+    public static final String EMAIL_DESC_DEE = " " + PREFIX_EMAIL + VALID_EMAIL_DEE;
+    public static final String GENDER_DESC_CHO = " " + PREFIX_GENDER + VALID_GENDER_CHO;
+    public static final String GENDER_DESC_DEE = " " + PREFIX_GENDER + VALID_GENDER_DEE;
+    public static final String INVOLVEMENT_DESC_CHO = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_CHO;
+    public static final String INVOLVEMENT_DESC_DEE = " " + PREFIX_INVOLVEMENT + VALID_INVOLVEMENT_DEE;
     public static final String OFFICE_TABLE_DESC_CHO = " " + PREFIX_OFFICE_TABLE + VALID_OFFICE_TABLE_CHO;
     public static final String OFFICE_TABLE_DESC_DEE = " " + PREFIX_OFFICE_TABLE + VALID_OFFICE_TABLE_DEE;
 
+    //Misc for Student and Teachers
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -122,6 +129,38 @@ public class CommandTestUtil {
     public static final EditStudentDescriptor DESC_BOB;
     public static final EditTeacherDescriptor DESC_CHO;
     public static final EditTeacherDescriptor DESC_DEE;
+
+    //meetings
+    public static final String VALID_DATETIME_1 = "2022-08-20 13:24";
+    public static final String VALID_DATETIME_2 = "2026-01-20 10:00";
+    public static final String VALID_DATETIME_3 = "2023-10-20 12:20";
+    public static final String VALID_ATTENDEE_1 = "T";
+    public static final String VALID_ATTENDEE_2 = "S";
+    public static final String VALID_ATTENDEE_3 = "P";
+    public static final String VALID_TITLE_1 = "Biology Consultation";
+    public static final String VALID_TITLE_2 = "Mid Term Review";
+    public static final String VALID_TITLE_3 = "Presentation to Principal";
+    public static final String VALID_VENUE_1 = "4E1 Classroom";
+    public static final String VALID_VENUE_2 = "Zoom";
+    public static final String VALID_VENUE_3 = "LT29";
+    public static final String DATETIME_DESC_1 = " " + PREFIX_MEETING_DATETIME + VALID_DATETIME_1;
+    public static final String ATTENDEE_DESC_1 = " " + PREFIX_MEETING_ATTENDEE + VALID_ATTENDEE_1;
+    public static final String TITLE_DESC_1 = " " + PREFIX_MEETING_TITLE + VALID_TITLE_1;
+    public static final String VENUE_DESC_1 = " " + PREFIX_MEETING_VENUE + VALID_VENUE_1;
+    public static final String DATETIME_DESC_2 = " " + PREFIX_MEETING_DATETIME + VALID_DATETIME_2;
+    public static final String ATTENDEE_DESC_2 = " " + PREFIX_MEETING_ATTENDEE + VALID_ATTENDEE_2;
+    public static final String TITLE_DESC_2 = " " + PREFIX_MEETING_TITLE + VALID_TITLE_2;
+    public static final String VENUE_DESC_2 = " " + PREFIX_MEETING_VENUE + VALID_VENUE_2;
+
+    //invalid Meeting fields
+    public static final String INVALID_DATETIME = "2022-20-08 02:02";
+    public static final String INVALID_ATTENDEE = "Y";
+    public static final String INVALID_TITLE = ""; //empty string not allowed
+    public static final String INVALID_VENUE = " "; //space not allowed
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_MEETING_DATETIME + INVALID_DATETIME;
+    public static final String INVALID_ATTENDEE_DESC = " " + PREFIX_MEETING_ATTENDEE + INVALID_ATTENDEE;
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_MEETING_TITLE + INVALID_TITLE;
+    public static final String INVALID_VENUE_DESC = " " + PREFIX_MEETING_VENUE + INVALID_VENUE;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder()

@@ -209,6 +209,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -238,6 +240,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowMedical()) {
                 handleMedical(commandResult.getStudent());
+            }
+
+            if (commandResult.isShowMeeting()) {
+                handleMeeting();
             }
 
             return commandResult;

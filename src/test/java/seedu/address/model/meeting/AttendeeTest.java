@@ -13,7 +13,7 @@ public class AttendeeTest {
     }
 
     @Test
-    public void constructor_invalidGender_throwsIllegalArgumentException() {
+    public void constructor_invalidAttendee_throwsIllegalArgumentException() {
         String invalid = "";
         assertThrows(IllegalArgumentException.class, () -> new Attendee(invalid));
     }
@@ -25,7 +25,7 @@ public class AttendeeTest {
 
         // invalid
         assertFalse(Attendee.isValidAttendee("")); // empty string
-        assertFalse(Attendee.isValidAttendee(" ")); // spaces only
+        assertFalse(Attendee.isValidAttendee("   ")); // spaces only
         assertFalse(Attendee.isValidAttendee("-T*")); //correct within wrong
         assertFalse(Attendee.isValidAttendee("-")); // wrong character
 
@@ -33,5 +33,8 @@ public class AttendeeTest {
         assertTrue(Attendee.isValidAttendee("T"));
         assertTrue(Attendee.isValidAttendee("P"));
         assertTrue(Attendee.isValidAttendee("S"));
+        assertTrue(Attendee.isValidAttendee("t"));
+        assertTrue(Attendee.isValidAttendee("p"));
+        assertTrue(Attendee.isValidAttendee("s"));
     }
 }

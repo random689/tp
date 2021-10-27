@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.student.ShowMedicalHistoryCommand.SHOWING_MEDICAL_HISTORY_MESSAGE;
+import static seedu.address.testutil.TypicalAddressBookObjects.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +36,7 @@ class ShowMedicalHistoryCommandTest {
         Student studentToShow = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         ShowMedicalHistoryCommand showCommand = new ShowMedicalHistoryCommand(INDEX_FIRST_STUDENT);
         CommandResult expectedCommandResult = new CommandResult(SHOWING_MEDICAL_HISTORY_MESSAGE,
-                false, false, true, studentToShow);
+                false, false, true, studentToShow, false, false);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
         assertCommandSuccess(showCommand, model, expectedCommandResult, expectedModel);
