@@ -68,7 +68,7 @@ public class TeacherTest {
         // different type -> returns false
         assertFalse(ALI.equals(5));
 
-        // different person -> returns false
+        // different teacher -> returns false
         assertFalse(ALI.equals(DEE));
 
         // different name -> returns false

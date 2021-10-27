@@ -8,6 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FORM_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INVOLVEMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_ATTENDEE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE_TABLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -139,11 +143,24 @@ public class CommandTestUtil {
     public static final String VALID_VENUE_1 = "4E1 Classroom";
     public static final String VALID_VENUE_2 = "Zoom";
     public static final String VALID_VENUE_3 = "LT29";
+    public static final String DATETIME_DESC_1 = " " + PREFIX_MEETING_DATETIME + VALID_DATETIME_1;
+    public static final String ATTENDEE_DESC_1 = " " + PREFIX_MEETING_ATTENDEE + VALID_ATTENDEE_1;
+    public static final String TITLE_DESC_1 = " " + PREFIX_MEETING_TITLE + VALID_TITLE_1;
+    public static final String VENUE_DESC_1 = " " + PREFIX_MEETING_VENUE + VALID_VENUE_1;
+    public static final String DATETIME_DESC_2 = " " + PREFIX_MEETING_DATETIME + VALID_DATETIME_2;
+    public static final String ATTENDEE_DESC_2 = " " + PREFIX_MEETING_ATTENDEE + VALID_ATTENDEE_2;
+    public static final String TITLE_DESC_2 = " " + PREFIX_MEETING_TITLE + VALID_TITLE_2;
+    public static final String VENUE_DESC_2 = " " + PREFIX_MEETING_VENUE + VALID_VENUE_2;
+
     //invalid Meeting fields
     public static final String INVALID_DATETIME = "2022-20-08 02:02";
     public static final String INVALID_ATTENDEE = "Y";
     public static final String INVALID_TITLE = ""; //empty string not allowed
-    public static final String IMVALID_VENUE = " "; //space not allowed
+    public static final String INVALID_VENUE = " "; //space not allowed
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_MEETING_DATETIME + INVALID_DATETIME;
+    public static final String INVALID_ATTENDEE_DESC = " " + PREFIX_MEETING_ATTENDEE + INVALID_ATTENDEE;
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_MEETING_TITLE + INVALID_TITLE;
+    public static final String INVALID_VENUE_DESC = " " + PREFIX_MEETING_VENUE + INVALID_VENUE;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder()
