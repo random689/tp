@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-## Introduction
-
 NewAddressBook is a **desktop app built for secondary school teachers** handling large classes
 to help **manage their contacts of their students and colleagues** efficiently. NewAddressBook also supports other
 features such as keeping track of upcoming meetings, recording the medical histories of your students.
