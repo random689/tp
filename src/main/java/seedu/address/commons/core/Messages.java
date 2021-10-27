@@ -16,4 +16,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_TEACHER_DISPLAYED_INDEX = "The teacher index provided is invalid";
     public static final String MESSAGE_TEACHERS_LISTED_OVERVIEW = "%1$d teachers listed!";
 
+    public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";
+
 }

@@ -68,8 +68,6 @@ public class SampleDataUtil {
         };
     }
 
-
-
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Student sampleStudent : getSampleStudents()) {

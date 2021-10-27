@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.person.teacher;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,12 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_OFFICE_TABLE_DE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DEE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_REP;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALI;
-import static seedu.address.testutil.TypicalPersons.DEE;
+import static seedu.address.testutil.TypicalAddressBookObjects.ALI;
+import static seedu.address.testutil.TypicalAddressBookObjects.DEE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.TeacherBuilder;
 
 public class TeacherTest {
