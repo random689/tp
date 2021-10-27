@@ -160,14 +160,18 @@ public interface Model {
     void deleteMeeting(Meeting target);
 
     /**
-     * Undos the previous action.
+     * Removes all meetings in NewAddressBook.
+     */
+    void clearMeetings();
+
+    /**
+     * Undo the previous action.
      * @return True if undo is success, false otherwise
      */
     boolean undo();
 
     /**
-     * Undos the previous action.
-     * @return true if other model has equal history, false otherwise
+     * @return true if the other model has equal history, false otherwise
      */
     boolean hasEqualHistory(Model other);
 
