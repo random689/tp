@@ -173,7 +173,7 @@ The commands offered are:
   - [Filter students](#filter-students--filterstudent)
   - [List all students](#list-all-students--liststudents)
   - [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
-  - [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showMedical)
+  - [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showmedical)
 
 2. [Managing Teacher Contacts](#managing-student-contacts)
   - [Add a teacher](#add-a-teacher--teacher)
@@ -370,7 +370,7 @@ How this command works:
 Examples:
 * `medical 1 m/ADHD` 
 
-#### Viewing the full medical history of a student: `showMedical`
+#### Viewing the full medical history of a student : `showMedical`
 
 Displays a pop-up window for the user to view the full medical history of the student in NewAddressBook.
 
