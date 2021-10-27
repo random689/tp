@@ -52,7 +52,7 @@ and try launching again.
 ## Overview
 
 ### User Interface (UI)
-The following image shows the different parts of NewAddressBook's main application window:
+The following shows the different parts of NewAddressBook's main application window:
 
 * The **Command Box** is where you type in commands for execution.
 * The **Result Box** displays the result of the commands executed. 
@@ -71,6 +71,10 @@ In NewAddressBook, meetings are not displayed in the main window. Instead, you w
 You can do so by entering the `showMeeting` command  or by clicking on the `Show Meetings` button in the menu bar.
 The following image shows the Meetings Window:
 
+The following shows the different part of NewAddressBook's meeting application window:
+* The **Command Box** is where you type in commands for execution on meetings.
+* The **Result Box** displays the result of the commands executed.
+* The **Meeting List** displays the list of meetings in NewAddressBook.
 
 ### Commands Summary
 
@@ -100,11 +104,12 @@ Action | Format | Window
 **Filter a teacher** | | Main
 **List all teachers** | `listTeachers` | Main
 **Add meeting** | `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE` | Meetings
-**Remove meetings** | | Meetings
-**Open meetings window** | `showMeetings` | Main
-**Close meetings window** | | Meetings
+**Remove meetings** | `deleteMeeting INDEX` | Meetings
+**Clear meetings** |  | Meetings
+**Open meetings window** | `showMeeting` | Main
+**Close meetings window** | `quitMeeting` | Meetings
 **Exit** | `exit` | Main
-**Undo**| `undo` | Both
+**Undo**| `undo` | Main
 **View help** | `help` | Main
 
 --------------------------------------------------------------------------------------------------------------------
@@ -160,10 +165,10 @@ The commands offered are:
 3. [Managing Meetings](#managing-meetings)
   - [Add a meeting](#add-a-meeting--meet)
   - [Delete a meeting](#delete-a-meeting)
+  - [Clear meeting](#clear-meeting)
   - [Show meetings window](#show-meetings-window--showmeeting) 
   - [Quit meetings window](#quit-meetings-window)
-
-
+  
 4. [General](#general)
  - [Exiting the program](#exiting-the-program--exit)
  - [Undo the latest change](#undo-the-latest-change--undo)
@@ -196,9 +201,13 @@ Parameters:
 * `GENDER` The gender of the student
   * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
 
+* `FORM_CLASS` A form class associated with the student
+    * should only contain alphanumeric characters
+    * should be of the format `|1-5|STRING|alphanumeric`
+    * e.g: `4E1` is allowed but `41` is not allowed
+
 * `TAG` A tag associated with the student
-  * should only contain alphanumeric characters
-  
+  * should only contain alphanumeric characters  
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
@@ -274,7 +283,6 @@ Examples:
 *  `editStudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `editStudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-
 #### Find students by name : `findStudent`
 
 Finds students whose names contain any of the given keywords.
@@ -322,8 +330,6 @@ Example:
 Shows a list of all students stored in the address book.
 
 Format: `listStudents`
-
-
 
 #### Modify medical history of a student: `medical`
 Format: `medical INDEX [m/MEDICAL_HISTORY]`
@@ -429,7 +435,7 @@ Format: `deleteTeacher INDEX`
 
 * Deletes the teacher at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed teacher list.
-* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed teacher list.
 
 Examples:
 * `listTeacher` followed by `deleteTeacher 2` deletes the 2nd teacher in the address book.
@@ -548,7 +554,21 @@ Example:
 * `meet r/Meeting with Ms.Lee d/2040-07-12 14:30 v/Seminar room 3 w/P`
 
 
-#### Delete a meeting: 
+#### Delete a meeting:  `deleteMeeting`
+
+Deletes the specified meeting from NewAddressBook.
+
+Format: `deleteMeeting INDEX`
+
+* Deletes the meeting at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed meeting list.
+
+Examples:
+* `deleteMeeting 2` deletes the 2nd meeting in the address book.
+* `deleteMeeting 0` will return an error since the index is not positive.
+
+#### Clear meetings:  `clearMeeting`
 
 (To be filled up)
 
@@ -559,6 +579,7 @@ Pops out the meeting window.
 #### Quit meetings window :
 
 Closes the meeting window.
+
 
 ### General
 
