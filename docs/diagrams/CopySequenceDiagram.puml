@@ -51,19 +51,13 @@ activate CopyStudentCommand
 CopyStudentCommand -> Model : getFilteredStudentList()
 activate Model
 
-Model --> CopyStudentCommand : filtered student list
+Model --> CopyStudentCommand
 deactivate Model
 
 CopyStudentCommand -> CopyStudentCommand : copyToClipBoard(list)
 activate CopyStudentCommand
 
-CopyStudentCommand -> CopyStudentCommand : getCopyContent(list)
-activate CopyStudentCommand
-
-CopyStudentCommand --> CopyStudentCommand : content to be copied
-deactivate CopyStudentCommand
-
-CopyStudentCommand --> CopyStudentCommand : content to be copied
+CopyStudentCommand --> CopyStudentCommand
 deactivate CopyStudentCommand
 
 create CommandResult

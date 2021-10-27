@@ -23,7 +23,6 @@ public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Te
         boolean isInvolvementPresent = true;
 
         for (int i = 0; i < keywords.size(); i++) {
-            String keywordCurrent = keywords.get(i).toLowerCase();
 
             if (keywords.get(i).startsWith("t/")) {
                 inTags = inTagsChecker(i, teacher);
@@ -33,11 +32,9 @@ public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Te
                 }
                 break;
             }
-
-            if (teacher.getInvolvement().value.toLowerCase().contains(keywordCurrent)) {
-                inInvolvement = true;
-            }
         }
+        inInvolvement = inInvolvementChecker(teacher);
+
         if (isTagsPresent && !isInvolvementPresent) {
             return inTags;
         } else if (isTagsPresent && isInvolvementPresent) {
@@ -48,19 +45,46 @@ public class TeacherInvolvementContainsKeywordsPredicate implements Predicate<Te
     }
 
     private boolean inTagsChecker(int t, Teacher teacher) {
-        boolean inTag = false;
+        String allTags = "";
+        for (Tag s : teacher.getTags()) {
+            String tagNameLowerCase = s.tagName.toLowerCase();
+            allTags = allTags + tagNameLowerCase;
+        }
 
         for (int i = t; i < keywords.size(); i++) {
-            for (Tag s : teacher.getTags()) {
-                String tagNameLowerCase = s.tagName.toLowerCase();
-                String keywordCurrent = keywords.get(i).toLowerCase();
-                if (keywordCurrent.contains(tagNameLowerCase)) {
-                    inTag = true;
-                }
+            String keywordCurrent = keywords.get(i).toLowerCase();
+            if (keywordCurrent.startsWith("t/") && i == t) {
+                keywordCurrent = keywordCurrent.substring(2);
+            }
+
+            if (allTags.contains(keywordCurrent)) {
+                continue;
+            } else {
+                return false;
             }
         }
 
-        return inTag;
+        return true;
+    }
+
+    private boolean inInvolvementChecker(Teacher teacher) {
+        boolean toReturn = true;
+        String teacherInvolvement = teacher.getInvolvement().value.toLowerCase();
+        for (int i = 0; i < keywords.size(); i++) {
+            String keywordCurrent = keywords.get(i).toLowerCase();
+            if (keywordCurrent.startsWith("t/")) {
+                return toReturn;
+            }
+
+            if (!teacherInvolvement.contains(keywordCurrent)) {
+                toReturn = false;
+            }
+        }
+
+        if (keywords.size() < 1) {
+            return false;
+        }
+        return toReturn;
     }
 
     @Override

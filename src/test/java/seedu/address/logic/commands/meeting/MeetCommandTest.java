@@ -225,6 +225,11 @@ public class MeetCommandTest {
         public void deleteMeeting(Meeting target) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void clearMeetings() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

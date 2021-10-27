@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class OfficeTable {
     public static final String MESSAGE_CONSTRAINTS =
-            "Office table numbers should only contain numbers, and it should have at least 1 digit";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+            "Office table numbers should only contain numbers. It should have at least 1 digit and at most 5 digits";
+    public static final String VALIDATION_REGEX = "\\d{1,5}";
     public final String value;
 
     /**

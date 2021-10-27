@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.function.Predicate;
@@ -189,6 +190,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearMeetings() {
+        addressBook.setMeetings(new ArrayList<Meeting>());
+        this.history.push(new AddressBook(this.addressBook));
+    }
+
+    @Override
     public ObservableList<Meeting> getMeetingList() {
         return addressBook.getMeetingList();
     }
@@ -228,7 +235,7 @@ public class ModelManager implements Model {
     //=========== History =============================================================
 
     /**
-     * Undos the last operation
+     * Undo the last operation
      *
      * @return True if undo was a success, false otherwise
      */

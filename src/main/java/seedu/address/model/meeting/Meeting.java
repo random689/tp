@@ -51,15 +51,16 @@ public class Meeting implements Comparable<Meeting> {
     /**
      * Returns true if there is a datetime conflict with the other meeting, false otherwise.
      *
-     * @param other The other meeting.
+     * @param otherMeeting The other meeting.
      */
-    public boolean hasConflictWith(Meeting other) {
-        return this.dateTime.equals(other.dateTime);
+    public boolean hasConflictWith(Meeting otherMeeting) {
+        return otherMeeting != null
+                && this.dateTime.equals(otherMeeting.dateTime);
     }
 
     @Override
     public String toString() {
-        return String.format("Title: %s\nAttendee: %s\nDatetime: %s\nVenue: %s",
+        return String.format("Title: %s; Attendee: %s; Datetime: %s; Venue: %s",
                 title.toString(), attendee.toString(), dateTime.getUserFormat(), venue.toString());
     }
 

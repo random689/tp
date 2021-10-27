@@ -245,7 +245,7 @@ public class ParserUtil {
         requireNonNull(attendee);
         String trimmedAttendee = attendee.trim();
         if (!Attendee.isValidAttendee(trimmedAttendee)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Attendee.MESSAGE_CONSTRAINTS);
         }
         return new Attendee(attendee);
     }
