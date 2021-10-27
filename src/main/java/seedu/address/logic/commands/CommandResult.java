@@ -28,7 +28,7 @@ public class CommandResult {
     /** Meeting window should be shown to the user. */
     private final boolean showMeeting;
 
-    /** Meeting window should be shown to the user. */
+    /** Meeting window should exit, and the main window should be shown to the user. */
     private final boolean quitMeeting;
 
     /**
