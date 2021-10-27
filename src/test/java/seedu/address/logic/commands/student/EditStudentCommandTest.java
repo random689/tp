@@ -44,7 +44,6 @@ public class EditStudentCommandTest {
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        System.out.println(model.getFilteredStudentList().get(0));
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
