@@ -126,7 +126,6 @@ public class MeetingWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            System.out.println(commandText);
             CommandResult commandResult = logic.execute(commandText, Window.MEETING);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
