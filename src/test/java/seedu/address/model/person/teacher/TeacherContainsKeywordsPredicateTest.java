@@ -63,26 +63,21 @@ public class TeacherContainsKeywordsPredicateTest {
 
         assertTrue(predicate2.test(new TeacherBuilder().withTags("first", "second").build()));
 
-        assertTrue(predicate2.test(new TeacherBuilder().withTags("first").build()));
+        assertFalse(predicate2.test(new TeacherBuilder().withTags("first").build()));
 
         assertFalse(predicate2.test(new TeacherBuilder().withInvolvement("first").build()));
-    }
 
-    @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        TeacherInvolvementContainsKeywordsPredicate predicate =
-                new TeacherInvolvementContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TeacherBuilder().withName("Ali").build()));
+        List<String> thirdPredicateKeywordList = Arrays.asList("first", "second");
 
-        // Non-matching keyword
-        predicate = new TeacherInvolvementContainsKeywordsPredicate(Arrays.asList("Car"));
-        assertFalse(predicate.test(new TeacherBuilder().withName("Ali Ben").build()));
+        TeacherInvolvementContainsKeywordsPredicate predicate3 =
+                new TeacherInvolvementContainsKeywordsPredicate(thirdPredicateKeywordList);
 
-        // Keywords match phone, email and offceTable, but does not match name
-        predicate = new TeacherInvolvementContainsKeywordsPredicate(
-                        Arrays.asList("12345", "ali@email.com", "12"));
-        assertFalse(predicate.test(new TeacherBuilder().withName("Ali").withPhone("12345")
-                .withEmail("ali@email.com").withOfficeTable("12").build()));
+        assertTrue(predicate3.test(new TeacherBuilder().withInvolvement("firstsecond").build()));
+
+        assertFalse(predicate3.test(new TeacherBuilder().withInvolvement("first").build()));
+
+        assertFalse(predicate3.test(new TeacherBuilder().withTags("firstsecond").build()));
+
+        assertFalse(predicate3.test(new TeacherBuilder().withTags("first", "second").build()));
     }
 }
