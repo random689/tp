@@ -30,9 +30,10 @@ public class OfficeTableTest {
         assertFalse(OfficeTable.isValidTable("table")); // non-numeric
         assertFalse(OfficeTable.isValidTable("12d")); // alphabets within digits
         assertFalse(OfficeTable.isValidTable("1 2")); // spaces within digits
+        assertFalse(OfficeTable.isValidTable("124293842033123")); // long table numbers
 
         // valid office table numbers
-        assertTrue(OfficeTable.isValidTable("2")); // short table numbers
-        assertTrue(OfficeTable.isValidTable("124293842033123")); // long table numbers
+        assertTrue(OfficeTable.isValidTable("2")); // 1 digit
+        assertTrue(OfficeTable.isValidTable("22222")); // 5 digits
     }
 }
