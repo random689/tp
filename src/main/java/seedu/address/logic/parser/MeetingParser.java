@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.QuitMeetingCommand;
+import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
 import seedu.address.logic.commands.meeting.MeetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
 import seedu.address.logic.parser.meeting.MeetCommandParser;
 
 public class MeetingParser {
@@ -38,6 +40,9 @@ public class MeetingParser {
 
         case MeetCommand.COMMAND_WORD:
             return new MeetCommandParser().parse(arguments);
+
+        case DeleteMeetingCommand.COMMAND_WORD:
+            return new DeleteMeetingCommandParser().parse(arguments);
 
         case QuitMeetingCommand.COMMAND_WORD:
             return new QuitMeetingCommand();
