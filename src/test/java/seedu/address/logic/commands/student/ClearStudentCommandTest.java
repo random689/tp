@@ -54,7 +54,7 @@ public class ClearStudentCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         ClearStudentCommand clearCommand = new ClearStudentCommand();
 
-        String expectedMessage = String.format(clearCommand.MESSAGE_DELETE_STUDENT_SUCCESS, 1);
+        String expectedMessage = String.format(ClearStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, 1);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);

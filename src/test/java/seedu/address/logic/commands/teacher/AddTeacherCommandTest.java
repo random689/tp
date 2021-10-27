@@ -226,6 +226,11 @@ public class AddTeacherCommandTest {
         public boolean hasEqualHistory(Model other) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void clearMeetings() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

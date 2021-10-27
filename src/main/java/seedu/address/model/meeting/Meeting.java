@@ -60,7 +60,7 @@ public class Meeting implements Comparable<Meeting> {
 
     @Override
     public String toString() {
-        return String.format("Title: %s\nAttendee: %s\nDatetime: %s\nVenue: %s",
+        return String.format("Title: %s; Attendee: %s; Datetime: %s; Venue: %s",
                 title.toString(), attendee.toString(), dateTime.getUserFormat(), venue.toString());
     }
 
