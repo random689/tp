@@ -81,6 +81,11 @@ public class MeetingWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
     }
 
+    @FXML
+    private void handleQuitMeeting() {
+        this.hide();
+    }
+
     /**
      * Returns true if the meeting window is currently being shown.
      */
@@ -125,6 +130,9 @@ public class MeetingWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText, Window.MEETING);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            if (commandResult.isQuitMeeting()) {
+                handleQuitMeeting();
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

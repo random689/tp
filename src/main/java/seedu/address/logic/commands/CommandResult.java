@@ -28,29 +28,34 @@ public class CommandResult {
     /** Meeting window should be shown to the user. */
     private final boolean showMeeting;
 
+    /** Meeting window should exit, and the main window should be shown to the user. */
+    private final boolean quitMeeting;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showMedical,
-            boolean showMeeting) {
+            boolean showMeeting, boolean quitMeeting) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showMedical = showMedical;
         this.showMeeting = showMeeting;
+        this.quitMeeting = quitMeeting;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showMedical, Student student,
-            boolean showMeeting) {
+            boolean showMeeting, boolean quitMeeting) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showMedical = showMedical;
         this.student = student;
         this.showMeeting = showMeeting;
+        this.quitMeeting = quitMeeting;
     }
 
     /**
@@ -58,7 +63,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -85,6 +90,10 @@ public class CommandResult {
         return showMeeting;
     }
 
+    public boolean isQuitMeeting() {
+        return quitMeeting;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -102,12 +111,14 @@ public class CommandResult {
                 && exit == otherCommandResult.exit
                 && showMedical == otherCommandResult.showMedical
                 && student == otherCommandResult.student
-                && showMeeting == otherCommandResult.showMeeting;
+                && showMeeting == otherCommandResult.showMeeting
+                && quitMeeting == otherCommandResult.quitMeeting;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showMedical, student, showMeeting);
+        return Objects.hash(feedbackToUser, showHelp, exit, showMedical, student, showMeeting,
+                quitMeeting);
     }
 
 }
