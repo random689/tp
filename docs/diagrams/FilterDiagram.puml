@@ -6,7 +6,6 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FilterStudentCommandParser" as FilterStudentCommandParser LOGIC_COLOR
-participant ":StudentInvolvementContainsKeywordsPredicate" as StudentInvolvementContainsKeywordsPredicate LOGIC_COLOR
 participant "d:FilterStudentCommand" as FilterStudentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -31,18 +30,12 @@ deactivate FilterStudentCommandParser
 AddressBookParser -> FilterStudentCommandParser : parse(arguments)
 activate FilterStudentCommandParser
 
-create StudentInvolvementContainsKeywordsPredicate
-FilterStudentCommandParser ->  StudentInvolvementContainsKeywordsPredicate
-activate StudentInvolvementContainsKeywordsPredicate
-
 create FilterStudentCommand
-StudentInvolvementContainsKeywordsPredicate -> FilterStudentCommand
+FilterStudentCommandParser -> FilterStudentCommand : FilterStudentCommand(predicate)
 activate FilterStudentCommand
 
-FilterStudentCommand --> StudentInvolvementContainsKeywordsPredicate :d
-deactivate FilterStudentCommand
 
-StudentInvolvementContainsKeywordsPredicate --> FilterStudentCommandParser :d
+FilterStudentCommand --> FilterStudentCommandParser :d
 deactivate
 
 FilterStudentCommandParser --> AddressBookParser :d
@@ -84,5 +77,4 @@ destroy FilterStudentCommand
 
 [<--LogicManager
 deactivate LogicManager
-destroy StudentInvolvementContainsKeywordsPredicate
 @enduml
