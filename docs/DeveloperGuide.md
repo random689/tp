@@ -264,21 +264,25 @@ The following sequence diagram shows how the copy operation works for a copyStud
   **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Design considerations:
-
-**Aspect: How copy executes:**
-
-* **Alternative 1 (current choice):** CopyCommand handles the copying
-    * Pros: Easy to implement.
-    * Cons: Will not be able to copy across tables.
-
-* **Alternative 2:** Model handles the copying
-    * Pros: Easier to maintain and will work like the other commands
-    * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
-
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
 </div>
+
+#### Design considerations:
+
+**Aspect: Functionality of copy command:**
+
+* **Alternative 1 (current choice):** `copyStudent/copyTeacher` only allows the user to copy a subset of fields (ie. phone, email, name), and the fields that can be copied are the same for both students and teachers.
+    * Pros: Easy to implement.
+    * Pros: It is easier for the user to remember which fields can be copied. For example, in our implementation, users simply have to remember that only the phone, email and name fields can be copied, for both teachers and students.
+    * Cons: Users will not be able to copy other fields.
+
+* **Alternative 2:** `copyStudent/copyTeacher` allows the user to copy any field they like.
+    * Pros: The user has more flexibility in which fields they want to copy.
+    * Cons: The user has to precisely remember which fields a student or teacher has. For example, the user would have to remember that he/she can copy down the office table numbers for teachers, but not for students. Similarly, he/she would have to remember that the emergency contact number of students can be copied, but not for teachers.
+
+We went with Alternative 1 because we felt that other than a person's phone, email and name, there are very little use cases which would lead one to need to copy down another field. For example, unless it is for a very specific purpose, it is unlikely that the user would need to copy down office table numbers.
+
 
 ### Adding meetings
 
