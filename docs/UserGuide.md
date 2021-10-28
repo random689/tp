@@ -234,7 +234,7 @@ Parameters:
     * `LEVEL` must be a digit from 1 to 5
     * `STRING` should not be blank and can only contain alphabets
     * `ALPHANUMERIC` is optional and can only contain alphanumeric characters
-    * e.g: `4E1` is allowed but `41` is not allowed
+    * For example, `4E1` is allowed but `41` is not allowed
 
 * `TAG` A tag associated with the student
   * should only contain alphanumeric characters  
