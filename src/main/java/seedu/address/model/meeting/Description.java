@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINTS = "Description can be any values, and it should not be blank.";
+    private static final String MESSAGE_CONSTRAINTS = "%s can be any values, and it should not be blank.";
 
     /*
      * The first character of the description must not be a whitespace,
@@ -28,6 +28,10 @@ public class Description {
         requireNonNull(description);
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         value = description;
+    }
+
+    public static String getMessageConstraints(DescriptionType type) {
+        return String.format(MESSAGE_CONSTRAINTS, type);
     }
 
     /**
