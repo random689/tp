@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Attendee;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.DescriptionType;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -64,7 +65,7 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Title"));
         }
         if (!Description.isValidDescription(title)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Description.getMessageConstraints(DescriptionType.TITLE));
         }
         final Description modelTitle = new Description(title);
 
@@ -72,7 +73,7 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Venue"));
         }
         if (!Description.isValidDescription(venue)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Description.getMessageConstraints(DescriptionType.VENUE));
         }
         final Description modelVenue = new Description(venue);
 

@@ -29,6 +29,7 @@ import seedu.address.logic.commands.meeting.MeetCommand;
 import seedu.address.model.meeting.Attendee;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.DescriptionType;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.MeetingBuilder;
 
@@ -110,12 +111,12 @@ public class MeetCommandParserTest {
         // invalid title
         assertParseFailure(parser,
                 DATETIME_DESC_1 + ATTENDEE_DESC_1 + INVALID_TITLE_DESC + VENUE_DESC_1,
-                Description.MESSAGE_CONSTRAINTS);
+                Description.getMessageConstraints(DescriptionType.TITLE));
 
         // invalid venue
         assertParseFailure(parser,
                 DATETIME_DESC_1 + ATTENDEE_DESC_1 + TITLE_DESC_1 + INVALID_VENUE_DESC,
-                Description.MESSAGE_CONSTRAINTS);
+                Description.getMessageConstraints(DescriptionType.VENUE));
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser,
