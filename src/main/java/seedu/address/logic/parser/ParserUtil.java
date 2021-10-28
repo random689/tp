@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Attendee;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.DescriptionType;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Involvement;
@@ -201,7 +202,7 @@ public class ParserUtil {
         requireNonNull(title);
         String trimmedTitle = title.trim();
         if (!Description.isValidDescription(trimmedTitle)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.getMessageConstraints(DescriptionType.TITLE));
         }
         return new Description(title);
     }
@@ -231,7 +232,7 @@ public class ParserUtil {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
         if (!Description.isValidDescription(trimmedVenue)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.getMessageConstraints(DescriptionType.VENUE));
         }
         return new Description(venue);
     }

@@ -18,6 +18,7 @@ Class StatusBarFooter
 Class CommandBox
 Class TeacherListPanel
 Class TeacherCard
+Class MedicalWindow
 }
 
 package Model <<Rectangle>> {
@@ -40,9 +41,9 @@ MainWindow *-down-> "1" TeacherListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 MainWindow --> "0..1" MeetingWindow
+MainWindow --> "0..1" MedicalWindow
 
 StudentListPanel -down-> "*" StudentCard
-
 TeacherListPanel -down-> "*" TeacherCard
 
 MainWindow -left-|> UiPart
@@ -56,9 +57,10 @@ TeacherCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 MeetingWindow --|> UiPart
+MedicalWindow --|> UiPart
 
-StudentCard ..> Model
-TeacherCard ..> Model
+StudentCard .down.> Model
+TeacherCard .down.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
@@ -66,6 +68,8 @@ StudentListPanel -[hidden]left- HelpWindow
 TeacherListPanel -[hidden]left- HelpWindow
 StudentListPanel -[hidden]left- MeetingWindow
 TeacherListPanel -[hidden]left- MeetingWindow
+TeacherListPanel -[hidden]left- MedicalWindow
+MedicalWindow -[hidden]left- CommandBox
 HelpWindow -[hidden]left- CommandBox
 MeetingWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
