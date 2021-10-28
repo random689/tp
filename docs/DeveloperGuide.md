@@ -203,6 +203,10 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** In the event the user executes `undo` from the meeting window, `MeetingParser` will be used instead. 
+</div>
+
 
 The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be. 
 
@@ -210,7 +214,7 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
 
 #### Design considerations:
 
-**Aspect: How undo executes:**
+**Aspect: How `undo` executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -222,6 +226,18 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
+
+**Aspect: Behaviour of `undo` across the main window and meeting window:**
+
+* **Alternative 1 (current choice):** We have a single `undo` command, and executing the command undoes the last action by the user.
+  * Pros: Easy to implement.
+  * Cons: May be confusing to the user to execute the `undo` command in one window and the change being reflected in another window.
+
+* **Alternative 2:** We have two separate commands: `undo` and `undoMeeting`, such that `undo` undoes the last action by the user in the main window while `undoMeeting` undoes the last action by the user in the meeting window.
+  * Pros: It is less confusing for the user (as now if the `undo/undoMeeting` command is executed in a particular window, the change will be reflected in the same window).
+  * Cons: Harder to implement.
+
+We eventually settled on Alternative 1 because our current implementation of the `AddressBook` class stores all the student, teacher and meeting lists together, and because we are using a stack to manage previous versions of our address book, it is more convient to push the entire address book onto the stack rather than creating a separate class to store meetings.
 
 ### Copy Command
 
