@@ -41,6 +41,17 @@ public class FilterStudentCommandParser implements Parser<FilterStudentCommand> 
         boolean isTagsOnwards = false;
         List<String> listToReturn = new ArrayList<>();
         for (int i = 0; i < keywords.length; i++) {
+            if (keywords[i].startsWith("t/")) {
+                if (!keywords[i].substring(2).matches(TAG_REGEX)) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+                }
+            } else {
+                if (!keywords[i].matches(TAG_REGEX)) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+                }
+            }
             if (!isTagsOnwards) {
                 if (keywords[i].startsWith("t/") && validFirstTag(keywords[i])) {
                     isTagsOnwards = true;
@@ -61,7 +72,6 @@ public class FilterStudentCommandParser implements Parser<FilterStudentCommand> 
                 }
             }
         }
-
         return listToReturn;
     }
 
