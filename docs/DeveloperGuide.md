@@ -293,7 +293,7 @@ The mechanism of adding meetings is showcased in the sequence diagram below:
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
-Whenever a Meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order. 
+Whenever a meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order. 
 
 #### Design considerations:
 
@@ -306,6 +306,8 @@ Whenever a Meeting is added to the list, the list will be sorted so that when th
 * **Alternative 2:** Meeting references a Person (either Student or Teacher) stored in NewAddressBook.
   * Pros: User just have to specify the type and index of the Person in the list and the UI would generate a pre-defined title with the specified person's name
   * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed.
+
+We chose alternative 1 because it makes the application easier to use. That way, users do not have to add in a contact into the address book in order to have a meeting with them.
 
 ### Filter command:
 
