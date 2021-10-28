@@ -2,7 +2,8 @@ package seedu.address.logic.parser.student;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.logic.commands.student.FilterStudentCommand;
 import seedu.address.logic.parser.Parser;
@@ -14,6 +15,8 @@ import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPred
  */
 
 public class FilterStudentCommandParser implements Parser<FilterStudentCommand> {
+
+    private static final String TAG_REGEX = "^[a-zA-Z0-9]*$";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterStudentCommand
@@ -29,7 +32,69 @@ public class FilterStudentCommandParser implements Parser<FilterStudentCommand> 
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterStudentCommand(new StudentInvolvementContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        List<String> processedNameKeywords = processInput(nameKeywords);
+
+        return new FilterStudentCommand(new StudentInvolvementContainsKeywordsPredicate(processedNameKeywords));
     }
 
+    private List<String> processInput(String[] keywords) throws ParseException {
+        boolean isTagsOnwards = false;
+        List<String> listToReturn = new ArrayList<>();
+        for (int i = 0; i < keywords.length; i++) {
+            if (keywords[i].startsWith("t/")) {
+                if (!keywords[i].substring(2).matches(TAG_REGEX)) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+                }
+            } else {
+                if (!keywords[i].matches(TAG_REGEX)) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+                }
+            }
+            if (!isTagsOnwards) {
+                if (keywords[i].startsWith("t/") && validFirstTag(keywords[i])) {
+                    isTagsOnwards = true;
+                    listToReturn.add(keywords[i]);
+                } else if (keywords[i].startsWith("t/") && !validFirstTag(keywords[i])) {
+                    isTagsOnwards = true;
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+                } else {
+                    listToReturn.add(keywords[i]);
+                }
+            } else {
+                if (validOtherTag(keywords[i])) {
+                    listToReturn.add(keywords[i].substring(2));
+                } else {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+                }
+            }
+        }
+        return listToReturn;
+    }
+
+    private boolean validFirstTag(String keyword) {
+        if (keyword.length() <= 2) {
+            return false;
+        }
+        if (keyword.substring(2).matches(TAG_REGEX)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean validOtherTag(String keyword) {
+        if (!keyword.startsWith("t/")) {
+            return false;
+        } else if (keyword.length() <= 2) {
+            return false;
+        } else if (keyword.substring(2).matches(TAG_REGEX)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

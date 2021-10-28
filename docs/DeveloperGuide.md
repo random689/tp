@@ -324,8 +324,6 @@ and `model.updateFilteredStudentList(predicate)`.
 
 The following sequence diagram shows how it works for a filterStudent command.
 
-(Comment: is there really a need for `studentInvolvementContainsKeywordsPredicate` here? Do you need the CommandResult and the `getFilteredStudentList` back? After all, we are just using `getFilteredStudentList` for the size of the list.)
-
 ![FilterSequenceDiagram](images/FilterDiagram.png)
 
 #### Design considerations

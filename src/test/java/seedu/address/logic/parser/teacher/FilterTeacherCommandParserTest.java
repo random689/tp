@@ -30,5 +30,26 @@ public class FilterTeacherCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFilterCommand);
+
+        FilterTeacherCommand expectedFilterCommand2 =
+                new FilterTeacherCommand(new TeacherInvolvementContainsKeywordsPredicate(Arrays.asList("t/Alice",
+                        "Bob")));
+
+        assertParseSuccess(parser, "t/Alice t/Bob", expectedFilterCommand2);
+    }
+
+    @Test
+    public void invalidArgs() {
+        //involvement after tag
+        assertParseFailure(parser, "Alice t/Bob Memes", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterTeacherCommand.MESSAGE_USAGE));
+
+        //space after tag
+        assertParseFailure(parser, "Alice t/ Memes", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterTeacherCommand.MESSAGE_USAGE));
+
+        //non alphanumeric
+        assertParseFailure(parser, "Alice t/@@@", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterTeacherCommand.MESSAGE_USAGE));
     }
 }
