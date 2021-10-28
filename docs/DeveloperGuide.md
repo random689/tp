@@ -71,9 +71,13 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/updatedUiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `TeacherListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+![Structure of the MeetingWindow UI Component](images/UiMeetingClassDiagram.png)
+
+The `MeetingWindow` in `MainWindow` is made up of parts as well e.g. `CommandBox`, `ResultDisplay`, `MeetingListPanel`. Which also inherit from abstract `UiPart` similar to the MainWindow
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -362,6 +366,63 @@ The following sequence diagram shows how the `medical` command works.
     * Pros: Easier to implement
     * Cons: Does not make sense as most students do not have notable `medicalHistory`
 
+###  Clear Command:
+
+#### Implementation Details
+
+We discuss only student here, since it is the same for teachers.
+
+The clearStudentCommand classes extends the `Command` class with the ability to clear the current list of students that is being shown.
+This is done via the method `Model#massDeleteStudent`. This command will act on the last shown list to the user,
+which means that the user can filter the list of students and clear only those that are filtered. This works similarly for teachers as well
+
+As such, this command is supported by the method in the `Model` interface,
+namely the `Model#getFilteredStudentList` and `Model#getFilteredTeacherList`.
+
+Given below is an example usage and how the clear mechanism behaves.
+
+Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
+will be initialized with all the students and teachers respectively from the loaded book data.
+
+Step 2. The user executes `filterStudent math` to get all the students with the string `math` in their involvement.
+The filtered students will be stored in `Model#filteredStudent` and the list will be show to the user.
+
+Step 3. The user executes `ClearStudent`to clear the current list of filtered students.
+The `ClearStudent` command calls `Model#massDeleteStudents`, deleting the students in the current filtered list from
+both the `Model#filteredStudent` and `AddressBook#uniqueStudentList`.
+
+Step 4. As the `Model#filteredStudent` is now empty, the GUI will now show an empty list of students.
+
+The following sequence diagram shows how the clear operation works for a `clearStudent` command.
+The `clearTeacher` command works similarly.
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations:
+
+**Aspect: How clear executes:**
+
+* **Alternative 1 (current choice):**  Clears only the filtered list
+    * Pros: Makes it more flexible for the user, so that they can selectively filter a list they want to delete.
+    * Pros: Goes hand in hand with Filter/Find.
+    * Cons: Harder to implement and may have performance issue in terms of memory usage.
+
+* **Alternative 2:** Clears the entire list
+    * Pros: Easier to maintain as it will be the same as the initial Clear Command
+    * Cons: No way for the user to selectively mass delete.
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** As Meeting does not have any means of filtering, clearMeeting uses alternative 2.
+</div>
+**
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
