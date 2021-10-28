@@ -286,14 +286,14 @@ The following sequence diagram shows how the copy operation works for a copyStud
 #### Implementation Details
 The mechanism of adding meetings is showcased in the sequence diagram below:
 
-![MeetSequenceDiagram](images/MeetSeqDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+![MeetSequenceDiagram](images/MeetSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
-Whenever a Meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order.
+Whenever a Meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order. 
 
 #### Design considerations:
 
