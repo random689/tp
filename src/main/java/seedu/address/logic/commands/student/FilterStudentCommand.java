@@ -18,9 +18,10 @@ public class FilterStudentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all students by involvement and tag(s) "
             + "and displays them as a list with index numbers.\n"
-            + "Note: You do not need both involvement and tag(s) at the same time, but either one must be present.\n"
+            + "Note: You do not need both involvement and tag(s) at the same time, but either one must be present.\n "
+            + "Involvement must come before tags."
             + "Parameters: [INVOLVEMENT] [t/TAG]...\n"
-            + "Example: " + COMMAND_WORD + " donut buddies t/gym";
+            + "Example: " + COMMAND_WORD + " donut buddies t/gym t/swim";
 
     private final StudentInvolvementContainsKeywordsPredicate predicate;
 
