@@ -90,7 +90,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="600"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it determines which window is the user is on, and uses either the `MeetingParser` or `AddressBookParser` class to parse the user command. It uses `MeetingParser` if the user is executing the command from the meeting window, and `AddressBookParser` if the user is executing the command from the main window.
