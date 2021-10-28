@@ -174,11 +174,11 @@ Step 1. The user launches the application for the first time. The app creates an
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `deleteStudent 1` command to delete the 1st student in the address book. The `DeleteStudent` command calls `ModelManager::deleteStudent`, which deletes the student from the existing address book, and then pushes a copy of the modified address book, `ab1`, onto the stack.
+Step 2. The user executes `deleteStudent 1` command to delete the 1st student in the address book. The `DeleteStudent` command calls `ModelManager#deleteStudent`, which deletes the student from the existing address book, and then pushes a copy of the modified address book, `ab1`, onto the stack.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `student n/David …​` to add a new student. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
+Step 3. The user executes `student n/David …​` to add a new student. The `add` command also calls `ModelManager#addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -186,7 +186,7 @@ Step 3. The user executes `student n/David …​` to add a new student. The `ad
   **Note:** If a command fails its execution, it will not save the address book.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager::undo`, which will pop the front element from the stack and restore `ab2`'s contents. The top of the stack is now `ab1`.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager#undo`, which will pop the front element from the stack and restore `ab2`'s contents. The top of the stack is now `ab1`.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -242,16 +242,16 @@ We eventually settled on Alternative 1 because our current implementation of the
 ### Copy Command
 
 #### Implementation details
-The `CopyStudentCommand/CopyTeacher` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand::getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
+The `CopyStudentCommand/CopyTeacher` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand#getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
 
-As such, this command is supported by the method in the `Model` interface, namely the `Model::getFilteredStudentList()` and `Model::getFilteredTeacherList()` methods.
+As such, this command is supported by the method in the `Model` interface, namely the `Model#getFilteredStudentList()` and `Model#getFilteredTeacherList()` methods.
 
 Given below is an example usage scenario and how the copy mechanism behaves.
 
 Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
 will be initialized with the all the students and teachers respectively from the loaded book data.
 
-Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI. The `copyStudent` command calls `Model::getFilteredStudentList`, loading the current list of filtered students, which in this case is all the students from the loaded book data. Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `CopyCommand::getNameContent` since the user wants to copy all names of students,
+Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI. The `copyStudent` command calls `Model#getFilteredStudentList`, loading the current list of filtered students, which in this case is all the students from the loaded book data. Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `CopyCommand#getNameContent` since the user wants to copy all names of students,
 appending all the names of the students in the filtered student list to the user's clipboard.
 
 The following sequence diagram shows how the copy operation works for a copyStudent command. The `copyTeacher` command works similarly, so we will only discuss students here. If the user specifies another field to be copied, such as `phone` or `email`, the command also works similarly, so we will not discuss them here.
