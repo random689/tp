@@ -268,7 +268,6 @@ The following sequence diagram shows how the copy operation works for a copyStud
 
 **Aspect: How copy executes:**
 
-(Comment: Probably need to be more specific about this, and justify why alternative 1 is better)
 * **Alternative 1 (current choice):** CopyCommand handles the copying
     * Pros: Easy to implement.
     * Cons: Will not be able to copy across tables.
@@ -293,7 +292,7 @@ The mechanism of adding meetings is showcased in the sequence diagram below:
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
-Whenever a meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order. 
+Whenever a meeting is added to the list, the meeting will be inserted a way such that the earliest meeting (in terms of date) is at the top of the list, and the latest meeting is at the back of the list. 
 
 #### Design considerations:
 
