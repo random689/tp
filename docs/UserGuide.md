@@ -623,7 +623,15 @@ Format: `exit`
 #### Undo the latest change : `undo`
 
 Undoes the last change. This command only works for operations that adds, deletes, or edits infomation. 
-This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone.
+This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone. One can undo adding/deleting meetings as well.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** The `undo` command works in both the main and meeting window.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** `undo` undoes your last action, **no matter** which window one executes it from. For example, if one edited a student in the main window, then added a meeting from the meeting window, executing the `undo` command from the main window will undo the action of **adding the meeting**, rather than the action of editing the student. That is, the `undo` command chooses the user's last action, rather than the user's last action **in that window** to undo.
+</div>
 
 #### Viewing help : `help`
 
