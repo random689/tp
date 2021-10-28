@@ -254,7 +254,6 @@ Format: `clearStudent`
 If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudent` command. 
 </div>
 
-(Comment: probably change it to plural).
 #### Copying fields from students : `copyStudent` 
 Copy specified data from students in the last shown student's list to the user's clipboard. The fields that can be copied are:
 
@@ -307,7 +306,7 @@ You can remove all the student’s tags by typing `t/` without specifying any ta
 
 Examples:
 *  `editStudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `editStudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `editStudent 2 em/901941341` Edits the emergency contact number of the 2nd student to be 901941341.
 
 #### Find students by name : `findStudent`
 
@@ -487,11 +486,9 @@ Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TA
 You can remove all the teacher’s tags by typing `t/` without specifying any tags after it.
 </div>
 
-(Comment: should we have examples more specific to teachers and students)?
-
 Examples:
 *  `editTeacher 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teacher to be `91234567` and `johndoe@example.com` respectively.
-*  `editTeacher 2 n/Betsy Crower t/` Edits the name of the 2nd teacher to be `Betsy Crower` and clears all existing tags.
+*  `editTeacher 2 o/5 t/` Edits the office table number of the 2nd teacher to be 5 and clears all existing tags.
 
 #### Find teachers by name : `findTeacher`
 
