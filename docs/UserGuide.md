@@ -109,8 +109,8 @@ Action | Format | Window
 **Delete a student** | `deleteStudent INDEX` | Main
 **Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
-**Filter a student** | | Main
-**List all students** |`listStudents` | Main
+**Filter a student** | `filterStudent [INVOLVEMENT] [t/TAG]…​` | Main
+**List all students** |`listStudent` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
@@ -118,8 +118,8 @@ Action | Format | Window
 **Delete a teacher** | `deleteTeacher INDEX` | Main
 **Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
-**Filter a teacher** | | Main
-**List all teachers** | `listTeachers` | Main
+**Filter a teacher** |`filterTeacher [INVOLVEMENT] [t/TAG]…​` | Main
+**List all teachers** | `listTeacher` | Main
 **Exit** | `exit` | Main
 **View help** | `help` | Main
 **Open meetings window** | `showMeeting` | Main
@@ -212,6 +212,8 @@ Parameters:
 * `EMAIL` The email of the student
   * should not be blank 
   * should be of the format `local-part@domain`
+  * `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)
+  * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and only contain alphanumeric characters, periods and hyphens
 
 * `ADDRESS` The address of the student
   * should not be blank
@@ -220,16 +222,18 @@ Parameters:
   * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
   * case-insensitive
   
-* `INVOLVEMENT` The User's involvement with the student
+* `INVOLVEMENT` The user's main involvement with the student
   * should not be blank
-  * not to be confused with form class. 
   
-* `EMERGENCY_NUMBER` The emergency number of the student
-  * should only contain numbers, and should be at least 3 digits long
+* `EMERGENCY_NUMBER` The emergency contact number of the student
+  * should only contain numbers, and it should be at least 3 digits long
 
-* `FORM_CLASS` A form class associated with the student
-    * should only contain alphanumeric characters
-    * should be of the format `|1-5|STRING|alphanumeric`
+* `FORM_CLASS` The form class that the student belongs to
+    * should not be blank
+    * should be of the format `|LEVEL|STRING|[ALPHANUMERIC]|`
+    * `LEVEL` must be a digit from 1 to 5
+    * `STRING` should not be blank and can only contain alphabets
+    * `ALPHANUMERIC` is optional and can only contain alphanumeric characters
     * e.g: `4E1` is allowed but `41` is not allowed
 
 * `TAG` A tag associated with the student
@@ -238,6 +242,11 @@ Parameters:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use involvement to label your main relationship to the student
+</div>
+
 
 Examples:
 - `student n/James p/94629424 e/j77@example.com a/George street, block 123, #01-01 f/3A2 g/M i/Math class em/92696977`
@@ -254,7 +263,6 @@ Format: `clearStudent`
 If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudents` command. 
 </div>
 
-(Comment: probably change it to plural).
 #### Copying fields from students : `copyStudent` 
 Copy specified data from students in the last shown student's list to the user's clipboard. The fields that can be copied are:
 
@@ -264,10 +272,10 @@ Copy specified data from students in the last shown student's list to the user's
 
 Format: `copyStudent [c/FIELD_TO_COPY]`
 
-`FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
+* `FIELD_TO_COPY` can only be one of the three: `phone`, `email` or `name`.
 
 Example:
-* `listStudents` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
+* `listStudent` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
 * `findStudent Betsy` followed by `copyStudent c/phone` copies the phones of students whose name matches Betsy. The definition of "matches" is as per the definition in the `findStudent` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -285,7 +293,7 @@ Format: `deleteStudent INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 Examples:
-* `listStudents` followed by `deleteStudent 2` deletes the 2nd student in the address book.
+* `listStudent` followed by `deleteStudent 2` deletes the 2nd student in the address book.
 * `findStudent Betsy` followed by `deleteStudent 1` deletes the 1st student in the results of the `findStudent` command.
 
 #### Edit a student : `editStudent`
@@ -306,7 +314,7 @@ You can remove all the student’s tags by typing `t/` without specifying any ta
 </div>
 
 Examples:
-*  `editStudent 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `editStudent 1 f/4Donkey e/johndoe@example.com` Edits the form class and email address of the 1st student to be `4Donkey` and `johndoe@example.com` respectively.
 *  `editStudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
 #### Find students by name : `findStudent`
@@ -351,11 +359,11 @@ Example:
 - `filterStudent class` - will return all students with the involvement containing “class”.
 - `filterStudent t/naughty special` - will return all students with the tag containing “naughty” and "special".
 
-#### List all students : `listStudents`
+#### List all students : `listStudent`
 
 Shows a list of all students stored in the address book.
 
-Format: `listStudents`
+Format: `listStudent`
 
 #### Modify medical history of a student : `medical`
 Format: `medical INDEX [m/MEDICAL_HISTORY]`
@@ -373,7 +381,7 @@ How this command works:
 Examples:
 * `medical 1 m/ADHD` 
 
-#### Viewing the full medical history of a student : `showMedical`
+#### View the full medical history of a student : `showMedical`
 
 Displays a pop-up window for the user to view the full medical history of the student in NewAddressBook.
 
@@ -411,7 +419,7 @@ Parameters:
     * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
 
 * `OFFICE_TABLE_NUMBER` The teacher's table number in the school office
-  * should only contain numbers, and it should have at least 1 digit
+  * should only contain numbers. It should have at least 1 digit and at most 5 digits
 
 * `INVOLVEMENT` The User's involvement with the teacher
     * should not be blank
@@ -421,6 +429,10 @@ Parameters:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A teacher can have any number of tags (including 0)
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use involvement to label your main relationship to the teacher
 </div>
 
 Examples:
@@ -536,11 +548,11 @@ Example:
 - `filterTeacher Math Dept` - will return all teachers with the involvement containing “Math Dept”.
 - `filterTeacher t/colleague admin` - will return all teachers with the tag containing “colleague” and "admin".
 
-#### List all teachers : `listTeachers`
+#### List all teachers : `listTeacher`
 
 Shows a list of all teachers stored in NewAddressBook.
 
-Format: `listTeachers`
+Format: `listTeacher`
 
 ### Managing Meetings
 
@@ -578,7 +590,7 @@ For example, "2022-02-29" is an invalid date since 2022 is not a leap year.
 </div>
 
 Example:
-* `meet r/Meeting with Ms.Lee d/2040-07-12 14:30 v/Seminar room 3 w/P`
+* `meet r/Meeting with Ms.Lee d/2040-07-12 14:08 v/Seminar room 3 w/P`
 
 #### Delete a meeting : `deleteMeeting`
 
