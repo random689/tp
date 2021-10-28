@@ -32,6 +32,8 @@ public class EditTeacherCommand extends EditCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
     public static final String MESSAGE_DUPLICATE_TEACHER = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, TARGET);
+    public static final String MESSAGE_NOTHING_TO_EDIT = "All the fields provided for editing are currently the same "
+            + "as those already possessed by the teacher!";
 
 
     private final Index index;
@@ -62,7 +64,14 @@ public class EditTeacherCommand extends EditCommand {
         Teacher editedTeacher = createdEditedTeacher(teacherToEdit, editTeacherDescriptor);
 
         if (!teacherToEdit.isSameTeacher(editedTeacher) && model.hasTeacher(editedTeacher)) {
+            // if it's not the same teacher, and the model already has the teacher, throw the exception
             throw new CommandException(MESSAGE_DUPLICATE_TEACHER);
+        }
+
+        if (teacherToEdit.equals(editedTeacher)) {
+            // if the edited teacher is the same, tell the user that there is nothing to edit.
+            // we use the strong notation of equality between teacher.
+            throw new CommandException(MESSAGE_NOTHING_TO_EDIT);
         }
 
         model.setTeacher(teacherToEdit, editedTeacher);
