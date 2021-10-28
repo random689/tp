@@ -75,7 +75,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `TeacherListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -100,7 +100,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteStudent 1")` API call.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** When the user calls a valid command 
+<div markdown="span" class="alert alert-info">:information_ urce: **Note:** When the user calls a valid command 
 from the `Meeting` window, the interaction within the `Logic` component only has 1 key difference: `LogicManager` 
 calls the `MeetingParser#parseCommand`. The rest of the implementation is similar to the diagram below.
 
@@ -208,7 +208,7 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
 
 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How `undo` executes:**
 
@@ -264,7 +264,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
 **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Functionality of copy command:**
 
@@ -294,7 +294,7 @@ The mechanism of adding meetings is showcased in the sequence diagram below:
 
 Whenever a meeting is added to the list, the meeting will be inserted a way such that the earliest meeting (in terms of date) is at the top of the list, and the latest meeting is at the back of the list. 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Representation of a Meeting**
 
@@ -324,7 +324,7 @@ The following sequence diagram shows how it works for a filterStudent command.
 
 ![FilterSequenceDiagram](images/FilterDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to implement Filter:**
 
@@ -363,7 +363,7 @@ The following sequence diagram shows how the `medical` command works.
 
 ![AddMedicalHistorySequenceDiagram](images/MedicalDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to implement MedicalHistory:**
 
