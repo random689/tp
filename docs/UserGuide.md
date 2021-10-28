@@ -345,19 +345,19 @@ Format:
 
 Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
 
-The filter category is not case-sensitive e.g. “student” same as “STUDENT” but "t/" is not the same as "T/".
+More than 1 tag filter is allowed e.g.  `[INVOLVEMENT] [t/TAG] [t/TAG]`.
+
+The filter category is not case-sensitive e.g. “student” same as “STUDENT” but `t/` is not the same as `T/`.
 
 Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
 
-(Comment: this is unclear! This is supposed to be t/tag1 tag2 or t/tag1 t/tag2)
-
-More than 1 filter is allowed e.g.  `INVOLVEMENT_FILTER_CATERGORY [t/] [TAG_FILTER CATERGORY] [TAG_FILTER CATERGORY]`.
+Only alphanumeric search terms are allowed.
 
 Example:
 - `filterStudent class t/rep` - will return all students with the involvement containing “class” and tag containing
   “rep”.
-- `filterStudent class` - will return all students with the involvement containing “class”.
-- `filterStudent t/naughty special` - will return all students with the tag containing “naughty” and "special".
+- `filterStudent math class` - will return all students with the involvement containing “math” and “class”.
+- `filterStudent t/banana t/phone` - will return all students with tags containing “banana” and "phone".
 
 #### List all students : `listStudent`
 
@@ -527,26 +527,26 @@ One can filter teachers by:
 - tag
 - involvement
 
-(Comment: again, this is unclear!)
 
 Format:
-- `filterTeacher [INVOLVEMENT] [t/][TAG]…​`
+- `filterTeacher [INVOLVEMENT] [t/TAG]…​`
 
-(Comment: this is also unclear)
 
 Filters by involvement first, to filter by tag, add `t/`, followed by tag terms behind
+
+More than 1 tag filter is allowed e.g.  `INVOLVEMENT [t/TAG] [t/TAG]`.
 
 The filter category is not case-sensitive e.g. “teacher” same as “TEACHER” but "t/" is not the same as "T/".
 
 Filters for involvement/tags containing the user input e.g. searching "nuts" will also contain results with "donuts".
 
-More than 1 filter is allowed e.g.  `INVOLVEMENT_FILTER_CATERGORY [t/] [TAG_FILTER CATERGORY] [TAG_FILTER CATERGORY]`.
+Only alphanumeric terms are allowed.
 
 Example:
-- `filterTeacher Math Dept t/rep` - will return all teachers with the involvement containing “Math Dept” and tag containing
-  “rep”.
-- `filterTeacher Math Dept` - will return all teachers with the involvement containing “Math Dept”.
-- `filterTeacher t/colleague admin` - will return all teachers with the tag containing “colleague” and "admin".
+- `filterTeacher Math Dept t/rep` - will return all teachers with the involvement containing “Math“ and “Dept” and tags 
+  containing “rep”.
+- `filterTeacher Math Dept` - will return all teachers with the involvement containing “Math“ and “Dept”.
+- `filterTeacher t/colleague t/admin` - will return all teachers with the tag containing “colleague” and "admin".
 
 #### List all teachers : `listTeacher`
 

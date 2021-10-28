@@ -68,8 +68,6 @@ activate Model
 Model --> FilterStudentCommand
 deactivate Model
 
-
-
 create CommandResult
 FilterStudentCommand -> CommandResult
 activate CommandResult

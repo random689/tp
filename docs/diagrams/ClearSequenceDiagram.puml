@@ -4,7 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":ClearStudentCommandParser" as ClearStudentCommandParser LOGIC_COLOR
 participant "c:ClearStudentCommand" as ClearStudentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -19,28 +18,12 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("clearStudent ")
 activate AddressBookParser
 
-create ClearStudentCommandParser
-AddressBookParser -> ClearStudentCommandParser
-activate ClearStudentCommandParser
-
-ClearStudentCommandParser --> AddressBookParser
-deactivate ClearStudentCommandParser
-
-AddressBookParser -> ClearStudentCommandParser : parse()
-activate ClearStudentCommandParser
-
 create ClearStudentCommand
-ClearStudentCommandParser -> ClearStudentCommand
+AddressBookParser -> ClearStudentCommand
 activate ClearStudentCommand
 
-ClearStudentCommand --> ClearStudentCommandParser : c
+ClearStudentCommand --> AddressBookParser : c
 deactivate ClearStudentCommand
-
-ClearStudentCommandParser --> AddressBookParser : c
-deactivate ClearStudentCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-ClearStudentCommandParser -[hidden]-> AddressBookParser
-destroy ClearStudentCommandParser
 
 AddressBookParser --> LogicManager : c
 deactivate AddressBookParser
