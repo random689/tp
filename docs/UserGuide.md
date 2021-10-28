@@ -27,7 +27,7 @@ features such as keeping track of upcoming meetings, recording the medical histo
 5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`listStudents`** : Lists all contacts.
+    * **`listStudent`** : Lists all contacts.
 
     * **`student n/John Doe p/98765432 e/johnd@example.com g/M a/311, 
          Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`** : Adds a student named "John Doe" to NewAddressBook.
@@ -110,7 +110,7 @@ Action | Format | Window
 **Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | | Main
-**List all students** |`listStudents` | Main
+**List all students** |`listStudent` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
@@ -119,7 +119,7 @@ Action | Format | Window
 **Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** | | Main
-**List all teachers** | `listTeachers` | Main
+**List all teachers** | `listTeacher` | Main
 **Exit** | `exit` | Main
 **View help** | `help` | Main
 **Open meetings window** | `showMeeting` | Main
@@ -166,7 +166,7 @@ The commands offered are:
   - [Edit a student](#edit-a-student--editstudent)
   - [Find students by name](#find-students-by-name--findstudent)
   - [Filter students](#filter-students--filterstudent)
-  - [List all students](#list-all-students--liststudents)
+  - [List all students](#list-all-students--liststudent)
   - [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
   - [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showmedical)
 
@@ -178,7 +178,7 @@ The commands offered are:
   - [Edit a teacher](#edit-a-teacher--editteacher)
   - [Find teachers by name](#find-teachers-by-name--findteacher)
   - [Filter teachers](#filter-teachers--filterteacher)
-  - [List all teachers](#list-all-teachers--listteachers)
+  - [List all teachers](#list-all-teachers--listteacher)
 
 3. [Managing Meetings](#managing-meetings)
   - [Add a meeting](#add-a-meeting--meet)
@@ -251,7 +251,7 @@ Clears all **currently displayed** students from the address book. If the curren
 Format: `clearStudent`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudents` command. 
+If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudent` command. 
 </div>
 
 (Comment: probably change it to plural).
@@ -267,7 +267,7 @@ Format: `copyStudent [c/FIELD_TO_COPY]`
 `FIELD_TO_COPY` can only be one of three strings: `phone`, `email` or `name`.
 
 Example:
-* `listStudents` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
+* `listStudent` followed by `copyStudent c/email` copies the emails of all students to the user's clipboard.
 * `findStudent Betsy` followed by `copyStudent c/phone` copies the phones of students whose name matches Betsy. The definition of "matches" is as per the definition in the `findStudent` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -285,7 +285,7 @@ Format: `deleteStudent INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 Examples:
-* `listStudents` followed by `deleteStudent 2` deletes the 2nd student in the address book.
+* `listStudent` followed by `deleteStudent 2` deletes the 2nd student in the address book.
 * `findStudent Betsy` followed by `deleteStudent 1` deletes the 1st student in the results of the `findStudent` command.
 
 #### Edit a student : `editStudent`
@@ -351,11 +351,11 @@ Example:
 - `filterStudent class` - will return all students with the involvement containing “class”.
 - `filterStudent t/naughty special` - will return all students with the tag containing “naughty” and "special".
 
-#### List all students : `listStudents`
+#### List all students : `listStudent`
 
 Shows a list of all students stored in the address book.
 
-Format: `listStudents`
+Format: `listStudent`
 
 #### Modify medical history of a student : `medical`
 Format: `medical INDEX [m/MEDICAL_HISTORY]`
@@ -434,7 +434,7 @@ Clears all **currently displayed** teachers from the address book. If the curren
 Format: `clearTeacher`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you want to delete all teachers from the address book, simply make sure the currently displayed list contains all teachers. You can make all teachers appear in the displayed list by the `listTeachers` command. 
+If you want to delete all teachers from the address book, simply make sure the currently displayed list contains all teachers. You can make all teachers appear in the displayed list by the `listTeacher` command. 
 </div>
 
 #### Copying fields from teachers : `copyTeacher`
@@ -536,11 +536,11 @@ Example:
 - `filterTeacher Math Dept` - will return all teachers with the involvement containing “Math Dept”.
 - `filterTeacher t/colleague admin` - will return all teachers with the tag containing “colleague” and "admin".
 
-#### List all teachers : `listTeachers`
+#### List all teachers : `listTeacher`
 
 Shows a list of all teachers stored in NewAddressBook.
 
-Format: `listTeachers`
+Format: `listTeacher`
 
 ### Managing Meetings
 
