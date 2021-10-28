@@ -1,12 +1,11 @@
 package seedu.address.logic.commands.meeting;
 
-import static seedu.address.logic.commands.QuitMeetingCommand.MESSAGE_QUIT_ACKNOWLEDGEMENT;
+import static seedu.address.logic.commands.meeting.QuitMeetingCommand.MESSAGE_QUIT_ACKNOWLEDGEMENT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.QuitMeetingCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 

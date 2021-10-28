@@ -221,7 +221,8 @@ public class AddressBook implements ReadOnlyAddressBook {
                 // handles nulls
                 AddressBook otherAddressBook = (AddressBook) other;
                 return students.equals(otherAddressBook.students)
-                        && teachers.equals(otherAddressBook.teachers);
+                        && teachers.equals(otherAddressBook.teachers)
+                        && meetings.equals(otherAddressBook.meetings);
             } else {
                 return false;
             }
@@ -230,6 +231,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return Objects.hash(students, teachers);
+        return Objects.hash(students, teachers, meetings);
     }
 }

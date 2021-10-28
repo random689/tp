@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ShowMeetingCommand;
+import seedu.address.logic.commands.meeting.ShowMeetingCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.commands.student.ClearStudentCommand;
