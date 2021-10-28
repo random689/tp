@@ -27,7 +27,7 @@ features such as keeping track of upcoming meetings, recording the medical histo
 5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`listStudents`** : Lists all contacts.
+    * **`listStudent`** : Lists all contacts.
 
     * **`student n/John Doe p/98765432 e/johnd@example.com g/M a/311, 
          Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`** : Adds a student named "John Doe" to NewAddressBook.
@@ -166,7 +166,7 @@ The commands offered are:
   - [Edit a student](#edit-a-student--editstudent)
   - [Find students by name](#find-students-by-name--findstudent)
   - [Filter students](#filter-students--filterstudent)
-  - [List all students](#list-all-students--liststudents)
+  - [List all students](#list-all-students--liststudent)
   - [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
   - [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showmedical)
 
@@ -178,7 +178,7 @@ The commands offered are:
   - [Edit a teacher](#edit-a-teacher--editteacher)
   - [Find teachers by name](#find-teachers-by-name--findteacher)
   - [Filter teachers](#filter-teachers--filterteacher)
-  - [List all teachers](#list-all-teachers--listteachers)
+  - [List all teachers](#list-all-teachers--listteacher)
 
 3. [Managing Meetings](#managing-meetings)
   - [Add a meeting](#add-a-meeting--meet)
@@ -260,7 +260,7 @@ Clears all **currently displayed** students from the address book. If the curren
 Format: `clearStudent`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudents` command. 
+If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudent` command. 
 </div>
 
 #### Copying fields from students : `copyStudent` 
@@ -315,7 +315,7 @@ You can remove all the student’s tags by typing `t/` without specifying any ta
 
 Examples:
 *  `editStudent 1 f/4Donkey e/johndoe@example.com` Edits the form class and email address of the 1st student to be `4Donkey` and `johndoe@example.com` respectively.
-*  `editStudent 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `editStudent 2 em/901941341` Edits the emergency contact number of the 2nd student to be 901941341.
 
 #### Find students by name : `findStudent`
 
@@ -446,7 +446,7 @@ Clears all **currently displayed** teachers from the address book. If the curren
 Format: `clearTeacher`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you want to delete all teachers from the address book, simply make sure the currently displayed list contains all teachers. You can make all teachers appear in the displayed list by the `listTeachers` command. 
+If you want to delete all teachers from the address book, simply make sure the currently displayed list contains all teachers. You can make all teachers appear in the displayed list by the `listTeacher` command. 
 </div>
 
 #### Copying fields from teachers : `copyTeacher`
@@ -499,11 +499,9 @@ Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TA
 You can remove all the teacher’s tags by typing `t/` without specifying any tags after it.
 </div>
 
-(Comment: should we have examples more specific to teachers and students)?
-
 Examples:
 *  `editTeacher 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st teacher to be `91234567` and `johndoe@example.com` respectively.
-*  `editTeacher 2 n/Betsy Crower t/` Edits the name of the 2nd teacher to be `Betsy Crower` and clears all existing tags.
+*  `editTeacher 2 o/5 t/` Edits the office table number of the 2nd teacher to be 5 and clears all existing tags.
 
 #### Find teachers by name : `findTeacher`
 
@@ -635,7 +633,15 @@ Format: `exit`
 #### Undo the latest change : `undo`
 
 Undoes the last change. This command only works for operations that adds, deletes, or edits infomation. 
-This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone.
+This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone. One can undo adding/deleting meetings as well.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** The `undo` command works in both the main and meeting window.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** `undo` undoes your last action, **no matter** which window one executes it from. For example, if one edited a student in the main window, then added a meeting from the meeting window, executing the `undo` command from the main window will undo the action of **adding the meeting**, rather than the action of editing the student. That is, the `undo` command chooses the user's last action, rather than the user's last action **in that window** to undo.
+</div>
 
 #### Viewing help : `help`
 

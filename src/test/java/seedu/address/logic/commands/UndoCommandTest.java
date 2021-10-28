@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.TypicalModels.FIRST_STUDENT_PREDICATE;
 import static seedu.address.testutil.TypicalAddressBookObjects.ALICE;
 import static seedu.address.testutil.TypicalAddressBookObjects.CARP_NOT_IN_LIST;
+import static seedu.address.testutil.TypicalAddressBookObjects.DUMMY_MEETING_NOT_IN_LIST;
 import static seedu.address.testutil.TypicalAddressBookObjects.EDITED_FISH_NOT_IN_LIST;
 import static seedu.address.testutil.TypicalAddressBookObjects.EXTRA_TEACHER_NOT_IN_LIST;
 import static seedu.address.testutil.TypicalAddressBookObjects.FISH_NOT_IN_LIST;
@@ -79,6 +80,19 @@ public class UndoCommandTest {
         undoCommand.execute(model);
         undoCommand.execute(model);
         // after 4 undoes, you should get back the same model
+        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS,
+                expectedModel);
+        // and they have equal histories
+        assertTrue(model.hasEqualHistory(expectedModel));
+    }
+
+    // check that one can undo adding meetings (ie. it works in the meeting window as well).
+    @Test
+    public void undoAdd_meeting_success() {
+        model.addStudent(FISH_NOT_IN_LIST);
+        model.addMeeting(DUMMY_MEETING_NOT_IN_LIST);
+        undoCommand.execute(model);
+        // after 2 undoes, you should get back the same model
         assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS,
                 expectedModel);
         // and they have equal histories

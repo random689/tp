@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,17 +94,17 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png" width="600"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it determines which window is the user is on, and uses either the `MeetingParser` or `AddressBookParser` class to parse the user command. It uses `MeetingParser` if the user is executing the command from the meeting window, and `AddressBookParser` if the user is executing the command from the main window.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteStudent 1")` API call.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** When the user calls a valid command 
+<div markdown="span" class="alert alert-info">:information_ urce: **Note:** When the user calls a valid command 
 from the `Meeting` window, the interaction within the `Logic` component only has 1 key difference: `LogicManager` 
 calls the `MeetingParser#parseCommand`. The rest of the implementation is similar to the diagram below.
 
@@ -117,28 +117,24 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
-How the parsing works:
+How the parsing works (we describe only for `AddressBookParser`, the one for `MeetingParser` is similar):
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="550" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Student`, `Teacher` and `Meeting` objects, which are contained in three separate `UniqueStudentList`, `UniqueTeacherList` and `NonConflictMeetingList` lists respectly.
+* stores the currently 'selected' `Student` and `Teacher` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Student>` and `ObservableList<Teacher>` respective. It can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* a stack, `history`, to  keep track on address book histories. This is to facilitate the `undo` command.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
+* As there is no feature to search meetings, there is no need to store a filtered meeting list.
 
 
 ### Storage component
@@ -178,11 +174,11 @@ Step 1. The user launches the application for the first time. The app creates an
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `deleteStudent 1` command to delete the 1st student in the address book. The `DeleteStudent` command calls `ModelManager::deleteStudent`, which deletes the student from the existing address book, and then pushes a copy of the modified address book, `ab1`, onto the stack.
+Step 2. The user executes `deleteStudent 1` command to delete the 1st student in the address book. The `DeleteStudent` command calls `ModelManager#deleteStudent`, which deletes the student from the existing address book, and then pushes a copy of the modified address book, `ab1`, onto the stack.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `student n/David …​` to add a new student. The `add` command also calls `ModelManager::addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
+Step 3. The user executes `student n/David …​` to add a new student. The `add` command also calls `ModelManager#addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -190,7 +186,7 @@ Step 3. The user executes `student n/David …​` to add a new student. The `ad
   **Note:** If a command fails its execution, it will not save the address book.
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager::undo`, which will pop the front element from the stack and restore `ab2`'s contents. The top of the stack is now `ab1`.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager#undo`, which will pop the front element from the stack and restore `ab2`'s contents. The top of the stack is now `ab1`.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -207,14 +203,18 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** In the event the user executes `undo` from the meeting window, `MeetingParser` will be used instead. 
+</div>
+
 
 The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if the undo is a success, `false` otherwise. The undo command could fail if the app is already at the oldest change (ie. the stack size is 1). `undoSuccess` then determines what the `commandResult` will be. 
 
 
 
-#### Design considerations:
+#### Design considerations
 
-**Aspect: How undo executes:**
+**Aspect: How `undo` executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
   * Pros: Easy to implement.
@@ -227,19 +227,31 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
 
 We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
 
+**Aspect: Behaviour of `undo` across the main window and meeting window:**
+
+* **Alternative 1 (current choice):** We have a single `undo` command, and executing the command undoes the last action by the user.
+  * Pros: Easy to implement.
+  * Cons: May be confusing to the user to execute the `undo` command in one window and the change being reflected in another window.
+
+* **Alternative 2:** We have two separate commands: `undo` and `undoMeeting`, such that `undo` undoes the last action by the user in the main window while `undoMeeting` undoes the last action by the user in the meeting window.
+  * Pros: It is less confusing for the user (as now if the `undo/undoMeeting` command is executed in a particular window, the change will be reflected in the same window).
+  * Cons: Harder to implement.
+
+We eventually settled on Alternative 1 because our current implementation of the `AddressBook` class stores all the student, teacher and meeting lists together, and because we are using a stack to manage previous versions of our address book, it is more convient to push the entire address book onto the stack rather than creating a separate class to store meetings.
+
 ### Copy Command
 
 #### Implementation details
-The `CopyStudentCommand/CopyTeacher` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand::getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
+The `CopyStudentCommand/CopyTeacher` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand#getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
 
-As such, this command is supported by the method in the `Model` interface, namely the `Model::getFilteredStudentList()` and `Model::getFilteredTeacherList()` methods.
+As such, this command is supported by the method in the `Model` interface, namely the `Model#getFilteredStudentList()` and `Model#getFilteredTeacherList()` methods.
 
 Given below is an example usage scenario and how the copy mechanism behaves.
 
 Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
 will be initialized with the all the students and teachers respectively from the loaded book data.
 
-Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI. The `copyStudent` command calls `Model::getFilteredStudentList`, loading the current list of filtered students, which in this case is all the students from the loaded book data. Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `CopyCommand::getNameContent` since the user wants to copy all names of students,
+Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI. The `copyStudent` command calls `Model#getFilteredStudentList`, loading the current list of filtered students, which in this case is all the students from the loaded book data. Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `CopyCommand#getNameContent` since the user wants to copy all names of students,
 appending all the names of the students in the filtered student list to the user's clipboard.
 
 The following sequence diagram shows how the copy operation works for a copyStudent command. The `copyTeacher` command works similarly, so we will only discuss students here. If the user specifies another field to be copied, such as `phone` or `email`, the command also works similarly, so we will not discuss them here.
@@ -252,38 +264,41 @@ The following sequence diagram shows how the copy operation works for a copyStud
   **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Design considerations:
-
-**Aspect: How copy executes:**
-
-(Comment: Probably need to be more specific about this, and justify why alternative 1 is better)
-* **Alternative 1 (current choice):** CopyCommand handles the copying
-    * Pros: Easy to implement.
-    * Cons: Will not be able to copy across tables.
-
-* **Alternative 2:** Model handles the copying
-    * Pros: Easier to maintain and will work like the other commands
-    * Cons: Many checks will have to be done to ensure the fields that are copied exists in both the student and teacher class.
-
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
 </div>
+
+#### Design considerations
+
+**Aspect: Functionality of copy command:**
+
+* **Alternative 1 (current choice):** `copyStudent/copyTeacher` only allows the user to copy a subset of fields (ie. phone, email, name), and the fields that can be copied are the same for both students and teachers.
+    * Pros: Easy to implement.
+    * Pros: It is easier for the user to remember which fields can be copied. For example, in our implementation, users simply have to remember that only the phone, email and name fields can be copied, for both teachers and students.
+    * Cons: Users will not be able to copy other fields.
+
+* **Alternative 2:** `copyStudent/copyTeacher` allows the user to copy any field they like.
+    * Pros: The user has more flexibility in which fields they want to copy.
+    * Cons: The user has to precisely remember which fields a student or teacher has. For example, the user would have to remember that he/she can copy down the office table numbers for teachers, but not for students. Similarly, he/she would have to remember that the emergency contact number of students can be copied, but not for teachers.
+
+We went with Alternative 1 because we felt that other than a person's phone, email and name, there are very little use cases which would lead one to need to copy down another field. For example, unless it is for a very specific purpose, it is unlikely that the user would need to copy down office table numbers.
+
 
 ### Adding meetings
 
 #### Implementation Details
 The mechanism of adding meetings is showcased in the sequence diagram below:
 
-![MeetSequenceDiagram](images/MeetSeqDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+![MeetSequenceDiagram](images/MeetSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
-Whenever a Meeting is added to the list, the list will be sorted so that when the user views the upcoming meetings, it will be shown in ascending order.
+Whenever a meeting is added to the list, the meeting will be inserted a way such that the earliest meeting (in terms of date) is at the top of the list, and the latest meeting is at the back of the list. 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: Representation of a Meeting**
 
@@ -294,6 +309,8 @@ Whenever a Meeting is added to the list, the list will be sorted so that when th
 * **Alternative 2:** Meeting references a Person (either Student or Teacher) stored in NewAddressBook.
   * Pros: User just have to specify the type and index of the Person in the list and the UI would generate a pre-defined title with the specified person's name
   * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed.
+
+We chose alternative 1 because it makes the application easier to use. That way, users do not have to add in a contact into the address book in order to have a meeting with them.
 
 ### Filter command:
 
@@ -311,7 +328,7 @@ The following sequence diagram shows how it works for a filterStudent command.
 
 ![FilterSequenceDiagram](images/FilterDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to implement Filter:**
 
@@ -350,7 +367,7 @@ The following sequence diagram shows how the `medical` command works.
 
 ![AddMedicalHistorySequenceDiagram](images/MedicalDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to implement MedicalHistory:**
 
@@ -584,7 +601,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a Student while all Students are being shown
 
-   1. Prerequisites: List all Students using the `listStudents` command. Multiple Students in the list.
+   1. Prerequisites: List all Students using the `listStudent` command. Multiple Students in the list.
 
    1. Test case: `deleteStudent 1`<br>
       Expected: First Student is deleted from the Student list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.

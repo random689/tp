@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CHO;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DEE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DEE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CHO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_DEE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -20,11 +21,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.descriptors.EditTeacherDescriptor;
-import seedu.address.logic.commands.student.ClearStudentCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.teacher.Teacher;
 import seedu.address.testutil.EditTeacherDescriptorBuilder;
 import seedu.address.testutil.TeacherBuilder;
@@ -73,16 +74,88 @@ public class EditTeacherCommandTest {
         assertCommandSuccess(editTeacherCommand, model, expectedMessage, expectedModel);
     }
 
+    /*
+    The following test cases test if the edit command will throw an exception if all the fields provided to the
+    {@code editDescriptor} are the same as the ones possessed by the current teacher. We just test a subset of cases.
+     */
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_TEACHER,
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
+        // if there is nothing to edit, tell the user that there is nothing to edit.
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
                 new EditTeacherDescriptor());
-        Teacher editedTeacher = model.getFilteredTeacherList().get(INDEX_FIRST_TEACHER.getZeroBased());
+        assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
 
-        String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
+    @Test
+    public void execute_teacherAlreadyHasName_failure() {
+        // if there is nothing to edit, tell the user that there is nothing to edit.
+        EditTeacherDescriptor editTeacherDescriptor = new EditTeacherDescriptor();
+        Teacher teacher = model.getFilteredTeacherList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editTeacherDescriptor.setName(teacher.getName());
+        // this forces the name of the edited teacher and current teacher to be the same
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
+                editTeacherDescriptor);
+        assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
 
+    @Test
+    public void execute_teacherAlreadyHasOfficeTable_failure() {
+        EditTeacherDescriptor editTeacherDescriptor = new EditTeacherDescriptor();
+        Teacher teacher = model.getFilteredTeacherList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editTeacherDescriptor.setOfficeTable(teacher.getOfficeTable());
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
+                editTeacherDescriptor);
+        assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_teacherAlreadyHasGender_failure() {
+        EditTeacherDescriptor editTeacherDescriptor = new EditTeacherDescriptor();
+        Teacher teacher = model.getFilteredTeacherList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editTeacherDescriptor.setGender(teacher.getGender());
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
+                editTeacherDescriptor);
+        assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_teacherAlreadyHasnIvolvement_failure() {
+        EditTeacherDescriptor editTeacherDescriptor = new EditTeacherDescriptor();
+        Teacher teacher = model.getFilteredTeacherList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editTeacherDescriptor.setInvolvement(teacher.getInvolvement());
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
+                editTeacherDescriptor);
+        assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_editTwoSameFields_failure() {
+        // should fail when there are two same fields provided to the edit command
+        EditTeacherDescriptor editTeacherDescriptor = new EditTeacherDescriptor();
+        Teacher teacher = model.getFilteredTeacherList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editTeacherDescriptor.setName(teacher.getName());
+        editTeacherDescriptor.setEmail(teacher.getEmail());
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
+                editTeacherDescriptor);
+        assertCommandFailure(editTeacherCommand, model, EditTeacherCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_atLeastOneFieldDifferent_success() {
+        // should pass when there is at least one field which is provided in the editedTeacher which is different
+        EditTeacherDescriptor editTeacherDescriptor = new EditTeacherDescriptor();
+        Teacher teacher = model.getFilteredTeacherList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editTeacherDescriptor.setOfficeTable(teacher.getOfficeTable());
+        editTeacherDescriptor.setPhone(new Phone(VALID_PHONE_CHO));
+        EditTeacherCommand editTeacherCommand = new EditTeacherCommand(INDEX_FIRST_STUDENT,
+                editTeacherDescriptor);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
+        Teacher editedTeacher = new TeacherBuilder(teacher)
+                .withOfficeTable(teacher.getOfficeTable().toString())
+                .withPhone(VALID_PHONE_CHO)
+                .build();
+        expectedModel.setTeacher(teacher, editedTeacher);
+        String expectedMessage = String.format(EditTeacherCommand.MESSAGE_EDIT_TEACHER_SUCCESS, editedTeacher);
         assertCommandSuccess(editTeacherCommand, model, expectedMessage, expectedModel);
     }
 
@@ -127,7 +200,7 @@ public class EditTeacherCommandTest {
 
     @Test
     public void execute_invalidTeacherIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTeacherList().size() + 1);
         EditTeacherDescriptor descriptor = new EditTeacherDescriptorBuilder().withName(VALID_NAME_DEE).build();
         EditTeacherCommand editCommand = new EditTeacherCommand(outOfBoundIndex, descriptor);
 
@@ -167,7 +240,7 @@ public class EditTeacherCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearStudentCommand()));
+        assertFalse(standardCommand.equals(new ClearTeacherCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditTeacherCommand(INDEX_SECOND_TEACHER, DESC_DEE)));
