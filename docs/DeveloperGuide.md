@@ -104,9 +104,11 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteStudent 1")` API call.
 
-<div markdown="span" class="alert alert-info">:information_ urce: **Note:** When the user calls a valid command 
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** When the user calls a valid command 
 from the `Meeting` window, the interaction within the `Logic` component only has 1 key difference: `LogicManager` 
 calls the `MeetingParser#parseCommand`. The rest of the implementation is similar to the diagram below.
+</  div>
 
 ![Interactions Inside the Logic Component for the `deleteStudent 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -256,8 +258,6 @@ appending all the names of the students in the filtered student list to the user
 
 The following sequence diagram shows how the copy operation works for a copyStudent command. The `copyTeacher` command works similarly, so we will only discuss students here. If the user specifies another field to be copied, such as `phone` or `email`, the command also works similarly, so we will not discuss them here.
 
-(Comment: Isn't this diagram too complicated)
-
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
@@ -349,7 +349,7 @@ model.setStudent(studentToEdit, editedStudent) and updates the view using `model
 This works as the command is supported by the method in the `Model` interface, specifically the Model#setStudent() and
 Model#updateFilteredStudentList() methods.
 
-:information_source: **Note:** Cannot add medical history to teachers.
+:information_source: **Note:** One cannot add medical history to teachers.
 
 Given below is an example usage scenario and how the mechanism works.
 
@@ -430,15 +430,6 @@ The `clearTeacher` command works similarly.
     * Pros: Easier to maintain as it will be the same as the initial Clear Command
     * Cons: No way for the user to selectively mass delete.
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** As Meeting does not have any means of filtering, clearMeeting uses alternative 2.
-</div>
-**
---------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 

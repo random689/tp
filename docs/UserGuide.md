@@ -127,6 +127,9 @@ Action | Format | Window
 **Undo**| `undo` | Both
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Glossary 
+* **Involvement**: refers to how the user is involved with the student. This is broad term describing why the user would even want to bother storing the student in the address book in the first place. For example, a form teacher might store the involvement of a student in his class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`. A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -246,7 +249,7 @@ Check out how `involvement` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The app prevents the user from adding in duplicate students.
+The app prevents the user from adding in duplicate students. Two students are duplicate if they have the same name and address.
 </div>
 
 Examples:
@@ -311,6 +314,10 @@ Format: `editStudent [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can remove all the student’s tags by typing `t/` without specifying any tags after it.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If editing the student causes the address book to have duplicate students, the user will not be allowed to edit the student.
 </div>
 
 Examples:
@@ -443,7 +450,7 @@ Check out how `involvement` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The app prevents the user from adding in duplicate teachers.
+The app prevents the user from adding in duplicate teachers. Two teachers the same if they have the same name and office table number.
 </div>
 
 Examples:
@@ -508,6 +515,10 @@ Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TA
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can remove all the teacher’s tags by typing `t/` without specifying any tags after it.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If editing the teacher causes the address book to have duplicate teachers, the user will not be allowed to edit the teacher.
 </div>
 
 Examples:
