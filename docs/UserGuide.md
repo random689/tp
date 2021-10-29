@@ -348,11 +348,16 @@ The `filterStudent` command differs from the `findStudent` in that `findStudent`
 Format:
 - `filterStudent [INVOLVEMENT] [t/TAG]…​`
 
+
+* It allows filtering by either `tag` or `involvement` or both
+* Either `involvement` or `tag` must be present.
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`
 * The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`
-* At most **one** involvement is allowed. That is, if the command was `filterStudent One Two`, `One Two` will be treated as a single string and involvements matching `One Two` (as per the above definition) will be shown. The command does not split `One Two` up into two strings `One` and `Two` and try to match them separately.
-* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/president`, only students whose involvment is `chess club` **and** has tag `president` will be returned.
+* Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`.
+* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement is `chess club` **and** has tags containing `member` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
+* Involvement must come before Tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not
+
 
 Examples:
 - `filterStudent class t/rep` - will return all students with the involvement containing `class` and tag containing `rep`.
@@ -538,12 +543,15 @@ The `filterTeacher` command differs from the `findStudent` in that `findStudent`
 Format:
 - `filterTeacher [INVOLVEMENT] [t/TAG]…​`
 
+* It allows filtering by either `tag` or `involvement` or both
 * Either `involvement` or `tag` must be present.
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`
 * The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`
-* At most **one** involvement is allowed. That is, if the command was `filterTeacher One Two`, `One Two` will be treated as a single string and involvements matching `One Two` (as per the above definition) will be shown. The command does not split `One Two` up into two strings `One` and `Two` and try to match them separately.
-* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvment is `chess club` **and** has tag `coordinator` will be returned.
+* Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`.
+* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
+* Involvement must come before Tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not
+
 
 Example:
 - `filterTeacher class t/rep` - will return all teachers with the involvement containing `class` and tag containing `rep`.
