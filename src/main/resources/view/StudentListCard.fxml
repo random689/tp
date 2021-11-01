@@ -25,13 +25,13 @@
       </HBox>
          <HBox prefWidth="150.0">
             <children>
-            <Label fx:id="formClass" alignment="CENTER" contentDisplay="CENTER" maxWidth="180.0" minWidth="30.0" styleClass="cell_small_label" text="\$formClass" textAlignment="CENTER" wrapText="true" />
-            <Label fx:id="involvement" alignment="CENTER" contentDisplay="CENTER" maxWidth="250.0" minWidth="80.0" styleClass="cell_small_label" text="\$involvement" textAlignment="JUSTIFY" wrapText="true">
+            <Label fx:id="formClass" alignment="CENTER" contentDisplay="CENTER" maxWidth="300.0" minWidth="30.0" styleClass="cell_small_label" text="\$formClass" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="involvement" alignment="CENTER" contentDisplay="CENTER" maxWidth="300.0" minWidth="80.0" styleClass="cell_small_label" text="\$involvement" textAlignment="JUSTIFY" wrapText="true">
                   <HBox.margin>
                      <Insets left="4.0" />
                   </HBox.margin>
                </Label>
-            <Label fx:id="medicalHistory" ellipsisString="!!!" maxWidth="30.0" styleClass="cell_small_label" text="\$medicalHistory">
+            <Label fx:id="medicalHistory" ellipsisString="!!!" maxWidth="150.0" styleClass="cell_small_label" text="\$medicalHistory">
                   <HBox.margin>
                      <Insets left="4.0" />
                   </HBox.margin>

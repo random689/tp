@@ -25,7 +25,7 @@
             </HBox>
             <HBox prefWidth="150.0">
                 <children>
-                    <Label fx:id="involvement" styleClass="cell_small_label" text="\$involvement" wrapText="true">
+                    <Label fx:id="involvement" alignment="CENTER" contentDisplay="CENTER" minWidth="80.0" styleClass="cell_small_label" text="\$involvement" textAlignment="CENTER" wrapText="true">
                         <HBox.margin>
                             <Insets left="4.0" />
                         </HBox.margin></Label>
