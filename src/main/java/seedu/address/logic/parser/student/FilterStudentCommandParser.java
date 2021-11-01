@@ -37,16 +37,24 @@ public class FilterStudentCommandParser implements Parser<FilterStudentCommand> 
         return new FilterStudentCommand(new StudentInvolvementContainsKeywordsPredicate(processedNameKeywords));
     }
 
+    /**
+     * Takes in user input, check if the args are valid and in the correct order, returns a list of valid strings that
+     * can be processed by FilterStudentCommand.
+     *
+     * @param keywords the args that the user gave for FilterStudentCommand
+     * @return list of strings to be sent to FilterStudentCommand
+     * @throws ParseException if the user input does not conform the expected format
+     */
     private List<String> processInput(String[] keywords) throws ParseException {
         boolean isTagsOnwards = false;
         List<String> listToReturn = new ArrayList<>();
         for (int i = 0; i < keywords.length; i++) {
-            isTagsOnwards = processEachWord(keywords, isTagsOnwards, listToReturn, i);
+            isTagsOnwards = checkValidEachWord(keywords, isTagsOnwards, listToReturn, i);
         }
         return listToReturn;
     }
 
-    private boolean processEachWord(String[] keywords, boolean isTagsOnwards, List<String> listToReturn, int i)
+    private boolean checkValidEachWord(String[] keywords, boolean isTagsOnwards, List<String> listToReturn, int i)
             throws ParseException {
         if (!isTagsOnwards) {
             if (keywords[i].startsWith("t/") && isValidFirstTag(keywords[i])) {
