@@ -18,7 +18,7 @@ NewAddressBook is a **desktop app built for secondary school teachers** that are
 
 3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data. (Depending on your OS, you may need to launch the jar file using the `java -jar newaddressbook.jar` command<br>
 <br>
    ![Ui](images/Ui.png)
 
@@ -129,7 +129,7 @@ Action | Format | Window
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary 
-* **Involvement**: refers to how the user is involved with the student. This is broad term describing why the user would even want to bother storing the student in the address book in the first place. For example, a form teacher might store the involvement of a student in his class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`. A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
+* **Involvement**: refers to how the user is involved with the student/teacher. This is a broad term describing why the user would even want to bother storing the student/teacher in the address book in the first place. For example, a form teacher might store the involvement of a student in his class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`. A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -137,8 +137,8 @@ Action | Format | Window
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addStudent` command, `NAME` under `n/NAME` represents the student's name that you should provide. 
-  For instance, if the student's name is "John Doe", then you should input `n/John Doe` in the `addStudent` command.
+  e.g. in `student` command, `NAME` under `n/NAME` represents the student's name that you should provide. 
+  For instance, if the student's name is "John Doe", then you should input `n/John Doe` in the `student` command.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -303,7 +303,7 @@ Examples:
 
 Edits an existing student in NewAddressBook.
 
-Format: `editStudent [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. 
@@ -349,21 +349,21 @@ Filter students by their various fields. The user can filter students by:
 - involvement
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The `filterStudent` command differs from the `findStudent` in that `findStudent` only finds students by **name**, where as the `filterStudent` command allows the user to filter out students based on **tags and involvement**.
+The `filterStudent` command differs from the `findStudent` in that `findStudent` only finds students by **name**, whereas the `filterStudent` command allows the user to filter out students based on **tags and involvement**.
 </div>
 
 Format:
 - `filterStudent [INVOLVEMENT] [t/TAG]…​`
 
 
-* It allows filtering by either `tag` or `involvement` or both
+* It allows filtering by either `tag` or `involvement` or both.
 * Either `involvement` or `tag` must be present.
-* The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`
-* The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`
+* The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
+* The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`.
 * Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement is `chess club` **and** has tags containing `member` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
-* Involvement must come before Tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not
+* Involvement must come before Tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
 
 
 Examples:
@@ -385,9 +385,9 @@ Format: `medical INDEX [m/MEDICAL_HISTORY]`
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 How this command works:
-1. Adds a medical history to the existing student if he does not have any existing medical history.
-2. Overwrites the medical history of the student if the he already has an existing medical history.
-3. Removes the medical history of a studen if the student already has an existing medical history and an empty `MEDICAL_HISTORY` is given.
+* Adds a medical history to the existing student if he does not have any existing medical history.
+* Overwrites the medical history of the student if the he already has an existing medical history.
+* Removes the medical history of a studen if the student already has an existing medical history and an empty `MEDICAL_HISTORY` is given.
 
 Examples:
 * `medical 1 m/ADHD` 
@@ -504,7 +504,7 @@ Examples:
 
 Edits an existing teacher in the address book.
 
-Format: `editTeacher [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
+Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
@@ -548,20 +548,20 @@ Filter teachers by their various fields. The user can filter teachers by:
 - involvement
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The `filterTeacher` command differs from the `findStudent` in that `findStudent` only finds teachers by **name**, where as the `filterTeacher` command allows the user to filter out teachers based on **tags and involvement**.
+The `filterTeacher` command differs from the `findTeacher` in that `findTeacher` only finds teachers by **name**, whereas the `filterTeacher` command allows the user to filter out teachers based on **tags and involvement**.
 </div>
 
 Format:
-- `filterTeacher [INVOLVEMENT] [t/TAG]…​`
+`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 
-* It allows filtering by either `tag` or `involvement` or both
+* It allows filtering by either `tag` or `involvement` or both.
 * Either `involvement` or `tag` must be present.
-* The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`
-* The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`
+* The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
+* The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`.
 * Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
-* Involvement must come before Tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not
+* Involvement must come before Tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 
 
 Example:
