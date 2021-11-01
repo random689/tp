@@ -17,6 +17,7 @@ import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPred
 public class FilterTeacherCommandParser implements Parser<FilterTeacherCommand> {
 
     private static final String TAG_REGEX = "^[a-zA-Z0-9]*$";
+
     /**
      * Parses the given {@code String} of arguments in the context of the FilterTeacherCommand
      * and returns a FilterTeacherCommand object for execution.
