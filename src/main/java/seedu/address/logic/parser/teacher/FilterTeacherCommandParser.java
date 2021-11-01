@@ -41,42 +41,37 @@ public class FilterTeacherCommandParser implements Parser<FilterTeacherCommand> 
         boolean isTagsOnwards = false;
         List<String> listToReturn = new ArrayList<>();
         for (int i = 0; i < keywords.length; i++) {
-            if (keywords[i].startsWith("t/")) {
-                if (!keywords[i].substring(2).matches(TAG_REGEX)) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTeacherCommand.MESSAGE_USAGE));
-                }
-            } else {
-                if (!keywords[i].matches(TAG_REGEX)) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTeacherCommand.MESSAGE_USAGE));
-                }
-            }
-            if (!isTagsOnwards) {
-                if (keywords[i].startsWith("t/") && validFirstTag(keywords[i])) {
-                    isTagsOnwards = true;
-                    listToReturn.add(keywords[i]);
-                } else if (keywords[i].startsWith("t/") && !validFirstTag(keywords[i])) {
-                    isTagsOnwards = true;
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTeacherCommand.MESSAGE_USAGE));
-                } else {
-                    listToReturn.add(keywords[i]);
-                }
-            } else {
-                if (validOtherTag(keywords[i])) {
-                    listToReturn.add(keywords[i].substring(2));
-                } else {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTeacherCommand.MESSAGE_USAGE));
-                }
-            }
+            isTagsOnwards = processEachWord(keywords, isTagsOnwards, listToReturn, i);
         }
 
         return listToReturn;
     }
 
-    private boolean validFirstTag(String keyword) {
+    private boolean processEachWord(String[] keywords, boolean isTagsOnwards, List<String> listToReturn, int i)
+            throws ParseException {
+        if (!isTagsOnwards) {
+            if (keywords[i].startsWith("t/") && isValidFirstTag(keywords[i])) {
+                isTagsOnwards = true;
+                listToReturn.add(keywords[i]);
+            } else if (keywords[i].startsWith("t/") && !isValidFirstTag(keywords[i])) {
+                isTagsOnwards = true;
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTeacherCommand.MESSAGE_USAGE));
+            } else {
+                listToReturn.add(keywords[i]);
+            }
+        } else {
+            if (isValidOtherTag(keywords[i])) {
+                listToReturn.add(keywords[i].substring(2));
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterTeacherCommand.MESSAGE_USAGE));
+            }
+        }
+        return isTagsOnwards;
+    }
+
+    private boolean isValidFirstTag(String keyword) {
         if (keyword.length() <= 2) {
             return false;
         }
@@ -87,7 +82,7 @@ public class FilterTeacherCommandParser implements Parser<FilterTeacherCommand> 
         }
     }
 
-    private boolean validOtherTag(String keyword) {
+    private boolean isValidOtherTag(String keyword) {
         if (!keyword.startsWith("t/")) {
             return false;
         } else if (keyword.length() <= 2) {

@@ -19,6 +19,7 @@ public class FilterTeacherCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all teachers by involvement and tag(s) "
             + "and displays them as a list with index numbers.\n"
             + "Note: You do not need both involvement and tag(s) at the same time, but either one must be present.\n"
+            + "Only alphanumeric tag parameters in the search are allowed.\n"
             + "Involvement must come before tags."
             + "Parameters: [INVOLVEMENT] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " donut buddies t/gym t/swim";
