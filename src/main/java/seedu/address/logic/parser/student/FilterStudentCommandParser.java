@@ -37,45 +37,48 @@ public class FilterStudentCommandParser implements Parser<FilterStudentCommand> 
         return new FilterStudentCommand(new StudentInvolvementContainsKeywordsPredicate(processedNameKeywords));
     }
 
+    /**
+     * Takes in user input, check if the args are valid and in the correct order, returns a list of valid strings that
+     * can be processed by FilterStudentCommand.
+     *
+     * @param keywords the args that the user gave for FilterStudentCommand
+     * @return list of strings to be sent to FilterStudentCommand
+     * @throws ParseException if the user input does not conform the expected format
+     */
     private List<String> processInput(String[] keywords) throws ParseException {
         boolean isTagsOnwards = false;
         List<String> listToReturn = new ArrayList<>();
         for (int i = 0; i < keywords.length; i++) {
-            if (keywords[i].startsWith("t/")) {
-                if (!keywords[i].substring(2).matches(TAG_REGEX)) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
-                }
-            } else {
-                if (!keywords[i].matches(TAG_REGEX)) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
-                }
-            }
-            if (!isTagsOnwards) {
-                if (keywords[i].startsWith("t/") && validFirstTag(keywords[i])) {
-                    isTagsOnwards = true;
-                    listToReturn.add(keywords[i]);
-                } else if (keywords[i].startsWith("t/") && !validFirstTag(keywords[i])) {
-                    isTagsOnwards = true;
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
-                } else {
-                    listToReturn.add(keywords[i]);
-                }
-            } else {
-                if (validOtherTag(keywords[i])) {
-                    listToReturn.add(keywords[i].substring(2));
-                } else {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
-                }
-            }
+            isTagsOnwards = checkValidEachWord(keywords, isTagsOnwards, listToReturn, i);
         }
         return listToReturn;
     }
 
-    private boolean validFirstTag(String keyword) {
+    private boolean checkValidEachWord(String[] keywords, boolean isTagsOnwards, List<String> listToReturn, int i)
+            throws ParseException {
+        if (!isTagsOnwards) {
+            if (keywords[i].startsWith("t/") && isValidFirstTag(keywords[i])) {
+                isTagsOnwards = true;
+                listToReturn.add(keywords[i]);
+            } else if (keywords[i].startsWith("t/") && !isValidFirstTag(keywords[i])) {
+                isTagsOnwards = true;
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+            } else {
+                listToReturn.add(keywords[i]);
+            }
+        } else {
+            if (isValidOtherTag(keywords[i])) {
+                listToReturn.add(keywords[i].substring(2));
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterStudentCommand.MESSAGE_USAGE));
+            }
+        }
+        return isTagsOnwards;
+    }
+
+    private boolean isValidFirstTag(String keyword) {
         if (keyword.length() <= 2) {
             return false;
         }
@@ -86,7 +89,7 @@ public class FilterStudentCommandParser implements Parser<FilterStudentCommand> 
         }
     }
 
-    private boolean validOtherTag(String keyword) {
+    private boolean isValidOtherTag(String keyword) {
         if (!keyword.startsWith("t/")) {
             return false;
         } else if (keyword.length() <= 2) {
