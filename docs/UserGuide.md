@@ -385,9 +385,19 @@ Format: `medical INDEX [m/MEDICAL_HISTORY]`
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 How this command works:
+* The command does not allow the user to overwrite the current `medicalHistory` with an identical `medicalHistory`. 
+  In other words, the new `medicalHistory` must be different from the existing `medicalHistory`.
 * Adds a medical history to the existing student if he does not have any existing medical history.
-* Overwrites the medical history of the student if the he already has an existing medical history.
-* Removes the medical history of a studen if the student already has an existing medical history and an empty `MEDICAL_HISTORY` is given.
+* Overwrites the medical history of the student if he already has an existing medical history.
+* Removes the medical history of a student if the student already has an existing medical history and an empty 
+  `MEDICAL_HISTORY` is given.
+
+**:information_source: Note:**<br>
+* If the `medicalHistory` is too long or the other tags are too long, the GUI will truncate the `medicalHistory` to 
+  `!!!` to inform the user that the student has a `medicalHistory`. The user should then use the `showMedical` 
+  command to view the full `medicalHistory` of the student.
+* If space allows, the GUI will include some text before the `!!!`. For example, "Diffi!!!". The user should use the 
+  `showMedical` command, as mentioned above, to view the full `medicalHistory`.
 
 Examples:
 * `medical 1 m/ADHD` 
