@@ -36,6 +36,8 @@ public class EditStudentCommand extends EditCommand {
         + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
+    public static final String MESSAGE_NOTHING_TO_EDIT = "All the fields provided for editing are currently the same "
+            + "as those already possessed by the student!";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -80,7 +82,14 @@ public class EditStudentCommand extends EditCommand {
         Student editedStudent = createdEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+            // if it's not the same student, and the model already has the student, throw the exception
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
+        if (studentToEdit.equals(editedStudent)) {
+            // if the edited student is the same, tell the user that there is nothing to edit.
+            // we use the strong notation of equality between students.
+            throw new CommandException(MESSAGE_NOTHING_TO_EDIT);
         }
 
         model.setStudent(studentToEdit, editedStudent);

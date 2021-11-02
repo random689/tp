@@ -368,6 +368,13 @@ public class TypicalAddressBookObjects {
             .withVenue(VALID_VENUE_3)
             .build();
 
+    public static final Meeting DUMMY_MEETING_NOT_IN_LIST = new MeetingBuilder()
+            .withDateTime(VALID_DATETIME_1)
+            .withAttendee(VALID_ATTENDEE_2)
+            .withTitle(VALID_TITLE_3)
+            .withVenue(VALID_VENUE_3)
+            .build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalAddressBookObjects() {} // prevents instantiation

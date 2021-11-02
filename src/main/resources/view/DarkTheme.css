@@ -72,10 +72,6 @@
     -fx-opacity: 1;
 }
 
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
@@ -105,22 +101,6 @@
 
 .list-cell:filled:odd {
     -fx-background-color: #515658;
-}
-
-/*.list-cell:filled:selected {*/
-/*    -fx-background-color: #424d5f;*/
-/*}*/
-
-.list-cell:filled:selected #studentCardPane {
-    -fx-background-color: #424d5f;
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-}
-
-.list-cell:filled:selected #teacherCardPane {
-    -fx-background-color: #424d5f;
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -354,7 +334,7 @@
 }
 
 #tags {
-    -fx-hgap: 7;
+    -fx-hgap: 4;
     -fx-vgap: 3;
 }
 
@@ -366,7 +346,9 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
     -fx-wrap-text: true;
-    -fx-max-width: 85;
+    -fx-pref-width: 40;
+    -fx-pref-width: 80;
+    -fx-alignment: center;
 }
 
 #formClass {

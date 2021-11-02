@@ -54,12 +54,6 @@ activate Model
 Model --> CopyStudentCommand
 deactivate Model
 
-CopyStudentCommand -> CopyStudentCommand : copyToClipBoard(list)
-activate CopyStudentCommand
-
-CopyStudentCommand --> CopyStudentCommand
-deactivate CopyStudentCommand
-
 create CommandResult
 CopyStudentCommand -> CommandResult
 activate CommandResult

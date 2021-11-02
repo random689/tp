@@ -191,7 +191,7 @@ public class ModelManager implements Model {
 
     @Override
     public void clearMeetings() {
-        addressBook.setMeetings(new ArrayList<Meeting>());
+        addressBook.setMeetings(new ArrayList<>());
         this.history.push(new AddressBook(this.addressBook));
     }
 

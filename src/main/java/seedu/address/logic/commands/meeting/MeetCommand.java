@@ -24,7 +24,7 @@ public class MeetCommand extends Command {
             + PREFIX_MEETING_TITLE + "TITLE "
             + PREFIX_MEETING_DATETIME + "DATETIME "
             + PREFIX_MEETING_VENUE + "VENUE "
-            + PREFIX_MEETING_ATTENDEE + "ATTENDEE_TYPE "
+            + PREFIX_MEETING_ATTENDEE + "ATTENDEE_TYPE \n "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MEETING_TITLE + "Math consult with class 4D "
             + PREFIX_MEETING_DATETIME + "2040-12-25 13:45 "

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
@@ -23,6 +24,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.student.Address;
 import seedu.address.model.person.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
@@ -69,16 +71,88 @@ public class EditStudentCommandTest {
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 
+    /*
+    The following test cases test if the edit command will throw an exception if all the fields provided to the
+    {@code editDescriptor} are the same as the ones possessed by the current student. We just test a subset of cases.
+     */
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
+        // if there is nothing to edit, tell the user that there is nothing to edit.
         EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptor());
-        Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
 
-        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
+    @Test
+    public void execute_studentAlreadyHasName_failure() {
+        // if there is nothing to edit, tell the user that there is nothing to edit.
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        Student student = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editStudentDescriptor.setName(student.getName());
+        // this forces the name of the edited student and current student to be the same
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
+                editStudentDescriptor);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
 
+    @Test
+    public void execute_studentAlreadyHasAddress_failure() {
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        Student student = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editStudentDescriptor.setAddress(student.getAddress());
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
+                editStudentDescriptor);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_studentAlreadyHasGender_failure() {
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        Student student = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editStudentDescriptor.setGender(student.getGender());
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
+                editStudentDescriptor);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_studentAlreadyHasEmergencyContact_failure() {
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        Student student = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editStudentDescriptor.setEmergencyContact(student.getEmergencyContact());
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
+                editStudentDescriptor);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_editTwoSameFields_failure() {
+        // should fail when there are two same fields provided to the edit command
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        Student student = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editStudentDescriptor.setFormClass(student.getFormClass());
+        editStudentDescriptor.setAddress(student.getAddress());
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
+                editStudentDescriptor);
+        assertCommandFailure(editStudentCommand, model, EditStudentCommand.MESSAGE_NOTHING_TO_EDIT);
+    }
+
+    @Test
+    public void execute_atLeastOneFieldDifferent_success() {
+        // should pass when there is at least one field which is provided in the editedStudent which is different
+        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
+        Student student = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        editStudentDescriptor.setFormClass(student.getFormClass());
+        editStudentDescriptor.setAddress(new Address(VALID_ADDRESS_BOB));
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
+                editStudentDescriptor);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
+        Student editedStudent = new StudentBuilder(student)
+                .withFormClass(student.getFormClass().toString())
+                .withAddress(VALID_ADDRESS_BOB)
+                .build();
+        expectedModel.setStudent(student, editedStudent);
+        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
 

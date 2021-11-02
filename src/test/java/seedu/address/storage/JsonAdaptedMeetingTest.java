@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Attendee;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
+import seedu.address.model.meeting.DescriptionType;
 
 public class JsonAdaptedMeetingTest {
     private static final String INVALID_DATETIME = "19-08-2022 02:02";
@@ -71,7 +72,7 @@ public class JsonAdaptedMeetingTest {
         JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(
                 VALID_DATETIME, INVALID_TITLE, VALID_VENUE, VALID_ATTENDEE);
 
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Description.getMessageConstraints(DescriptionType.TITLE);
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 
@@ -90,7 +91,7 @@ public class JsonAdaptedMeetingTest {
         JsonAdaptedMeeting meeting = new JsonAdaptedMeeting(
                 VALID_DATETIME, VALID_TITLE, INVALID_VENUE, VALID_ATTENDEE);
 
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Description.getMessageConstraints(DescriptionType.VENUE);
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 

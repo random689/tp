@@ -10,7 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class FormClass {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Form class should be alphanumeric, and be in the form of '|1-5|String|[alphanumeric]|.\n"
+            "Form class should not be blank and must be of the format '|LEVEL|STRING|[ALPHANUMERIC]|'.\n"
+                    + "  - 'LEVEL' must be a digit from 1 to 5\n"
+                    + "  - 'STRING' should not be blank and can only contain alphabets\n"
+                    + "  - 'ALPHANUMERIC' is optional and can only contain alphanumeric characters\n"
                     + "For Example: '4E1' or '3Hope'.";
 
     /*

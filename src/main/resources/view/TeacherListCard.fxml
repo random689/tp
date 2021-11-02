@@ -13,7 +13,7 @@
     <GridPane hgap="3.0" minWidth="450.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" percentWidth="60.0" prefWidth="270.0" />
-            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="180.0" />
+            <ColumnConstraints maxWidth="180.0" minWidth="10.0" percentWidth="40.0" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="200.0" prefWidth="150.0" GridPane.columnIndex="0">
             <padding>
@@ -25,7 +25,7 @@
             </HBox>
             <HBox prefWidth="150.0">
                 <children>
-                    <Label fx:id="involvement" styleClass="cell_small_label" text="\$involvement" wrapText="true">
+                    <Label fx:id="involvement" alignment="CENTER" contentDisplay="CENTER" minWidth="80.0" styleClass="cell_small_label" text="\$involvement" textAlignment="CENTER" wrapText="true">
                         <HBox.margin>
                             <Insets left="4.0" />
                         </HBox.margin></Label>
@@ -36,12 +36,12 @@
             <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" wrapText="true" />
               <Label fx:id="officeTable" styleClass="cell_small_label" text="\$officeTable" wrapText="true" />
         </VBox>
-      <HBox alignment="TOP_RIGHT" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.vgrow="ALWAYS">
+      <HBox alignment="TOP_RIGHT" minWidth="175.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS">
          <padding>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
          <children>
-                <FlowPane fx:id="tags" alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefWrapLength="180.0">
+                <FlowPane fx:id="tags" alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefWrapLength="140.0" HBox.hgrow="SOMETIMES">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>

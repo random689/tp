@@ -8,10 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.QuitMeetingCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.meeting.ClearMeetingCommand;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
 import seedu.address.logic.commands.meeting.MeetCommand;
+import seedu.address.logic.commands.meeting.QuitMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
 import seedu.address.logic.parser.meeting.MeetCommandParser;
@@ -50,6 +51,9 @@ public class MeetingParser {
 
         case QuitMeetingCommand.COMMAND_WORD:
             return new QuitMeetingCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
