@@ -21,16 +21,15 @@ import seedu.address.model.person.student.Student;
  */
 public class MedicalHistoryCommand extends Command {
     public static final String COMMAND_WORD = "medical";
-    public static final String MESSAGE_USAGE = "Edits the medical history of the student identified "
-            + "by the index number used in the current displayed student list. \n"
-            + "Existing medical history will be overwritten by the input, unless the input is identical.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the medical history of the student identified "
+            + "by the index number used in the currently displayed student list. "
+            + "Existing medical history will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_MEDICAL_HISTORY + "MEDICAL_HISTORY\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MEDICAL_HISTORY + "ADHD";
 
     public static final String MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS = "Set medical history of Student: %1$s";
     public static final String MESSAGE_DELETE_MEDICAL_HISTORY_SUCCESS = "Removed medical history from Student: %1$s";
-    public static final String MESSAGE_DUPLICATE = "The student already has this medical history recorded.";
 
     private final Index index;
     private final MedicalHistory medicalHistory;
@@ -55,11 +54,6 @@ public class MedicalHistoryCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-
-        if (studentToEdit.getMedicalHistory().equals(medicalHistory)) {
-            throw new CommandException(MESSAGE_DUPLICATE);
-        }
-
         Student editedStudent = new Student(studentToEdit, studentToEdit.getEmergencyContact(),
             studentToEdit.getFormClass(), studentToEdit.getAddress(), medicalHistory);
 
