@@ -169,7 +169,7 @@ The commands offered can be roughly split into 4 catergories: those involving st
   - [Filter students](#filter-students--filterstudent)
   - [List all students](#list-all-students--liststudent)
   - [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
-  - [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showmedical)
+  - [View the full medical history of a student](#view-the-full-medical-history-of-a-student--showmedical)
 
 2. [Managing Teacher Contacts](#managing-student-contacts)
   - [Add a teacher](#add-a-teacher--teacher)
