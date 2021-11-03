@@ -7,7 +7,7 @@ title: User Guide
 NewAddressBook is a **desktop app built for secondary school teachers** that are handling large classes. It helps them **manage the contacts of their students and colleagues** efficiently. It also supports **keeping track of upcoming meetings** and **recording the medical histories** of students.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 ---------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -19,22 +19,22 @@ NewAddressBook is a **desktop app built for secondary school teachers** that are
 3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how NewAddressBook already contains some sample data. (Depending on your OS, you may need to launch the jar file using the `java -jar newaddressbook.jar` command<br>
-<br>
+   <br>
    ![Ui](images/Ui.png)
 
 5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`listStudent`** : Lists all students.
+  * **`listStudent`** : Lists all students.
 
-    * **`student n/John Doe p/98765432 e/johnd@example.com g/M a/311, 
-         Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`** : Adds a student named "John Doe" to NewAddressBook.
+  * **`student n/John Doe p/98765432 e/johnd@example.com g/M a/311,
+    Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`** : Adds a student named "John Doe" to NewAddressBook.
 
-    * **`deleteStudent 3`** : Deletes the 3rd student shown in the student list.
+  * **`deleteStudent 3`** : Deletes the 3rd student shown in the student list.
 
-    * **`clearStudent`** : Deletes all displayed students.
+  * **`clearStudent`** : Deletes all displayed students.
 
-    * **`exit`** : Exits the app.
+  * **`exit`** : Exits the app.
 
 6. Refer to the [Overview](#overview) section for a summary of commands available and the  [Features](#features) section for details of each command.
 
@@ -53,7 +53,7 @@ The following shows the different parts of NewAddressBook's main application win
 ![MainUi](images/MainUi.png)
 
 * The **Command Box** is where the user types in commands for execution.
-* The **Result Box** displays the result of the commands executed. 
+* The **Result Box** displays the result of the commands executed.
 * The **Student List** displays the list of students stored in the app.
 * The **Teacher List** displays the list of teachers stored in the app.
 * The **Data Source** displays information about where the app saves data.
@@ -100,20 +100,20 @@ Out of all the commands, the only command which executes in both windows is the 
 
 Action | Format | Window
 --------|---------|----------
-**Add student** | `student n/NAME p/PHONE e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​` | Main
+**Add student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​` | Main
 **Clear students** | `clearStudent` | Main
 **Copy a field from students** | `copyStudent [c/FIELD_TO_COPY]` | Main
 **Delete a student** | `deleteStudent INDEX` | Main
-**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
+**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | `filterStudent [INVOLVEMENT] [t/TAG]…​` | Main
 **List all students** |`listStudent` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
-**Add teacher** | `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE TABLE NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
+**Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
 **Clear teachers** | `clearTeacher` | Main
 **Delete a teacher** | `deleteTeacher INDEX` | Main
-**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE ] [e/EMAIL] [g/GENDER] [o/OFFICE TABLE NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
+**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** |`filterTeacher [INVOLVEMENT] [t/TAG]…​` | Main
 **List all teachers** | `listTeacher` | Main
@@ -128,7 +128,7 @@ Action | Format | Window
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary 
+## Glossary
 * **Involvement**: refers to how the user is involved with the student/teacher. This is a broad term describing why the user would even want to bother storing the student/teacher in the address book in the first place. For example, a form teacher might store the involvement of a student in his class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`. A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
 ## Features
 
@@ -137,7 +137,7 @@ Action | Format | Window
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `student` command, `NAME` under `n/NAME` represents the student's name that you should provide. 
+  e.g. in `student` command, `NAME` under `n/NAME` represents the student's name that you should provide.
   For instance, if the student's name is "John Doe", then you should input `n/John Doe` in the `student` command.
 
 * Items in square brackets are optional.<br>
@@ -147,7 +147,7 @@ Action | Format | Window
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -157,41 +157,41 @@ Action | Format | Window
 
 </div>
 
-The commands offered can be roughly split into 4 catergories: those involving students, teachers, meetings, and general commands. 
+The commands offered can be roughly split into 4 catergories: those involving students, teachers, meetings, and general commands.
 
 1. [Managing Student Contacts](#managing-student-contacts)
-  - [Add a student](#add-a-student--student)
-  - [Clear student contacts](#clear-student-contacts--clearstudent)
-  - [Copying fields from students](#copying-fields-from-students--copystudent)
-  - [Delete a student](#delete-a-student--deletestudent)
-  - [Edit a student](#edit-a-student--editstudent)
-  - [Find students by name](#find-students-by-name--findstudent)
-  - [Filter students](#filter-students--filterstudent)
-  - [List all students](#list-all-students--liststudent)
-  - [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
-  - [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showmedical)
+- [Add a student](#add-a-student--student)
+- [Clear student contacts](#clear-student-contacts--clearstudent)
+- [Copying fields from students](#copying-fields-from-students--copystudent)
+- [Delete a student](#delete-a-student--deletestudent)
+- [Edit a student](#edit-a-student--editstudent)
+- [Find students by name](#find-students-by-name--findstudent)
+- [Filter students](#filter-students--filterstudent)
+- [List all students](#list-all-students--liststudent)
+- [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
+- [View the full medical history of a student](#viewing-the-full-medical-history-of-a-student--showmedical)
 
 2. [Managing Teacher Contacts](#managing-student-contacts)
-  - [Add a teacher](#add-a-teacher--teacher)
-  - [Clear teacher contacts](#clear-teacher-contacts--clearteacher)
-  - [Copying fields from teachers](#copying-fields-from-teachers--copyteacher)
-  - [Delete a teacher](#delete-a-teacher--deleteteacher)
-  - [Edit a teacher](#edit-a-teacher--editteacher)
-  - [Find teachers by name](#find-teachers-by-name--findteacher)
-  - [Filter teachers](#filter-teachers--filterteacher)
-  - [List all teachers](#list-all-teachers--listteacher)
+- [Add a teacher](#add-a-teacher--teacher)
+- [Clear teacher contacts](#clear-teacher-contacts--clearteacher)
+- [Copying fields from teachers](#copying-fields-from-teachers--copyteacher)
+- [Delete a teacher](#delete-a-teacher--deleteteacher)
+- [Edit a teacher](#edit-a-teacher--editteacher)
+- [Find teachers by name](#find-teachers-by-name--findteacher)
+- [Filter teachers](#filter-teachers--filterteacher)
+- [List all teachers](#list-all-teachers--listteacher)
 
 3. [Managing Meetings](#managing-meetings)
-  - [Add a meeting](#add-a-meeting--meet)
-  - [Delete a meeting](#delete-a-meeting--deletemeeting)
-  - [Clear all meetings](#clear-meetings--clearmeeting)
-  - [Show meetings window](#show-meetings-window--showmeeting) 
-  - [Quit meetings window](#quit-meetings-window--quitmeeting)
-  
+- [Add a meeting](#add-a-meeting--meet)
+- [Delete a meeting](#delete-a-meeting--deletemeeting)
+- [Clear all meetings](#clear-meetings--clearmeeting)
+- [Show meetings window](#show-meetings-window--showmeeting)
+- [Quit meetings window](#quit-meetings-window--quitmeeting)
+
 4. [General](#general)
- - [Exiting the program](#exiting-the-program--exit)
- - [Undo the latest change](#undo-the-latest-change--undo)
- - [Viewing help](#viewing-help--help)
+- [Exiting the program](#exiting-the-program--exit)
+- [Undo the latest change](#undo-the-latest-change--undo)
+- [Viewing help](#viewing-help--help)
 
 ### Managing Student Contacts
 
@@ -199,7 +199,7 @@ The commands offered can be roughly split into 4 catergories: those involving st
 
 Adds a student to the address book.
 
-Format: `student n/NAME p/PHONE e/EMAIL a/ADDRESS
+Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
 f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​`
 
 Parameters:
@@ -207,38 +207,38 @@ Parameters:
   * should not be blank
   * should only contain alphanumeric characters and spaces
 
-* `PHONE` The phone number of the student
-  * should only contain numbers, and it should be at least 3 digits long 
+* `PHONE_NUMBER` The phone number of the student
+  * should only contain numbers, and it should be at least 3 digits long
 
 * `EMAIL` The email of the student
-  * should not be blank 
+  * should not be blank
   * should be of the format `local-part@domain`
   * `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)
   * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and only contain alphanumeric characters, periods and hyphens
 
 * `ADDRESS` The address of the student
   * should not be blank
- 
+
 * `GENDER` The gender of the student
   * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
   * case-insensitive
-  
+
 * `INVOLVEMENT` The user's main involvement with the student
   * should not be blank
-  
+
 * `EMERGENCY_NUMBER` The emergency contact number of the student
   * should only contain numbers, and it should be at least 3 digits long
 
 * `FORM_CLASS` The form class that the student belongs to
-    * should not be blank
-    * should be of the format `|LEVEL|STRING|[ALPHANUMERIC]|`
-    * `LEVEL` must be a digit from 1 to 5
-    * `STRING` should not be blank and can only contain alphabets
-    * `ALPHANUMERIC` is optional and can only contain alphanumeric characters
-    * For example, `4E1` is allowed but `41` is not allowed
+  * should not be blank
+  * should be of the format `|LEVEL|STRING|[ALPHANUMERIC]|`
+  * `LEVEL` must be a digit from 1 to 5
+  * `STRING` should not be blank and can only contain alphabets
+  * `ALPHANUMERIC` is optional and can only contain alphanumeric characters
+  * For example, `4E1` is allowed but `41` is not allowed
 
 * `TAG` A tag associated with the student
-  * should only contain alphanumeric characters  
+  * should only contain alphanumeric characters
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
@@ -266,7 +266,7 @@ Format: `clearStudent`
 If you want to delete all students from the address book, simply make sure the currently displayed list contains all students. You can make all students appear in the displayed list by the `listStudent` command. 
 </div>
 
-#### Copying fields from students : `copyStudent` 
+#### Copying fields from students : `copyStudent`
 Copy specified data from all **currently displayed** students. The fields that can be copied are:
 
 - email
@@ -303,10 +303,10 @@ Examples:
 
 Edits an existing student in NewAddressBook.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
+Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
 [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​`
 
-* Edits the student at the specified `INDEX`. 
+* Edits the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -385,22 +385,22 @@ Format: `medical INDEX [m/MEDICAL_HISTORY]`
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 How this command works:
-* The command does not allow the user to overwrite the current `medicalHistory` with an identical `medicalHistory`. 
+* The command does not allow the user to overwrite the current `medicalHistory` with an identical `medicalHistory`.
   In other words, the new `medicalHistory` must be different from the existing `medicalHistory`.
 * Adds a medical history to the existing student if he does not have any existing medical history.
 * Overwrites the medical history of the student if he already has an existing medical history.
-* Removes the medical history of a student if the student already has an existing medical history and an empty 
+* Removes the medical history of a student if the student already has an existing medical history and an empty
   `MEDICAL_HISTORY` is given.
 
 **:information_source: Note:**<br>
-* If the `medicalHistory` is too long or the other tags are too long, the GUI will truncate the `medicalHistory` to 
-  `!!!` to inform the user that the student has a `medicalHistory`. The user should then use the `showMedical` 
+* If the `medicalHistory` is too long or the other tags are too long, the GUI will truncate the `medicalHistory` to
+  `!!!` to inform the user that the student has a `medicalHistory`. The user should then use the `showMedical`
   command to view the full `medicalHistory` of the student.
-* If space allows, the GUI will include some text before the `!!!`. For example, "Diffi!!!". The user should use the 
+* If space allows, the GUI will include some text before the `!!!`. For example, "Diffi!!!". The user should use the
   `showMedical` command, as mentioned above, to view the full `medicalHistory`.
 
 Examples:
-* `medical 1 m/ADHD` 
+* `medical 1 m/ADHD`
 
 #### View the full medical history of a student : `showMedical`
 
@@ -421,35 +421,35 @@ Examples:
 
 Adds a teacher to NewAddressBook.
 
-Format: `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE TABLE NUMBER 
+Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER
 i/INVOLVEMENT [t/TAG]…​`
 
 Parameters:
 * `NAME` The name of the teacher
-    * should not be blank
-    * should only contain alphanumeric characters and spaces
+  * should not be blank
+  * should only contain alphanumeric characters and spaces
 
-* `PHONE` The phone number of the teacher
-    * should only contain numbers, and it should be at least 3 digits long
+* `PHONE_NUMBER` The phone number of the teacher
+  * should only contain numbers, and it should be at least 3 digits long
 
 * `EMAIL` The email of the teacher
-    * should not be blank
-    * should be of the format `local-part@domain`
-    * `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)
-    * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and only contain alphanumeric characters, periods and hyphens
+  * should not be blank
+  * should be of the format `local-part@domain`
+  * `local-part` should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)
+  * `domain` should be at least 2 characters long, start and end with alphanumeric characters, and only contain alphanumeric characters, periods and hyphens
 
 * `GENDER` The gender of the teacher
-    * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
-    * case-insensitive
+  * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
+  * case-insensitive
 
-* `OFFICE TABLE NUMBER` The teacher's table number in the school office
+* `OFFICE_TABLE_NUMBER` The teacher's table number in the school office
   * should only contain numbers. It should have at least 1 digit and at most 5 digits
 
 * `INVOLVEMENT` The user's involvement with the teacher
-    * should not be blank
+  * should not be blank
 
 * `TAG` A tag associated with the teacher
-    * should only contain alphanumeric characters
+  * should only contain alphanumeric characters
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A teacher can have any number of tags (including 0).
@@ -514,7 +514,7 @@ Examples:
 
 Edits an existing teacher in the address book.
 
-Format: `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [o/OFFICE TABLE NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
+Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
@@ -598,8 +598,8 @@ NewAddressBook automatically removes meetings that have expired, so the user doe
 Format: `meet r/TITLE d/DATE_TIME v/VENUE w/ATTENDEE_TYPE`
 
 Parameters:
-* `TITLE` A brief summary of the meeting. 
-* `DATE_TIME` A valid date and time of the meeting. 
+* `TITLE` A brief summary of the meeting.
+* `DATE_TIME` A valid date and time of the meeting.
   * should be of the format `YYYY-MM-DD HH:mm`
 * `VENUE`: The venue of the meeting.
 * `ATTENDEE_TYPE`: The type of person(s) you are meeting with.
@@ -643,7 +643,7 @@ Format: `clearMeeting`
 
 #### Show meetings window : `showMeeting`
 
-Pops out the meeting window. 
+Pops out the meeting window.
 
 Format: `showMeeting`
 
@@ -663,7 +663,7 @@ Format: `exit`
 
 #### Undo the latest change : `undo`
 
-Undoes the last change. This command only works for operations that adds, deletes, or edits infomation. 
+Undoes the last change. This command only works for operations that adds, deletes, or edits infomation.
 This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone. One can undo adding/deleting meetings as well.
 
 <div markdown="span" class="alert alert-primary">
