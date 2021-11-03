@@ -260,6 +260,9 @@ Check out how `involvement` is intended to be used in the glossary.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 NewAddressBook prevents the user from adding in duplicate students. Two students are duplicate if they have the same name and address.
+However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" as two
+different names as they have different casing. We will improve on this in future versions of NewAddressBook to allow this duplicate
+check to be case-insensitive.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Notes about `FORM_CLASS`:**
@@ -405,6 +408,8 @@ How this command works:
 * Adds a medical history to an existing student if the student does not have any existing medical history.
 * Overwrites the medical history of a student if the student already has an existing medical history.
 * Removes the medical history of a student if the student already has an existing medical history and an empty `MEDICAL_HISTORY` is given.
+* The command does not allow the user to overwrite the current `medicalHistory` with an identical `medicalHistory`. 
+  In other words, the new `medicalHistory` must be different from the existing `medicalHistory`.
 
 Examples:
 * `medical 1 m/ADHD` 
@@ -416,7 +421,7 @@ Displays a pop-up window for the user to view the full medical history of the st
 Format: `showMedical INDEX`
 
 * View the full medical history of the student at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed student list.
+* `INDEX` refers to the index number shown in the **currently displayed** student list.
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
 
 Examples:
@@ -467,7 +472,10 @@ Check out how `involvement` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The app prevents the user from adding in duplicate teachers. Two teachers the same if they have the same name and office table number.
+NewAddressBook prevents the user from adding in duplicate teachers. Two teachers the same if they have the same name and office table number.
+However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" 
+as two different names as they have different casing. We will improve on this in future versions of NewAddressBook 
+to allow this duplicate check to be case-insensitive.
 </div>
 
 Examples:
