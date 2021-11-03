@@ -34,7 +34,7 @@ public class MeetCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_MEETING_CONFLICT = "There is a conflict with an existing meeting.";
     public static final String MESSAGE_PAST_DATETIME =
-            "Meeting datetime must not be in the past. The current datetime is: %s";
+            "Meeting datetime must be in the future. The current datetime is: %s";
 
     private final Meeting toAdd;
 

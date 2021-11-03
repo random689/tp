@@ -23,19 +23,19 @@ import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.student.Student;
 
 /**
- * Edits the fields of an existing student in the New Address Book.
+ * Edits the fields of an existing student in NewAddressBook.
  */
 public class EditStudentCommand extends EditCommand {
     public static final String TARGET = "student";
     public static final String COMMAND_WORD = "editStudent";
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON, TARGET);
-    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, TARGET)
-        + "[" + PREFIX_ADDRESS + "ADDRESS] "
-        + "[" + PREFIX_FORM_CLASS + "FORM CLASS] "
-        + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY CONTACT] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
-        + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, TARGET, TARGET)
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_FORM_CLASS + "FORM_CLASS] "
+            + "[" + PREFIX_EMERGENCY_CONTACT + "EMERGENCY_CONTACT] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;
     public static final String MESSAGE_NOTHING_TO_EDIT = "All the fields provided for editing are currently the same "
             + "as those already possessed by the student!";
 

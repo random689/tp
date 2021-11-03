@@ -9,8 +9,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.student.StudentInvolvementContainsKeywordsPredicate;
 
 /**
- * Filters and lists all students in address book whose involvement contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Filters and lists all students in NewAddressBook whose involvement and/or tags contains any of the argument keywords.
+ * Keyword matching is case-insensitive.
  */
 public class FilterStudentCommand extends Command {
 
@@ -18,9 +18,9 @@ public class FilterStudentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all students by involvement and tag(s) "
             + "and displays them as a list with index numbers.\n"
-            + "Note: You do not need both involvement and tag(s) at the same time, but either one must be present.\n "
+            + "Note: You do not need both involvement and tag(s) at the same time, but either one must be present.\n"
             + "Only alphanumeric tag parameters in the search are allowed.\n"
-            + "Involvement must come before tags."
+            + "Involvement must come before tags.\n"
             + "Parameters: [INVOLVEMENT] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " donut buddies t/gym t/swim";
 

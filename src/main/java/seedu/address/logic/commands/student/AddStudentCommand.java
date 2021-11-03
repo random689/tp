@@ -18,7 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.student.Student;
 
 /**
- * Adds a student to the address book.
+ * Adds a student to NewAddressBook.
  */
 public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "student";
@@ -29,14 +29,14 @@ public class AddStudentCommand extends Command {
     //  whereas some other warnings are simply return
     //                    CommandResult(MedicalHistoryCommand.MESSAGE_USAGE)
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to NewAddressBook. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_FORM_CLASS + "FORM CLASS "
+            + PREFIX_FORM_CLASS + "FORM_CLASS "
             + PREFIX_EMERGENCY_CONTACT + "EMERGENCY_CONTACT \n"
             + PREFIX_INVOLVEMENT + "INVOLVEMENT "
             + "[" + PREFIX_TAG + "TAG]... "
@@ -52,7 +52,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_TAG + "naughty ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in NewAddressBook";
 
     private final Student toAdd;
 

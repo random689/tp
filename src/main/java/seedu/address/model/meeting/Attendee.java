@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Meeting's attendee in the address book.
+ * Represents a Meeting's attendee in NewAddressBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidAttendee(String)}
  */
 public class Attendee {

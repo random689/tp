@@ -33,7 +33,7 @@ public class NonConflictMeetingList implements Iterable<Meeting> {
 
 
     /**
-     * Returns true if the list contains a meeting that clashes with the given argument.
+     * Returns true if the list contains a meeting that clashes with the given meeting, false otherwise.
      */
     public boolean hasConflictWith(Meeting toCheck) {
         requireNonNull(toCheck);
@@ -43,6 +43,8 @@ public class NonConflictMeetingList implements Iterable<Meeting> {
     /**
      * Adds a meeting to the list and sorts the list in ascending order of datetime.
      * The Meeting must not clash with any existing meetings in the list.
+     *
+     * @param toAdd Meeting to be added.
      */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
