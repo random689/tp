@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.teacher.TeacherInvolvementContainsKeywordsPredicate;
 
 /**
- * Filters and lists all teachers in address book whose involvement contains any of the argument keywords.
+ * Filters and lists all teachers in NewAddressBook whose involvement and/or tags contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FilterTeacherCommand extends Command {
@@ -20,7 +20,7 @@ public class FilterTeacherCommand extends Command {
             + "and displays them as a list with index numbers.\n"
             + "Note: You do not need both involvement and tag(s) at the same time, but either one must be present.\n"
             + "Only alphanumeric tag parameters in the search are allowed.\n"
-            + "Involvement must come before tags."
+            + "Involvement must come before tags.\n"
             + "Parameters: [INVOLVEMENT] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD + " donut buddies t/gym t/swim";
 

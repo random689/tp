@@ -12,10 +12,14 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.student.Student;
 
+/**
+ * Opens a pop-up window showing the full medical history of the student identified by the index specified.
+ */
 public class ShowMedicalHistoryCommand extends Command {
     public static final String COMMAND_WORD = "showMedical";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the medical history of the desired student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the full medical history of the student "
+            + "identified by the index number used in the current displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 

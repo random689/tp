@@ -19,7 +19,7 @@ import seedu.address.model.person.teacher.OfficeTable;
 import seedu.address.model.person.teacher.Teacher;
 
 /**
- * Edits the details of an existing teacher in the address book.
+ * Edits the details of an existing teacher in NewAddressBook.
  */
 public class EditTeacherCommand extends EditCommand {
 
@@ -27,7 +27,7 @@ public class EditTeacherCommand extends EditCommand {
 
     public static final String TARGET = "teacher";
     public static final String MESSAGE_EDIT_TEACHER_SUCCESS = "Edited teacher: %1$s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, TARGET)
+    public static final String MESSAGE_USAGE = COMMAND_WORD + String.format(EditCommand.MESSAGE_USAGE, TARGET, TARGET)
             + "[" + PREFIX_OFFICE_TABLE + "OFFICE TABLE NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + EditCommand.EXAMPLE_USAGE;

@@ -8,6 +8,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.person.teacher.TeacherNameContainsKeywordsPredicate;
 
+/**
+ * Finds and lists all teachers in NewAddressBook whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class FindTeacherCommand extends Command {
 
     public static final String COMMAND_WORD = "findTeacher";

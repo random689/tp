@@ -1,5 +1,8 @@
 package seedu.address.model.meeting;
 
+/**
+ * Represents the different types of Description in NewAddressBook
+ */
 public enum DescriptionType {
     TITLE() {
         @Override

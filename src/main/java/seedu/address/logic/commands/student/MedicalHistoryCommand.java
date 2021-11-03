@@ -17,15 +17,15 @@ import seedu.address.model.person.student.MedicalHistory;
 import seedu.address.model.person.student.Student;
 
 /**
- * Changes the medical history of an existing student inside the New Address Book.
+ * Changes the medical history of an existing student inside NewAddressBook.
  */
 public class MedicalHistoryCommand extends Command {
     public static final String COMMAND_WORD = "medical";
     public static final String MESSAGE_USAGE = "Edits the medical history of the student identified "
-            + "by the index number used in the last student listing. \n"
+            + "by the index number used in the current displayed student list. \n"
             + "Existing medical history will be overwritten by the input, unless the input is identical.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_MEDICAL_HISTORY + "[MEDICAL_HISTORY]\n"
+            + PREFIX_MEDICAL_HISTORY + "MEDICAL_HISTORY\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MEDICAL_HISTORY + "ADHD";
 
     public static final String MESSAGE_ADD_MEDICAL_HISTORY_SUCCESS = "Set medical history of Student: %1$s";

@@ -39,17 +39,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' NewAddressBook file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' NewAddressBook file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces NewAddressBook data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
@@ -58,33 +58,33 @@ public interface Model {
 
     //Students
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in NewAddressBook.
      */
     boolean hasStudent(Student student);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the address book.
+     * {@code student} must not already exist in NewAddressBook.
      */
     void addStudent(Student student);
 
     /**
      * Deletes the given student.
-     * The student must exist in the address book.
+     * The student must exist in NewAddressBook.
      */
     void deleteStudent(Student target);
 
     /**
      * Deletes the given students.
-     * The students must exist in the address book.
+     * The students must exist in NewAddressBook.
      */
     void massDeleteStudent(List<Student> target);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in NewAddressBook.
      * The student identity of {@code editedStudent} must not be the same
-     * as another existing student in the address book.
+     * as another existing student in NewAddressBook.
      */
     void setStudent(Student target, Student editedStudent);
 
@@ -99,25 +99,25 @@ public interface Model {
 
     //Teachers
     /**
-     * Returns true if a teacher with the same identity as {@code teacher} exists in the address book.
+     * Returns true if a teacher with the same identity as {@code teacher} exists in NewAddressBook.
      */
     boolean hasTeacher(Teacher teacher);
 
     /**
      * Adds the given teacher.
-     * {@code teacher} must not already exist in the address book.
+     * {@code teacher} must not already exist in NewAddressBook.
      */
     void addTeacher(Teacher teacher);
 
     /**
      * Deletes the given teacher.
-     * The teacher must exist in the address book.
+     * The teacher must exist in NewAddressBook.
      */
     void deleteTeacher(Teacher target);
 
     /**
      * Deletes the given teachers.
-     * The teachers must exist in the address book.
+     * The teachers must exist in NewAddressBook.
      */
     void massDeleteTeacher(List<Teacher> target);
 
@@ -143,24 +143,24 @@ public interface Model {
     ObservableList<Meeting> getMeetingList();
 
     /**
-     * Returns true if a meeting that clashes with {@code meeting} exists in the address book.
+     * Returns true if a meeting that clashes with {@code meeting} exists in NewAddressBook.
      */
     boolean hasMeetingConflict(Meeting meeting);
 
     /**
      * Adds the given meeting.
-     * {@code meeting} must not clash with another meeting in the address book.
+     * {@code meeting} must not clash with another meeting in NewAddressBook.
      */
     void addMeeting(Meeting meeting);
 
     /**
      * Deletes the given meeting.
-     * The meeting must exist in the address book.
+     * The meeting must exist in NewAddressBook.
      */
     void deleteMeeting(Meeting target);
 
     /**
-     * Removes all meetings in NewAddressBook.
+     * Removes all meetings from NewAddressBook.
      */
     void clearMeetings();
 

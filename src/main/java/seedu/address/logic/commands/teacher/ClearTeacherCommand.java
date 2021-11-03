@@ -11,6 +11,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.teacher.Teacher;
 
+/**
+ * Clears all teachers in the currently displayed teacher list.
+ */
 public class ClearTeacherCommand extends Command {
 
     public static final String COMMAND_WORD = "clearTeacher";
@@ -22,11 +25,6 @@ public class ClearTeacherCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String NOTHING_TO_DELETE = "There are no teachers to clear!";
-
-
-    private final List<String> involvementList = new ArrayList<>();
-
-    private final List<String> tagList = new ArrayList<>();
 
     private final List<Teacher> teachersToEliminate = new ArrayList<>();
 

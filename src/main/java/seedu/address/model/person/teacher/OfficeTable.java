@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Teacher's office table number in the address book.
+ * Represents a Teacher's office table number in NewAddressBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidTable(String)}
  */
 public class OfficeTable {
