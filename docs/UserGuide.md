@@ -100,20 +100,20 @@ Out of all the commands, the only command which executes in both windows is the 
 
 Action | Format | Window
 --------|---------|----------
-**Add student** | `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​` | Main
+**Add student** | `student n/NAME p/PHONE e/EMAIL a/ADDRESS f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​` | Main
 **Clear students** | `clearStudent` | Main
 **Copy a field from students** | `copyStudent [c/FIELD_TO_COPY]` | Main
 **Delete a student** | `deleteStudent INDEX` | Main
-**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
+**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | `filterStudent [INVOLVEMENT] [t/TAG]…​` | Main
 **List all students** |`listStudent` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
-**Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
+**Add teacher** | `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE TABLE NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
 **Clear teachers** | `clearTeacher` | Main
 **Delete a teacher** | `deleteTeacher INDEX` | Main
-**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
+**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE ] [e/EMAIL] [g/GENDER] [o/OFFICE TABLE NUMBER] [i/INVOLVEMENT] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** |`filterTeacher [INVOLVEMENT] [t/TAG]…​` | Main
 **List all teachers** | `listTeacher` | Main
@@ -147,7 +147,7 @@ Action | Format | Window
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -199,7 +199,7 @@ The commands offered can be roughly split into 4 catergories: those involving st
 
 Adds a student to the address book.
 
-Format: `student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
+Format: `student n/NAME p/PHONE e/EMAIL a/ADDRESS
 f/FORM_CLASS g/GENDER i/INVOLVEMENT em/EMERGENCY_NUMBER [t/TAG]…​`
 
 Parameters:
@@ -207,7 +207,7 @@ Parameters:
   * should not be blank
   * should only contain alphanumeric characters and spaces
 
-* `PHONE_NUMBER` The phone number of the student
+* `PHONE` The phone number of the student
   * should only contain numbers, and it should be at least 3 digits long 
 
 * `EMAIL` The email of the student
@@ -303,7 +303,7 @@ Examples:
 
 Edits an existing student in NewAddressBook.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]
+Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
 [f/FORM_CLASS] [g/GENDER] [i/INVOLVEMENT] [em/EMERGENCY_NUMBER] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. 
@@ -421,7 +421,7 @@ Examples:
 
 Adds a teacher to NewAddressBook.
 
-Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER 
+Format: `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE TABLE NUMBER 
 i/INVOLVEMENT [t/TAG]…​`
 
 Parameters:
@@ -429,7 +429,7 @@ Parameters:
     * should not be blank
     * should only contain alphanumeric characters and spaces
 
-* `PHONE_NUMBER` The phone number of the teacher
+* `PHONE` The phone number of the teacher
     * should only contain numbers, and it should be at least 3 digits long
 
 * `EMAIL` The email of the teacher
@@ -442,7 +442,7 @@ Parameters:
     * can only be one of  the following: `M` (Male), `F` (Female) or `N` (Non-binary)
     * case-insensitive
 
-* `OFFICE_TABLE_NUMBER` The teacher's table number in the school office
+* `OFFICE TABLE NUMBER` The teacher's table number in the school office
   * should only contain numbers. It should have at least 1 digit and at most 5 digits
 
 * `INVOLVEMENT` The user's involvement with the teacher
@@ -514,7 +514,7 @@ Examples:
 
 Edits an existing teacher in the address book.
 
-Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [o/OFFICE_TABLE_NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
+Format: `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [o/OFFICE TABLE NUMBER] [i/INVOLVEMENT] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
