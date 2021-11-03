@@ -20,7 +20,7 @@ public class FormClass {
      * The first character of FormClass must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[1-5][a-zA-Z]\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "^[1-5][a-zA-Z]\\p{Alnum}*";
 
     public final String value;
 
