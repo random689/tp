@@ -165,6 +165,8 @@ Action | Format | Window
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`.
 
+* For all prefixes (except the first), the user should ensure they are preceded by a space for the parser to recognise it as a new prefix, instead of a parameter in the previous prefix. For example, `editStudent i/e/hello@example.com` parsers the parameter for `i/` as `e/hello@example.com`, and does not detect any input for the `e/` field. On the other hand, for the command `editStudent i/ e/hello@example.com`, `i/` is detected to have no arguments, while `e/` has `hello@example.com` as an argument. As such, the second command will not succeed since the `i/` field is blank. 
+
 </div>
 
 The commands offered can be roughly split into 4 catergories: those involving students, teachers, meetings, and general commands.
@@ -455,7 +457,8 @@ Parameters:
   * case-insensitive
 
 * `OFFICE_TABLE_NUMBER` The teacher's table number in the school office
-  * should only contain numbers. It should have at least 1 digit and at most 5 digits
+  * should only contain numbers. It should have at least 1 digit and at most 5 digits.
+  * two office numbers are different if **all** their digits are the same, rather than just being the same number. For example, `001` is different from `1`. This is to provide users with more flexibility.
 
 * `INVOLVEMENT` The user's involvement with the teacher
   * should not be blank
