@@ -20,6 +20,28 @@ public class FormClassTest {
     }
 
     @Test
+    public void testEquals() {
+        FormClass formClass = new FormClass("4E1");
+
+        // null -> returns false
+        assertFalse(formClass.equals(null));
+
+        // same object -> returns true
+        assertTrue(formClass.equals(formClass));
+
+        // same values -> returns true
+        FormClass formClassCopy = new FormClass("4E1");
+        assertTrue(formClass.equals(formClassCopy));
+
+        // different types -> returns false
+        assertFalse(formClass.equals(10));
+
+        // different MedicalHistory -> returns false
+        FormClass formClassTwo = new FormClass("4E");
+        assertFalse(formClass.equals(formClassTwo));
+    }
+
+    @Test
     public void isValidFormClass() {
         // null FormClass
         assertThrows(NullPointerException.class, () -> FormClass.isValidFormClass(null));
