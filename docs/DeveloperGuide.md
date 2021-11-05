@@ -478,20 +478,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`      | teacher that works in the CLI quickly |be able to undo events       | undo in case I accidentally make mistakes while typing quickly       |
 
 #### User stories which are not implemented      
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | teacher                                       | add a new person               |        add a new person to my class                                                            |
-| `* * *`      | potential user | clear test app data          | fill the app with my own data quickly                                             |
-| `* * *`      | teacher with a lot of contacts | copy fields from people in my address book         | paste it into a communication app so that I can contact them quickly                                             |
-| `* * *`  | teacher                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | teacher                                       | edit a specific attribute of a person                | edit their details quickly without deleting and re-adding that person all over again |
-| `* * *`  | teacher                                       | find a person by name or by their other attributes          | locate details of persons without having to go through the entire list |
-| `* * *`  | potential user                                       | list my contacts          | access the details of my contacts easily for when I need to contact  them |
-| `* * *`      | potential user |see clear documentation        | know how to use the app                                           |
-| `* * *`      | teacher | to be able to access the medical history of my students          | know which students needs special attention                     
-| `* * *`      | teacher that works in the CLI quickly |be able to undo events       | undo in case I accidentally make mistakes while typing quickly       |
-
-
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
