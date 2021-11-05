@@ -4,6 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+/**
+ * Represents a Meeting in NewAddressBook.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Meeting implements Comparable<Meeting> {
 
     private final Attendee attendee;
@@ -96,6 +100,9 @@ public class Meeting implements Comparable<Meeting> {
         return this.dateTime.compareTo(other.dateTime);
     }
 
+    /**
+     * Returns true if the meeting is no longer in the future.
+     */
     public boolean isExpiredMeeting() {
         return dateTime.isPastDateTime();
     }

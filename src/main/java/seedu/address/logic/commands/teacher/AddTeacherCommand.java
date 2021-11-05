@@ -16,21 +16,21 @@ import seedu.address.model.Model;
 import seedu.address.model.person.teacher.Teacher;
 
 /**
- * Adds a teacher to the address book.
+ * Adds a teacher to NewAddressBook.
  */
 public class AddTeacherCommand extends Command {
 
     public static final String COMMAND_WORD = "teacher";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a teacher to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a teacher to NewAddressBook. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GENDER + "GENDER "
-            + PREFIX_OFFICE_TABLE + "OFFICE TABLE NUMBER "
+            + PREFIX_OFFICE_TABLE + "OFFICE_TABLE_NUMBER "
             + PREFIX_INVOLVEMENT + "INVOLVEMENT "
-            + "[" + PREFIX_TAG + "TAG]... + \n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

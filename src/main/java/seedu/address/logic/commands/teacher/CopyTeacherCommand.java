@@ -13,13 +13,16 @@ import seedu.address.logic.commands.descriptors.CopyCommandDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.person.teacher.Teacher;
 
+/**
+ * Copies the specified field of all teachers in the currently displayed teacher list.
+ */
 public class CopyTeacherCommand extends CopyCommand {
 
     public static final String COMMAND_WORD = "copyTeacher";
-    public static final String MESSAGE_USAGE = "Copies the specified field of the current displayed list of teachers."
-            + " \n"
-            + "Parameters: [" + PREFIX_COPY_FIELD + "FIELD TO COPY]: \n"
-            + "where FIELD TO COPY can be 'phone', 'email', or 'name'. \n"
+    public static final String MESSAGE_USAGE = "Copies the specified field of all teachers in "
+            + "the currently displayed teacher list.\n"
+            + "Parameters: " + PREFIX_COPY_FIELD + "FIELD_TO_COPY\n"
+            + "where FIELD_TO_COPY can be 'phone', 'email', or 'name'. \n"
             + "Example usage: " + COMMAND_WORD + " " + PREFIX_COPY_FIELD + "name";
     private final Logger logger = LogsCenter.getLogger(CopyTeacherCommand.class);
 

@@ -12,6 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.student.Student;
 
+/**
+ * Deletes a student from NewAddressBook using the specified index identified in the current displayed student list.
+ */
 public class DeleteStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteStudent";
@@ -19,7 +22,7 @@ public class DeleteStudentCommand extends Command {
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student: %1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the student identified by the index number used in the displayed student list.\n"
+            + ": Deletes the student identified by the index number used in the currently displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

@@ -11,7 +11,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in NewAddressBook.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student extends Person {
@@ -30,7 +30,7 @@ public class Student extends Person {
      * @param involvement Involvement of the student
      * @param address Address of student
      * @param emergencyContact Emergency contact of student
-     * @param formClass Form Class of Student
+     * @param formClass Form Class of student
      * @param tags Tags associated to student
      * @param medicalHistory Medical History of student
      */
