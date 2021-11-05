@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.HashMap;
+
 import org.junit.jupiter.api.Test;
 
 public class NameTest {
@@ -36,5 +38,11 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void hashable() {
+        HashMap<Name, Integer> map = new HashMap<>();
+        map.put(new Name("David Roger Jackson Ray Jr 2nd"), 0);
     }
 }

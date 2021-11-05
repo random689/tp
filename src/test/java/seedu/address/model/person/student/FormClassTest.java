@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.HashMap;
+
 import org.junit.jupiter.api.Test;
 
 public class FormClassTest {
@@ -63,5 +65,11 @@ public class FormClassTest {
         assertTrue(FormClass.isValidFormClass("4Harmony1")); // long names
         assertTrue(FormClass.isValidFormClass("1N12")); // more than digit at start and end
         assertTrue(FormClass.isValidFormClass("1Science4Life")); // alphanumeric mix
+    }
+
+    @Test
+    public void hashable() {
+        HashMap<FormClass, Integer> map = new HashMap<>();
+        map.put(new FormClass("4Harmony1"), 0);
     }
 }

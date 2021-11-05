@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.HashMap;
+
 import org.junit.jupiter.api.Test;
 
 public class DateTimeTest {
@@ -43,5 +45,11 @@ public class DateTimeTest {
 
         // valid dateTimes
         assertTrue(DateTime.isValidDateTime("2022-08-20 13:24"));
+    }
+
+    @Test
+    public void hashable() {
+        HashMap<DateTime, Integer> map = new HashMap<>();
+        map.put(new DateTime("2022-08-20 13:24"), 0);
     }
 }

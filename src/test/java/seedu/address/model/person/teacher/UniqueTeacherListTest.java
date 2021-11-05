@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalAddressBookObjects.BEN;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -167,6 +168,12 @@ public class UniqueTeacherListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
                 uniqueTeacherList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void hashable() {
+        HashMap<UniqueTeacherList, Integer> map = new HashMap<>();
+        map.put(uniqueTeacherList, 0);
     }
 }
 

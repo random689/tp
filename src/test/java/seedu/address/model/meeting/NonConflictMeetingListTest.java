@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalAddressBookObjects.PRESENTATION;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -84,6 +85,12 @@ public class NonConflictMeetingListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
                 nonConflictMeetingList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void hashable() {
+        HashMap<NonConflictMeetingList, Integer> map = new HashMap<>();
+        map.put(nonConflictMeetingList, 0);
     }
 }
 

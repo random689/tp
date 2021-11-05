@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -33,5 +34,15 @@ public class GenderTest {
         assertTrue(Gender.isValidGender("M"));
         assertTrue(Gender.isValidGender("F"));
         assertTrue(Gender.isValidGender("N"));
+    }
+
+    @Test
+    public void getFullGenderString() {
+        Gender male = new Gender("M");
+        assertEquals("Male", male.fullGenderString());
+        Gender female = new Gender("F");
+        assertEquals("Female", female.fullGenderString());
+        Gender nonBinary = new Gender("N");
+        assertEquals("Non-binary", nonBinary.fullGenderString());
     }
 }
