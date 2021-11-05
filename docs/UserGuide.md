@@ -594,7 +594,6 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before Tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 
-
 Example:
 - `filterTeacher class t/rep` - will return all teachers with the involvement containing `class` and tag containing `rep`.
 - `filterTeacher math class` - will return all teachers with the involvement containing `math class`.
