@@ -7,7 +7,7 @@ title: User Guide
 NewAddressBook is a **desktop app built for Singapore secondary school teachers** that are handling large classes. It helps them **manage the contacts of their students and colleagues** efficiently. It also supports **keeping track of upcoming meetings** and **recording the medical histories** of students.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ----------------------------------------------------------------------------------------------------------------
 ## Quick start
