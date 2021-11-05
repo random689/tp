@@ -488,70 +488,301 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `NewAddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### List of use cases 
+1. [Adding a student/teacher/meeting](#use-case-01-adding-a-student-teacher-or-meeting)
+2. [Clearing student/teachers/meetings from the currently displayed list](#use-case-02-clearing-students-teachers-or-meetings)
+3. [Copy fields from students/teachers](#use-case-03-copying-fields-from-students-or-teachers)
+4. [Deleting students/teachers/meetings](#use-case-04-deleting-a-student-teacher-or-meeting)
+5. [Editing a student/teacher](#use-case-05-editing-a-student-or-teacher)
+6. [Finding a student/teacher by name](#use-case-06-finding-a-student-or-teacher-by-name)
+7. [Filtering a student/teacher by tag](#use-case-07-filtering-a-student-or-teacher-by-involvement-or-tag)
+8. [Listing all students/teachers](#use-case-08-listing-all-students-or-teachers)
+9. [Adding a medical history to a student](#use-case-09-adding-a-medical-history-to-a-student)
+10. [Showing the medical history of a student](#use-case-10-showing-the-medical-history-of-a-student)
+11. [Showing help](#use-case-11-showing-help)
+12. [Showing meetings](#use-case-12-showing-meetings)
+13. [Undoing actions](#use-case-13-undoing-actions)
+14. [Quitting meetings window](#use-case-14-quitting-meetings-window)
+15. [Quitting the application](#use-case-15-quitting-the-application)
+
+
+
+#### Use Case 01: Adding a student, teacher, or meeting
+
+**MSS**
+1.  User requests to add a student, teacher, or meeting.
+2.  The user provides the parameters of the student, teacher, or meeting to add.
+2.  NewAddressBook adds the student, teacher, or meeting.
+
+    Use case ends.
+
+Extensions:
+* 2a. The attributes of the student, teacher, or meeting the user requests to add are invalid.
+
+  * 2a1. NewAddressBook notifies the user that some of their inputs are invalid.
+
+    Use case ends.
+
+* 3a. The student, teacher, or meeting already exists.
+
+    * 3a1. NewAddressBook notifies the user that the student, teacher, or meeting already exists.
+
+      Use case ends.
+
+#### Use Case 02: Clearing students, teachers or meetings
+
+**MSS**
+1.  User requests to clear students, teachers or meetings in the currently displayed list.
+2.  NewAddressBook clears the list of students, teachers or meetings.
+
+    Use case ends.
+
+Extensions:
+* 1a. The currently displayed list is empty.
+
+  * 1a1. NewAddressBook notifies there user that there is nothing to clear. No action is performed.
+
+      Use case ends.
+
+#### Use Case 03: Copying fields from students or teachers
+
+**MSS**
+1.  User requests to copy a field from the currently displayed list of students or teachers.
+2.  User provides the field to copy.
+3.  NewAddressBook copies the field specified by the user to the clipboard.
+
+    Use case ends.
+
+Extensions:
+* 2a. The field the user asks to copy is invalid.
+
+  * 2a1. NewAddressBook notifies the user that his input is invalid.
+
+      Use case ends.
+      
+* 3a. The currently displayed list is empty.
+
+  * 3a1. NewAddressBook notifies the user that there is nothing to copy. Nothing is copied to the clipboard.
+
+      Use case ends.
+
+#### Use Case 04: Deleting a student, teacher, or meeting
 
 **MSS**
 
-1.  User requests to list persons
-2.  NewAddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  NewAddressBook deletes the person
+1.  User requests to delete a specific person at an index in the list.
+2.  User provides the index of the student, teacher, or meeting to delete.
+2.  NewAddressBook deletes the person
 
     Use case ends.
 
 **Extensions**
+* 1a. The given index is invalid.
 
-* 2a. The list is empty.
+    * 1a1. NewAddressBook shows informs the user that index is invalid.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. NewAddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Adding grades of a student**
+#### Use Case 05: Editing a student or teacher
 
 **MSS**
 
-1.  User requests to list persons
-2.  NewAddressBook shows a list of persons
-3. User requests to edit grades for a specific student
-4. NewAddressBook finds the student and updates his grades
+1. User requests to edit a specific person at an index in the list.
+2. The user provides the fields to edit, as well as the new values.
+3. NewAddressBook edits the person.
 
-Use case ends.
+    Use case ends.
 
 **Extensions**
+* 2a. The given index is invalid.
 
-* 2a. The list is empty.
+    * 2a1. NewAddressBook shows informs the user that index is invalid.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. All new values provided are already possessed by the existing person.
 
-  * 3a1. NewAddressBook shows an error message.
+    * 3a1. NewAddressBook shows informs the user that there is nothing is edited. No action is performed.
 
-  Use case ends.
+      Use case ends.
 
-**Use case: Filtering students based on involvement**
-
+#### Use Case 06: Finding a student or teacher by name
 
 **MSS**
 
-1.  User requests find all students in class D (or more generally, in a certain label)
-2.  NewAddressBook finds students with involvement tag in class D.
-Use case ends.
+1. User requests to find a specific student or teacher by name.
+2. User enters the name to find.
+3. NewAddressBook finds all matching students or teachers.
 
-* 1a. The list is empty.
+    Use case ends.
 
-  Use case ends.
+**Extensions**
+* 2a. No students/teachers match the name specified by the user.
 
-* 2a. There are students in class D (or more generally, no students with involvement labels matching what the user is finding).
+    * 2a1. NewAddressBook displays an empty list to the user.
 
-  * 2a1. NewAddressBook tells user that it cannot find any matching tags.
+      Use case ends.
 
-  Use case ends.
+#### Use Case 07: Filtering a student or teacher by involvement or tag
+
+**MSS**
+
+1. User requests to find a specific student or teacher by involvement or tag.
+2. User provides the involvement and tag values to search for.
+3. NewAddressBook finds all matching students or teachers.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The tag values provided are invalid (ie. contain alphanumeric characters).
+
+    * 2a1. NewAddressBook tells the user that his input is invalid.
+
+      Use case ends.
+
+* 3a. No students/teachers match the name specified by the user.
+
+    * 3a1. NewAddressBook displays an empty list to the user.
+
+      Use case ends.
+
+
+#### Use Case 08: Listing all students or teachers
+
+**MSS**
+
+1. User requests to list all students or teachers.
+2. NewAddressBook lists all students or teachers for the user.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list of students or teachers is empty.
+
+    * 1a1. NewAddressBook displays an empty list to the user.
+
+      Use case ends.
+
+#### Use Case 09: Adding a medical history to a student
+
+**MSS**
+
+1. User requests to add a medical history for the student.
+2. User provides the index and relevant medical history for the student.
+3. NewAddressBook overrides the old medical history of the student with a new one.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+
+    * 2a1. NewAddressBook shows informs the user that index is invalid.
+
+      Use case ends.
+
+* 2b. The user provides an empty string as the medical history.
+
+    * 2b1. NewAddressBook overrides the medical history with an empty string.
+
+      Use case ends.
+
+
+#### Use Case 10: Showing the medical history of a student
+
+**MSS**
+
+1. User requests to show a medical history for the student.
+2. User provides the index of the student to show.
+3. NewAddressBook pops out a window to show the student's medical history.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+
+    * 2a1. NewAddressBook shows informs the user that index is invalid.
+
+      Use case ends.
+
+* 2b. The window is already open.
+
+    * 2b1. The window is brought to the foreground.
+
+      Use case ends.
+
+* 2c. The student has no medical history.
+
+    * 2c1. The window displays the name of the student only, with no medical history field.
+
+      Use case ends.
+
+#### Use Case 11: Showing help
+
+**MSS**
+
+1. User requests to show help.
+2. NewAddressBook pops out the help window.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The window is already open.
+
+    * 2a1. The window is brought to the foreground.
+
+      Use case ends.
+
+#### Use Case 12: Showing meetings
+
+**MSS**
+
+1. User requests to show the meeting window.
+2. NewAddressBook pops out the meeting window.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The window is already open.
+
+    * 2a1. The window is brought to the foreground.
+
+      Use case ends.
+
+#### Use Case 13: Undoing actions
+
+**MSS**
+
+1. User requests to undo the last action.
+2. NewAddressBook undoes the last action.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The user is already at the oldest change.
+
+    * 2a1. NewAddressBook tells the user that they are already at the oldest change. No action is taken.
+
+      Use case ends.
+
+#### Use Case 14: Quitting meetings window
+
+**Preconditions:** The meeting window is already open.  
+
+**MSS**
+
+1. User requests to quit the meeting window from the meeting window.
+2. NewAddressBook exits the meeting window.
+
+    Use case ends.
+
+#### Use Case 15: Quitting the application
+
+**MSS**
+
+1. User requests to quit the application.
+2. NewAddressBook quits.
+
+    Use case ends.
 
 
 ### Non-Functional Requirements
