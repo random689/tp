@@ -176,16 +176,16 @@ Step 1. The user launches the application for the first time. The app creates an
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `deleteStudent 1` command to delete the 1st student in the address book. The `DeleteStudent` command calls `ModelManager#deleteStudent`, which deletes the student from the existing address book, and then pushes a copy of the modified address book, `ab1`, onto the stack.
+Step 2. The user executes `deleteStudent 1` command to delete the 1st student in the address book. The `deleteStudent` command calls `ModelManager#deleteStudent`, which deletes the student from the existing address book, and then pushes a copy of the modified address book, `ab1`, onto the stack.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `student n/David …​` to add a new student. The `add` command also calls `ModelManager#addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
+Step 3. The user executes `student n/David …​` to add a new student. This command calls command also calls `ModelManager#addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** If a command fails its execution, it will not save the address book.
+  **Note:** If a command fails its execution, a new address book will not be pushed onto the stack.
 </div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ModelManager#undo`, which will pop the front element from the stack and restore `ab2`'s contents. The top of the stack is now `ab1`.
@@ -224,7 +224,7 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself. For instance, have an `UndoDeleteStudent` command, `UndoEditTeacher` command etc...
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `deleteStudent`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
@@ -244,7 +244,7 @@ We eventually settled on Alternative 1 because our current implementation of the
 ### Copy Command
 
 #### Implementation details
-The `CopyStudentCommand/CopyTeacher` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand#getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
+The `CopyStudentCommand/CopyTeacherCommand` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand#getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
 
 As such, this command is supported by the method in the `Model` interface, namely the `Model#getFilteredStudentList()` and `Model#getFilteredTeacherList()` methods.
 
@@ -345,11 +345,13 @@ The `MedicalHistoryCommand` extends the `Command` class. When a `MedicalHistoryC
 `MedicalHistoryCommandParser` to parse the inputs given by the user, which include the index of the student based on the 
 list of students, and the desired medical history to assign to the student. The parser then passes the details to 
 `MedicalHistoryCommand` which then updates the student with the desired medical history using 
-model.setStudent(studentToEdit, editedStudent) and updates the view using `model.updateFilteredStudentList(predicate)`
-This works as the command is supported by the method in the `Model` interface, specifically the Model#setStudent() and
-Model#updateFilteredStudentList() methods.
+`model.setStudent(studentToEdit, editedStudent)` and updates the view using `model.updateFilteredStudentList(predicate)`
+This works as the command is supported by the method in the `Model` interface, specifically the `Model#setStudent()` and
+`Model#updateFilteredStudentList()` methods.
 
+<div markdown="span" class="alert alert-info">
 :information_source: **Note:** One cannot add medical history to teachers.
+</div>
 
 Given below is an example usage scenario and how the mechanism works.
 
