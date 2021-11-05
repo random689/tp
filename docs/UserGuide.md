@@ -9,7 +9,7 @@ NewAddressBook is a **desktop app built for Singapore secondary school teachers*
 * Table of Contents
   {:toc}
 
----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -593,7 +593,6 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before Tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
-
 
 Example:
 - `filterTeacher class t/rep` - will return all teachers with the involvement containing `class` and tag containing `rep`.
