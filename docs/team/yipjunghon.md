@@ -38,6 +38,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `undo` and `copy` feature. ([\#138](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/ab727689ae4f96a4e1bc6ff71cc0037f37fe0987), [\#91](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/d5e7cd7a6ba60320e2a285ebb368a3bc23e3adc9))
     * Created the UML diagrams to suit our code structure. ([\#192](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/4d32b5d0a7e05268995ba038518c4c46f5b9e5f3), [\#192](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/e17b9c16e4ee8b6164fdf01b670d1bbeb39ced3a), [\#192](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/e17b9c16e4ee8b6164fdf01b670d1bbeb39ced3a))
+    * Added the manual testing section of the DG ([\#263](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/263))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#243](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/243), [\#99](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/99), [\#106](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/106)
