@@ -814,38 +814,300 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For the below, we just state test cases for students. Even though the commands for teachers and meetings could be different, the key ideas of what the test cases are meant to test remains the same.
+</div>
 
-### Deleting a Student
+### Basic contact management
 
-1. Deleting a Student while all Students are being shown
+This section tests the basic functionality of the application.
 
-   1. Prerequisites: List all Students using the `listStudent` command. Multiple Students in the list.
+#### Adding a Student
+
+1. Adding a student with all fields correct.
+
+   1. Test case: `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`<br>
+      Expected: Student John Does is added to the list.
+
+2. Adding a duplicate student.
+
+    1. Prerequisites: The test case above is executed.
+
+    1. Test case: execute **again** `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`<br>
+        Expected: Student John Does is not added to the list. A message similar to a duplicate student message shows up.
+
+3. Adding a student with an empty field.
+
+    1. Test case: `student n/John Doe p/ e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`<br>
+    
+        Expected: Student John Does is not added to the list. A message saying the phone number has an invalid input pops out.
+
+#### Clearing the student list
+
+1. Clearing the student list.
+
+   1. Prerequisites: The displayed student list has more than one person.
+
+   1. Test case: `clearStudent`<br>
+      Expected: The student address list is cleared.
+
+2. Clearing an empty list.
+
+    1. Prerequisites: The test case above is executed.
+
+    1. Test case: execute **again** `clearStudent`<br>
+        Expected: A message saying that there are no students to clear shows up.
+
+#### Copying student fields
+
+1. Copying student fields.
+
+   1. Prerequisites: The list is non-empty.
+
+   1. Test case: `copyStudent c/email`<br>
+      Expected: A list of email addresses are copied.
+
+2. Invalid field.
+
+    1. Test case: execute **again** `copyStudent c/fish`<br>
+        Expected: A message saying that the field is invalid should show up.
+
+3. Copying from an empty list.
+
+    1. Prerequisites: The list is **empty**.
+
+    1. Test case: `copyStudent c/phone`<br>
+        Expected: A message saying that the list is empty and that nothing was copied should show up. Check the clipboard to make sure the app did not override it's contents.
+
+#### Deleting a student
+
+1. Delete a student with valid index.
+
+   1. Prerequisites: The list has at least one person.
 
    1. Test case: `deleteStudent 1`<br>
-      Expected: First Student is deleted from the Student list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: A first student is deleted.
 
-   1. Test case: `deleteStudent 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+2. Delete a student with an invalid index.
 
-   1. Other incorrect delete commands to try: `deleteStudent`, `deleteStudent x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Prerequisites: The list has less than or equal to 99 people.
 
-1. _{ more test cases …​ }_
+    1. Test case: `deleteStudent 100`<br>
+        Expected: A message saying that the index is invalid should show up.
+
+    1. Test case: `deleteStudent -1` <br>
+        Expected: A message saying that the command format is invalid should show up.
+
+### Editing Fields
+
+This section tests the editing functionality of the application. We have to be extra careful here to make sure we do not do anything when the user provides the same fields to edit multiple times. Else, some `undo` operations might not be meaningful. For example, if the user repeatedly executes `editStudent 1 p/91234567 e/johndoe@example.com` three times, we do not want to execute `undo` three times to undo the last action.
+
+#### Editing students
+
+1. Edit a student with valid index and parameters.
+
+   1. Prerequisites: The list has at least one person.
+
+   1. Test case: `editStudent 1 p/91234567 e/johndoe@example.com`<br>
+      Expected: The fields of the first student are edited to that specifed in the test case.
+
+1. Edit a student with blank parameters.
+
+   1. Prerequisites: The list has at least one person.
+
+   1. Test case: `editStudent 1 p/ e/johndoe@example.com`<br>
+      Expected: An error similar to an invalid phone number command format should pop up.
+
+1. Edit a student with parameters that that student already has.
+
+   1. Prerequisites: The list has at least one person.
+
+   1. Test case: execute **twice** `editStudent 1 p/91234567 e/johndoe@example.com`<br>
+      Expected: An error saying that the student already has the same fields should pop up on the second command execution.
+
+#### Editing medical history
+
+1. Edit a student's medical history with valid parameters.
+
+   1. Prerequisites: The list has at least one person.
+
+   1. Test case: `medical 1 m/dead`<br>
+      Expected: The medical history of the first student is set to dead.
+
+1. Edit a student's medical history with blank parameters. This will erase the students existing medical history.
+
+   1. Prerequisites: The list has at least one person. Test case 1 has already been executed.
+
+   1. Test case: `medical 1 m/`<br>
+      Expected: The medical history of the first student is removed.
+
+1. Editing a student's medical history with one that he already has.
+
+   1. Prerequisites: The list has at least one person.
+
+   1. Test case: execute **twice** `medical 1 m/dead`<br>
+
+      Expected: An error saying that the student already has same medical history should show up.
+
+### Find and filter
+These commands test the finding/filter capabilities of the application.
+
+1. Find matching conditons: checks to make sure `findStudent` matches the **whole** word
+
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`
+
+   1. Test case: `findStudent John`<br>
+      Expected: Both students should be listed.
+
+   1. Test case: `findStudent Jo`<br>
+      Expected: No students should be listed.
+
+   1. Test case: `findStudent Smith`<br>
+      Expected: Only John Smith should be listed.
+
+1. Filter matching conditons: checks to make sure `findStudent` matches **part** of the word, and that the search is an **AND** search
+
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead` (these commands are not the same as above!)
+
+   1. Test case: `filterStudent class`<br>
+      Expected: Both students should be listed.
+
+   1. Test case: `filterStudent eng`<br>
+      Expected: Only John Smith should be listed.
+
+   1. Test case: `filterStudent t/dead`<br>
+      Expected: Only John Smith should be listed.
+
+   1. Test case: `filterStudent t/dea`<br>
+     Expected: Only John Smith should be listed.
+
+   1. Test case: `filterStudent t/a`<br>
+     Expected: Both students should be listed.
+  
+   1. Test case: `filterStudent class t/a`<br>
+     Expected: Both students should be listed.
+
+   1. Test case: `filterStudent english t/a`<br>
+     Expected: Only John Smith should be listed.
+
+   1. Test case: `filterStudent english t/naughty`<br>
+     Expected: Only John Smith should be listed.
+
+   1. Test case: `filterStudent english t/naughty t/fish`<br>
+     Expected: No students should be listed.
+
+3. Checks case insensitivity
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/Naughty`
+
+    1. Test case: `filterStudent t/naughty`<br>
+    Expected: Both students should be listed.
+
+### Date time management
+This section tests if the date management is as expected. Since dates are only used in meetings, the tester would need to open up the meeting window.
+
+#### Date management
+
+   1. Prerequisites: open up the meeting window with `showMeeting`.
+
+   1. Test case: `meet r/Meeting with Ms.Lee d/2040-07-12 14:08 v/Seminar room 3 w/P`<br>
+    This is a valid meeting date and hence should be accepted.
+
+   1. Test case: `meet r/Meeting with Ms.Lee d/2040:07-12 14:08 v/Seminar room 3 w/P`<br>
+    A message saying that the user's date time input is invalid should pop out.
+
+  1. Test case: `meet r/Meeting with Ms.Lee d/2019-07-12 14:08 v/Seminar room 3 w/P`<br>
+    A message saying that the meeting date should be in the future should pop up.
+
+  1. Test case: `meet r/Meeting with Ms.Lee d/2022-7-12 14:08 v/Seminar room 3 w/P`<br>
+    A message saying that the user's date time input is invalid should pop out. The user is supposed to pad it with zeroes if the month is single digit.
+
+  1. Test case: `meet r/Meeting with Ms.Lee d/2028-02-29 14:08 v/Seminar room 3 w/P`<br>
+    This is a valid meeting date and hence should be accepted. 2028 is a leap year.
+
+  1. Test case: `meet r/Meeting with Ms.Lee d/2029-02-29 14:08 v/Seminar room 3 w/P`<br>
+    A message saying that the user's date time input is invalid should pop out. 2029 is not a leap year.
+
+#### Time management
+
+  1. Prerequisites: open up the meeting window with `showMeeting`.
+
+  1. Test case: `meet r/Meeting with Ms.Lee d/2029-01-29 24:08 v/Seminar room 3 w/P`<br>
+    A message saying that the user's date time input is invalid should pop out. 24:08 is not a valid time.
+
+### Window management
+This section ensures that the application "knows" about where the user is executing the commands from.
+
+#### Window specific commands
+
+  1. Prerequisites: open up the meeting window with `showMeeting`.
+  
+  1. Test case: In the main window, execute `meet`.<br>
+    The app should respond that the command is invalid.
+
+  1. Test case: In the meeting window, execute `meet`.<br>
+    The app should respond that it knows the command, but the format is invalid.
+
+#### Undo across various windows
+
+This tests if `undo` works as expected multiple windows. 
+
+  1. Prerequisites: open up the meeting window with `showMeeting`. In the main window, execute `editStudent 1 p/91234567 e/johndoe@example.com`.  In the meeting window, execute `meet r/Meeting with Ms.Lee d/2029-02-21 14:08 v/Seminar room 3 w/P`.
+
+  2. Test case: execute `undo` in the **main** window. <br>
+    The meeting added should be cleared, but the effects of the first command should still be there.
+
+### Undo command
+
+The `undo` command needs extra testing, because it integrates with a lot of other commands.
+
+1. Undo success
+
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead`.
+
+   2. Test case: Execute `undo` two times.<br>
+    Both students should be removed.
+
+1. Undo at oldest change
+
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead`.
+
+   2. Test case: Execute `undo` **three** times.<br>
+    Both students should be removed. On the last `undo`, the application should tell the user that he/she is already at the oldest change.
+
+1. Undo an edit action that does nothing
+
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add a student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`. Now edit that student using `editStudent 1 i/Math class`.
+
+   2. Test case: Execute `undo` once.<br>
+    The added student should be removed. It shouldn't take two `undo` actions to do so as the `editStudent` command did nothing.
+
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+This section deals with test cases that come with saving data.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+#### Deleted data files
 
-1. _{ more test cases …​ }_
+  1. Quit the application and delete `data/newaddressbook.json`. Reopen the application. 
+
+  2. Test case: the application should now be reloaded with the default data.
+
+#### Renamed data files
+
+  1. Quit the application and rename `data/newaddressbook.json` to `data/fish.json`. Reopen the application. 
+
+  2. Test case: the application should now be reloaded with the default data.
+
+#### Corrupted data files
+
+  1. Quit the application and change the content inside `data/newaddressbook.json` to `fish fish fish`. Save and close the `json` file, and reopen the application. 
+
+  2. Test case: the data of the application is cleared.
