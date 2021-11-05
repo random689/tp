@@ -46,7 +46,6 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#103](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/103), [\#141](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/141), [\#55](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/55)
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/103), [2](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/40))
 
 * **Team Based Task**:
   * Updated Product Icon [\#124](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/124)
