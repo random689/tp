@@ -33,8 +33,7 @@ Given below are my contributions to the project.
     * Updated the GUI to cater to two different list, one for teacher one for students [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73)
     * Updated the GUI for almost all the fields so they either are coloured (like tags) or have the identifier [\#50](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/50)
     * Updated the GUI to prevent the view to be bugged (Pull requests [\#124](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/124), [\#190](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/190), [\#247](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/247))
-    * Wrote additional tests for existing features (Meeting) to increase coverage (Pull requests [\#146](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/146), [\#149](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/149))
-    * Wrote additional tests for existing features to increase coverage (Pull requests [\#93](), [\#38](), [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73))
+    * Wrote additional tests for existing features to increase coverage (Pull requests [\#146](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/146), [\#149](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/149), [\#254](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/254), [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73))
 
 * **Documentation**:
   * User Guide:
@@ -47,7 +46,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#103](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/103), [\#141](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/141), [\#55](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/55)
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/103), [2](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/40))
 
 * **Team Based Task**:
   * Updated Product Icon [\#124](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/124)
