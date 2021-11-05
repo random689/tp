@@ -32,7 +32,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Updated the GUI to cater to two different list, one for teacher one for students [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73)
     * Updated the GUI for almost all the fields so they either are coloured (like tags) or have the identifier [\#50](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/50)
-    * Updated the GUI to prevent the view to be bugged (Pull requests [\#124](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/124), [\#190](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/190), [\#247](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/247))
+    * Updated the GUI to prevent the view to be bugged (Pull requests [\#124](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/124), [\#190](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/190), [\#244](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/244))
     * Wrote additional tests for existing features to increase coverage (Pull requests [\#146](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/146), [\#149](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/149), [\#254](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/254), [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73))
 
 * **Documentation**:
