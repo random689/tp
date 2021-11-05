@@ -312,9 +312,9 @@ Whenever a meeting is added to the list, the meeting will be inserted a way such
 
 We chose alternative 1 because it makes the application easier to use. That way, users do not have to add in a contact into the address book in order to have a meeting with them.
 
-### Filter command:
+### Filter command
 
-#### Implementation: 
+#### Implementation details
 
 We discuss only the student case here, since it is the same for teachers.
 
@@ -338,7 +338,7 @@ The following sequence diagram shows how it works for a filterStudent command.
     * Pros: Allows for greater options in filtering, like nested filters etc.
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-###  Adding medical history of students:
+###  Adding medical history of students
 
 #### Implementation Details
 The `MedicalHistoryCommand` extends the `Command` class. When a `MedicalHistoryCommand` is called, it uses the
@@ -419,7 +419,7 @@ The `clearTeacher` command works similarly.
   **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How clear executes:**
 
