@@ -36,8 +36,6 @@ Given below are my contributions to the project.
     * Wrote additional tests for existing features (Meeting) to increase coverage (Pull requests [\#146](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/146), [\#149](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/149))
     * Wrote additional tests for existing features to increase coverage (Pull requests [\#93](), [\#38](), [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73))
 
-<div style="page-break-after: always;"></div>
-
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `deleteMeeting` and `formClass` [\#150](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/150)
