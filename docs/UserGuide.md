@@ -12,7 +12,7 @@ NewAddressBook is a **desktop app built for Singapore secondary school teachers*
 ----------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your computer.
 
 2. Download the latest `NewAddressBook.jar` from [here](https://github.com/AY2122S1-CS2103-T16-3/tp/releases).
 
@@ -36,7 +36,7 @@ NewAddressBook is a **desktop app built for Singapore secondary school teachers*
 
   * **`exit`** : Exits the app.
 
-6. Refer to the [Overview](#overview) section for a summary of commands available and the  [Features](#features) section for details of each command.
+Refer to the [Overview](#overview) section for a summary of commands available and the  [Features](#features) section for details of each command.
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** If you face any issues launching NewAddressBook, go to the `data` folder, delete `newaddressbook.json`
@@ -169,7 +169,7 @@ Action | Format | Window
 
 </div>
 
-The commands offered can be roughly split into 4 catergories: those involving students, teachers, meetings, and general commands.
+The commands offered can be roughly split into 4 categories: those involving students, teachers, meetings, and general commands.
 
 1. [Managing Student Contacts](#managing-student-contacts)
 - [Add a student](#add-a-student--student)
@@ -251,6 +251,7 @@ Parameters:
 
 * `TAG` A tag associated with the student
   * should only contain alphanumeric characters
+  * if the tag field is specified, it cannot be empty
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
@@ -299,7 +300,7 @@ Copy specified data from all students in the **currently displayed** student lis
 
 Format: `copyStudent c/FIELD_TO_COPY`
 
-* `FIELD_TO_COPY` can only be one of the three: `phone`, `email` or `name`.
+* `FIELD_TO_COPY` can only be one of the three: `phone`, `email` or `name`. They are case sensitive.
 
 Example:
 * `listStudent` followed by `copyStudent c/email` copies the emails of all students in NewAddressBook to the user's clipboard.
@@ -465,6 +466,7 @@ Parameters:
 
 * `TAG` A tag associated with the teacher
   * should only contain alphanumeric characters
+  * if the tag field is specified, it cannot be empty
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A teacher can have any number of tags (including 0).
@@ -475,7 +477,7 @@ Check out how `involvement` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-NewAddressBook prevents the user from adding in duplicate teachers. Two teachers the same if they have the same name and office table number.
+NewAddressBook prevents the user from adding in duplicate teachers. Two teachers are the same if they have the same name and office table number.
 However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" 
 as two different names as they have different casing. We will improve on this in future versions of NewAddressBook 
 to allow this duplicate check to be case-insensitive.
@@ -497,7 +499,7 @@ If you want to delete all teachers from NewAddressBook, simply make sure the cur
 
 Example:
 * `listTeacher` followed by `clearTeacher` clears all teachers from NewAddressBook.
-* `filterTeacher t/good` followed by `clearStudent` clears all teachers with the "good" tag from NewAddressBook.
+* `filterTeacher t/good` followed by `clearTeacher` clears all teachers with the "good" tag from NewAddressBook.
 
 #### Copying fields from teachers : `copyTeacher`
 Copy specified data from all teachers in the **currently displayed** teacher list. The fields that can be copied are:
@@ -543,7 +545,7 @@ Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INV
 * `INDEX` refers to the index number shown in the **currently displayed** teacher list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the **currently displayed** student list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the teacher will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the teacher will be removed, ie. adding of tags is not cumulative.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can remove all the teacher’s tags by typing `t/` without specifying any tags after it.
@@ -640,7 +642,7 @@ NewAddressBook will prevent you from adding a meeting if the new meeting clashes
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you provide an invalid date, the error message given by NewAddressBook is the same as when you provide an invalid datetime format.
+If you provide an invalid date, the error message given by NewAddressBook is the same as when you provide an invalid date time format.
 For example, "2022-02-29" is an invalid date since 2022 is not a leap year.
 </div>
 
@@ -689,7 +691,7 @@ Format: `exit`
 
 #### Undo the latest change : `undo`
 
-Undoes the last change. This command only works for operations that adds, deletes, or edits infomation.
+Undoes the last change. This command only works for operations that adds, deletes, or edits information.
 This means that commands such as `filterStudent/filterTeacher` and the `copyStudent/copyTeacher` command cannot be undone. One can undo adding/deleting meetings as well.
 
 Format: `undo`
