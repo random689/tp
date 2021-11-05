@@ -108,7 +108,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 **Note:** When the user calls a valid command 
 from the `Meeting` window, the interaction within the `Logic` component only has 1 key difference: `LogicManager` 
 calls the `MeetingParser#parseCommand`. The rest of the implementation is similar to the diagram below.
-</  div>
+</div>
 
 ![Interactions Inside the Logic Component for the `deleteStudent 1` Command](images/DeleteSequenceDiagram.png)
 
