@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 
 public class OfficeTableTest {
@@ -37,11 +35,5 @@ public class OfficeTableTest {
         // valid office table numbers
         assertTrue(OfficeTable.isValidTable("2")); // 1 digit
         assertTrue(OfficeTable.isValidTable("22222")); // 5 digits
-    }
-
-    @Test
-    public void hashable() {
-        HashMap<OfficeTable, Integer> map = new HashMap<>();
-        map.put(new OfficeTable("22222"), 0);
     }
 }

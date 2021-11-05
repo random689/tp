@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 
 public class DescriptionTest {
@@ -35,11 +33,5 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("12345")); // numbers only
         assertTrue(Description.isValidDescription("department meeting @ zoom")); // alphanumeric characters
         assertTrue(Description.isValidDescription("Math Crash Course")); // with capital letters
-    }
-
-    @Test
-    public void hashable() {
-        HashMap<Description, Integer> map = new HashMap<>();
-        map.put(new Description("something"), 0);
     }
 }

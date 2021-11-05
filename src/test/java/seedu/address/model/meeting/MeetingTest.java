@@ -9,8 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_2;
 import static seedu.address.testutil.TypicalAddressBookObjects.PRESENTATION;
 import static seedu.address.testutil.TypicalAddressBookObjects.STAFF_MEETING;
 
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.MeetingBuilder;
@@ -73,11 +71,5 @@ public class MeetingTest {
         editedPresentation = new MeetingBuilder(PRESENTATION)
                 .withAttendee(VALID_ATTENDEE_2).build();
         assertFalse(PRESENTATION.equals(editedPresentation));
-    }
-
-    @Test
-    public void hashable() {
-        HashMap<Meeting, Integer> map = new HashMap<>();
-        map.put(PRESENTATION, 0);
     }
 }

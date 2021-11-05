@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 
 public class PhoneTest {
@@ -53,11 +51,5 @@ public class PhoneTest {
         assertEquals(phone, anotherPhone);
         // different phone value -> return false
         assertNotEquals(phone, differentPhone);
-    }
-
-    @Test
-    public void hashable() {
-        HashMap<Phone, Integer> map = new HashMap<>();
-        map.put(new Phone("124293842033123"), 0);
     }
 }

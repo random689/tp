@@ -3,8 +3,6 @@ package seedu.address.model.person.student;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 
 class MedicalHistoryTest {
@@ -29,11 +27,5 @@ class MedicalHistoryTest {
         // different MedicalHistory -> returns false
         MedicalHistory differentMedicalHistory = new MedicalHistory("Autism");
         assertFalse(medicalHistory.equals(differentMedicalHistory));
-    }
-
-    @Test
-    public void hashable() {
-        HashMap<MedicalHistory, Integer> map = new HashMap<>();
-        map.put(new MedicalHistory("dead"), 0);
     }
 }

@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 
 public class AttendeeTest {
@@ -38,11 +36,5 @@ public class AttendeeTest {
         assertTrue(Attendee.isValidAttendee("t"));
         assertTrue(Attendee.isValidAttendee("p"));
         assertTrue(Attendee.isValidAttendee("s"));
-    }
-
-    @Test
-    public void hashable() {
-        HashMap<Attendee, Integer> map = new HashMap<>();
-        map.put(new Attendee("T"), 0);
     }
 }
