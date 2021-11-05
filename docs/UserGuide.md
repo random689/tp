@@ -9,7 +9,7 @@ NewAddressBook is a **desktop app built for Singapore secondary school teachers*
 * Table of Contents
   {:toc}
 
----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
