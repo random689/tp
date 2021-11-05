@@ -34,7 +34,9 @@ Given below are my contributions to the project.
     * Updated the GUI for almost all the fields so they either are coloured (like tags) or have the identifier [\#50](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/50)
     * Updated the GUI to prevent the view to be bugged (Pull requests [\#124](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/124), [\#190](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/190), [\#247](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/247))
     * Wrote additional tests for existing features (Meeting) to increase coverage (Pull requests [\#146](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/146), [\#149](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/149))
-    * Wrote additional tests for existing features to increase coverage (Pull requests [\#93](), [\#38](), [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73)) <div style="page-break-after: always;"></div>
+    * Wrote additional tests for existing features to increase coverage (Pull requests [\#93](), [\#38](), [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73))
+
+<div style="page-break-after: always;"></div>
 
 * **Documentation**:
   * User Guide:
