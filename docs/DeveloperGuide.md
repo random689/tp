@@ -462,20 +462,26 @@ The `clearTeacher` command works similarly.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+#### User stories which are implemented
+
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | teacher who manages a lot of classes                                    | view students in the intersection/union of some of my classes         | find students easily               |
-| `* * *`  | teacher                                       | add a new person               |                                                                        |
+| `* * *`  | teacher                                       | add a new person               |          so that I can add   a new person to my class                                                            |
+| `* * *`      | potential user | clear test app data          | fill the app with my own data quickly                                             |
+| `* * *`      | teacher with a lot of contacts | copy fields from people in my address book         | paste it into a communication app so that I can contact them quickly                                             |
 | `* * *`  | teacher                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | teacher                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | teacher                                       | find a student by my involvement with them  | locate details of persons without having to go through the entire list                |
-| `* * *`      | teacher with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `* *`      | teacher | to be able to access the medical history of my students          | know which students needs special attention                                                |
-| `* * *`      | potential user | to delete test app data          | fill the app with my own data quickly                                             |
-| `* *`      | teacher | want to know the contact details of my fellow teachers        | contact them quickly                                            |
+| `* * *`  | teacher                                       | edit a specifc attribute of a person                | edit their details quickly without deleting and readding that person all over again |
+| `* * *`  | teacher                                       | find a person by name or by their other attributes          | locate details of persons without having to go through the entire list |
+| `* * *`  | potential user                                       | list my contacts          | access the details of my contacts easily for when I need to contact  them |
 | `* * *`      | potential user |see clear documentation        | know how to use the app                                           |
-| `* *`      | teacher that works in the CLI |be able to undo events       | undo in case I accidently delete students                                           |
-| `* *`      | teacher | store the grades of my students      |  know which students need the most help                                         |
+| `* * *`      | teacher | to be able to access the medical history of my students          | know which students needs special attention                     
+| `* * *`      | teacher that works in the CLI quickly |be able to undo events       | undo in case I accidently make mistakes while typing quickly       |
+
+#### User stories which are not implemented      
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* *`      | teacher with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `*`      | teacher | store the grades of my students      |  know which students need the most help
 
 
 ### Use cases
