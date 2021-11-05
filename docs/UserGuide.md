@@ -622,6 +622,10 @@ Parameters:
   * should not be blank
 * `DATE_TIME` A valid date and time of the meeting.
   * should be of the format `YYYY-MM-DD HH:mm`
+  * should be a **valid** date in  the future
+  * should pad the input with zeroes if the year, month or day is not two digits. For example, the date `2045-7-12` is invalid, but `2045-07-12` is valid.
+  * the year should be exactly 4 digits long, month 2 digits, and day 2 digits. Hence, while `12045-01-01` is a valid date, it will not be accepted.
+  * the time should be a valid 24h time. Again, the user should pad the time such that the hour and minutes are both exactly 2 digits long. For example, `2:45` is invalid, but `02:45` is valid.
 * `VENUE`: The venue of the meeting.
   * should not be blank
 * `ATTENDEE_TYPE`: The type of person(s) you are meeting with.
