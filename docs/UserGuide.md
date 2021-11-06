@@ -542,7 +542,7 @@ Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INV
 
 
 * Edits the teacher at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the **currently displayed** teacher list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the **currently displayed** student list.
+* `INDEX` refers to the index number shown in the **currently displayed** teacher list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the **currently displayed** teacher list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the teacher will be removed, ie. adding of tags is not cumulative.

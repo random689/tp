@@ -383,7 +383,7 @@ The following sequence diagram shows how the `medical` command works.
     * Pros: Easier to implement
     * Cons: Does not make sense as most students do not have notable `medicalHistory`
 
-###  Clear Command:
+###  Clear Command
 
 #### Implementation Details
 
@@ -705,15 +705,15 @@ Extensions:
 
       Use case ends.
 
-* 2b. The window is already open.
+* 3a. The window is already open.
 
-    * 2b1. The window is brought to the foreground.
+    * 3a1. The window is brought to the foreground.
 
       Use case ends.
 
-* 2c. The student has no medical history.
+* 3b. The student has no medical history.
 
-    * 2c1. The window displays the name of the student only, with no medical history field.
+    * 3b1. The window displays the name of the student only, with no medical history field.
 
       Use case ends.
 
