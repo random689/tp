@@ -112,6 +112,22 @@ class MedicalHistoryCommandTest {
     }
 
     @Test
+    public void execute_invalidDuplicate_failure() {
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+
+        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        MedicalHistory medicalHistory = firstStudent.getMedicalHistory();
+
+        MedicalHistoryCommand medicalHistoryCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
+                medicalHistory);
+
+        String expectedMessage = String.format(MedicalHistoryCommand.MESSAGE_DUPLICATE,
+                firstStudent);
+
+        assertCommandFailure(medicalHistoryCommand, model, expectedMessage);
+    }
+
+    @Test
     public void equals() {
         final MedicalHistoryCommand standardCommand = new MedicalHistoryCommand(INDEX_FIRST_STUDENT,
                 new MedicalHistory(VALID_MEDICAL_HISTORY_AMY));

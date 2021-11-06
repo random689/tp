@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MONITOR;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -141,6 +142,14 @@ public class AddressBookTest {
     @Test
     public void getTeacherList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getTeacherList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        assertEquals(addressBook, addressBook);
+        AddressBook ab = new AddressBook();
+        ab.addTeacher(ALI);
+        assertNotEquals(addressBook, ab);
     }
 
     /**
