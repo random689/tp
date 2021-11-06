@@ -112,7 +112,7 @@ calls the `MeetingParser#parseCommand`. The rest of the implementation is simila
 
 ![Interactions Inside the Logic Component for the `deleteStudent 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -131,9 +131,9 @@ How the parsing works (we describe only for `AddressBookParser`, the one for `Me
 
 The `Model` component,
 
-* stores the address book data i.e., all `Student`, `Teacher` and `Meeting` objects, which are contained in three separate `UniqueStudentList`, `UniqueTeacherList` and `NonConflictMeetingList` lists respectly.
-* stores the currently 'selected' `Student` and `Teacher` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Student>` and `ObservableList<Teacher>` respective. It can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* a stack, `history`, to  keep track on address book histories. This is to facilitate the `undo` command.
+* stores the address book data i.e., all `Student`, `Teacher` and `Meeting` objects, which are contained in three separate `UniqueStudentList`, `UniqueTeacherList` and `NonConflictMeetingList` lists respectively.
+* stores the currently 'selected' `Student` and `Teacher` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Student>` and `ObservableList<Teacher>` respectively. It can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* a stack, `history`, to  keep track of address book histories. This is to facilitate the `undo` command.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 * As there is no feature to search meetings, there is no need to store a filtered meeting list.
@@ -164,7 +164,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation details
 
-The undo mechanism is facilitated by a stack inside `ModelManager`. Every time the address book updates, a copy of the address book is made is made and is pushed on the stack. As such, `ModelManager` exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
+The undo mechanism is facilitated by a stack inside `ModelManager`. Every time the address book updates, a copy of the address book is made and pushed on the stack. As such, `ModelManager` exposes the `undo()` method to pop a previous version of an address book from the stack and reload its contents.
 
 <div markdown="span" class="alert alert-info">:information_source: 
   **Note:** It is needed for one to store a **copy** of the address book, otherwise any modifications to the existing address book would also alter the copies in the stack.
@@ -180,7 +180,7 @@ Step 2. The user executes `deleteStudent 1` command to delete the 1st student in
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `student n/David …​` to add a new student. This command calls command also calls `ModelManager#addStudent`, causing another copy of the modified address book, `ab2`, to pushed onto the stack.
+Step 3. The user executes `student n/David …​` to add a new student. This command calls command also calls `ModelManager#addStudent`, causing another copy of the modified address book, `ab2`, to be pushed onto the stack.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -201,7 +201,7 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 </div>
 
@@ -225,7 +225,7 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself. For instance, have an `UndoDeleteStudent` command, `UndoEditTeacher` command etc...
   * Pros: Will use less memory (e.g. for `deleteStudent`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  * Cons: We must ensure that the implementation of each individual command is correct.
 
 We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
 
@@ -244,14 +244,14 @@ We eventually settled on Alternative 1 because our current implementation of the
 ### Copy Command
 
 #### Implementation details
-The `CopyStudentCommand/CopyTeacherCommand` classes extends the `Command` class with the ability to copy a selected field either from a list of students or list of teachers. This is done via the method `CopyStudentCommand#getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
+The `CopyStudentCommand/CopyTeacherCommand` classes extends the `Command` class with the ability to copy a selected field either from a list of students or a list of teachers. This is done via the method `CopyStudentCommand#getCopyContent` (similarly for teachers). This command works on the last shown list to the user, which means the user could filter the student list and copy the subset of students filtered. This works similarly for teachers as well. 
 
 As such, this command is supported by the method in the `Model` interface, namely the `Model#getFilteredStudentList()` and `Model#getFilteredTeacherList()` methods.
 
 Given below is an example usage scenario and how the copy mechanism behaves.
 
 Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
-will be initialized with the all the students and teachers respectively from the loaded book data.
+will be initialized with all the students and teachers respectively from the loaded book data.
 
 Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI. The `copyStudent` command calls `Model#getFilteredStudentList`, loading the current list of filtered students, which in this case is all the students from the loaded book data. Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `CopyCommand#getNameContent` since the user wants to copy all names of students,
 appending all the names of the students in the filtered student list to the user's clipboard.
@@ -261,7 +261,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+  **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: 
@@ -290,20 +290,20 @@ We went with Alternative 1 because we felt that other than a person's phone, ema
 The mechanism of adding meetings is showcased in the sequence diagram below:
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
 </div>
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
-Whenever a meeting is added to the list, the meeting will be inserted a way such that the earliest meeting (in terms of date) is at the top of the list, and the latest meeting is at the back of the list. 
+Whenever a meeting is added to the list, the meeting will be inserted in a way such that the earliest meeting (in terms of date) is at the top of the list, and the latest meeting is at the back of the list. 
 
 #### Design considerations
 
 **Aspect: Representation of a Meeting**
 
 * **Alternative 1 (current choice):** Meeting is not linked with any contacts in NewAddressBook.
-  * Pros: Users can have more flexibility of planning meetings with any persons, provided they specify the type of persons (parents, teachers, or students) attending the meeting.
+  * Pros: Users can have more flexibility in planning meetings with any persons, provided they specify the type of persons (parents, teachers, or students) attending the meeting.
   * Cons: Users will need to come up with their own title for each meeting
 
 * **Alternative 2:** Meeting references a Person (either Student or Teacher) stored in NewAddressBook.
@@ -377,7 +377,7 @@ The following sequence diagram shows how the `medical` command works.
 
 * **Alternative 2:** Allow users to use the `editStudent` command to edit the `medicalHistory`
     * Pros: Easier to implement
-    * Cons: Not as specific than using the `medical` command
+    * Cons: Not as specific as using the `medical` command
   
 * **Alternative 3:** Force users to input `medicalHistory` for each `student` they wish to add.
     * Pros: Easier to implement
@@ -387,7 +387,7 @@ The following sequence diagram shows how the `medical` command works.
 
 #### Implementation Details
 
-We discuss only student here, since it is the same for teachers.
+We discuss only students here, since it is the same for teachers.
 
 The clearStudentCommand classes extends the `Command` class with the ability to clear the current list of students that is being shown.
 This is done via the method `Model#massDeleteStudent`. This command will act on the last shown list to the user,
@@ -402,7 +402,7 @@ Step 1. The user launches the application for the first time. The current `filte
 will be initialized with all the students and teachers respectively from the loaded book data.
 
 Step 2. The user executes `filterStudent math` to get all the students with the string `math` in their involvement.
-The filtered students will be stored in `Model#filteredStudent` and the list will be show to the user.
+The filtered students will be stored in `Model#filteredStudent` and the list will be shown to the user.
 
 Step 3. The user executes `ClearStudent`to clear the current list of filtered students.
 The `ClearStudent` command calls `Model#massDeleteStudents`, deleting the students in the current filtered list from
@@ -416,7 +416,7 @@ The `clearTeacher` command works similarly.
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 </div>
 
 #### Design considerations
@@ -426,7 +426,7 @@ The `clearTeacher` command works similarly.
 * **Alternative 1 (current choice):**  Clears only the filtered list
     * Pros: Makes it more flexible for the user, so that they can selectively filter a list they want to delete.
     * Pros: Goes hand in hand with Filter/Find.
-    * Cons: Harder to implement and may have performance issue in terms of memory usage.
+    * Cons: Harder to implement and may have a performance issue in terms of memory usage.
 
 * **Alternative 2:** Clears the entire list
     * Pros: Easier to maintain as it will be the same as the initial Clear Command
@@ -449,7 +449,7 @@ The `clearTeacher` command works similarly.
 
 **Target user profile**:
 
-* Secondary school teachers who need to manage many students/teachers who are involved with the teacher in many ways
+* Secondary school teachers who needs to manage many students/teachers, who might have different relationships with the teacher
 * Prefer desktop apps over other types
 * Can type fast
 * Prefer typing to mouse interactions
@@ -466,22 +466,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | teacher                                       | add a new person               |          so that I can add   a new person to my class                                                            |
+| `* * *`  | teacher                                       | add a new person               |        add a new person to my class                                                            |
 | `* * *`      | potential user | clear test app data          | fill the app with my own data quickly                                             |
 | `* * *`      | teacher with a lot of contacts | copy fields from people in my address book         | paste it into a communication app so that I can contact them quickly                                             |
 | `* * *`  | teacher                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | teacher                                       | edit a specifc attribute of a person                | edit their details quickly without deleting and readding that person all over again |
+| `* * *`  | teacher                                       | edit a specific attribute of a person                | edit their details quickly without deleting and re-adding that person all over again |
 | `* * *`  | teacher                                       | find a person by name or by their other attributes          | locate details of persons without having to go through the entire list |
 | `* * *`  | potential user                                       | list my contacts          | access the details of my contacts easily for when I need to contact  them |
 | `* * *`      | potential user |see clear documentation        | know how to use the app                                           |
 | `* * *`      | teacher | to be able to access the medical history of my students          | know which students needs special attention                     
-| `* * *`      | teacher that works in the CLI quickly |be able to undo events       | undo in case I accidently make mistakes while typing quickly       |
+| `* * *`      | teacher that works in the CLI quickly |be able to undo events       | undo in case I accidentally make mistakes while typing quickly       |
 
 #### User stories which are not implemented      
+
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* *`      | teacher with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-| `*`      | teacher | store the grades of my students      |  know which students need the most help
+| `* *`      | teacher with many persons in the address book | sort persons by name           | locate a person easily  |
+| `*`      | teacher | store the grades of my students      |  know which students need the most help |
 
 
 ### Use cases
@@ -540,7 +541,7 @@ Extensions:
 Extensions:
 * 1a. The currently displayed list is empty.
 
-  * 1a1. NewAddressBook notifies there user that there is nothing to clear. No action is performed.
+  * 1a1. NewAddressBook notifies the user that there is nothing to clear. No action is performed.
 
       Use case ends.
 
@@ -579,7 +580,7 @@ Extensions:
 **Extensions**
 * 1a. The given index is invalid.
 
-    * 1a1. NewAddressBook shows informs the user that index is invalid.
+    * 1a1. NewAddressBook informs the user that index is invalid.
 
       Use case ends.
 
@@ -596,13 +597,13 @@ Extensions:
 **Extensions**
 * 2a. The given index is invalid.
 
-    * 2a1. NewAddressBook shows informs the user that index is invalid.
+    * 2a1. NewAddressBook informs the user that index is invalid.
 
       Use case ends.
 
 * 3a. All new values provided are already possessed by the existing person.
 
-    * 3a1. NewAddressBook shows informs the user that there is nothing is edited. No action is performed.
+    * 3a1. NewAddressBook informs the user that there is nothing is edited. No action is performed.
 
       Use case ends.
 
@@ -676,7 +677,7 @@ Extensions:
 **Extensions**
 * 2a. The given index is invalid.
 
-    * 2a1. NewAddressBook shows informs the user that index is invalid.
+    * 2a1. NewAddressBook informs the user that the index is invalid.
 
       Use case ends.
 
@@ -700,7 +701,7 @@ Extensions:
 **Extensions**
 * 2a. The given index is invalid.
 
-    * 2a1. NewAddressBook shows informs the user that index is invalid.
+    * 2a1. NewAddressBook shows informs the user that the index is invalid.
 
       Use case ends.
 
@@ -812,7 +813,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy it into an empty folder
 
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -823,7 +824,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For the below, we just state test cases for students. Even though the commands for teachers and meetings could be different, the key ideas of what the test cases are meant to test remains the same.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For the below, we just state test cases for students. Even though the commands for teachers and meetings could be different, the key ideas of what the test cases are meant to test remains the same. From now on, when we say `list`, we mean the **currently displayed list**.
 </div>
 
 ### Basic contact management
@@ -885,7 +886,7 @@ This section tests the basic functionality of the application.
     1. Prerequisites: The list is **empty**.
 
     1. Test case: `copyStudent c/phone`<br>
-        Expected: A message saying that the list is empty and that nothing was copied should show up. Check the clipboard to make sure the app did not override it's contents.
+        Expected: A message saying that the list is empty and that nothing was copied should show up. Check the clipboard to make sure the app did not override its contents.
 
 #### Deleting a student
 
@@ -917,7 +918,7 @@ This section tests the editing functionality of the application. We have to be e
    1. Prerequisites: The list has at least one person.
 
    1. Test case: `editStudent 1 p/91234567 e/johndoe@example.com`<br>
-      Expected: The fields of the first student are edited to that specifed in the test case.
+      Expected: The fields of the first student are edited to that specified in the test case.
 
 1. Edit a student with blank parameters.
 
@@ -960,7 +961,7 @@ This section tests the editing functionality of the application. We have to be e
 ### Find and filter
 These commands test the finding/filter capabilities of the application.
 
-1. Find matching conditons: checks to make sure `findStudent` matches the **whole** word
+1. Find matching conditions: checks to make sure `findStudent` matches the **whole** word
 
    1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`
 
@@ -973,7 +974,7 @@ These commands test the finding/filter capabilities of the application.
    1. Test case: `findStudent Smith`<br>
       Expected: Only John Smith should be listed.
 
-1. Filter matching conditons: checks to make sure `findStudent` matches **part** of the word, and that the search is an **AND** search
+1. Filter matching conditions: checks to make sure `findStudent` matches **part** of the word, and that the search is an **AND** search
 
    1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead` (these commands are not the same as above!)
 
@@ -1077,14 +1078,14 @@ The `undo` command needs extra testing, because it integrates with a lot of othe
 
 1. Undo at oldest change
 
-   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead`.
+   1. Prerequisites: Clear the student list with `listStudent` and `clearStudent`. Close the app and reopen it. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead`.
 
    2. Test case: Execute `undo` **three** times.<br>
     Both students should be removed. On the last `undo`, the application should tell the user that he/she is already at the oldest change.
 
 1. Undo an edit action that does nothing
 
-   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add a student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`. Now edit that student using `editStudent 1 i/Math class`.
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add a student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`. Now edit that student using `editStudent 1 i/Math class`. An error message should show up, saying that 
 
    2. Test case: Execute `undo` once.<br>
     The added student should be removed. It shouldn't take two `undo` actions to do so as the `editStudent` command did nothing.
