@@ -12,7 +12,7 @@
 
 <fx:root resizable="false" title="Medical" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/medical.png" />
+        <Image url="@/images/hospital.png" />
     </icons>
     <scene>
         <Scene>
