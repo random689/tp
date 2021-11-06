@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: `undo` command.
   * What it does: allows the user to undo all previous commands one at a time.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: The implementation was challenging as it required changes to existing commands. Moreover, `undo` was implemented in a such a way such that if the user keyed in commands that did not change the content of the application, executing `undo` takes the user back to the last command which changed the content of the application, rather than the last command the user executed. Doing this required some work on which commands could potentially leave the application state unchanged. (Pull requests: [\#192](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/192/commits/2dfd0abfafdf3c0aa5de24d8e607e794fc5913fc), [\#245](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/245), done by Yong Chuan). 
+  * Highlights: The implementation was challenging as it required changes to existing commands. Moreover, `undo` was implemented in a such a way such that if the user keyed in commands that did not change the content of the application, executing `undo` takes the user back to the last command which changed the content of the application, rather than the last command the user executed. Doing this analysis on the commands which could leave the application state unchanged. (Pull requests: [\#192](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/192/commits/2dfd0abfafdf3c0aa5de24d8e607e794fc5913fc), [\#245](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/245), done by Yong Chuan). 
 
 * **New Feature**: `copyStudent/copyTeacher` command.
   * What it does: it gives users the ability to copy phone numbers, email addresses and names from the displayed list.
@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   * Split command involving students and teachers into separate catergories. This was a massive effort as it required many test cases and classes to be updated. ([\#75](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/75))
 
 * **Enhancements to existing features**:
-  * Add code skeleton for teammates to implement commands for the window. This is needed because back then, we needed some commands to work for the main window, but not for the meeting window, and vice versa. Hence some sort of mechanism was needed for the application to detect which window the user was executing the command from. This PR implements that detection mechanism. ([\#102](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/102))
+  * Add code skeleton for teammates to work on when we were creating the meeting window. This is needed because back then, we needed some commands to work for the main window, but not for the meeting window, and vice versa. Hence some sort of mechanism was needed for the application to detect which window the user was executing the command from. This PR implements that detection mechanism. ([\#102](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/102))
   * Wrote additional tests for existing features to increase coverage ([\#78](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/b309774979bea3733f3318054af47d017835b6ae), [\#75](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/be7beeaea550ccc5c475ddc578afe4ecaa6fada6), [\#51](https://github.com/AY2122S1-CS2103-T16-3/tp/commit/153080a5848a458763f8b838ba8a26370de6a986))
 
 * **Documentation**:
