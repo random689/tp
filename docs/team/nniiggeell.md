@@ -5,11 +5,8 @@ title: Nigel Tan's Project Portfolio Page
 
 ### Project: NewAddressBook
 
-NewAddressBook is a desktop address book application used by Secondary school teachers in Singapore to manage their 
-student 
-and teacher 
-contacts,
-optimized for use via a Command Line Interface (CLI). The user interacts with it using a CLI, and
+NewAddressBook is a desktop address book application used by Secondary school teachers to manage their 
+student and teacher contacts, optimized for use via a Command Line Interface (CLI). The user interacts with it using a CLI, and
 it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
