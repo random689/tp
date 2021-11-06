@@ -52,7 +52,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [![Nigel GitHub](images/github-icon.png)](https://github.com/nniiggeell)
 
-[[portfolio](team/nigeltan.md)]
+[[portfolio](team/nniiggeell.md)]
 
 * Role: Developer
 
