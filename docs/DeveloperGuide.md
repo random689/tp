@@ -797,6 +797,7 @@ Extensions:
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Involvement**: A label attached to each student/teacher specifying the person's involvement with the User.
+* **Currently displayed list**: for students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 

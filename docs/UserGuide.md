@@ -140,6 +140,8 @@ Action | Format | Window
   class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`.
   A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
 
+* **Currently displayed list**: for students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -163,7 +165,7 @@ Action | Format | Window
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`.
+  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`. For other commands that require parameters, however, the input format must be as stated as in the user guide.
 
 * For all prefixes (except the first), the user should ensure they are preceded by a space for the parser to recognise it as a new prefix, instead of a parameter in the previous prefix. For example, `editStudent 1 i/e/hello@example.com` parsers the parameter for `i/` as `e/hello@example.com`, and does not detect any input for the `e/` field. On the other hand, for the command `editStudent 1 i/ e/hello@example.com`, `i/` is detected to have no arguments, while `e/` has `hello@example.com` as an argument. As such, the second command will not succeed since the `i/` field is blank. 
 
@@ -265,8 +267,9 @@ Check out how `involvement` is intended to be used in the glossary.
 NewAddressBook prevents the user from adding in duplicate students. Two students are duplicate if they have the same name and address.
 However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" as two
 different names as they have different casing. We will improve on this in future versions of NewAddressBook to allow this duplicate
-check to be case-insensitive.
+check to be case-insensitive. 
 </div>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Notes about `FORM_CLASS`:**
 While the format allowed for `FORM_CLASS` caters to most secondary schools in Singapore, we understand that some schools 
@@ -383,10 +386,10 @@ Format:`filterStudent [INVOLVEMENT] [t/TAG]…​`
 * Either `INVOLVEMENT` or `TAG` must be present.
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search for both tag and involvement matches substrings, e.g `han` will match `Hans`.
-* Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterStudent one one`, then the command treats it as though a single `one` was put in.
+* Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterStudent one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
 * Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement is `chess club` **and** has tags containing `member` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
-* Involvement must come before Tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
+* Involvement must come before tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
 
 
 Examples:
@@ -477,7 +480,7 @@ Check out how `involvement` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-NewAddressBook prevents the user from adding in duplicate teachers. Two teachers are the same if they have the same name and office table number.
+NewAddressBook prevents the user from adding in duplicate teachers. Two teachers are the same if they have the same name and office table number. The check is being doing this way in case there are multiple tables with the same number (ie. perhaps it's a multi-floor office).
 However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" 
 as two different names as they have different casing. We will improve on this in future versions of NewAddressBook 
 to allow this duplicate check to be case-insensitive.
@@ -591,10 +594,10 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * Either `INVOLVEMENT` or `TAG` must be present.
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`.
-* Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterTeacher one one`, then the command treats it as though a single `one` was put in.
+* Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterTeacher one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
 * Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
-* Involvement must come before Tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
+* Involvement must come before tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 
 
 Example:
