@@ -36,6 +36,8 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=t16&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=nniiggeell&tabRepo=AY2122S1-CS2103-T16-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&zFR=false)
 
+<div style="page-break-after: always;"></div>
+
 * **Enhancements implemented** 
   * Contributed to the refactoring of necessary classes in order to facilitate splitting the commands into separate 
     `student` and `teacher` related classes. (Pull request [\#53](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/53))
