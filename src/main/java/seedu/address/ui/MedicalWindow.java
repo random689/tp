@@ -10,6 +10,7 @@ import seedu.address.model.person.student.Student;
 
 /**
  * Controller for a Medical page
+ * The Icon for the MedicalWindow is made by Pixel Buddha from www.flaticon.com"
  */
 public class MedicalWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(MedicalWindow.class);
