@@ -99,7 +99,7 @@ The various fields that describes a meeting are as follows:
 :information_source: 
 Out of all the commands, the only command which executes in both windows is the `undo` command. 
 The other commands work **either** in the main application window or the meeting window, but not both. 
-The `window` column of the table below indicates which window the command is compatible with.
+The `Window` column of the table below indicates which window the command is compatible with.
 </div>
 
 Action | Format | Window
@@ -156,7 +156,7 @@ Action | Format | Window
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * For most commands except `filterStudent` and `filterTeacher`, parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -169,6 +169,10 @@ Action | Format | Window
 
 * For all prefixes (except the first), the user should ensure they are preceded by a space for the parser to recognise it as a new prefix, instead of a parameter in the previous prefix. For example, `editStudent 1 i/e/hello@example.com` parsers the parameter for `i/` as `e/hello@example.com`, and does not detect any input for the `e/` field. On the other hand, for the command `editStudent 1 i/ e/hello@example.com`, `i/` is detected to have no arguments, while `e/` has `hello@example.com` as an argument. As such, the second command will not succeed since the `i/` field is blank. 
 
+* For all parameters, extraneous spaces within the input values will not be trimmed.
+  e.g. `n/john doe` is considered different from `n/john     doe`
+
+* All parameters and commands, unless specified, are case-sensitive.
 </div>
 
 The commands offered can be roughly split into 4 categories: those involving students, teachers, meetings, and general commands.
@@ -256,7 +260,8 @@ Parameters:
   * if the tag field is specified, it cannot be empty
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0).
+A student can have any number of tags (including 0). However, if the same tag is given more than once, e.g. `t/cat t/cat`,
+only one will be displayed as they are considered the same.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -393,13 +398,13 @@ Format:`filterStudent [INVOLVEMENT] [t/TAG]…​`
 
 
 Examples:
-- `filterStudent class t/rep` - will return all students with the involvement containing `class` and tag containing `rep`.
+- `filterStudent class t/rep` - will return all students with the involvement containing `class` and has at least one tag containing `rep`.
 - `filterStudent math class` - will return all students with the involvement containing `math class`.
 - `filterStudent t/banana t/phone` - will return all students with tags containing “banana” and "phone".
 
 #### List all students : `listStudent`
 
-Shows a list of all students stored in the address book.
+Shows a list of all students stored in NewAddressBook.
 
 Format: `listStudent`
 
@@ -429,6 +434,10 @@ Format: `showMedical INDEX`
 * View the full medical history of the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the **currently displayed** student list.
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the student has no medical history, the pop-up window will simply show the name of the student.
+</div>
 
 Examples:
 * `showMedical 1`
@@ -472,7 +481,8 @@ Parameters:
   * if the tag field is specified, it cannot be empty
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A teacher can have any number of tags (including 0).
+A teacher can have any number of tags (including 0). However, if the same tag is given more than once, e.g. `t/cat t/cat`,
+only one will be displayed as they are considered the same.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -600,7 +610,7 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * Involvement must come before tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 
 Example:
-- `filterTeacher class t/rep` - will return all teachers with the involvement containing `class` and tag containing `rep`.
+- `filterTeacher class t/rep` - will return all teachers with the involvement containing `class` and has at least one tag containing `rep`.
 - `filterTeacher math class` - will return all teachers with the involvement containing `math class`.
 - `filterTeacher t/banana t/phone` - will return all teachers with tags containing `banana` and `phone`.
 
@@ -635,6 +645,7 @@ Parameters:
   * should not be blank
 * `ATTENDEE_TYPE`: The type of person(s) you are meeting with.
   * must be one of the following: `S` (students), `T` (teachers), `P` (parents)
+  * case-insensitive
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can only add meetings in the future.
