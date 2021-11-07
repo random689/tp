@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [![Clive GitHub](images/github-icon.png)](http://github.com/g4ryy)
 
-[[portfolio](team/garyyansen.md)]
+[[portfolio](team/g4ryy.md)]
 
 * Role: Developer
 
