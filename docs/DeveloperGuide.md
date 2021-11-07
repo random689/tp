@@ -500,8 +500,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `NewAddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 #### List of use cases 
-1. [Adding a student/teacher/meeting](#use-case-01-adding-a-student-or-teacher)
-2. [Clearing student/teachers/meetings from the currently displayed list](#use-case-02-clearing-students-teachers-or-meetings)
+1. [Adding a student/teacher](#use-case-01-adding-a-student-or-teacher)
+2. [Clearing student/teachers from the currently displayed list](#use-case-02-clearing-students-teachers)
 3. [Copy fields from students/teachers](#use-case-03-copying-fields-from-students-or-teachers)
 4. [Deleting students/teachers/meetings](#use-case-04-deleting-a-student-teacher-or-meeting)
 5. [Editing a student/teacher](#use-case-05-editing-a-student-or-teacher)
@@ -511,11 +511,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. [Adding a medical history to a student](#use-case-09-adding-a-medical-history-to-a-student)
 10. [Showing the medical history of a student](#use-case-10-showing-the-medical-history-of-a-student)
 11. [Showing help](#use-case-11-showing-help)
-12. [Showing meetings](#use-case-12-quitting-the-application)
-13. [Undoing actions](#use-case-13-showing-meetings)
-14. [Quitting meetings window](#use-case-14-addding-a-meeting)
-14. [Quitting meetings window](#use-case-15-quitting-meetings-window)
-15. [Quitting the application](#use-case-16-undoing-actions)
+12. [Quitting the application](#use-case-12-quitting-the-application)
+13. [Showing meetings](#use-case-13-showing-meetings)
+14. [Adding a meeting](#use-case-14-adding-a-meeting)
+15. [Quitting meetings window](#use-case-15-quitting-meetings-window)
+16. [Undoing actions](#use-case-16-undoing-actions)
 
 
 
@@ -1188,14 +1188,14 @@ amount of effort was required for this process.
 Apart from managing contacts, NewAddressBook also allows users to keep track of upcoming meetings.
 There is thus a need to display a list of meetings to the user. Our final product has a separate window
 that displays the list of meetings, in addition to the existing students list and teachers list.
-Initially, we wanted to keep everything to one window. However,
+Initially, we wanted to keep everything in one window. However,
 we realised that choosing this option would mean that we would need to fit all three lists
 (students list, teachers list and meetings list) into a single window, which would then require us 
 to reduce the display sizes of these lists. We feel that this is undesirable as this would restrict
-the amount of information the users can see. While we had another option, which was to display only
-one list and allow users to navigate between different lists, we did not consider this option as
+the amount of information that users can see. While we had another option, which was to display only
+one list at a time and allow users to navigate between different lists, we did not consider this option as
 we want users to be able to view the lists at the same time when there is a need to. This leaves us
 with the last option, which is to create a second window for meetings. We also decided to allow users
 to enter meeting-specific commands from the meetings window instead of having to go back to the main 
 window. This required us to reimplement the parser in the `Logic` component to be able to identify
-the window that the command is being entered from.
+which window that the command is being entered from.
