@@ -334,7 +334,7 @@ The following sequence diagram shows how it works for a filterStudent command.
     * Pros: Easy to implement, saves time.
     * Cons: Only provides one level filter.
 
-* **Alternative 2:** Make a copy of the list of students upon calling `model.updateFilteredStudentList(predicate)` and filter from the copied list till the user no longer needs to be filtered.
+* **Alternative 2:** Make a copy of the list of students upon calling `model.updateFilteredStudentList(predicate)` and filter from the copied list till the user no longer needs the list to be filtered.
     * Pros: Allows for greater options in filtering, like nested filters etc.
     * Cons: Harder to implement as it requires constantly choosing which list to use.
 
