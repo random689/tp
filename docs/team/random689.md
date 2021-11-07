@@ -25,7 +25,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement was used for the showMeeting/quitMeeting command.
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=t16&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=random689&tabRepo=AY2122S1-CS2103-T16-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
-
+<div style="page-break-after: always;"></div>
 * **Project Management**:
   * Updated the base code (`Logic`, `AddressBook`, `Model` and json related classes) so that it can handle two different classes student and teacher as opposed to the previous single person class. This allowed the rest to split the commands and work on each side individually [\#73](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/73)
 
