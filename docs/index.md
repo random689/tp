@@ -11,7 +11,7 @@ title: NewAddressBook
 NewAddressBook is a **desktop app built for secondary school teachers** that are handling large classes. It helps them **manage the contacts of their students and colleagues** efficiently. It also supports **keeping track of upcoming meetings** and **recording the medical histories** of students.
 
 * If you are interested in using NewAddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested about developing NewAddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**

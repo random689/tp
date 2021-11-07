@@ -86,7 +86,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Student` and `Teacher` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student`, `Teacher` and `Meeting` objects residing in the `Model`.
 
 ### Logic component
 
@@ -97,8 +97,8 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="600"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it determines which window is the user is on, and uses either the `MeetingParser` or `AddressBookParser` class to parse the user command. It uses `MeetingParser` if the user is executing the command from the meeting window, and `AddressBookParser` if the user is executing the command from the main window.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it determines which window the user is on, and uses either the `MeetingParser` or `AddressBookParser` class to parse the user command. It uses `MeetingParser` if the user is executing the command from the meeting window, and `AddressBookParser` if the user is executing the command from the main window.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddStudentCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -120,8 +120,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works (we describe only for `AddressBookParser`, the one for `MeetingParser` is similar):
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStudentCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `DeleteStudentCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -131,7 +131,7 @@ How the parsing works (we describe only for `AddressBookParser`, the one for `Me
 
 The `Model` component,
 
-* stores the address book data i.e., all `Student`, `Teacher` and `Meeting` objects, which are contained in three separate `UniqueStudentList`, `UniqueTeacherList` and `NonConflictMeetingList` lists respectively.
+* stores NewAddressBook data i.e., all `Student`, `Teacher` and `Meeting` objects, which are contained in `UniqueStudentList`, `UniqueTeacherList` and `NonConflictMeetingList` objects respectively.
 * stores the currently 'selected' `Student` and `Teacher` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Student>` and `ObservableList<Teacher>` respectively. It can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * a stack, `history`, to  keep track of address book histories. This is to facilitate the `undo` command.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
@@ -256,7 +256,7 @@ will be initialized with all the students and teachers respectively from the loa
 Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI. The `copyStudent` command calls `Model#getFilteredStudentList`, loading the current list of filtered students, which in this case is all the students from the loaded book data. Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `CopyCommand#getNameContent` since the user wants to copy all names of students,
 appending all the names of the students in the filtered student list to the user's clipboard.
 
-The following sequence diagram shows how the copy operation works for a copyStudent command. The `copyTeacher` command works similarly, so we will only discuss students here. If the user specifies another field to be copied, such as `phone` or `email`, the command also works similarly, so we will not discuss them here.
+The following sequence diagram shows how the copy operation works for a copyStudent command. The `copyTeacher` command works similarly, so we will only discuss `copyStudent` here. If the user specifies another field to be copied, such as `phone` or `email`, the command also works similarly, so we will not discuss them here.
 
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
@@ -296,21 +296,24 @@ The mechanism of adding meetings is showcased in the sequence diagram below:
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
-Whenever a meeting is added to the list, the meeting will be inserted in a way such that the earliest meeting (in terms of date) is at the top of the list, and the latest meeting is at the back of the list. 
+Whenever a `Meeting` object is added to the `NonConflictMeetingList`, 
+the `Meeting` will be inserted in a way such that the earliest meeting (in terms of date and time) is at the top of the list, and the latest meeting is at the back of the list. 
+This allows users to focus on the more recent upcoming meetings.
 
 #### Design considerations
 
 **Aspect: Representation of a Meeting**
 
 * **Alternative 1 (current choice):** Meeting is not linked with any contacts in NewAddressBook.
-  * Pros: Users can have more flexibility in planning meetings with any persons, provided they specify the type of persons (parents, teachers, or students) attending the meeting.
-  * Cons: Users will need to come up with their own title for each meeting
+  * Pros: Users can have more flexibility in planning meetings with students/teachers/parents that are not stored in NewAddressBook.
+  * Cons: Users will need to come up with their own title for each meeting to describe who they are meeting with.
 
 * **Alternative 2:** Meeting references a Person (either Student or Teacher) stored in NewAddressBook.
-  * Pros: User just have to specify the type and index of the Person in the list and the UI would generate a pre-defined title with the specified person's name
-  * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed.
+  * Pros: Users just have to specify the type and index of the Person in the list and the UI would generate a pre-defined title with the specified person's name
+  * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed from NewAddressBook. Furthermore, users cannot schedule meetings 
+  with persons that are not stored in NewAddressBook, e.g. parents.
 
-We chose alternative 1 because it makes the application easier to use. That way, users do not have to add in a contact into the address book in order to have a meeting with them.
+We chose alternative 1 because it makes the application easier to use and provides more flexibility. That way, users do not have to add in a contact into NewAddressBook in order to have a meeting with them.
 
 ### Filter command
 
@@ -383,7 +386,7 @@ The following sequence diagram shows how the `medical` command works.
     * Pros: Easier to implement
     * Cons: Does not make sense as most students do not have notable `medicalHistory`
 
-###  Clear Command
+###  ClearStudent / ClearTeacher Command
 
 #### Implementation Details
 
@@ -455,7 +458,9 @@ The `clearTeacher` command works similarly.
 * Prefer typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app, allows teachers to find their contacts easily
+**Value proposition**: 
+* manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
+* keep track of upcoming school-related meetings with students/teachers/parents.
 
 
 ### User stories
@@ -465,23 +470,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### User stories which are implemented
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | teacher                                       | add a new person               |        add a new person to my class                                                            |
-| `* * *`      | potential user | clear test app data          | fill the app with my own data quickly                                             |
-| `* * *`      | teacher with a lot of contacts | copy fields from people in my address book         | paste it into a communication app so that I can contact them quickly                                             |
-| `* * *`  | teacher                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | teacher                                       | edit a specific attribute of a person                | edit their details quickly without deleting and re-adding that person all over again |
-| `* * *`  | teacher                                       | find a person by name or by their other attributes          | locate details of persons without having to go through the entire list |
-| `* * *`  | potential user                                       | list my contacts          | access the details of my contacts easily for when I need to contact  them |
-| `* * *`      | potential user |see clear documentation        | know how to use the app                                           |
-| `* * *`      | teacher | to be able to access the medical history of my students          | know which students needs special attention                     
-| `* * *`      | teacher that works in the CLI quickly |be able to undo events       | undo in case I accidentally make mistakes while typing quickly       |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- | 
+| `* * *`  | new user |see clear documentation        | know how to use the app
+| `* * *`  | new user |see sample data in the app        | see how the app looks like and explore how it works 
+| `* * *`  | new user | clear sample app data          | fill the app with my own data quickly
+| `* * *`  | teacher  | add a new student / teacher        |        access their contact information whenever I need to contact them
+| `* * *`  | teacher  | delete a student / teacher             | remove persons whom I no longer need to contact                                   |
+| `* * *`  | teacher   | edit a specific attribute of a student / teacher              | edit their details quickly without deleting and re-adding that student all over again |
+| `* * *`  | teacher      | list all students / teachers contacts         | see the details of all my contacts easily |
+| `* * *`  | teacher | record and view the medical history of my students          | know which students needs special attention|
+| `* * *`      | teacher | add upcoming school-related meetings with parents/teachers/students         | keep track of these important meetings |
+| `* * *`      | teacher | delete a meeting          | remove it from the app in the event that the meeting is cancelled|
+| `* *`  | teacher with many students and colleagues               | copy fields from contacts stored in the app     | paste it into a communication app and contact them quickly |
+| `* *`  | teacher with many students and colleagues               | find a student / teacher by name          | locate details of persons without having to go through the entire list |
+| `* *`  | teacher with many students and colleagues               | filter students / teachers by involvement and/or tags| locate groups of persons without having to go through the entire list |
+| `* *` | teacher that types in the CLI quickly |be able to undo operations       | undo in case I accidentally make mistakes while typing quickly       |
 
 #### User stories which are not implemented      
 
+
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* *`      | teacher with many persons in the address book | sort persons by name           | locate a person easily  |
+| `* *`      | teacher with many contacts | sort contacts by name           | locate a person easily  |
 | `*`      | teacher | store the grades of my students      |  know which students need the most help |
 
 
@@ -490,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is the `NewAddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
 #### List of use cases 
-1. [Adding a student/teacher/meeting](#use-case-01-adding-a-student-teacher-or-meeting)
+1. [Adding a student/teacher/meeting](#use-case-01-adding-a-student-or-teacher)
 2. [Clearing student/teachers/meetings from the currently displayed list](#use-case-02-clearing-students-teachers-or-meetings)
 3. [Copy fields from students/teachers](#use-case-03-copying-fields-from-students-or-teachers)
 4. [Deleting students/teachers/meetings](#use-case-04-deleting-a-student-teacher-or-meeting)
@@ -501,119 +511,131 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. [Adding a medical history to a student](#use-case-09-adding-a-medical-history-to-a-student)
 10. [Showing the medical history of a student](#use-case-10-showing-the-medical-history-of-a-student)
 11. [Showing help](#use-case-11-showing-help)
-12. [Showing meetings](#use-case-12-showing-meetings)
-13. [Undoing actions](#use-case-13-undoing-actions)
-14. [Quitting meetings window](#use-case-14-quitting-meetings-window)
-15. [Quitting the application](#use-case-15-quitting-the-application)
+12. [Showing meetings](#use-case-12-quitting-the-application)
+13. [Undoing actions](#use-case-13-showing-meetings)
+14. [Quitting meetings window](#use-case-14-addding-a-meeting)
+14. [Quitting meetings window](#use-case-15-quitting-meetings-window)
+15. [Quitting the application](#use-case-16-undoing-actions)
 
 
 
-#### Use Case 01: Adding a student, teacher, or meeting
+#### Use Case 01: Adding a student or teacher
 
 **MSS**
-1.  User requests to add a student, teacher, or meeting.
-2.  The user provides the parameters of the student, teacher, or meeting to add.
-2.  NewAddressBook adds the student, teacher, or meeting.
+1. User requests to add a student or teacher. 
+2. NewAddressBook adds the student or teacher and shows the list of all students or teachers.
 
     Use case ends.
 
 Extensions:
-* 2a. The attributes of the student, teacher, or meeting the user requests to add are invalid.
+* 1a. Input formats are invalid.
 
-  * 2a1. NewAddressBook notifies the user that some of their inputs are invalid.
+  * 1a1. NewAddressBook notifies the user that some of their inputs are invalid. 
+  
+      Use case resumes at step 2
 
-    Use case ends.
+* 1b. The student or teacher already exists.
 
-* 3a. The student, teacher, or meeting already exists.
-
-    * 3a1. NewAddressBook notifies the user that the student, teacher, or meeting already exists.
+    * 1b1. NewAddressBook notifies the user that the student or teacher already exists.
 
       Use case ends.
 
-#### Use Case 02: Clearing students, teachers or meetings
+#### Use Case 02: Clearing students or teachers
 
 **MSS**
-1.  User requests to clear students, teachers or meetings in the currently displayed list.
-2.  NewAddressBook clears the list of students, teachers or meetings.
+1. User requests a list of students or teachers.
+2. NewAddressBook shows the requested list of students or teachers.
+3. User requests to clear students or teachers in the list.
+4. NewAddressBook clears all students or teachers that are in the list.
 
     Use case ends.
 
 Extensions:
-* 1a. The currently displayed list is empty.
+* 3a. The currently displayed list is empty.
 
-  * 1a1. NewAddressBook notifies the user that there is nothing to clear. No action is performed.
+  * 3a1. NewAddressBook notifies the user that there is nothing to clear. No action is performed.
 
       Use case ends.
 
 #### Use Case 03: Copying fields from students or teachers
 
 **MSS**
-1.  User requests to copy a field from the currently displayed list of students or teachers.
-2.  User provides the field to copy.
-3.  NewAddressBook copies the field specified by the user to the clipboard.
+1. User requests a list of students or teachers.
+2. NewAddressBook shows the requested list of students or teachers.
+3. User requests to copy a field from the list.
+4. User provides the field to copy.
+5. NewAddressBook copies the field specified by the user to the clipboard.
 
     Use case ends.
 
 Extensions:
-* 2a. The field the user asks to copy is invalid.
+* 4a. The field the user asks to copy is invalid.
 
-  * 2a1. NewAddressBook notifies the user that his input is invalid.
+  * 4a1. NewAddressBook notifies the user that his input is invalid.
 
-      Use case ends.
+      Use case resumes at step 2.
       
-* 3a. The currently displayed list is empty.
+* 5a. The currently displayed list is empty.
 
-  * 3a1. NewAddressBook notifies the user that there is nothing to copy. Nothing is copied to the clipboard.
+  * 5a1. NewAddressBook notifies the user that there is nothing to copy. Nothing is copied to the clipboard.
 
       Use case ends.
 
-#### Use Case 04: Deleting a student, teacher, or meeting
+#### Use Case 04: Deleting a student or teacher
 
 **MSS**
-
-1.  User requests to delete a specific person at an index in the list.
-2.  User provides the index of the student, teacher, or meeting to delete.
-2.  NewAddressBook deletes the person
+1. User requests a list of students or teachers.
+2. NewAddressBook shows the requested list of students or teachers.
+3. User requests to delete a specific student or teacher at an index shown in the currently displayed list.
+4. NewAddressBook deletes the student or teacher
 
     Use case ends.
 
 **Extensions**
-* 1a. The given index is invalid.
+* 2a. The list is empty.
+    
+  Use case ends.
+* 3a. The given index is invalid.
 
-    * 1a1. NewAddressBook informs the user that index is invalid.
+    * 3a1. NewAddressBook informs the user that index is invalid.
 
-      Use case ends.
+      Use case resumes at step 1.
 
 #### Use Case 05: Editing a student or teacher
 
 **MSS**
-
-1. User requests to edit a specific person at an index in the list.
-2. The user provides the fields to edit, as well as the new values.
-3. NewAddressBook edits the person.
+1. User requests a list of students or teachers.
+2. NewAddressBook shows the requested list of students or teachers. 
+3. User requests to edit a specific student or teacher at an index shown in the currently displayed list.
+5. NewAddressBook edits the student or teacher.
 
     Use case ends.
 
 **Extensions**
-* 2a. The given index is invalid.
+* 2a. The list is empty.
 
-    * 2a1. NewAddressBook informs the user that index is invalid.
+    Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. NewAddressBook informs the user that index is invalid.
 
-      Use case ends.
+    Use case resumes at step 3.
+* 3b. The user input is invalid
+  * 3b1. NewAddressBook informs the user that the input is invalid.
+  
+    Use case resumes at step 3.
 
-* 3a. All new values provided are already possessed by the existing person.
+* 3c. All new values provided are already possessed by the existing student or teacher.
 
-    * 3a1. NewAddressBook informs the user that there is nothing is edited. No action is performed.
+    * 3c1. NewAddressBook informs the user that there is nothing to be edited. No action is performed.
 
-      Use case ends.
+      Use case resumes at step3.
 
 #### Use Case 06: Finding a student or teacher by name
 
 **MSS**
 
 1. User requests to find a specific student or teacher by name.
-2. User enters the name to find.
-3. NewAddressBook finds all matching students or teachers.
+2. NewAddressBook shows a list all students or teachers whose name matches the keyword(s) given by the user.
 
     Use case ends.
 
@@ -624,22 +646,22 @@ Extensions:
 
       Use case ends.
 
-#### Use Case 07: Filtering a student or teacher by involvement or tag
+#### Use Case 07: Filtering a student or teacher by involvement and/or tag
 
 **MSS**
 
-1. User requests to find a specific student or teacher by involvement or tag.
-2. User provides the involvement and tag values to search for.
-3. NewAddressBook finds all matching students or teachers.
+1. User requests to find a specific student or teacher by involvement and/or tag.
+2. User provides the involvement keyword(s) and/or tag keyword(s) to search for.
+3. NewAddressBook shows a list all matching students or teachers.
 
     Use case ends.
 
 **Extensions**
 * 2a. The tag values provided are invalid (ie. contain alphanumeric characters).
 
-    * 2a1. NewAddressBook tells the user that his input is invalid.
+    * 2a1. NewAddressBook tells the user that the input is invalid.
 
-      Use case ends.
+      Use case resumes at step 2.
 
 * 3a. No students/teachers match the name specified by the user.
 
@@ -653,37 +675,44 @@ Extensions:
 **MSS**
 
 1. User requests to list all students or teachers.
-2. NewAddressBook lists all students or teachers for the user.
+2. NewAddressBook shows a list of all students or teachers for the user.
 
     Use case ends.
 
 **Extensions**
-* 1a. The list of students or teachers is empty.
+* 2a. The list of students or teachers is empty.
 
-    * 1a1. NewAddressBook displays an empty list to the user.
+    * 2a1. NewAddressBook displays an empty list to the user.
 
       Use case ends.
 
 #### Use Case 09: Adding a medical history to a student
 
 **MSS**
-
-1. User requests to add a medical history for the student.
-2. User provides the index and relevant medical history for the student.
-3. NewAddressBook overrides the old medical history of the student with a new one.
+1. User requests a list of students.
+2. NewAddressBook shows the requested list of students. 
+3. User requests to add a medical history for a specific student.
+4. NewAddressBook overrides the old medical history of the student with the new value.
 
     Use case ends.
 
 **Extensions**
-* 2a. The given index is invalid.
+* 2a. THe list is empty.
 
-    * 2a1. NewAddressBook informs the user that the index is invalid.
+    Use case ends.
+* 3a. The given index is invalid.
 
-      Use case ends.
+    * 3a1. NewAddressBook informs the user that the index is invalid.
 
-* 2b. The user provides an empty string as the medical history.
+      Use case resumes at step 3.
+    
+* 3b. The new value provided is the same as the existing medical history possessed by the student.
+  * 3b1. NewAddressBook informs the user that the same medical history is already recorded for the student.
+    Use case resumes at step 3.
 
-    * 2b1. NewAddressBook overrides the medical history with an empty string.
+* 3c. The user provides an empty string as the medical history.
+
+    * 3c1. NewAddressBook overrides the medical history with an empty string.
 
       Use case ends.
 
@@ -692,28 +721,27 @@ Extensions:
 
 **MSS**
 
-1. User requests to show a medical history for the student.
-2. User provides the index of the student to show.
-3. NewAddressBook pops out a window to show the student's medical history.
+1. User requests to show a medical history for a specific student.
+2. NewAddressBook pops out a window to show the student's full medical history.
 
     Use case ends.
 
 **Extensions**
-* 2a. The given index is invalid.
+* 1a. The given index is invalid.
 
-    * 2a1. NewAddressBook shows informs the user that the index is invalid.
+    * 1a1. NewAddressBook shows informs the user that the index is invalid.
+
+      Use case resumes at step 1.
+
+* 2a. The window is already open.
+
+    * 2a1. The window is brought to the foreground.
 
       Use case ends.
 
-* 3a. The window is already open.
+* 2b. The student has no medical history.
 
-    * 3a1. The window is brought to the foreground.
-
-      Use case ends.
-
-* 3b. The student has no medical history.
-
-    * 3b1. The window displays the name of the student only, with no medical history field.
+    * 2b1. The window displays the name of the student only, with no medical history field.
 
       Use case ends.
 
@@ -733,7 +761,16 @@ Extensions:
 
       Use case ends.
 
-#### Use Case 12: Showing meetings
+#### Use Case 12: Quitting the application
+
+**MSS**
+
+1. User requests to quit the application.
+2. NewAddressBook quits.
+
+   Use case ends.
+
+#### Use Case 13: Showing meetings
 
 **MSS**
 
@@ -749,7 +786,43 @@ Extensions:
 
       Use case ends.
 
-#### Use Case 13: Undoing actions
+#### Use Case 14: Adding a meeting
+**MSS**
+
+1. User requests to show the meetings window (Use Case 13).
+2. User requests to add a new meeting.
+3. NewAddressBook adds the meeting and shows the list of all meetings.
+
+   Use case ends.
+
+**Extensions**
+* 2a. Input formats are invalid.
+  * 2a1. NewAddressBook informs the user that the input is invalid. 
+  
+     Use case resumes at step 2.
+
+* 2b. There is conflict with an existing meeting.
+  * 2b1. NewAddressBook informs the user that there is a conflict.
+    
+    Use case resumes at step 2.
+
+* 2c. Datetime provided is not in the future.
+  * 2c1. NewAddressBook informs the user that datetime must be in the future.
+
+    Use case resumes at step 2.
+
+#### Use Case 15: Quitting meetings window
+
+**Preconditions:** The meeting window is already open.
+
+**MSS**
+
+1. User requests to close the meeting window.
+2. NewAddressBook closes the meeting window.
+
+   Use case ends.
+
+#### Use Case 16: Undoing actions
 
 **MSS**
 
@@ -764,33 +837,18 @@ Extensions:
     * 2a1. NewAddressBook tells the user that they are already at the oldest change. No action is taken.
 
       Use case ends.
+    
 
-#### Use Case 14: Quitting meetings window
-
-**Preconditions:** The meeting window is already open.  
-
-**MSS**
-
-1. User requests to quit the meeting window from the meeting window.
-2. NewAddressBook exits the meeting window.
-
-    Use case ends.
-
-#### Use Case 15: Quitting the application
-
-**MSS**
-
-1. User requests to quit the application.
-2. NewAddressBook quits.
-
-    Use case ends.
 
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage. 
+3. Should be able to hold up to 1000 teachers without a noticeable sluggishness in performance for typical usage. 
+4. Should be able to hold up to 1000 meetings without a noticeable sluggishness in performance for typical usage.
+5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+6. Should work without requiring an installer.
 
 ### Glossary
 
@@ -1112,3 +1170,31 @@ This section deals with test cases that come with saving data.
   1. Quit the application and change the content inside `data/newaddressbook.json` to `fish fish fish`. Save and close the `json` file, and reopen the application. 
 
   2. Test case: the data of the application is cleared.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+The following describes some of the challenges faced when developing NewAddressBook:
+
+1. Refactoring existing code. <br>
+While AB3 deals with only one entity type (`Person`), NewAddressBook supports managing two different types of contacts, namely
+`Student` and `Teacher`. And given that each type of contact has its own set of attributes, we could not
+store them in a single collection and had to split them. Naturally, we had to split most of the commands
+to cater to each type of contacts so that when the user operates on one, the other is not affected. A huge
+amount of effort was required for this process.
+
+
+2. Meetings window. <br>
+Apart from managing contacts, NewAddressBook also allows users to keep track of upcoming meetings.
+There is thus a need to display a list of meetings to the user. Our final product has a separate window
+that displays the list of meetings, in addition to the existing students list and teachers list.
+Initially, we wanted to keep everything to one window. However,
+we realised that choosing this option would mean that we would need to fit all three lists
+(students list, teachers list and meetings list) into a single window, which would then require us 
+to reduce the display sizes of these lists. We feel that this is undesirable as this would restrict
+the amount of information the users can see. While we had another option, which was to display only
+one list and allow users to navigate between different lists, we did not consider this option as
+we want users to be able to view the lists at the same time when there is a need to. This leaves us
+with the last option, which is to create a second window for meetings. We also decided to allow users
+to enter meeting-specific commands from the meetings window instead of having to go back to the main 
+window. This required us to reimplement the parser in the `Logic` component to be able to identify
+the window that the command is being entered from.
