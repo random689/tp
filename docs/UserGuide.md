@@ -140,7 +140,7 @@ Action | Format | Window
   class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`.
   A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
 
-* **Currently displayed list**: for students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
+* **Currently displayed list**: For students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
 
 ## Features
 
