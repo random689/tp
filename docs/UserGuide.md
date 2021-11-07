@@ -265,7 +265,7 @@ only one will be displayed as they are considered the same.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out how `involvement` is intended to be used in the glossary.
+Check out how `INVOLVEMENT` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -486,14 +486,19 @@ only one will be displayed as they are considered the same.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out how `involvement` is intended to be used in the glossary.
+Check out how `INVOLVEMENT` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-NewAddressBook prevents the user from adding in duplicate teachers. Two teachers are the same if they have the same name and office table number. The check is being doing this way in case there are multiple tables with the same number (ie. perhaps it's a multi-floor office).
+NewAddressBook prevents the user from adding in duplicate teachers. Two teachers are the same if they have the same name and office table number. 
 However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" 
 as two different names as they have different casing. We will improve on this in future versions of NewAddressBook 
 to allow this duplicate check to be case-insensitive.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+NewAddressBook allows two teachers to have the same office table number in case the user wants to continue storing the
+contacts of a teacher who have resigned. This way, a new teacher who occupies the same table can be added.
 </div>
 
 Examples:

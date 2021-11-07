@@ -49,7 +49,7 @@ Given below are my contributions to the project.
 
 ### Documentation:
 * **User Guide:**
-  * Made various changes to improve readability, e.g. adding table of contents, separating into different sections. [#148](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/148)
+  * Made various changes to improve readability, e.g. adding table of contents, separating into different sections. [#129](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/129)
   * Added various UI images in the `User Interface (UI)` section. [#151](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/151)
 
 * **Developer's Guide**:
