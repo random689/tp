@@ -34,7 +34,7 @@ Given below are my contributions to the project.
   * What it does: automatically removes expired meetings whenever the user launches the app.
   * Justification: This feature improves the product significantly because it saves the user the trouble of having to enter commands to remove expired meetings.
 
-* **New Feature**: Added feature to clear all meetings.
+* **New Feature**: Added feature to clear all meetings. [#148](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/148)
   * What it does: allows user to remove all meetings in one go.
   * Justification: allows user to remove all meetings from the app with just one command in the event that they want to cancel all upcoming meetings.
 
