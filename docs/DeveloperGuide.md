@@ -337,9 +337,9 @@ The following sequence diagram shows how it works for a filterStudent command.
     * Pros: Easy to implement, saves time.
     * Cons: Only provides one level filter.
 
-* **Alternative 2:** Update model itself. For instance, have an `updateFilteredFilteredStudentList(predicate)` command etc...
+* **Alternative 2:** Make a copy of the list of students upon calling `model.updateFilteredStudentList(predicate)` and filter from the copied list till the user no longer needs to be filtered.
     * Pros: Allows for greater options in filtering, like nested filters etc.
-    * Cons: We must ensure that the implementation of each individual command are correct.
+    * Cons: Harder to implement as it requires constantly choosing which list to use.
 
 ###  Adding medical history of students
 
@@ -855,6 +855,7 @@ Extensions:
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Involvement**: A label attached to each student/teacher specifying the person's involvement with the User.
+* **Currently displayed list**: For students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
