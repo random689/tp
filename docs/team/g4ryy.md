@@ -54,8 +54,9 @@ Given below are my contributions to the project.
 
 * **Developer's Guide**:
   * Added implementation details of the `meet` command. [#100](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/100)
-  * Added more non-functional requirements.
-  * Added Effort appendix.
+  * Added more non-functional requirements. [#286](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/286)
+  * Added Effort appendix. [#286](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/286)
+  * Added user stories. [#286](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/286)
 
 ### Community:
   * PRs reviewed: [#74](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/74), [#93](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/93)
