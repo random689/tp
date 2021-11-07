@@ -3,7 +3,7 @@ layout: page
 title: Clive Ong's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: NewAddressBook
 
 NewAddressBook is a desktop address book application used by teachers to manage their student and teacher contacts, optimised for use via a Command Line Interface (CLI). The user interacts with it using a CLI, and
 it has a GUI created with JavaFX. It is written in Java.
