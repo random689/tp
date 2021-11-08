@@ -331,15 +331,17 @@ The following sequence diagram shows how it works for a filterStudent command.
 
 #### Design considerations
 
-**Aspect: How to implement Filter:**
+**Aspect: Functionality of filter:**
 
-* **Alternative 1 (current choice):** Adapts find command.
+* **Alternative 1 (current choice):** Filter performs an `AND` search by default.
     * Pros: Easy to implement, saves time.
-    * Cons: Only provides one level filter.
+    * Cons: The functionality of the filter command is limited.
 
-* **Alternative 2:** Make a copy of the list of students upon calling `model.updateFilteredStudentList(predicate)` and filter from the copied list till the user no longer needs the list to be filtered.
-    * Pros: Allows for greater options in filtering, like nested filters etc.
-    * Cons: Harder to implement as it requires constantly choosing which list to use.
+* **Alternative 2:** Filter allows the user to say which arguments to exclude. For example, the user could key in something like `filterStudent including t/tag1 t/tag2 excluding t/tag3` to include all students with both `tag1` and `tag2` but not `tag3`.
+    * Pros: Allows for greater options in filtering.
+    * Cons: Harder to implement as it requires more advanced parsing to be done.
+
+We went with Alternative 1 as we did not want to make the command too confusing for the user. Moreover, we did not want to make the format of this command too different from other commands since a parsing system was already implemented for us.
 
 ###  Adding medical history of students
 
@@ -1030,7 +1032,7 @@ This section tests the editing functionality of the application. We have to be e
       Expected: An error saying that the student already has same medical history should show up.
 
 ### Find and filter
-These commands test the finding/filter capabilities of the application.
+These commands test the finding/filtering capabilities of the application.
 
 1. Find matching conditions: checks to make sure `findStudent` matches the **whole** word
 
