@@ -360,7 +360,7 @@ the desired student based on the `index`, and proceeds to edit the `medicalHisto
 
 The following sequence diagram shows how the `medical` command works.
 
-![AddMedicalHistorySequenceDiagram](images/MedicalDiagram.png)
+![AddMedicalHistorySequenceDiagram](images/AddMedicalDiagram.png)
 
 #### Design considerations
 
@@ -856,7 +856,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy it into an empty folder.
 
    2. Double-click the jar file, or execute it with the `java -jar newaddressbook.jar` command.
-   
+
         Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
