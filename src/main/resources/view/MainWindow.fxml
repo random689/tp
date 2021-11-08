@@ -58,8 +58,11 @@
                         <children>
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
                               <font>
-                                 <Font name="System Bold" size="13.0" />
+                                 <Font name="Arial Bold" size="13.0" />
                               </font>
+                              <HBox.margin>
+                                 <Insets top="2.0" />
+                              </HBox.margin>
                            </Text>
                         </children>
                      </HBox>
@@ -74,8 +77,11 @@
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher">
                                  <font>
-                                    <Font name="System Bold" size="13.0" />
+                                    <Font name="Arial Bold" size="13.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets top="2.0" />
+                                 </HBox.margin>
                               </Text>
                            </children>
                         </HBox>
