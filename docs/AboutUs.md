@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [![Jung Hon GitHub](images/github-icon.png)](https://github.com/junghon3709)
 
-[[portfolio](team/yipjunghon.md)]
+[[portfolio](team/junghon3709.md)]
 
 * Role: Developer
 
@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [![Yong Chuan GitHub](images/github-icon.png)](https://github.com/random689)
 
-[[portfolio](team/ngyongchuan.md)]
+[[portfolio](team/random689.md)]
 
 * Role: Developer
 
