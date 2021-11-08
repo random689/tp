@@ -112,9 +112,6 @@ calls the `MeetingParser#parseCommand`. The rest of the implementation is simila
 
 ![Interactions Inside the Logic Component for the `deleteStudent 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -201,11 +198,6 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: 
 **Note:** In the event the user executes `undo` from the meeting window, `MeetingParser` will be used instead. 
 </div>
 
@@ -261,10 +253,6 @@ The following sequence diagram shows how the copy operation works for a copyStud
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: 
 **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
 </div>
 
@@ -290,9 +278,6 @@ We went with Alternative 1 because we felt that other than a person's phone, ema
 The mechanism of adding meetings is showcased in the sequence diagram below:
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
-</div>
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
@@ -319,6 +304,11 @@ We chose Alternative 1 because it makes the application easier to use and provid
 
 #### Implementation details
 
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The lifeline each diagram should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+</div>
+
+
 We discuss only the student case here, since it is the same for teachers.
 
 When a `filterStudent` is called, it uses the `filterStudentCommandParser` to parse the additional inputs given by the 
@@ -328,6 +318,10 @@ and `model.updateFilteredStudentList(predicate)`.
 The following sequence diagram shows how it works for a filterStudent command.
 
 ![FilterSequenceDiagram](images/FilterDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+</div>
 
 #### Design considerations
 
@@ -355,7 +349,7 @@ This works as the command is supported by the method in the `Model` interface, s
 `Model#updateFilteredStudentList()` methods.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** One cannot add medical history to teachers.
+:information_source: **Note:** The user cannot add medical history to teachers.
 </div>
 
 Given below is an example usage scenario and how the mechanism works.
@@ -422,10 +416,6 @@ The `clearTeacher` command works similarly.
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
 #### Design considerations
 
 **Aspect: How clear executes:**
@@ -465,8 +455,8 @@ We went with Alternative 1 because we felt it was better to give users the choic
 * Is reasonably comfortable using CLI apps.
 
 **Value proposition**: 
-* manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
-* keep track of upcoming school-related meetings with students/teachers/parents.
+* Manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
+* Keep track of upcoming school-related meetings with students/teachers/parents.
 
 
 ### User stories
