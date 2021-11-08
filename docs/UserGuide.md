@@ -359,7 +359,7 @@ Format:`filterStudent [INVOLVEMENT] [t/TAG]…​`
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterStudent one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
-* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement is `chess club` **and** has tags containing `member` will be returned.
+* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement has both `chess` and `club` in it **and** has tags containing `member` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
 
@@ -578,7 +578,7 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterTeacher one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
-* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
+* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement has both `chess` and `club` in it **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 
