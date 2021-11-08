@@ -35,6 +35,7 @@ Given below are my contributions to the project.
     in-depth analysis of design alternatives. The implementation too was challenging as it required changes to 
     existing commands like the `addStudent` command.
 
+<div style="page-break-after: always;"></div>
 * **New Feature**: Added `showMeeting` and `quitMeeting` functions
   * What it does: Allows the user to display the `meetingWindow` as a separate pop-up window, and allows the user to 
     quit the window to return to the `mainWindow`
