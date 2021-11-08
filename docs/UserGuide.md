@@ -421,12 +421,12 @@ How this command works:
 * Adds a medical history to an existing student if the student does not have any existing medical history.
 * Overwrites the medical history of a student if the student already has an existing medical history.
 * Removes the medical history of a student if the student already has an existing medical history and an empty `MEDICAL_HISTORY` is given.
-* The command does not allow the user to overwrite the current `medicalHistory` with an identical `medicalHistory`.
-  In other words, the new `medicalHistory` must be different from the existing `medicalHistory`.
+* The command does not allow the user to overwrite the current `MEDICAL_HISTORY` with an identical `MEDICAL_HISTORY`.
+  In other words, the new `MEDICAL_HISTORY` must be different from the existing `MEDICAL_HISTORY`.
 
 Examples:
-* `medical 1 m/ADHD` adds ADHD to the `medicalHistory` of student 1 in the displayed student list.
-* `medical 1 m/``removes the `medicalHistory` from student 1 in the displayed student list.
+* `medical 1 m/ADHD` adds ADHD to the `MEDICAL_HISTORY` of student 1 in the displayed student list.
+* `medical 1 m/``removes the `MEDICAL_HISTORY` from student 1 in the displayed student list.
 
 #### View the full medical history of a student : `showMedical`
 
