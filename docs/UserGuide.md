@@ -66,7 +66,7 @@ The following image shows the various aspects that describes a student:
 <div markdown="span" class="alert alert-primary">
 :information_source: The **Medical History** field will only appear if you have added medical history for that student. 
 Otherwise, it will not be shown. This allows the user to easily observe whether a student has any medical history.
-When the medical history is too long or cannot be shown fully, it will be truncated with "...". To view the full 
+When the medical history is too long or cannot be shown fully, it will be truncated to "...". To view the full 
 medical history, use the `showMedical` command. 
 </div>
 
@@ -164,7 +164,9 @@ Action | Format | Window
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `quitMeeting`, `list`, `exit` and 
+  `clearStudent`/`clearTeacher`) 
+  will be ignored.<br>
   e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`. For other commands that require parameters, however, the input format must be as stated as in the user guide.
 
 * For all prefixes (except the first), the user should ensure they are preceded by a space for the parser to recognise it as a new prefix, instead of a parameter in the previous prefix. For example, `editStudent 1 i/e/hello@example.com` parsers the parameter for `i/` as `e/hello@example.com`, and does not detect any input for the `e/` field. On the other hand, for the command `editStudent 1 i/ e/hello@example.com`, `i/` is detected to have no arguments, while `e/` has `hello@example.com` as an argument. As such, the second command will not succeed since the `i/` field is blank. 
@@ -247,7 +249,7 @@ Parameters:
   * `LEVEL` must be a digit from 1 to 5
   * `STRING` should not be blank and can only contain alphabets
   * `ALPHANUMERIC` is optional and can only contain alphanumeric characters
-  * For example, `4E1` is allowed but `41` is not allowed
+  * For example, `4E1` is allowed but `42` is not allowed
 
 * `INVOLVEMENT` The user's main involvement with the student
   * should not be blank
@@ -409,7 +411,7 @@ Shows a list of all students stored in NewAddressBook.
 Format: `listStudent`
 
 #### Modify medical history of a student : `medical`
-Format: `medical INDEX [m/MEDICAL_HISTORY]`
+Format: `medical INDEX m/MEDICAL_HISTORY`
 
 * Adds the medical history to the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed student list.
@@ -423,7 +425,8 @@ How this command works:
   In other words, the new `medicalHistory` must be different from the existing `medicalHistory`.
 
 Examples:
-* `medical 1 m/ADHD`
+* `medical 1 m/ADHD` adds ADHD to the `medicalHistory` of student 1 in the displayed student list.
+* `medical 1 m/``removes the `medicalHistory` from student 1 in the displayed student list.
 
 #### View the full medical history of a student : `showMedical`
 
@@ -690,7 +693,12 @@ Format: `clearMeeting`
 
 #### Show meetings window : `showMeeting`
 
-Pops out the meeting window.
+Pops out the meeting window. To be used from the Main Window.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This command does not work if called from the `meetingWindow`. This is because, if the user is typing a command from 
+the `meetingWindow`, then obviously the `meetingWindow` is already open.
+</div>
 
 Format: `showMeeting`
 
