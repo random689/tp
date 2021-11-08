@@ -418,7 +418,7 @@ The `clearTeacher` command works similarly.
 
 #### Design considerations
 
-**Aspect: How clear executes:**
+**Aspect: How `clearStudent/clearTeacher` executes:**
 
 * **Alternative 1 (current choice):**  Clears only the filtered list
     * Pros: Makes it more flexible for the user, so that they can selectively filter a list they want to delete.
@@ -426,7 +426,7 @@ The `clearTeacher` command works similarly.
     * Cons: Harder to implement and may have a performance issue in terms of memory usage.
 
 * **Alternative 2:** Clears the entire list
-    * Pros: Easier to maintain as it will be the same as the initial Clear Command
+    * Pros: Easier to maintain as it will be the same as `ClearCommand` in AB3.
     * Cons: No way for the user to selectively mass delete.
 
 We went with Alternative 1 because we felt it was better to give users the choice to specify which types of students they want cleared from their list. Besides, the objective of Alternative 2 can be achieved by simply executing `listStudent` and `clearStudent`.
@@ -939,7 +939,7 @@ This section tests the basic functionality of the application.
    1. Prerequisites: The list has at least one person.
 
    1. Test case: `deleteStudent 1`<br>
-      Expected: A first student is deleted.
+      Expected: The first student is deleted.
 
 2. Delete a student with an invalid index.
 
@@ -1020,7 +1020,11 @@ These commands test the finding/filtering capabilities of the application.
 
 1. Filter matching conditions: checks to make sure `findStudent` matches **part** of the word, and that the search is an **AND** search
 
-   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead` (these commands are not the same as above!)
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+  These commands are not the same as above!
+</div>
 
    1. Test case: `filterStudent class`<br>
       Expected: Both students should be listed.
