@@ -107,17 +107,17 @@ Action | Format | Window
 **Clear students** | `clearStudent` | Main
 **Copy a field from students** | `copyStudent c/FIELD_TO_COPY` | Main
 **Delete a student** | `deleteStudent INDEX` | Main
-**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS] [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​` | Main
+**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS] [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | `filterStudent [INVOLVEMENT] [t/TAG]…​` | Main
 **List all students** |`listStudent` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Show a student's full medical history** | `showMedical INDEX` | Main
-**Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
+**Add teacher** | `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
 **Clear teachers** | `clearTeacher` | Main
 **Delete a teacher** | `deleteTeacher INDEX` | Main
-**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​` | Main
+**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** |`filterTeacher [INVOLVEMENT] [t/TAG]…​` | Main
 **List all teachers** | `listTeacher` | Main
@@ -158,7 +158,7 @@ Action | Format | Window
   e.g. `[t/TAG]…​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * For most commands except `filterStudent` and `filterTeacher`, parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -303,7 +303,7 @@ Examples:
 
 Edits an existing student in NewAddressBook.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS]
+Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS]
 [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`.
@@ -416,7 +416,7 @@ Examples:
 
 Adds a teacher to NewAddressBook.
 
-Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER
+Format: `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER
 i/INVOLVEMENT [t/TAG]…​`
 
 Parameters:
@@ -524,7 +524,7 @@ Examples:
 
 Edits an existing teacher in NewAddressBook.
 
-Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​`
+Format: `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
