@@ -78,7 +78,7 @@ The following image shows the various aspects that describe a teacher:
 
 Meetings are not displayed in the main window. Instead, they are displayed in a separate window, called the **Meeting window**.
 
-The meeting window pops up when the user enters the `showMeeting` command in the main window's input box. Alternatively, the user may opt to click on the `Show Meetings` button in the menu bar.
+The meeting window pops up when the user enters the `showMeeting` command in the main window's input box. Alternatively, the user may opt to click on the `Show Meeting` button in the menu bar.
 
 The following image shows the meeting window:
 
