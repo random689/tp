@@ -57,9 +57,6 @@
                      <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="318.0" style="-fx-background-color: #DCDCDC;" styleClass="text-field">
                         <children>
                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
-                              <font>
-                                 <Font name="System Bold" size="13.0" />
-                              </font>
                            </Text>
                         </children>
                      </HBox>
@@ -73,9 +70,6 @@
                         <HBox alignment="TOP_CENTER" prefHeight="20.0" prefWidth="318.0" style="-fx-background-color: #DCDCDC;" styleClass="text-field">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teacher">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
                               </Text>
                            </children>
                         </HBox>

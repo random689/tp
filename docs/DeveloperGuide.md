@@ -22,8 +22,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103-T16-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at 
+se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,8 +36,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initialises the components in the correct sequence and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -46,7 +46,7 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the App's data in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -77,9 +77,9 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 ![Structure of the MeetingWindow UI Component](images/UiMeetingClassDiagram.png)
 
-The `MeetingWindow` in `MainWindow` is made up of parts as well e.g. `CommandBox`, `ResultDisplay`, `MeetingListPanel`. Which also inherit from abstract `UiPart` similar to the MainWindow
+The `MeetingWindow` is made up of parts as well e.g. `CommandBox`, `ResultDisplay`, `MeetingListPanel` which, similar to `MainWindow`, also inherits from the abstract `UiPart`.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -90,7 +90,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -112,9 +112,6 @@ calls the `MeetingParser#parseCommand`. The rest of the implementation is simila
 
 ![Interactions Inside the Logic Component for the `deleteStudent 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -124,7 +121,7 @@ How the parsing works (we describe only for `AddressBookParser`, the one for `Me
 * All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `DeleteStudentCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="550" />
 
@@ -135,20 +132,20 @@ The `Model` component,
 * stores the currently 'selected' `Student` and `Teacher` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Student>` and `ObservableList<Teacher>` respectively. It can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * a stack, `history`, to  keep track of address book histories. This is to facilitate the `undo` command.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 * As there is no feature to search meetings, there is no need to store a filtered meeting list.
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="700" height="600" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -159,6 +156,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The lifeline each diagram should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+</div>
 
 ### Undo feature
 
@@ -201,11 +203,6 @@ The following sequence diagram shows how the undo operation works:
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: 
 **Note:** In the event the user executes `undo` from the meeting window, `MeetingParser` will be used instead. 
 </div>
 
@@ -227,7 +224,7 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
   * Pros: Will use less memory (e.g. for `deleteStudent`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command is correct.
 
-We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
+We chose Alternative 1 because of the limited timespan of our project. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
 
 **Aspect: Behaviour of `undo` across the main window and meeting window:**
 
@@ -239,7 +236,7 @@ We chose Alternative 1 because of the limited timespan of our problem. Also, giv
   * Pros: It is less confusing for the user (as now if the `undo/undoMeeting` command is executed in a particular window, the change will be reflected in the same window).
   * Cons: Harder to implement.
 
-We eventually settled on Alternative 1 because our current implementation of the `AddressBook` class stores all the student, teacher and meeting lists together, and because we are using a stack to manage previous versions of our address book, it is more convient to push the entire address book onto the stack rather than creating a separate class to store meetings.
+We eventually settled on Alternative 1 because our current implementation of the `AddressBook` class stores all the student, teacher and meeting lists together, and because we are using a stack to manage previous versions of our address book, it is more convenient to push the entire address book onto the stack rather than creating a separate class to store meetings.
 
 ### Copy Command
 
@@ -251,7 +248,7 @@ As such, this command is supported by the method in the `Model` interface, namel
 Given below is an example usage scenario and how the copy mechanism behaves.
 
 Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
-will be initialized with all the students and teachers respectively from the loaded book data.
+will be initialised with all the students and teachers respectively from the loaded book data.
 
 Step 2. The user executes `copyStudent c/name` to copy all the names of the students that are currently shown in the GUI. The `copyStudent` command calls `Model#getFilteredStudentList`, loading the current list of filtered students, which in this case is all the students from the loaded book data. Afterwards, the `copyStudent` command calls its own `getCopyContent` method, which then calls `CopyCommand#getNameContent` since the user wants to copy all names of students,
 appending all the names of the students in the filtered student list to the user's clipboard.
@@ -259,10 +256,6 @@ appending all the names of the students in the filtered student list to the user
 The following sequence diagram shows how the copy operation works for a copyStudent command. The `copyTeacher` command works similarly, so we will only discuss `copyStudent` here. If the user specifies another field to be copied, such as `phone` or `email`, the command also works similarly, so we will not discuss them here.
 
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
@@ -281,7 +274,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
     * Pros: The user has more flexibility in which fields they want to copy.
     * Cons: The user has to precisely remember which fields a student or teacher has. For example, the user would have to remember that he/she can copy down the office table numbers for teachers, but not for students. Similarly, he/she would have to remember that the emergency contact number of students can be copied, but not for teachers.
 
-We went with Alternative 1 because we felt that other than a person's phone, email and name, there are very little use cases which would lead one to need to copy down another field. For example, unless it is for a very specific purpose, it is unlikely that the user would need to copy down office table numbers.
+We went with Alternative 1 because we felt that other than a person's phone, email and name, there are very few use cases which would lead one to need to copy down another field. For example, unless it is for a very specific purpose, it is unlikely that the user would need to copy down office table numbers.
 
 
 ### Adding meetings
@@ -290,9 +283,6 @@ We went with Alternative 1 because we felt that other than a person's phone, ema
 The mechanism of adding meetings is showcased in the sequence diagram below:
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
-</div>
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
@@ -313,7 +303,7 @@ This allows users to focus on the more recent upcoming meetings.
   * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed from NewAddressBook. Furthermore, users cannot schedule meetings 
   with persons that are not stored in NewAddressBook, e.g. parents.
 
-We chose alternative 1 because it makes the application easier to use and provides more flexibility. That way, users do not have to add in a contact into NewAddressBook in order to have a meeting with them.
+We chose Alternative 1 because it makes the application easier to use and provides more flexibility. That way, users do not have to add in a contact into NewAddressBook in order to have a meeting with them.
 
 ### Filter command
 
@@ -331,15 +321,17 @@ The following sequence diagram shows how it works for a filterStudent command.
 
 #### Design considerations
 
-**Aspect: How to implement Filter:**
+**Aspect: Functionality of filter:**
 
-* **Alternative 1 (current choice):** Adapts find command.
+* **Alternative 1 (current choice):** Filter performs an `AND` search by default.
     * Pros: Easy to implement, saves time.
-    * Cons: Only provides one level filter.
+    * Cons: The functionality of the filter command is limited.
 
-* **Alternative 2:** Make a copy of the list of students upon calling `model.updateFilteredStudentList(predicate)` and filter from the copied list till the user no longer needs the list to be filtered.
-    * Pros: Allows for greater options in filtering, like nested filters etc.
-    * Cons: Harder to implement as it requires constantly choosing which list to use.
+* **Alternative 2:** Filter allows the user to say which arguments to exclude. For example, the user could key in something like `filterStudent including t/tag1 t/tag2 excluding t/tag3` to include all students with both `tag1` and `tag2` but not `tag3`.
+    * Pros: Allows for greater options in filtering.
+    * Cons: Harder to implement as it requires more advanced parsing to be done.
+
+We went with Alternative 1 as we did not want to make the command too confusing for the user. Moreover, we did not want to make the format of this command too different from other commands since a parsing system was already implemented for us.
 
 ###  Adding medical history of students
 
@@ -353,7 +345,7 @@ This works as the command is supported by the method in the `Model` interface, s
 `Model#updateFilteredStudentList()` methods.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** One cannot add medical history to teachers.
+:information_source: **Note:** The user cannot add medical history to teachers.
 </div>
 
 Given below is an example usage scenario and how the mechanism works.
@@ -362,13 +354,13 @@ Step 1. The user launches the application for the first time. The `filteredStude
 initialised from the saved data.
 
 Step 2. The user types the command `medical INDEX m/MEDICAL_HISTORY` to add the `medicalHistory` to the desired `student`
-at `index`. The `medical` command calls Model#getFilteredStudentList to obtain the current list of students, then finds
+at `index`. The `medical` command calls `Model#getFilteredStudentList` to obtain the current list of students, then finds
 the desired student based on the `index`, and proceeds to edit the `medicalHistory` field of the student. Then the 
-Model#updateFilteredStudentList is called to show the updated list with the added `medicalHistory`.
+`Model#updateFilteredStudentList` is called to show the updated list with the added `medicalHistory`.
 
 The following sequence diagram shows how the `medical` command works.
 
-![AddMedicalHistorySequenceDiagram](images/MedicalDiagram.png)
+![AddMedicalHistorySequenceDiagram](images/AddMedicalDiagram.png)
 
 #### Design considerations
 
@@ -379,12 +371,14 @@ The following sequence diagram shows how the `medical` command works.
     * Cons: Slightly more complicated than forcing users to input a `medicalHistory` each time they add a student.
 
 * **Alternative 2:** Allow users to use the `editStudent` command to edit the `medicalHistory`
-    * Pros: Easier to implement
-    * Cons: Not as specific as using the `medical` command
+    * Pros: Easier to implement.
+    * Cons: Not as specific as using the `medical` command.
   
 * **Alternative 3:** Force users to input `medicalHistory` for each `student` they wish to add.
-    * Pros: Easier to implement
-    * Cons: Does not make sense as most students do not have notable `medicalHistory`
+    * Pros: Easier to implement.
+    * Cons: Does not make sense as most students do not have notable `medicalHistory`.
+
+We went with Alternative 1 because it is only a small subset of students that have medical conditions, and so it made sense not to force the user to input `medicalHistory` for each `student`. Further, we did not want users to accidentally edit a student's medical condition while editing a student, thus it made sense to create a new command for the specific use case of updating a medical history.
 
 ###  ClearStudent / ClearTeacher Command
 
@@ -402,12 +396,12 @@ namely the `Model#getFilteredStudentList` and `Model#getFilteredTeacherList`.
 Given below is an example usage and how the clear mechanism behaves.
 
 Step 1. The user launches the application for the first time. The current `filteredStudentList` and `filteredTeacherList`
-will be initialized with all the students and teachers respectively from the loaded book data.
+will be initialised with all the students and teachers respectively from the loaded book data.
 
 Step 2. The user executes `filterStudent math` to get all the students with the string `math` in their involvement.
 The filtered students will be stored in `Model#filteredStudent` and the list will be shown to the user.
 
-Step 3. The user executes `ClearStudent`to clear the current list of filtered students.
+Step 3. The user executes `ClearStudent` to clear the current list of filtered students.
 The `ClearStudent` command calls `Model#massDeleteStudents`, deleting the students in the current filtered list from
 both the `Model#filteredStudent` and `AddressBook#uniqueStudentList`.
 
@@ -418,13 +412,9 @@ The `clearTeacher` command works similarly.
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
 #### Design considerations
 
-**Aspect: How clear executes:**
+**Aspect: How `clearStudent/clearTeacher` executes:**
 
 * **Alternative 1 (current choice):**  Clears only the filtered list
     * Pros: Makes it more flexible for the user, so that they can selectively filter a list they want to delete.
@@ -432,8 +422,10 @@ The `clearTeacher` command works similarly.
     * Cons: Harder to implement and may have a performance issue in terms of memory usage.
 
 * **Alternative 2:** Clears the entire list
-    * Pros: Easier to maintain as it will be the same as the initial Clear Command
+    * Pros: Easier to maintain as it will be the same as `ClearCommand` in AB3.
     * Cons: No way for the user to selectively mass delete.
+
+We went with Alternative 1 because we felt it was better to give users the choice to specify which types of students they want cleared from their list. Besides, the objective of Alternative 2 can be achieved by simply executing `listStudent` and `clearStudent`.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -452,15 +444,15 @@ The `clearTeacher` command works similarly.
 
 **Target user profile**:
 
-* Singapore Secondary school teachers who need to manage many students/teachers, who might have different relationships with the teacher
-* Prefer desktop apps over other types
-* Can type fast
-* Prefer typing to mouse interactions
-* Is reasonably comfortable using CLI apps
+* Singapore Secondary school teachers who need to manage many students/teachers, who might have different relationships with the teacher.
+* Prefer desktop apps over other types.
+* Can type fast.
+* Prefer typing to mouse interactions.
+* Is reasonably comfortable using CLI apps.
 
 **Value proposition**: 
-* manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
-* keep track of upcoming school-related meetings with students/teachers/parents.
+* Manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
+* Keep track of upcoming school-related meetings with students/teachers/parents.
 
 
 ### User stories
@@ -479,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | teacher   | edit a specific attribute of a student / teacher              | edit their details quickly without deleting and re-adding that student all over again |
 | `* * *`  | teacher      | list all students / teachers contacts         | see the details of all my contacts easily |
 | `* * *`  | teacher | record and view the medical history of my students          | know which students needs special attention|
-| `* * *`      | teacher | add upcoming school-related meetings with parents/teachers/students         | keep track of these important meetings |
+| `* * *`      | teacher | add upcoming school-related meetings with parents / teachers / students         | keep track of these important meetings |
 | `* * *`      | teacher | delete a meeting          | remove it from the app in the event that the meeting is cancelled|
 | `* *`  | teacher with many students and colleagues               | copy fields from contacts stored in the app     | paste it into a communication app and contact them quickly |
 | `* *`  | teacher with many students and colleagues               | find a student / teacher by name          | locate details of persons without having to go through the entire list |
@@ -499,26 +491,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `NewAddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-#### List of use cases 
-1. [Adding a student/teacher](#use-case-01-adding-a-student-or-teacher)
-2. [Clearing student/teachers from the currently displayed list](#use-case-02-clearing-students-teachers)
-3. [Copy fields from students/teachers](#use-case-03-copying-fields-from-students-or-teachers)
-4. [Deleting students/teachers/meetings](#use-case-04-deleting-a-student-teacher-or-meeting)
-5. [Editing a student/teacher](#use-case-05-editing-a-student-or-teacher)
-6. [Finding a student/teacher by name](#use-case-06-finding-a-student-or-teacher-by-name)
-7. [Filtering a student/teacher by tag](#use-case-07-filtering-a-student-or-teacher-by-involvement-or-tag)
-8. [Listing all students/teachers](#use-case-08-listing-all-students-or-teachers)
-9. [Adding a medical history to a student](#use-case-09-adding-a-medical-history-to-a-student)
-10. [Showing the medical history of a student](#use-case-10-showing-the-medical-history-of-a-student)
-11. [Showing help](#use-case-11-showing-help)
-12. [Quitting the application](#use-case-12-quitting-the-application)
-13. [Showing meetings](#use-case-13-showing-meetings)
-14. [Adding a meeting](#use-case-14-adding-a-meeting)
-15. [Quitting meetings window](#use-case-15-quitting-meetings-window)
-16. [Undoing actions](#use-case-16-undoing-actions)
-
-
-
 #### Use Case 01: Adding a student or teacher
 
 **MSS**
@@ -532,7 +504,7 @@ Extensions:
 
   * 1a1. NewAddressBook notifies the user that some of their inputs are invalid. 
   
-      Use case resumes at step 2
+      Use case resumes at step 1.
 
 * 1b. The student or teacher already exists.
 
@@ -573,7 +545,7 @@ Extensions:
 
   * 4a1. NewAddressBook notifies the user that his input is invalid.
 
-      Use case resumes at step 2.
+      Use case resumes at step 4.
       
 * 5a. The currently displayed list is empty.
 
@@ -599,7 +571,7 @@ Extensions:
 
     * 3a1. NewAddressBook informs the user that index is invalid.
 
-      Use case resumes at step 1.
+      Use case resumes at step 3.
 
 #### Use Case 05: Editing a student or teacher
 
@@ -615,11 +587,15 @@ Extensions:
 * 2a. The list is empty.
 
     Use case ends.
+
 * 3a. The given index is invalid.
+
   * 3a1. NewAddressBook informs the user that index is invalid.
 
     Use case resumes at step 3.
-* 3b. The user input is invalid
+
+* 3b. The user input is invalid.
+
   * 3b1. NewAddressBook informs the user that the input is invalid.
   
     Use case resumes at step 3.
@@ -628,7 +604,7 @@ Extensions:
 
     * 3c1. NewAddressBook informs the user that there is nothing to be edited. No action is performed.
 
-      Use case resumes at step3.
+      Use case resumes at step 3.
 
 #### Use Case 06: Finding a student or teacher by name
 
@@ -640,7 +616,7 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. No students/teachers match the name specified by the user.
+* 2a. No students/teachers match the keywords specified by the user.
 
     * 2a1. NewAddressBook displays an empty list to the user.
 
@@ -657,13 +633,13 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. The tag values provided are invalid (ie. contain alphanumeric characters).
+* 2a. The tag values provided are invalid (ie. contain special characters).
 
     * 2a1. NewAddressBook tells the user that the input is invalid.
 
       Use case resumes at step 2.
 
-* 3a. No students/teachers match the name specified by the user.
+* 3a. No students/teachers match the keywords specified by the user.
 
     * 3a1. NewAddressBook displays an empty list to the user.
 
@@ -697,7 +673,7 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. THe list is empty.
+* 2a. The list is empty.
 
     Use case ends.
 * 3a. The given index is invalid.
@@ -707,12 +683,14 @@ Extensions:
       Use case resumes at step 3.
     
 * 3b. The new value provided is the same as the existing medical history possessed by the student.
+
   * 3b1. NewAddressBook informs the user that the same medical history is already recorded for the student.
-    Use case resumes at step 3.
+
+    Use case ends.
 
 * 3c. The user provides an empty string as the medical history.
 
-    * 3c1. NewAddressBook overrides the medical history with an empty string.
+    * 3c1. NewAddressBook removes the medical history of the student.
 
       Use case ends.
 
@@ -729,7 +707,7 @@ Extensions:
 **Extensions**
 * 1a. The given index is invalid.
 
-    * 1a1. NewAddressBook shows informs the user that the index is invalid.
+    * 1a1. NewAddressBook informs the user that the index is invalid.
 
       Use case resumes at step 1.
 
@@ -797,16 +775,19 @@ Extensions:
 
 **Extensions**
 * 2a. Input formats are invalid.
+
   * 2a1. NewAddressBook informs the user that the input is invalid. 
   
      Use case resumes at step 2.
 
-* 2b. There is conflict with an existing meeting.
+* 2b. There is a conflict with an existing meeting.
+
   * 2b1. NewAddressBook informs the user that there is a conflict.
     
     Use case resumes at step 2.
 
 * 2c. Datetime provided is not in the future.
+
   * 2c1. NewAddressBook informs the user that datetime must be in the future.
 
     Use case resumes at step 2.
@@ -855,7 +836,7 @@ Extensions:
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Involvement**: A label attached to each student/teacher specifying the person's involvement with the User.
-* **Currently displayed list**: For students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
+* **Currently displayed list**: For students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command). When we say "currently displayed list" we mean the list that is currently shown to the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -872,9 +853,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy it into an empty folder
+   1. Download the jar file and copy it into an empty folder.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file, or execute it with the `java -jar newaddressbook.jar` command.
+
+        Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -954,7 +937,7 @@ This section tests the basic functionality of the application.
    1. Prerequisites: The list has at least one person.
 
    1. Test case: `deleteStudent 1`<br>
-      Expected: A first student is deleted.
+      Expected: The first student is deleted.
 
 2. Delete a student with an invalid index.
 
@@ -1018,7 +1001,7 @@ This section tests the editing functionality of the application. We have to be e
       Expected: An error saying that the student already has same medical history should show up.
 
 ### Find and filter
-These commands test the finding/filter capabilities of the application.
+These commands test the finding/filtering capabilities of the application.
 
 1. Find matching conditions: checks to make sure `findStudent` matches the **whole** word
 
@@ -1035,7 +1018,11 @@ These commands test the finding/filter capabilities of the application.
 
 1. Filter matching conditions: checks to make sure `findStudent` matches **part** of the word, and that the search is an **AND** search
 
-   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead` (these commands are not the same as above!)
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+  These commands are not the same as above!
+</div>
 
    1. Test case: `filterStudent class`<br>
       Expected: Both students should be listed.

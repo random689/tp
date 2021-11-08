@@ -14,7 +14,7 @@ NewAddressBook is a **desktop app built for Singapore secondary school teachers*
 
 1. Ensure you have Java `11` or above installed on your computer.
 
-2. Download the latest `NewAddressBook.jar` from [here](https://github.com/AY2122S1-CS2103-T16-3/tp/releases).
+2. Download the latest `newaddressbook.jar` from [here](https://github.com/AY2122S1-CS2103-T16-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for NewAddressBook.
 
@@ -59,19 +59,18 @@ The following shows the different parts of NewAddressBook's main application win
 * The **Data Source** displays information about where the app saves data.
 
 #### Individual Student Display
-The following image shows the various aspects that describes a student:
+The following image shows the various aspects that describe a student:
 
 ![StudentUi](images/StudentUi.png)
 
 <div markdown="span" class="alert alert-primary">
 :information_source: The **Medical History** field will only appear if you have added medical history for that student. 
-Otherwise, it will not be shown. This allows the user to easily observe whether a student has any medical history.
-When the medical history is too long or cannot be shown fully, it will be truncated with "...". To view the full 
-medical history, use the `showMedical` command. 
+Otherwise, it will not be shown. This allows the user to observe whether a student has any medical history easily.
+When the medical history is too long or cannot be shown fully, it will be truncated to "...". To view the full medical history, use the `showMedical` command. 
 </div>
 
 #### Individual Teacher Display
-The following image shows the various aspects that describes a teacher:
+The following image shows the various aspects that describe a teacher:
 
 ![TeacherUi](images/TeacherUi.png)
 
@@ -79,7 +78,7 @@ The following image shows the various aspects that describes a teacher:
 
 Meetings are not displayed in the main window. Instead, they are displayed in a separate window, called the **Meeting window**.
 
-The meeting window pops up when the user enters the `showMeeting` command in the main window's input box. Alternatively, the user may opt to click on the `Show Meetings` button in the menu bar.
+The meeting window pops up when the user enters the `showMeeting` command in the main window's input box. Alternatively, the user may opt to click on the `Show Meeting` button in the menu bar.
 
 The following image shows the meeting window:
 
@@ -89,7 +88,7 @@ The meeting window has its own input box, result box, and a list displaying all 
 
 #### Individual Meeting Display
 
-The various fields that describes a meeting are as follows:
+The various fields that describe a meeting are as follows:
 
 ![MeetingUi](images/MeetingUi.png)
 
@@ -108,17 +107,17 @@ Action | Format | Window
 **Clear students** | `clearStudent` | Main
 **Copy a field from students** | `copyStudent c/FIELD_TO_COPY` | Main
 **Delete a student** | `deleteStudent INDEX` | Main
-**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS] [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​` | Main
+**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS] [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | `filterStudent [INVOLVEMENT] [t/TAG]…​` | Main
 **List all students** |`listStudent` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Show a student's full medical history** | `showMedical INDEX` | Main
-**Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
+**Add teacher** | `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
 **Clear teachers** | `clearTeacher` | Main
 **Delete a teacher** | `deleteTeacher INDEX` | Main
-**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​` | Main
+**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** |`filterTeacher [INVOLVEMENT] [t/TAG]…​` | Main
 **List all teachers** | `listTeacher` | Main
@@ -140,7 +139,7 @@ Action | Format | Window
   class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`.
   A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
 
-* **Currently displayed list**: For students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
+* **Currently displayed list**: For students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command). When we say "currently displayed list" we mean the list that is currently shown to the user.
 
 ## Features
 
@@ -150,7 +149,7 @@ Action | Format | Window
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `student` command, `NAME` under `n/NAME` represents the student's name that you should provide.
-  For instance, if the student's name is "John Doe", then you should input `n/John Doe` in the `student` command.
+  For instance, if the student's name is "John Doe", you should input `n/John Doe` in the `student` command.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -159,13 +158,15 @@ Action | Format | Window
   e.g. `[t/TAG]…​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * For most commands except `filterStudent` and `filterTeacher`, parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`. For other commands that require parameters, however, the input format must be as stated as in the user guide.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `quitMeeting`, `list`, `exit` and 
+  `clearStudent`/`clearTeacher`) 
+  will be ignored.<br>
+  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`. For other commands that require parameters, the input format must be as stated in the user guide.
 
 * For all prefixes (except the first), the user should ensure they are preceded by a space for the parser to recognise it as a new prefix, instead of a parameter in the previous prefix. For example, `editStudent 1 i/e/hello@example.com` parsers the parameter for `i/` as `e/hello@example.com`, and does not detect any input for the `e/` field. On the other hand, for the command `editStudent 1 i/ e/hello@example.com`, `i/` is detected to have no arguments, while `e/` has `hello@example.com` as an argument. As such, the second command will not succeed since the `i/` field is blank. 
 
@@ -176,40 +177,6 @@ Action | Format | Window
 </div>
 
 The commands offered can be roughly split into 4 categories: those involving students, teachers, meetings, and general commands.
-
-1. [Managing Student Contacts](#managing-student-contacts)
-- [Add a student](#add-a-student--student)
-- [Clear student contacts](#clear-student-contacts--clearstudent)
-- [Copying fields from students](#copying-fields-from-students--copystudent)
-- [Delete a student](#delete-a-student--deletestudent)
-- [Edit a student](#edit-a-student--editstudent)
-- [Find students by name](#find-students-by-name--findstudent)
-- [Filter students](#filter-students--filterstudent)
-- [List all students](#list-all-students--liststudent)
-- [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
-- [View the full medical history of a student](#view-the-full-medical-history-of-a-student--showmedical)
-
-2. [Managing Teacher Contacts](#managing-student-contacts)
-- [Add a teacher](#add-a-teacher--teacher)
-- [Clear teacher contacts](#clear-teacher-contacts--clearteacher)
-- [Copying fields from teachers](#copying-fields-from-teachers--copyteacher)
-- [Delete a teacher](#delete-a-teacher--deleteteacher)
-- [Edit a teacher](#edit-a-teacher--editteacher)
-- [Find teachers by name](#find-teachers-by-name--findteacher)
-- [Filter teachers](#filter-teachers--filterteacher)
-- [List all teachers](#list-all-teachers--listteacher)
-
-3. [Managing Meetings](#managing-meetings)
-- [Add a meeting](#add-a-meeting--meet)
-- [Delete a meeting](#delete-a-meeting--deletemeeting)
-- [Clear all meetings](#clear-meetings--clearmeeting)
-- [Show meetings window](#show-meetings-window--showmeeting)
-- [Quit meetings window](#quit-meetings-window--quitmeeting)
-
-4. [General](#general)
-- [Exiting the program](#exiting-the-program--exit)
-- [Undo the latest change](#undo-the-latest-change--undo)
-- [Viewing help](#viewing-help--help)
 
 ### Managing Student Contacts
 
@@ -247,7 +214,7 @@ Parameters:
   * `LEVEL` must be a digit from 1 to 5
   * `STRING` should not be blank and can only contain alphabets
   * `ALPHANUMERIC` is optional and can only contain alphanumeric characters
-  * For example, `4E1` is allowed but `41` is not allowed
+  * For example, `4E1` is allowed but `42` is not allowed
 
 * `INVOLVEMENT` The user's main involvement with the student
   * should not be blank
@@ -336,7 +303,7 @@ Examples:
 
 Edits an existing student in NewAddressBook.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS]
+Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS]
 [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`.
@@ -392,7 +359,7 @@ Format:`filterStudent [INVOLVEMENT] [t/TAG]…​`
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterStudent one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
-* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement is `chess club` **and** has tags containing `member` will be returned.
+* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement has both `chess` and `club` in it **and** has tags containing `member` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
 
@@ -409,7 +376,7 @@ Shows a list of all students stored in NewAddressBook.
 Format: `listStudent`
 
 #### Modify medical history of a student : `medical`
-Format: `medical INDEX [m/MEDICAL_HISTORY]`
+Format: `medical INDEX m/MEDICAL_HISTORY`
 
 * Adds the medical history to the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed student list.
@@ -419,11 +386,12 @@ How this command works:
 * Adds a medical history to an existing student if the student does not have any existing medical history.
 * Overwrites the medical history of a student if the student already has an existing medical history.
 * Removes the medical history of a student if the student already has an existing medical history and an empty `MEDICAL_HISTORY` is given.
-* The command does not allow the user to overwrite the current `medicalHistory` with an identical `medicalHistory`.
-  In other words, the new `medicalHistory` must be different from the existing `medicalHistory`.
+* The command does not allow the user to overwrite the current `MEDICAL_HISTORY` with an identical `MEDICAL_HISTORY`.
+  In other words, the new `MEDICAL_HISTORY` must be different from the existing `MEDICAL_HISTORY`.
 
 Examples:
-* `medical 1 m/ADHD`
+* `medical 1 m/ADHD` adds ADHD to the `MEDICAL_HISTORY` of student 1 in the displayed student list.
+* `medical 1 m/` removes the `MEDICAL_HISTORY` from student 1 in the displayed student list.
 
 #### View the full medical history of a student : `showMedical`
 
@@ -448,7 +416,7 @@ Examples:
 
 Adds a teacher to NewAddressBook.
 
-Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER
+Format: `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER
 i/INVOLVEMENT [t/TAG]…​`
 
 Parameters:
@@ -497,8 +465,8 @@ to allow this duplicate check to be case-insensitive.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-NewAddressBook allows two teachers to have the same office table number in case the user wants to continue storing the
-contacts of a teacher who have resigned. This way, a new teacher who occupies the same table can be added.
+NewAddressBook allows two teachers to have the same office table number if the user wants to continue storing the
+contacts of a teacher who has resigned. This way, a new teacher who occupies the same table can be added.
 </div>
 
 Examples:
@@ -556,7 +524,7 @@ Examples:
 
 Edits an existing teacher in NewAddressBook.
 
-Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​`
+Format: `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
@@ -610,7 +578,7 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterTeacher one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
-* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
+* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement has both `chess` and `club` in it **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 
@@ -692,6 +660,11 @@ Format: `clearMeeting`
 
 Pops out the meeting window.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+This command does not work if called from the meeting window. This is because, if the user is typing a command from 
+the meeting window, then obviously the meeting window is already open.
+</div>
+
 Format: `showMeeting`
 
 #### Quit meetings window : `quitMeeting`
@@ -752,7 +725,7 @@ properly, please manually remove the data file and launch the app again.
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NewAddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
