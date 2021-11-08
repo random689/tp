@@ -178,40 +178,6 @@ Action | Format | Window
 
 The commands offered can be roughly split into 4 categories: those involving students, teachers, meetings, and general commands.
 
-1. [Managing Student Contacts](#managing-student-contacts)
-- [Add a student](#add-a-student--student)
-- [Clear student contacts](#clear-student-contacts--clearstudent)
-- [Copying fields from students](#copying-fields-from-students--copystudent)
-- [Delete a student](#delete-a-student--deletestudent)
-- [Edit a student](#edit-a-student--editstudent)
-- [Find students by name](#find-students-by-name--findstudent)
-- [Filter students](#filter-students--filterstudent)
-- [List all students](#list-all-students--liststudent)
-- [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
-- [View the full medical history of a student](#view-the-full-medical-history-of-a-student--showmedical)
-
-2. [Managing Teacher Contacts](#managing-student-contacts)
-- [Add a teacher](#add-a-teacher--teacher)
-- [Clear teacher contacts](#clear-teacher-contacts--clearteacher)
-- [Copying fields from teachers](#copying-fields-from-teachers--copyteacher)
-- [Delete a teacher](#delete-a-teacher--deleteteacher)
-- [Edit a teacher](#edit-a-teacher--editteacher)
-- [Find teachers by name](#find-teachers-by-name--findteacher)
-- [Filter teachers](#filter-teachers--filterteacher)
-- [List all teachers](#list-all-teachers--listteacher)
-
-3. [Managing Meetings](#managing-meetings)
-- [Add a meeting](#add-a-meeting--meet)
-- [Delete a meeting](#delete-a-meeting--deletemeeting)
-- [Clear all meetings](#clear-meetings--clearmeeting)
-- [Show meetings window](#show-meetings-window--showmeeting)
-- [Quit meetings window](#quit-meetings-window--quitmeeting)
-
-4. [General](#general)
-- [Exiting the program](#exiting-the-program--exit)
-- [Undo the latest change](#undo-the-latest-change--undo)
-- [Viewing help](#viewing-help--help)
-
 ### Managing Student Contacts
 
 #### Add a student : `student`

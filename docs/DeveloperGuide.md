@@ -505,26 +505,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `NewAddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-#### List of use cases 
-1. [Adding a student/teacher](#use-case-01-adding-a-student-or-teacher)
-2. [Clearing student/teachers from the currently displayed list](#use-case-02-clearing-students-teachers)
-3. [Copy fields from students/teachers](#use-case-03-copying-fields-from-students-or-teachers)
-4. [Deleting students/teachers/meetings](#use-case-04-deleting-a-student-teacher-or-meeting)
-5. [Editing a student/teacher](#use-case-05-editing-a-student-or-teacher)
-6. [Finding a student/teacher by name](#use-case-06-finding-a-student-or-teacher-by-name)
-7. [Filtering a student/teacher by tag](#use-case-07-filtering-a-student-or-teacher-by-involvement-or-tag)
-8. [Listing all students/teachers](#use-case-08-listing-all-students-or-teachers)
-9. [Adding a medical history to a student](#use-case-09-adding-a-medical-history-to-a-student)
-10. [Showing the medical history of a student](#use-case-10-showing-the-medical-history-of-a-student)
-11. [Showing help](#use-case-11-showing-help)
-12. [Quitting the application](#use-case-12-quitting-the-application)
-13. [Showing meetings](#use-case-13-showing-meetings)
-14. [Adding a meeting](#use-case-14-adding-a-meeting)
-15. [Quitting meetings window](#use-case-15-quitting-meetings-window)
-16. [Undoing actions](#use-case-16-undoing-actions)
-
-
-
 #### Use Case 01: Adding a student or teacher
 
 **MSS**
