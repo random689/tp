@@ -65,7 +65,7 @@ The following image shows the various aspects that describe a student:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: The **Medical History** field will only appear if you have added medical history for that student. 
-Otherwise, it will not be shown. This allows the user to easily observe whether a student has any medical history.
+Otherwise, it will not be shown. This allows the user to observe whether a student has any medical history easily.
 When the medical history is too long or cannot be shown fully, it will be truncated to "...". To view the full medical history, use the `showMedical` command. 
 </div>
 
@@ -166,7 +166,7 @@ Action | Format | Window
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `quitMeeting`, `list`, `exit` and 
   `clearStudent`/`clearTeacher`) 
   will be ignored.<br>
-  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`. For other commands that require parameters, however, the input format must be as stated as in the user guide.
+  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`. For other commands that require parameters, the input format must be as stated in the user guide.
 
 * For all prefixes (except the first), the user should ensure they are preceded by a space for the parser to recognise it as a new prefix, instead of a parameter in the previous prefix. For example, `editStudent 1 i/e/hello@example.com` parsers the parameter for `i/` as `e/hello@example.com`, and does not detect any input for the `e/` field. On the other hand, for the command `editStudent 1 i/ e/hello@example.com`, `i/` is detected to have no arguments, while `e/` has `hello@example.com` as an argument. As such, the second command will not succeed since the `i/` field is blank. 
 
