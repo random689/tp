@@ -59,19 +59,18 @@ The following shows the different parts of NewAddressBook's main application win
 * The **Data Source** displays information about where the app saves data.
 
 #### Individual Student Display
-The following image shows the various aspects that describes a student:
+The following image shows the various aspects that describe a student:
 
 ![StudentUi](images/StudentUi.png)
 
 <div markdown="span" class="alert alert-primary">
 :information_source: The **Medical History** field will only appear if you have added medical history for that student. 
 Otherwise, it will not be shown. This allows the user to easily observe whether a student has any medical history.
-When the medical history is too long or cannot be shown fully, it will be truncated to "...". To view the full 
-medical history, use the `showMedical` command. 
+When the medical history is too long or cannot be shown fully, it will be truncated to "...". To view the full medical history, use the `showMedical` command. 
 </div>
 
 #### Individual Teacher Display
-The following image shows the various aspects that describes a teacher:
+The following image shows the various aspects that describe a teacher:
 
 ![TeacherUi](images/TeacherUi.png)
 
@@ -89,7 +88,7 @@ The meeting window has its own input box, result box, and a list displaying all 
 
 #### Individual Meeting Display
 
-The various fields that describes a meeting are as follows:
+The various fields that describe a meeting are as follows:
 
 ![MeetingUi](images/MeetingUi.png)
 
@@ -150,7 +149,7 @@ Action | Format | Window
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `student` command, `NAME` under `n/NAME` represents the student's name that you should provide.
-  For instance, if the student's name is "John Doe", then you should input `n/John Doe` in the `student` command.
+  For instance, if the student's name is "John Doe", you should input `n/John Doe` in the `student` command.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -500,8 +499,8 @@ to allow this duplicate check to be case-insensitive.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-NewAddressBook allows two teachers to have the same office table number in case the user wants to continue storing the
-contacts of a teacher who have resigned. This way, a new teacher who occupies the same table can be added.
+NewAddressBook allows two teachers to have the same office table number if the user wants to continue storing the
+contacts of a teacher who has resigned. This way, a new teacher who occupies the same table can be added.
 </div>
 
 Examples:
