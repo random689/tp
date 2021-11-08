@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="1000.0" onCloseRequest="#handleExit" title="NewAddressBook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="1100.0" onCloseRequest="#handleExit" title="NewAddressBook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/new_address_book.png" />
   </icons>
