@@ -12,7 +12,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("clearStudent")
+[-> LogicManager : execute("carp")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand("clearStudent")
