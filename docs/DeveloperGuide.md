@@ -508,7 +508,7 @@ Extensions:
 
   * 1a1. NewAddressBook notifies the user that some of their inputs are invalid. 
   
-      Use case resumes at step 2
+      Use case resumes at step 1.
 
 * 1b. The student or teacher already exists.
 
@@ -549,7 +549,7 @@ Extensions:
 
   * 4a1. NewAddressBook notifies the user that his input is invalid.
 
-      Use case resumes at step 2.
+      Use case resumes at step 4.
       
 * 5a. The currently displayed list is empty.
 
@@ -575,7 +575,7 @@ Extensions:
 
     * 3a1. NewAddressBook informs the user that index is invalid.
 
-      Use case resumes at step 1.
+      Use case resumes at step 3.
 
 #### Use Case 05: Editing a student or teacher
 
@@ -597,6 +597,7 @@ Extensions:
   * 3a1. NewAddressBook informs the user that index is invalid.
 
     Use case resumes at step 3.
+
 * 3b. The user input is invalid.
 
   * 3b1. NewAddressBook informs the user that the input is invalid.
@@ -607,7 +608,7 @@ Extensions:
 
     * 3c1. NewAddressBook informs the user that there is nothing to be edited. No action is performed.
 
-      Use case resumes at step3.
+      Use case resumes at step 3.
 
 #### Use Case 06: Finding a student or teacher by name
 
@@ -619,7 +620,7 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. No students/teachers match the name specified by the user.
+* 2a. No students/teachers match the keywords specified by the user.
 
     * 2a1. NewAddressBook displays an empty list to the user.
 
@@ -636,13 +637,13 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. The tag values provided are invalid (ie. contain alphanumeric characters).
+* 2a. The tag values provided are invalid (ie. contain special characters).
 
     * 2a1. NewAddressBook tells the user that the input is invalid.
 
       Use case resumes at step 2.
 
-* 3a. No students/teachers match the name specified by the user.
+* 3a. No students/teachers match the keywords specified by the user.
 
     * 3a1. NewAddressBook displays an empty list to the user.
 
@@ -676,7 +677,7 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. THe list is empty.
+* 2a. The list is empty.
 
     Use case ends.
 * 3a. The given index is invalid.
@@ -689,11 +690,11 @@ Extensions:
 
   * 3b1. NewAddressBook informs the user that the same medical history is already recorded for the student.
 
-    Use case resumes at step 3.
+    Use case ends.
 
 * 3c. The user provides an empty string as the medical history.
 
-    * 3c1. NewAddressBook overrides the medical history with an empty string.
+    * 3c1. NewAddressBook removes the medical history of the student.
 
       Use case ends.
 

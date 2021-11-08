@@ -24,7 +24,7 @@ activate MeetCommandParser
 MeetCommandParser --> MeetingParser
 deactivate MeetCommandParser
 
-MeetingParser -> MeetCommandParser : parse("d/2040-12-12 12:12 ...")
+MeetingParser -> MeetCommandParser : parse(arguments)
 activate MeetCommandParser
 
 create Meeting

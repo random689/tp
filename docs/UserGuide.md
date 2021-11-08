@@ -391,7 +391,7 @@ How this command works:
 
 Examples:
 * `medical 1 m/ADHD` adds ADHD to the `MEDICAL_HISTORY` of student 1 in the displayed student list.
-* `medical 1 m/``removes the `MEDICAL_HISTORY` from student 1 in the displayed student list.
+* `medical 1 m/` removes the `MEDICAL_HISTORY` from student 1 in the displayed student list.
 
 #### View the full medical history of a student : `showMedical`
 
