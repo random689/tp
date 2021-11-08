@@ -107,17 +107,17 @@ Action | Format | Window
 **Clear students** | `clearStudent` | Main
 **Copy a field from students** | `copyStudent c/FIELD_TO_COPY` | Main
 **Delete a student** | `deleteStudent INDEX` | Main
-**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS] [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​` | Main
+**Edit a student** | `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS] [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​` | Main
 **Find a student by name** | `findStudent KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a student** | `filterStudent [INVOLVEMENT] [t/TAG]…​` | Main
 **List all students** |`listStudent` | Main
 **Record a student's medical history** | `medical INDEX m/MEDICAL_HISTORY` | Main
 **Show a student's full medical history** | `showMedical INDEX` | Main
-**Add teacher** | `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
+**Add teacher** | `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER i/INVOLVEMENT [t/TAG]…​` | Main
 **Copy a field from teachers** | `copyTeacher c/FIELD_TO_COPY` | Main
 **Clear teachers** | `clearTeacher` | Main
 **Delete a teacher** | `deleteTeacher INDEX` | Main
-**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​` | Main
+**Edit a teacher** | `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​` | Main
 **Find a teacher by name** | `findTeacher KEYWORD [MORE_KEYWORDS]` | Main
 **Filter a teacher** |`filterTeacher [INVOLVEMENT] [t/TAG]…​` | Main
 **List all teachers** | `listTeacher` | Main
@@ -158,7 +158,7 @@ Action | Format | Window
   e.g. `[t/TAG]…​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * For most commands except `filterStudent` and `filterTeacher`, parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -177,40 +177,6 @@ Action | Format | Window
 </div>
 
 The commands offered can be roughly split into 4 categories: those involving students, teachers, meetings, and general commands.
-
-1. [Managing Student Contacts](#managing-student-contacts)
-- [Add a student](#add-a-student--student)
-- [Clear student contacts](#clear-student-contacts--clearstudent)
-- [Copying fields from students](#copying-fields-from-students--copystudent)
-- [Delete a student](#delete-a-student--deletestudent)
-- [Edit a student](#edit-a-student--editstudent)
-- [Find students by name](#find-students-by-name--findstudent)
-- [Filter students](#filter-students--filterstudent)
-- [List all students](#list-all-students--liststudent)
-- [Modify medical history of a student](#modify-medical-history-of-a-student--medical)
-- [View the full medical history of a student](#view-the-full-medical-history-of-a-student--showmedical)
-
-2. [Managing Teacher Contacts](#managing-student-contacts)
-- [Add a teacher](#add-a-teacher--teacher)
-- [Clear teacher contacts](#clear-teacher-contacts--clearteacher)
-- [Copying fields from teachers](#copying-fields-from-teachers--copyteacher)
-- [Delete a teacher](#delete-a-teacher--deleteteacher)
-- [Edit a teacher](#edit-a-teacher--editteacher)
-- [Find teachers by name](#find-teachers-by-name--findteacher)
-- [Filter teachers](#filter-teachers--filterteacher)
-- [List all teachers](#list-all-teachers--listteacher)
-
-3. [Managing Meetings](#managing-meetings)
-- [Add a meeting](#add-a-meeting--meet)
-- [Delete a meeting](#delete-a-meeting--deletemeeting)
-- [Clear all meetings](#clear-meetings--clearmeeting)
-- [Show meetings window](#show-meetings-window--showmeeting)
-- [Quit meetings window](#quit-meetings-window--quitmeeting)
-
-4. [General](#general)
-- [Exiting the program](#exiting-the-program--exit)
-- [Undo the latest change](#undo-the-latest-change--undo)
-- [Viewing help](#viewing-help--help)
 
 ### Managing Student Contacts
 
@@ -337,7 +303,7 @@ Examples:
 
 Edits an existing student in NewAddressBook.
 
-Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS]
+Format: `editStudent INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [a/ADDRESS]
 [f/FORM_CLASS] [em/EMERGENCY_CONTACT] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`.
@@ -393,7 +359,7 @@ Format:`filterStudent [INVOLVEMENT] [t/TAG]…​`
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterStudent one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
-* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement is `chess club` **and** has tags containing `member` will be returned.
+* Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement has both `chess` and `club` in it **and** has tags containing `member` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
 
@@ -425,7 +391,7 @@ How this command works:
 
 Examples:
 * `medical 1 m/ADHD` adds ADHD to the `MEDICAL_HISTORY` of student 1 in the displayed student list.
-* `medical 1 m/``removes the `MEDICAL_HISTORY` from student 1 in the displayed student list.
+* `medical 1 m/` removes the `MEDICAL_HISTORY` from student 1 in the displayed student list.
 
 #### View the full medical history of a student : `showMedical`
 
@@ -450,7 +416,7 @@ Examples:
 
 Adds a teacher to NewAddressBook.
 
-Format: `teacher n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER
+Format: `teacher n/NAME p/PHONE e/EMAIL g/GENDER o/OFFICE_TABLE_NUMBER
 i/INVOLVEMENT [t/TAG]…​`
 
 Parameters:
@@ -558,7 +524,7 @@ Examples:
 
 Edits an existing teacher in NewAddressBook.
 
-Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​`
+Format: `editTeacher INDEX [n/NAME] [p/PHONE] [e/EMAIL] [g/GENDER] [i/INVOLVEMENT] [o/OFFICE_TABLE_NUMBER] [t/TAG]…​`
 
 
 * Edits the teacher at the specified `INDEX`.
@@ -612,7 +578,7 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`.
 * Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterTeacher one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
-* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
+* Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement has both `chess` and `club` in it **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
 * Involvement must come before tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 

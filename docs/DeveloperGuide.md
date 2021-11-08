@@ -112,9 +112,6 @@ calls the `MeetingParser#parseCommand`. The rest of the implementation is simila
 
 ![Interactions Inside the Logic Component for the `deleteStudent 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -160,6 +157,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The lifeline each diagram should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+</div>
+
 ### Undo feature
 
 #### Implementation details
@@ -199,11 +201,6 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
-</div>
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** In the event the user executes `undo` from the meeting window, `MeetingParser` will be used instead. 
@@ -261,10 +258,6 @@ The following sequence diagram shows how the copy operation works for a copyStud
 ![CopySequenceDiagram](images/CopySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `CopyStudentCommandParser` and `CopyStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
-<div markdown="span" class="alert alert-info">:information_source: 
 **Note:** The `copyStudent/copyTeacher` command does not copy anything to the clipboard if the last shown list is empty.
 </div>
 
@@ -290,9 +283,6 @@ We went with Alternative 1 because we felt that other than a person's phone, ema
 The mechanism of adding meetings is showcased in the sequence diagram below:
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MeetCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-
-</div>
 
 ![MeetSequenceDiagram](images/MeetSequenceDiagramRef.png)
 
@@ -355,7 +345,7 @@ This works as the command is supported by the method in the `Model` interface, s
 `Model#updateFilteredStudentList()` methods.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** One cannot add medical history to teachers.
+:information_source: **Note:** The user cannot add medical history to teachers.
 </div>
 
 Given below is an example usage scenario and how the mechanism works.
@@ -422,13 +412,9 @@ The `clearTeacher` command works similarly.
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
 #### Design considerations
 
-**Aspect: How clear executes:**
+**Aspect: How `clearStudent/clearTeacher` executes:**
 
 * **Alternative 1 (current choice):**  Clears only the filtered list
     * Pros: Makes it more flexible for the user, so that they can selectively filter a list they want to delete.
@@ -436,7 +422,7 @@ The `clearTeacher` command works similarly.
     * Cons: Harder to implement and may have a performance issue in terms of memory usage.
 
 * **Alternative 2:** Clears the entire list
-    * Pros: Easier to maintain as it will be the same as the initial Clear Command
+    * Pros: Easier to maintain as it will be the same as `ClearCommand` in AB3.
     * Cons: No way for the user to selectively mass delete.
 
 We went with Alternative 1 because we felt it was better to give users the choice to specify which types of students they want cleared from their list. Besides, the objective of Alternative 2 can be achieved by simply executing `listStudent` and `clearStudent`.
@@ -465,8 +451,8 @@ We went with Alternative 1 because we felt it was better to give users the choic
 * Is reasonably comfortable using CLI apps.
 
 **Value proposition**: 
-* manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
-* keep track of upcoming school-related meetings with students/teachers/parents.
+* Manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
+* Keep track of upcoming school-related meetings with students/teachers/parents.
 
 
 ### User stories
@@ -505,26 +491,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `NewAddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-#### List of use cases 
-1. [Adding a student/teacher](#use-case-01-adding-a-student-or-teacher)
-2. [Clearing student/teachers from the currently displayed list](#use-case-02-clearing-students-teachers)
-3. [Copy fields from students/teachers](#use-case-03-copying-fields-from-students-or-teachers)
-4. [Deleting students/teachers/meetings](#use-case-04-deleting-a-student-teacher-or-meeting)
-5. [Editing a student/teacher](#use-case-05-editing-a-student-or-teacher)
-6. [Finding a student/teacher by name](#use-case-06-finding-a-student-or-teacher-by-name)
-7. [Filtering a student/teacher by tag](#use-case-07-filtering-a-student-or-teacher-by-involvement-or-tag)
-8. [Listing all students/teachers](#use-case-08-listing-all-students-or-teachers)
-9. [Adding a medical history to a student](#use-case-09-adding-a-medical-history-to-a-student)
-10. [Showing the medical history of a student](#use-case-10-showing-the-medical-history-of-a-student)
-11. [Showing help](#use-case-11-showing-help)
-12. [Quitting the application](#use-case-12-quitting-the-application)
-13. [Showing meetings](#use-case-13-showing-meetings)
-14. [Adding a meeting](#use-case-14-adding-a-meeting)
-15. [Quitting meetings window](#use-case-15-quitting-meetings-window)
-16. [Undoing actions](#use-case-16-undoing-actions)
-
-
-
 #### Use Case 01: Adding a student or teacher
 
 **MSS**
@@ -538,7 +504,7 @@ Extensions:
 
   * 1a1. NewAddressBook notifies the user that some of their inputs are invalid. 
   
-      Use case resumes at step 2
+      Use case resumes at step 1.
 
 * 1b. The student or teacher already exists.
 
@@ -579,7 +545,7 @@ Extensions:
 
   * 4a1. NewAddressBook notifies the user that his input is invalid.
 
-      Use case resumes at step 2.
+      Use case resumes at step 4.
       
 * 5a. The currently displayed list is empty.
 
@@ -605,7 +571,7 @@ Extensions:
 
     * 3a1. NewAddressBook informs the user that index is invalid.
 
-      Use case resumes at step 1.
+      Use case resumes at step 3.
 
 #### Use Case 05: Editing a student or teacher
 
@@ -627,6 +593,7 @@ Extensions:
   * 3a1. NewAddressBook informs the user that index is invalid.
 
     Use case resumes at step 3.
+
 * 3b. The user input is invalid.
 
   * 3b1. NewAddressBook informs the user that the input is invalid.
@@ -637,7 +604,7 @@ Extensions:
 
     * 3c1. NewAddressBook informs the user that there is nothing to be edited. No action is performed.
 
-      Use case resumes at step3.
+      Use case resumes at step 3.
 
 #### Use Case 06: Finding a student or teacher by name
 
@@ -649,7 +616,7 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. No students/teachers match the name specified by the user.
+* 2a. No students/teachers match the keywords specified by the user.
 
     * 2a1. NewAddressBook displays an empty list to the user.
 
@@ -666,13 +633,13 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. The tag values provided are invalid (ie. contain alphanumeric characters).
+* 2a. The tag values provided are invalid (ie. contain special characters).
 
     * 2a1. NewAddressBook tells the user that the input is invalid.
 
       Use case resumes at step 2.
 
-* 3a. No students/teachers match the name specified by the user.
+* 3a. No students/teachers match the keywords specified by the user.
 
     * 3a1. NewAddressBook displays an empty list to the user.
 
@@ -706,7 +673,7 @@ Extensions:
     Use case ends.
 
 **Extensions**
-* 2a. THe list is empty.
+* 2a. The list is empty.
 
     Use case ends.
 * 3a. The given index is invalid.
@@ -719,11 +686,11 @@ Extensions:
 
   * 3b1. NewAddressBook informs the user that the same medical history is already recorded for the student.
 
-    Use case resumes at step 3.
+    Use case ends.
 
 * 3c. The user provides an empty string as the medical history.
 
-    * 3c1. NewAddressBook overrides the medical history with an empty string.
+    * 3c1. NewAddressBook removes the medical history of the student.
 
       Use case ends.
 
@@ -968,7 +935,7 @@ This section tests the basic functionality of the application.
    1. Prerequisites: The list has at least one person.
 
    1. Test case: `deleteStudent 1`<br>
-      Expected: A first student is deleted.
+      Expected: The first student is deleted.
 
 2. Delete a student with an invalid index.
 
@@ -1049,7 +1016,11 @@ These commands test the finding/filtering capabilities of the application.
 
 1. Filter matching conditions: checks to make sure `findStudent` matches **part** of the word, and that the search is an **AND** search
 
-   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead` (these commands are not the same as above!)
+   1. Prerequisites: clear the student list with `listStudent` and `clearStudent`. Add two students to the student list using `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty` and `student n/John Smith p/98765432 e/johns@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/English class t/naughty t/dead`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+  These commands are not the same as above!
+</div>
 
    1. Test case: `filterStudent class`<br>
       Expected: Both students should be listed.

@@ -26,7 +26,7 @@ activate DeleteStudentCommandParser
 DeleteStudentCommandParser --> AddressBookParser
 deactivate DeleteStudentCommandParser
 
-AddressBookParser -> DeleteStudentCommandParser : parse("1")
+AddressBookParser -> DeleteStudentCommandParser : parse(arguments)
 activate DeleteStudentCommandParser
 
 create DeleteStudentCommand

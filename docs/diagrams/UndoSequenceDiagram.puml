@@ -21,7 +21,7 @@ create UndoCommand
 AddressBookParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> AddressBookParser : u
 deactivate UndoCommand
 
 AddressBookParser --> LogicManager : u
