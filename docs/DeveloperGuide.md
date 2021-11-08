@@ -227,7 +227,7 @@ The `undoSuccess` variable in the above diagram is a `boolean`. It is `true` if 
   * Pros: Will use less memory (e.g. for `deleteStudent`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command is correct.
 
-We chose Alternative 1 because of the limited timespan of our problem. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
+We chose Alternative 1 because of the limited timespan of our project. Also, given that modern computers have large memory, it will not be a problem to store multiple copies of address books if the address book size is not too large.
 
 **Aspect: Behaviour of `undo` across the main window and meeting window:**
 
@@ -239,7 +239,7 @@ We chose Alternative 1 because of the limited timespan of our problem. Also, giv
   * Pros: It is less confusing for the user (as now if the `undo/undoMeeting` command is executed in a particular window, the change will be reflected in the same window).
   * Cons: Harder to implement.
 
-We eventually settled on Alternative 1 because our current implementation of the `AddressBook` class stores all the student, teacher and meeting lists together, and because we are using a stack to manage previous versions of our address book, it is more convient to push the entire address book onto the stack rather than creating a separate class to store meetings.
+We eventually settled on Alternative 1 because our current implementation of the `AddressBook` class stores all the student, teacher and meeting lists together, and because we are using a stack to manage previous versions of our address book, it is more convenient to push the entire address book onto the stack rather than creating a separate class to store meetings.
 
 ### Copy Command
 
@@ -281,7 +281,7 @@ The following sequence diagram shows how the copy operation works for a copyStud
     * Pros: The user has more flexibility in which fields they want to copy.
     * Cons: The user has to precisely remember which fields a student or teacher has. For example, the user would have to remember that he/she can copy down the office table numbers for teachers, but not for students. Similarly, he/she would have to remember that the emergency contact number of students can be copied, but not for teachers.
 
-We went with Alternative 1 because we felt that other than a person's phone, email and name, there are very little use cases which would lead one to need to copy down another field. For example, unless it is for a very specific purpose, it is unlikely that the user would need to copy down office table numbers.
+We went with Alternative 1 because we felt that other than a person's phone, email and name, there are very few use cases which would lead one to need to copy down another field. For example, unless it is for a very specific purpose, it is unlikely that the user would need to copy down office table numbers.
 
 
 ### Adding meetings
@@ -388,7 +388,7 @@ The following sequence diagram shows how the `medical` command works.
     * Pros: Easier to implement.
     * Cons: Does not make sense as most students do not have notable `medicalHistory`.
 
-We went with Alternative 1 because it is only a small subset of students that have medical conditions, and so it made sense not to force the user to input `medicalHistory` for each `student`. Further, we did not want users to accidently edit a student's medical condition while editing a student, thus it made sense to create a new command for the specific use case of updating a medical history.
+We went with Alternative 1 because it is only a small subset of students that have medical conditions, and so it made sense not to force the user to input `medicalHistory` for each `student`. Further, we did not want users to accidentally edit a student's medical condition while editing a student, thus it made sense to create a new command for the specific use case of updating a medical history.
 
 ###  ClearStudent / ClearTeacher Command
 
@@ -411,7 +411,7 @@ will be initialised with all the students and teachers respectively from the loa
 Step 2. The user executes `filterStudent math` to get all the students with the string `math` in their involvement.
 The filtered students will be stored in `Model#filteredStudent` and the list will be shown to the user.
 
-Step 3. The user executes `ClearStudent`to clear the current list of filtered students.
+Step 3. The user executes `ClearStudent` to clear the current list of filtered students.
 The `ClearStudent` command calls `Model#massDeleteStudents`, deleting the students in the current filtered list from
 both the `Model#filteredStudent` and `AddressBook#uniqueStudentList`.
 
@@ -439,7 +439,7 @@ The `clearTeacher` command works similarly.
     * Pros: Easier to maintain as it will be the same as the initial Clear Command
     * Cons: No way for the user to selectively mass delete.
 
-We went with Alternative 1 because we felt it was better to give users the choice to specify which types of students they want cleared from their list. Besides, the objective of Alternative 2 can be acheived by simply executing `listStudent` and `clearStudent`.
+We went with Alternative 1 because we felt it was better to give users the choice to specify which types of students they want cleared from their list. Besides, the objective of Alternative 2 can be achieved by simply executing `listStudent` and `clearStudent`.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
