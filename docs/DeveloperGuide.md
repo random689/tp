@@ -157,6 +157,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+<div markdown="span" class="alert alert-info">:information_source: 
+  **Note:** The lifeline each diagram should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+</div>
+
 ### Undo feature
 
 #### Implementation details
@@ -304,11 +309,6 @@ We chose Alternative 1 because it makes the application easier to use and provid
 
 #### Implementation details
 
-<div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline each diagram should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
-
-
 We discuss only the student case here, since it is the same for teachers.
 
 When a `filterStudent` is called, it uses the `filterStudentCommandParser` to parse the additional inputs given by the 
@@ -318,10 +318,6 @@ and `model.updateFilteredStudentList(predicate)`.
 The following sequence diagram shows how it works for a filterStudent command.
 
 ![FilterSequenceDiagram](images/FilterDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: 
-  **Note:** The lifeline for `ClearStudentCommandParser` and `ClearStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
-</div>
 
 #### Design considerations
 
