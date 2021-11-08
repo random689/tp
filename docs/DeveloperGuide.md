@@ -22,7 +22,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S1-CS2103-T16-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at 
 se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
@@ -70,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java).
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -78,9 +77,9 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 ![Structure of the MeetingWindow UI Component](images/UiMeetingClassDiagram.png)
 
-The `MeetingWindow` in `MainWindow` is made up of parts as well e.g. `CommandBox`, `ResultDisplay`, `MeetingListPanel`. Which also inherit from abstract `UiPart` similar to the MainWindow
+The `MeetingWindow` is made up of parts as well e.g. `CommandBox`, `ResultDisplay`, `MeetingListPanel` which, similar to `MainWindow`, also inherits from the abstract `UiPart`.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S1-CS2103-T16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -136,7 +135,7 @@ The `Model` component,
 * stores the currently 'selected' `Student` and `Teacher` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Student>` and `ObservableList<Teacher>` respectively. It can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * a stack, `history`, to  keep track of address book histories. This is to facilitate the `undo` command.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 * As there is no feature to search meetings, there is no need to store a filtered meeting list.
 
 
@@ -149,7 +148,7 @@ The `Model` component,
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -314,7 +313,7 @@ This allows users to focus on the more recent upcoming meetings.
   * Cons: Harder to implement, as there is a need to update or remove meetings whenever the referenced Person is updated or removed from NewAddressBook. Furthermore, users cannot schedule meetings 
   with persons that are not stored in NewAddressBook, e.g. parents.
 
-We chose alternative 1 because it makes the application easier to use and provides more flexibility. That way, users do not have to add in a contact into NewAddressBook in order to have a meeting with them.
+We chose Alternative 1 because it makes the application easier to use and provides more flexibility. That way, users do not have to add in a contact into NewAddressBook in order to have a meeting with them.
 
 ### Filter command
 
@@ -363,9 +362,9 @@ Step 1. The user launches the application for the first time. The `filteredStude
 initialised from the saved data.
 
 Step 2. The user types the command `medical INDEX m/MEDICAL_HISTORY` to add the `medicalHistory` to the desired `student`
-at `index`. The `medical` command calls Model#getFilteredStudentList to obtain the current list of students, then finds
+at `index`. The `medical` command calls `Model#getFilteredStudentList` to obtain the current list of students, then finds
 the desired student based on the `index`, and proceeds to edit the `medicalHistory` field of the student. Then the 
-Model#updateFilteredStudentList is called to show the updated list with the added `medicalHistory`.
+`Model#updateFilteredStudentList` is called to show the updated list with the added `medicalHistory`.
 
 The following sequence diagram shows how the `medical` command works.
 
@@ -380,12 +379,14 @@ The following sequence diagram shows how the `medical` command works.
     * Cons: Slightly more complicated than forcing users to input a `medicalHistory` each time they add a student.
 
 * **Alternative 2:** Allow users to use the `editStudent` command to edit the `medicalHistory`
-    * Pros: Easier to implement
-    * Cons: Not as specific as using the `medical` command
+    * Pros: Easier to implement.
+    * Cons: Not as specific as using the `medical` command.
   
 * **Alternative 3:** Force users to input `medicalHistory` for each `student` they wish to add.
-    * Pros: Easier to implement
-    * Cons: Does not make sense as most students do not have notable `medicalHistory`
+    * Pros: Easier to implement.
+    * Cons: Does not make sense as most students do not have notable `medicalHistory`.
+
+We went with Alternative 1 because it is only a small subset of students that have medical conditions, and so it made sense not to force the user to input `medicalHistory` for each `student`. Further, we did not want users to accidently edit a student's medical condition while editing a student, thus it made sense to create a new command for the specific use case of updating a medical history.
 
 ###  ClearStudent / ClearTeacher Command
 
@@ -436,6 +437,8 @@ The `clearTeacher` command works similarly.
     * Pros: Easier to maintain as it will be the same as the initial Clear Command
     * Cons: No way for the user to selectively mass delete.
 
+We went with Alternative 1 because we felt it was better to give users the choice to specify which types of students they want cleared from their list. Besides, the objective of Alternative 2 can be acheived by simply executing `listStudent` and `clearStudent`.
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -453,11 +456,11 @@ The `clearTeacher` command works similarly.
 
 **Target user profile**:
 
-* Singapore Secondary school teachers who need to manage many students/teachers, who might have different relationships with the teacher
-* Prefer desktop apps over other types
-* Can type fast
-* Prefer typing to mouse interactions
-* Is reasonably comfortable using CLI apps
+* Singapore Secondary school teachers who need to manage many students/teachers, who might have different relationships with the teacher.
+* Prefer desktop apps over other types.
+* Can type fast.
+* Prefer typing to mouse interactions.
+* Is reasonably comfortable using CLI apps.
 
 **Value proposition**: 
 * manage contacts faster than a typical mouse/GUI driven app, allows teachers to manage their contacts of students and colleagues easily.
@@ -480,7 +483,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | teacher   | edit a specific attribute of a student / teacher              | edit their details quickly without deleting and re-adding that student all over again |
 | `* * *`  | teacher      | list all students / teachers contacts         | see the details of all my contacts easily |
 | `* * *`  | teacher | record and view the medical history of my students          | know which students needs special attention|
-| `* * *`      | teacher | add upcoming school-related meetings with parents/teachers/students         | keep track of these important meetings |
+| `* * *`      | teacher | add upcoming school-related meetings with parents / teachers / students         | keep track of these important meetings |
 | `* * *`      | teacher | delete a meeting          | remove it from the app in the event that the meeting is cancelled|
 | `* *`  | teacher with many students and colleagues               | copy fields from contacts stored in the app     | paste it into a communication app and contact them quickly |
 | `* *`  | teacher with many students and colleagues               | find a student / teacher by name          | locate details of persons without having to go through the entire list |
@@ -616,11 +619,14 @@ Extensions:
 * 2a. The list is empty.
 
     Use case ends.
+
 * 3a. The given index is invalid.
+
   * 3a1. NewAddressBook informs the user that index is invalid.
 
     Use case resumes at step 3.
-* 3b. The user input is invalid
+* 3b. The user input is invalid.
+
   * 3b1. NewAddressBook informs the user that the input is invalid.
   
     Use case resumes at step 3.
@@ -708,7 +714,9 @@ Extensions:
       Use case resumes at step 3.
     
 * 3b. The new value provided is the same as the existing medical history possessed by the student.
+
   * 3b1. NewAddressBook informs the user that the same medical history is already recorded for the student.
+
     Use case resumes at step 3.
 
 * 3c. The user provides an empty string as the medical history.
@@ -798,16 +806,19 @@ Extensions:
 
 **Extensions**
 * 2a. Input formats are invalid.
+
   * 2a1. NewAddressBook informs the user that the input is invalid. 
   
      Use case resumes at step 2.
 
 * 2b. There is conflict with an existing meeting.
+
   * 2b1. NewAddressBook informs the user that there is a conflict.
     
     Use case resumes at step 2.
 
 * 2c. Datetime provided is not in the future.
+
   * 2c1. NewAddressBook informs the user that datetime must be in the future.
 
     Use case resumes at step 2.
