@@ -692,11 +692,11 @@ Format: `clearMeeting`
 
 #### Show meetings window : `showMeeting`
 
-Pops out the meeting window. To be used from the Main Window.
+Pops out the meeting window.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-This command does not work if called from the `meetingWindow`. This is because, if the user is typing a command from 
-the `meetingWindow`, then obviously the `meetingWindow` is already open.
+This command does not work if called from the meeting window. This is because, if the user is typing a command from 
+the meeting window, then obviously the meeting window is already open.
 </div>
 
 Format: `showMeeting`
