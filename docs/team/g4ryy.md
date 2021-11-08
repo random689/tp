@@ -12,6 +12,9 @@ Given below are my contributions to the project.
 
 ## Contributions Summary
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=g4ryy&tabRepo=AY2122S1-CS2103-T16-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+
+
 ### New Features
 * **New Feature**: Refactored existing code to support student and teacher classes by applying polymorphism. [[#38](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/38), [#57](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/57)]
   * What it does: allows the user to store 2 different types of person contacts (students and teachers). These two types of persons share a number of fields, but they also have different fields associated with them.
@@ -37,17 +40,14 @@ Given below are my contributions to the project.
 * **New Feature**: Added feature to clear all meetings. [#148](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/148)
   * What it does: allows user to remove all meetings in one go.
   * Justification: allows user to remove all meetings from the app with just one command in the event that they want to cancel all upcoming meetings.
-
-### Code Contributed
-[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=g4ryy&tabRepo=AY2122S1-CS2103-T16-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
-
+  
 ### Project Management
 * Set up the GitHub team organisation and repository
 * Managed releases `v1.2`, `v1.3.trial`, `v1.3`, `v1.3.1`, `v1.4` (5 releases) on GitHub
 * Set up and maintained issue tracker on GitHub
   
 
-### Documentation:
+### Documentation
 * **User Guide:**
   * Made various changes to improve readability, e.g. adding table of contents, separating into different sections. [#129](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/129)
   * Added various UI images in the `User Interface (UI)` section. [#151](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/151)
@@ -58,7 +58,7 @@ Given below are my contributions to the project.
   * Added Effort appendix. [#286](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/286)
   * Added user stories. [#286](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/286)
 
-### Community:
+### Community
   * PRs reviewed: [#74](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/74), [#93](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/93)
   * Reported bugs and suggestions for other teams in the class: [#1](https://github.com/AY2122S1-CS2103-F10-1/tp/issues/134), [#2](https://github.com/AY2122S1-CS2103-F10-1/tp/issues/133), [#3](https://github.com/AY2122S1-CS2103-F10-1/tp/issues/126), [#4](https://github.com/AY2122S1-CS2103-F10-1/tp/issues/123)
 

@@ -4,7 +4,7 @@
 # NewAddressBook
 
 **This is our CS2103 Project**.<br>
-An App to make secondary school teacher's life easier!
+An App to make Singapore secondary school teacher's life easier!
 This project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
 
 ## Overview
@@ -18,7 +18,7 @@ This project simulates an ongoing software project for a desktop application (ca
 3. Search student and teachers by keyword
 4. Add tags to student / teachers
 5. Easily copies important details
-7. Many more!
+6. Many more!
 
 For a more details, do visit us [here](https://ay2122s1-cs2103-t16-3.github.io/tp/UserGuide.html#quick-start)!
 
