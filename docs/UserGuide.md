@@ -7,9 +7,9 @@ title: User Guide
 NewAddressBook is a **desktop app built for Singapore secondary school teachers** that are handling large classes. It helps them **manage the contacts of their students and colleagues** efficiently. It also supports **keeping track of upcoming meetings** and **recording the medical histories** of students.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your computer.
@@ -99,7 +99,7 @@ The various fields that describes a meeting are as follows:
 :information_source: 
 Out of all the commands, the only command which executes in both windows is the `undo` command. 
 The other commands work **either** in the main application window or the meeting window, but not both. 
-The `window` column of the table below indicates which window the command is compatible with.
+The `Window` column of the table below indicates which window the command is compatible with.
 </div>
 
 Action | Format | Window
@@ -140,6 +140,8 @@ Action | Format | Window
   class as `in my math class`. A CCA teacher might store the involvement of a student in his badminton CCA as `badminton`.
   A teacher involved in an overseas CIP trip might want to store the involvement of students going along with him as `CIP trip`.
 
+* **Currently displayed list**: For students, for example, there are two lists that are maintained by the application. One is the full list of students. The other is the list which the user currently sees on screen. For various reasons, the list the user sees may not be the same as the full list of students (perhaps the user executed a `findStudent` command) . When we say "currently displayed list" we mean the list that is currently shown to the user.
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -154,7 +156,7 @@ Action | Format | Window
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as `t/friend`, `t/friend t/family` etc.
 
 * For most commands except `filterStudent` and `filterTeacher`, parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -163,10 +165,14 @@ Action | Format | Window
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`.
+  e.g. for the `help` command, if you specify `help 123`, it will be interpreted as `help`. For other commands that require parameters, however, the input format must be as stated as in the user guide.
 
 * For all prefixes (except the first), the user should ensure they are preceded by a space for the parser to recognise it as a new prefix, instead of a parameter in the previous prefix. For example, `editStudent 1 i/e/hello@example.com` parsers the parameter for `i/` as `e/hello@example.com`, and does not detect any input for the `e/` field. On the other hand, for the command `editStudent 1 i/ e/hello@example.com`, `i/` is detected to have no arguments, while `e/` has `hello@example.com` as an argument. As such, the second command will not succeed since the `i/` field is blank. 
 
+* For all parameters, extraneous spaces within the input values will not be trimmed.
+  e.g. `n/john doe` is considered different from `n/john     doe`
+
+* All parameters and commands, unless specified, are case-sensitive.
 </div>
 
 The commands offered can be roughly split into 4 categories: those involving students, teachers, meetings, and general commands.
@@ -254,19 +260,21 @@ Parameters:
   * if the tag field is specified, it cannot be empty
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0).
+A student can have any number of tags (including 0). However, if the same tag is given more than once, e.g. `t/cat t/cat`,
+only one will be displayed as they are considered the same.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out how `involvement` is intended to be used in the glossary.
+Check out how `INVOLVEMENT` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 NewAddressBook prevents the user from adding in duplicate students. Two students are duplicate if they have the same name and address.
 However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" as two
 different names as they have different casing. We will improve on this in future versions of NewAddressBook to allow this duplicate
-check to be case-insensitive.
+check to be case-insensitive. 
 </div>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Notes about `FORM_CLASS`:**
 While the format allowed for `FORM_CLASS` caters to most secondary schools in Singapore, we understand that some schools 
@@ -383,20 +391,20 @@ Format:`filterStudent [INVOLVEMENT] [t/TAG]…​`
 * Either `INVOLVEMENT` or `TAG` must be present.
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search for both tag and involvement matches substrings, e.g `han` will match `Hans`.
-* Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`.
+* Involvement searches are broken up. That is, if the command was `filterStudent One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterStudent one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
 * Students matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterStudent chess club t/member`, only students whose involvement is `chess club` **and** has tags containing `member` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
-* Involvement must come before Tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
+* Involvement must come before tag. e.g. `filterStudent chess club t/member` is allowed but `filterStudent t/member chess club` is not.
 
 
 Examples:
-- `filterStudent class t/rep` - will return all students with the involvement containing `class` and tag containing `rep`.
+- `filterStudent class t/rep` - will return all students with the involvement containing `class` and has at least one tag containing `rep`.
 - `filterStudent math class` - will return all students with the involvement containing `math class`.
 - `filterStudent t/banana t/phone` - will return all students with tags containing “banana” and "phone".
 
 #### List all students : `listStudent`
 
-Shows a list of all students stored in the address book.
+Shows a list of all students stored in NewAddressBook.
 
 Format: `listStudent`
 
@@ -426,6 +434,10 @@ Format: `showMedical INDEX`
 * View the full medical history of the student at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the **currently displayed** student list.
 * The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the displayed student list.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If the student has no medical history, the pop-up window will simply show the name of the student.
+</div>
 
 Examples:
 * `showMedical 1`
@@ -469,18 +481,24 @@ Parameters:
   * if the tag field is specified, it cannot be empty
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A teacher can have any number of tags (including 0).
+A teacher can have any number of tags (including 0). However, if the same tag is given more than once, e.g. `t/cat t/cat`,
+only one will be displayed as they are considered the same.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Check out how `involvement` is intended to be used in the glossary.
+Check out how `INVOLVEMENT` is intended to be used in the glossary.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-NewAddressBook prevents the user from adding in duplicate teachers. Two teachers are the same if they have the same name and office table number.
+NewAddressBook prevents the user from adding in duplicate teachers. Two teachers are the same if they have the same name and office table number. 
 However, this duplicate check is currently case-sensitive. For example, NewAddressBook will treat "John" and "john" 
 as two different names as they have different casing. We will improve on this in future versions of NewAddressBook 
 to allow this duplicate check to be case-insensitive.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+NewAddressBook allows two teachers to have the same office table number in case the user wants to continue storing the
+contacts of a teacher who have resigned. This way, a new teacher who occupies the same table can be added.
 </div>
 
 Examples:
@@ -542,7 +560,7 @@ Format: `editTeacher INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [i/INV
 
 
 * Edits the teacher at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the **currently displayed** teacher list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the **currently displayed** student list.
+* `INDEX` refers to the index number shown in the **currently displayed** teacher list. The index **must be a positive integer** 1, 2, 3, …​ not exceeding the size of the **currently displayed** teacher list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the teacher will be removed, ie. adding of tags is not cumulative.
@@ -591,14 +609,13 @@ Format:`filterTeacher [INVOLVEMENT] [t/TAG]…​`
 * Either `INVOLVEMENT` or `TAG` must be present.
 * The search for both tag and involvement is case-insensitive. e.g `hans` will match `Hans`.
 * The search is for both tag and involvement matches substrings, e.g `han` will match `Hans`.
-* Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`.
+* Involvement searches are broken up. That is, if the command was `filterTeacher One Two`, `One Two` be broken up into two strings `One` and `Two` and it will search for involvement that contains both `One` and `Two`. Similarly, if the user executes `filterTeacher one one`, then the command treats it as though a single `one` was put in. Similarly, an input with `t/tag1 t/tag1` is treated as though the user had put in a single `t/tag1`.
 * Teachers matching **all** of the search will be returned (i.e. `AND` search). For example, if the search was `filterTeacher chess club t/coordinator`, only teachers whose involvement is `chess club` **and** has tags containing `coordinator` will be returned.
 * Only alphanumeric tag parameters in the search are allowed.
-* Involvement must come before Tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
-
+* Involvement must come before tag. e.g. `filterTeacher chess club t/coordinator` is allowed but `filterTeacher t/coordinator chess club` is not.
 
 Example:
-- `filterTeacher class t/rep` - will return all teachers with the involvement containing `class` and tag containing `rep`.
+- `filterTeacher class t/rep` - will return all teachers with the involvement containing `class` and has at least one tag containing `rep`.
 - `filterTeacher math class` - will return all teachers with the involvement containing `math class`.
 - `filterTeacher t/banana t/phone` - will return all teachers with tags containing `banana` and `phone`.
 
@@ -633,6 +650,7 @@ Parameters:
   * should not be blank
 * `ATTENDEE_TYPE`: The type of person(s) you are meeting with.
   * must be one of the following: `S` (students), `T` (teachers), `P` (parents)
+  * case-insensitive
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can only add meetings in the future.

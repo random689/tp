@@ -3,44 +3,45 @@ layout: page
 title: Clive Ong's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: NewAddressBook
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+NewAddressBook is a desktop address book application used by teachers to manage their student and teacher contacts, optimised for use via a Command Line Interface (CLI). The user interacts with it using a CLI, and
+it has a GUI created with JavaFX. It is written in Java.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to `filterStudent`, `filterTeacher`.
+  * What it does: Allows the user to filter the existing student/teacher list by involvement and/or tags.
+  * Justification: This feature improves the product significantly because the user is usually managing a large number of contacts and being able to quickly find information of all contacts within a subset allows for easier communication with them. 
+  * Highlights: This feature was constantly revised to match the ever higher standards that we are striving for, and thus has had several iterations.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the feature to mass delete a displayed list via `clearStudent` and/or `clearTeacher`
+  * What it does: Allows the user delete every single contact in the current displayed list.
+  * Justification: This feature improves the product significantly as allows mass management of contacts e.g. A class has recently graduated, so the user can the filter command to find the students in that particular class and then delete the contacts.
+  * Highlights: The command will leave the non-displayed contacts intact and in the same order.
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: Added a `Gender` field
+  * What it does: Allows the user to add/edit a `Gender` field to students/teachers to keep track of their gender.
+  * Justification: The user might want to track the gender of the contacts for administrative purposes.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an
+    in-depth analysis of design alternatives. The implementation required changes to
+    existing commands like the adding and editing of contacts.
 
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=cliveong&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the `filter` command: [\#12](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/12), [\#101](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/101), [\#200](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/200), [\#197](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/197)
+    * Fixed multiple errors in the UG: [#243](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/243)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details/UML diagrams of the `filter` feature. [\#99](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/99), [\#139](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/139)
+    * Add on to the ClearSequenceDiagram [\#197](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/197)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#251](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/251)
+  * Reported bugs and suggestions for other teams in the class (examples: [2](https://github.com/cliveong/ped/issues/2), [3](https://github.com/cliveong/ped/issues/3), [4](https://github.com/cliveong/ped/issues/4), [5](https://github.com/cliveong/ped/issues/5), [6](https://github.com/cliveong/ped/issues/6), [7](https://github.com/cliveong/ped/issues/7), [8](https://github.com/cliveong/ped/issues/8))
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+* **Others**:
+  * Added features that were ultimately not used/changed in the final product
+    * `massDelete` function which immediately deletes a subset of contacts [\#106](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/106), [\#134](https://github.com/AY2122S1-CS2103-T16-3/tp/pull/134)
 
-* _{you can add/remove categories in the list above}_
