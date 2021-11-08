@@ -452,7 +452,7 @@ The `clearTeacher` command works similarly.
 
 **Target user profile**:
 
-* Secondary school teachers who needs to manage many students/teachers, who might have different relationships with the teacher
+* Singapore Secondary school teachers who need to manage many students/teachers, who might have different relationships with the teacher
 * Prefer desktop apps over other types
 * Can type fast
 * Prefer typing to mouse interactions
@@ -895,20 +895,20 @@ This section tests the basic functionality of the application.
 1. Adding a student with all fields correct.
 
    1. Test case: `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`<br>
-      Expected: Student John Does is added to the list.
+      Expected: Student John Doe is added to the list.
 
 2. Adding a duplicate student.
 
     1. Prerequisites: The test case above is executed.
 
     1. Test case: execute **again** `student n/John Doe p/98765432 e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`<br>
-        Expected: Student John Does is not added to the list. A message similar to a duplicate student message shows up.
+        Expected: Student John Doe is not added to the list. A message similar to a duplicate student message shows up.
 
 3. Adding a student with an empty field.
 
     1. Test case: `student n/John Doe p/ e/johnd@example.com g/M a/311, Clementi Ave 2, #02-25 f/3E1 em/999 i/Math class t/naughty`<br>
     
-        Expected: Student John Does is not added to the list. A message saying the phone number has an invalid input pops out.
+        Expected: Student John Doe is not added to the list. A message saying the phone number has an invalid input pops out.
 
 #### Clearing the student list
 
