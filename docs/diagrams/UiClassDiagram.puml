@@ -60,9 +60,9 @@ MeetingWindow --|> UiPart
 MedicalWindow --|> UiPart
 
 StudentCard .down.> Model
-TeacherCard .down.> Model
+TeacherCard ..down.> Model
 UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow -right-> Logic
 
 StudentListPanel -[hidden]left- HelpWindow
 TeacherListPanel -[hidden]left- HelpWindow
